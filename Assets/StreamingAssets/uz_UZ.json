@@ -1,0 +1,216 @@
+﻿{
+  "Items": [
+    {
+      "key": "NameT",
+      "value": "Ism:"
+    },
+    {
+      "key": "SurnameT",
+      "value": "Familiya:"
+    },
+    {
+      "key": "AgeT",
+      "value": "Yosh:"
+    },
+    {
+      "key": "WriteYourName",
+      "value": "Ismingni yoz"
+    },
+    {
+      "key": "WriteYourSurname",
+      "value": "Familiyangni yoz"
+    },
+    {
+      "key": "WriteYourAge",
+      "value": "Yoshingi yoz"
+    },
+    {
+      "key": "Succes",
+      "value": "Tayyor!"
+    },
+     {
+      "key": "LearnMath",
+      "value": "<size=48>Matematikani</size>||o'rganing"
+    },
+     {
+      "key": "ClassMath",
+      "value": "Maktab||<size=50>matematikasi</size>"
+    },
+     {
+      "key": "MathBattle",
+      "value": "O'yin"
+    },
+    {
+      "key": "NextB",
+      "value": "Keyingi"
+    },
+    {
+      "key": "LvlLabel",
+      "value": "Lv."
+    },
+    {
+      "key": "PropertiesItems",
+      "value": "Narsalarning xossalari"
+    },
+    {
+      "key": "Unit",
+      "value": "Mashq"
+    },
+    {
+      "key": "SameThingsTitle",
+      "value": "Bir xil rangdagi narsalarni birlashtiring"
+    },
+    {
+      "key": "DifferenceTitle",
+      "value": "5 ta farqni toping"
+    },
+    {
+      "key": "Unit12",
+      "value": "Narsalarni o‘lchamlari bo‘yicha||taqqoslash"
+    },
+    {
+      "key": "Unit13",
+      "value": "Narsalarni xossalari bo‘yicha||to‘plamlarga ajratish"
+    },
+    {
+      "key": "Unit14",
+      "value": "To‘plamlarni tashkil qilgan||narsalar soni bo‘yicha taqqoslash"
+    },
+    {
+      "key": "Unit21",
+      "value": "1 dan 10 gacha bo‘lgan||sonlarning atalishi"
+    },
+    {
+      "key": "Unit22",
+      "value": "Katta, kichik, teng belgilari"
+    },
+    {
+      "key": "Unit23",
+      "value": "1 soni"
+    },
+    {
+      "key": "Unit24",
+      "value": "2 soni"
+    },
+    {
+      "key": "Unit25",
+      "value": "3 soni"
+    },
+    {
+      "key": "Unit26",
+      "value": "4 soni"
+    },
+    {
+      "key": "Unit27",
+      "value": "5 soni"
+    },
+    {
+      "key": "Unit28",
+      "value": "=, +, - ishoralaridan foydalanib, natijalarni yozish"
+    },
+    {
+      "key": "Unit31",
+      "value": "6 soni"
+    },
+    {
+      "key": "Unit32",
+      "value": "7 soni"
+    },
+    {
+      "key": "Unit33",
+      "value": "8 soni"
+    },
+    {
+      "key": "Unit34",
+      "value": "9 soni"
+    },
+    {
+      "key": "Unit37",
+      "value": "10 soni"
+    },
+    {
+      "key": "Unit36",
+      "value": "0 soni"
+    },
+    {
+      "key": "Unit41",
+      "value": "Vaqt tasavvurlari"
+    },
+    {
+      "key": "Unit42",
+      "value": "Hafta. Hafta kunlari va sanog‘i"
+    },
+    {
+      "key": "Unit43",
+      "value": "Juft va toq sonlar"
+    },
+    {
+      "key": "Unit44",
+      "value": "Nuqta. To‘g‘ri chiziq kesmasi.||Siniq chiziq va egri chiziq"
+    },
+    {
+      "key": "Unit451",
+      "value": "Bu chiziqlarning qaysi birlarini siniq||chiziq deb aytish mumkin?"
+    },
+    {
+      "key": "CreateUnit",
+      "value": "Masala tuzing va uni yeching:"
+    },
+    {
+      "key": "Unit46",
+      "value": "Nol ishtirokida qo‘shish va ayirish"
+    },
+    {
+      "key": "Unit47",
+      "value": "Qo‘shish va ayirish amallarini||bajarish usullari"
+    },
+    {
+      "key": "Unit51",
+      "value": "Qo‘shishning hadlari"
+    },
+    {
+      "key": "Unit511",
+      "value": "3-qo'shiluvchi 2-qo'shiluvchi 5-yig'indi"
+    },
+    {
+      "key": "Unit512",
+      "value": "3 va 2 ning yig'indisi 5  ga teng.||3 - qo'shiluvchi||2 - qo'shiluvchi||5 - yig'indi     3  +  2  - yig‘indi.||Qo'shishning hadlari uning komponentlaridir."
+    },
+    {
+      "key": "Unit61",
+      "value": "Ayirishning hadlari"
+    },
+    {
+      "key": "Unit611",
+      "value": "6 - kamayuvchi 2 - ayriluvchi 4 - ayirma"
+    },
+    {
+      "key": "Unit71",
+      "value": "Qo‘shish va ayirish amallarining ma’nosi"
+    },
+    {
+      "key": "Unit711",
+      "value": "Ifodalar nimani bildiradi?"
+    },
+    {
+      "key": "Unit721",
+      "value": "Rasm va qisqa yozuv asosida masala||tuzing va uni yeching:||||Bor edi - ? ta||Olindi - 2 ta||Qoldi - 4 ta"
+    },
+    {
+      "key": "Unit731",
+      "value": "Rasm va qisqa yozuv asosida masala||tuzing va uni yeching:||||Bor edi - 8 ta||Yeyildi - ? ta||Qoldi - 6 ta"
+    },
+    {
+      "key": "Unit75",
+      "value": "Qo‘shish bilan ayirish amallari||orasidagi munosabat"
+    },
+    {
+      "key": "Unit751",
+      "value": "Karimda 7 ta, Sobirda undan 3 ta||ortiq qalam bor. Sobirda nechta qalam||bor?||Karimda - 7 ta qalam||Sobirda - ?, 3 ta ortiq"
+    },
+    {
+      "key": "Unit76",
+      "value": "Qoshishning o'rin||almashtirish xossasi"
+    }
+  ]
+}

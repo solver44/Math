@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Unit1.1
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 9c40dfaeaa2da644c986377972e5e0bb, type: 3}
+    - {fileID: 2800000, guid: 042a9dd1dbd614c4c95c7b0213a49d6a, type: 3}
+    - {fileID: 2800000, guid: 3be7243a0755ac747bdcd6f171931de1, type: 3}
+    - {fileID: 2800000, guid: 16d3e7ee45ab7e449b1b943cfbb9cae0, type: 3}
+    - {fileID: 2800000, guid: dd975e846573e8e4b9b75366ec720e31, type: 3}
+    - {fileID: 2800000, guid: 67ee0120b0998734f83975c05a4029d3, type: 3}
+    - {fileID: 2800000, guid: 4ec4b5f394dd618468fba93ee201ad0f, type: 3}
+    - {fileID: 2800000, guid: 7b9ad08914dcbf44bb0389aa0ff96d9b, type: 3}
+    - {fileID: 2800000, guid: b24ea6052c65b4b4fb6fd3bf50554dc7, type: 3}
+    totalSpriteSurfaceArea: 3239749
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 67ee0120b0998734f83975c05a4029d3, type: 3}
+  - {fileID: 21300000, guid: 042a9dd1dbd614c4c95c7b0213a49d6a, type: 3}
+  - {fileID: 21300000, guid: 4ec4b5f394dd618468fba93ee201ad0f, type: 3}
+  - {fileID: 21300000, guid: dd975e846573e8e4b9b75366ec720e31, type: 3}
+  - {fileID: 21300000, guid: b24ea6052c65b4b4fb6fd3bf50554dc7, type: 3}
+  - {fileID: 21300000, guid: 7b9ad08914dcbf44bb0389aa0ff96d9b, type: 3}
+  - {fileID: 21300000, guid: 3be7243a0755ac747bdcd6f171931de1, type: 3}
+  - {fileID: 21300000, guid: 9c40dfaeaa2da644c986377972e5e0bb, type: 3}
+  - {fileID: 21300000, guid: 16d3e7ee45ab7e449b1b943cfbb9cae0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - "\u0420\u0435\u0441\u0443\u0440\u0441 4"
+  - BGPlace
+  - "\u0420\u0435\u0441\u0443\u0440\u0441 9"
+  - "\u0420\u0435\u0441\u0443\u0440\u0441 3"
+  - "\u0420\u0435\u0441\u0443\u0440\u0441 13"
+  - "\u0420\u0435\u0441\u0443\u0440\u0441 11"
+  - inanimatePlace
+  - animatePlace
+  - "\u0420\u0435\u0441\u0443\u0440\u0441 2"
+  m_Tag: Unit1.1
+  m_IsVariant: 0

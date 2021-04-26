@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Design
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 2d23172ac36f2d440904d42224a70548, type: 3}
+    - {fileID: 2800000, guid: 34f6ebc17ffab6a4d9b3ef85f86d5587, type: 3}
+    - {fileID: 2800000, guid: ca70edb0cd5038c4aaf5fef29ecbc0ac, type: 3}
+    - {fileID: 2800000, guid: d6616a6eab9dca34ea6d89289bd3eaa2, type: 3}
+    - {fileID: 2800000, guid: be5ad5f4aa0ba8a4d89c58a148f29731, type: 3}
+    - {fileID: 2800000, guid: 4ab8d1b414063c5448f12838fe8369b3, type: 3}
+    - {fileID: 2800000, guid: f9d4da162e9936546926b29620905626, type: 3}
+    - {fileID: 2800000, guid: d6f0700a6c463074e8efe7f8f22f4850, type: 3}
+    - {fileID: 2800000, guid: d5413b716a86aef41a3da7c74a4dda4e, type: 3}
+    - {fileID: 2800000, guid: 9cb4da34d3828894ab291bd37b9cb171, type: 3}
+    - {fileID: 2800000, guid: b8326494bb2325f47bca2eacb8bb1f77, type: 3}
+    - {fileID: 2800000, guid: 532b9e2d0da0ce34b847e24b2877a154, type: 3}
+    - {fileID: 2800000, guid: 5c8f740ff35ded049b8124e3ec505960, type: 3}
+    - {fileID: 2800000, guid: 351ca5ff3e7233f40a5fb0a2f08d9d90, type: 3}
+    - {fileID: 2800000, guid: 9fee56ce28a79f64dbf8e492cc83bd1e, type: 3}
+    - {fileID: 2800000, guid: 723aa63922f450347a9bc4118c1694c6, type: 3}
+    - {fileID: 2800000, guid: 2f78d226930045b42850430dbb5cc29e, type: 3}
+    - {fileID: 2800000, guid: 39dfaf73ce771004b85825a9074f9734, type: 3}
+    - {fileID: 2800000, guid: 72ca365fdce70a142856591c5509a9fa, type: 3}
+    - {fileID: 2800000, guid: f452cb65729445e4380e102a865d0576, type: 3}
+    - {fileID: 2800000, guid: 8d5f681731c66b34483d4f6af0947d31, type: 3}
+    totalSpriteSurfaceArea: 5711480
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: ca70edb0cd5038c4aaf5fef29ecbc0ac, type: 3}
+  - {fileID: 21300000, guid: d5413b716a86aef41a3da7c74a4dda4e, type: 3}
+  - {fileID: 21300000, guid: 34f6ebc17ffab6a4d9b3ef85f86d5587, type: 3}
+  - {fileID: 21300000, guid: 39dfaf73ce771004b85825a9074f9734, type: 3}
+  - {fileID: 21300000, guid: 9cb4da34d3828894ab291bd37b9cb171, type: 3}
+  - {fileID: 21300000, guid: b8326494bb2325f47bca2eacb8bb1f77, type: 3}
+  - {fileID: 21300000, guid: 4ab8d1b414063c5448f12838fe8369b3, type: 3}
+  - {fileID: 21300000, guid: be5ad5f4aa0ba8a4d89c58a148f29731, type: 3}
+  - {fileID: 21300000, guid: f452cb65729445e4380e102a865d0576, type: 3}
+  - {fileID: 21300000, guid: f9d4da162e9936546926b29620905626, type: 3}
+  - {fileID: 21300000, guid: 2f78d226930045b42850430dbb5cc29e, type: 3}
+  - {fileID: 21300000, guid: 8d5f681731c66b34483d4f6af0947d31, type: 3}
+  - {fileID: 21300000, guid: 723aa63922f450347a9bc4118c1694c6, type: 3}
+  - {fileID: 21300000, guid: d6f0700a6c463074e8efe7f8f22f4850, type: 3}
+  - {fileID: 21300000, guid: 2d23172ac36f2d440904d42224a70548, type: 3}
+  - {fileID: 21300000, guid: 532b9e2d0da0ce34b847e24b2877a154, type: 3}
+  - {fileID: 21300000, guid: d6616a6eab9dca34ea6d89289bd3eaa2, type: 3}
+  - {fileID: 21300000, guid: 9fee56ce28a79f64dbf8e492cc83bd1e, type: 3}
+  - {fileID: 21300000, guid: 5c8f740ff35ded049b8124e3ec505960, type: 3}
+  - {fileID: 21300000, guid: 72ca365fdce70a142856591c5509a9fa, type: 3}
+  - {fileID: 21300000, guid: 351ca5ff3e7233f40a5fb0a2f08d9d90, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Button
+  - large
+  - bottom circles
+  - small
+  - lineyka
+  - loading
+  - corner
+  - congratulationImage
+  - top circles
+  - divide
+  - ProfileButton
+  - Transition
+  - procent
+  - equally
+  - BG
+  - loadingBar
+  - calculator
+  - plus
+  - minus
+  - Title_text
+  - multiply
+  m_Tag: Design
+  m_IsVariant: 0

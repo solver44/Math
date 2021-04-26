@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DesignNew
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: d049080c511dc9443bc33f2cc9c14a4d, type: 3}
+    - {fileID: 2800000, guid: d609b7b3efd5dd9429217681851ae910, type: 3}
+    - {fileID: 2800000, guid: b4cf149847f41bb468b5eeacc41b5dae, type: 3}
+    - {fileID: 2800000, guid: 5a0516d76ff2801438cdd91bae598bc4, type: 3}
+    - {fileID: 2800000, guid: 6cd50e36854d0e546b1ad6f9b5f2d5af, type: 3}
+    - {fileID: 2800000, guid: d782570d50e897e46b5c4abe9e4e864d, type: 3}
+    - {fileID: 2800000, guid: 2762f01c10eba9348bf2a39a223b23ff, type: 3}
+    - {fileID: 2800000, guid: ed57bf3d49f42b547b0db77e4deb6566, type: 3}
+    - {fileID: 2800000, guid: 6009d19666d8f1c42bfdd9605614a0ee, type: 3}
+    - {fileID: 2800000, guid: 640187e77fcee184eb46133399557c79, type: 3}
+    - {fileID: 2800000, guid: c8a54204580ce7b429e92e0904b336f2, type: 3}
+    - {fileID: 2800000, guid: 4b96fc94c8cbdc048874d93f69c6b314, type: 3}
+    - {fileID: 2800000, guid: fb6def4c6c329284291ee9ef9ec7ccd7, type: 3}
+    totalSpriteSurfaceArea: 4023978
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d609b7b3efd5dd9429217681851ae910, type: 3}
+  - {fileID: 21300000, guid: c8a54204580ce7b429e92e0904b336f2, type: 3}
+  - {fileID: 21300000, guid: 4b96fc94c8cbdc048874d93f69c6b314, type: 3}
+  - {fileID: 21300000, guid: 6cd50e36854d0e546b1ad6f9b5f2d5af, type: 3}
+  - {fileID: 21300000, guid: 6009d19666d8f1c42bfdd9605614a0ee, type: 3}
+  - {fileID: 21300000, guid: 5a0516d76ff2801438cdd91bae598bc4, type: 3}
+  - {fileID: 21300000, guid: 640187e77fcee184eb46133399557c79, type: 3}
+  - {fileID: 21300000, guid: b4cf149847f41bb468b5eeacc41b5dae, type: 3}
+  - {fileID: 21300000, guid: d049080c511dc9443bc33f2cc9c14a4d, type: 3}
+  - {fileID: 21300000, guid: 2762f01c10eba9348bf2a39a223b23ff, type: 3}
+  - {fileID: 21300000, guid: fb6def4c6c329284291ee9ef9ec7ccd7, type: 3}
+  - {fileID: 21300000, guid: d782570d50e897e46b5c4abe9e4e864d, type: 3}
+  - {fileID: 21300000, guid: ed57bf3d49f42b547b0db77e4deb6566, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Asset 4
+  - bt1
+  - Profile
+  - Asset 8
+  - Asset 12
+  - Asset 7
+  - bg
+  - Asset 5
+  - Asset 3
+  - Asset 9
+  - topPanel
+  - Asset 10
+  - Asset 11
+  m_Tag: DesignNew
+  m_IsVariant: 0
