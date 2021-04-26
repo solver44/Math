@@ -39,7 +39,7 @@ public class TouchObject : MonoBehaviour
             //        Parent.GetComponent<WasUnitComplete>().SetCountOfDifference +=  1;
             //    obj.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
             //}
-            if (hasSound && (transform.name == hitTouch.collider.transform.name) && (sound == null || !sound.isPlaying))
+            if (hasSound && (transform == hitTouch.collider.transform) && (sound == null || !sound.isPlaying))
             {
                 if (hasName && text == null)
                     text = GameObject.FindGameObjectWithTag("ObjectsName").gameObject.GetComponent<Text>() as Text;
