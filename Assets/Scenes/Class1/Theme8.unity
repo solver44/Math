@@ -169,12 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Units:
   - {fileID: 1067524133}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!95 &23655121
 Animator:
   serializedVersion: 3
@@ -719,12 +713,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Units:
   - {fileID: 1067524133}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!95 &177088264
 Animator:
   serializedVersion: 3
@@ -1539,7 +1527,7 @@ RectTransform:
   - {fileID: 2100309975}
   - {fileID: 2027879405}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1724,7 +1712,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1055726512
 GameObject:
@@ -1904,7 +1892,7 @@ Transform:
   m_Children:
   - {fileID: 1067524134}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1105049892
 GameObject:
@@ -1947,7 +1935,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1228061693
 GameObject:
@@ -1997,12 +1985,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Units:
   - {fileID: 1067524133}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!95 &1228061696
 Animator:
   serializedVersion: 3
@@ -2478,7 +2460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e1b20c84be4e24da66f00c8f5606b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countOfUnits: 6
+  countOfUnits: 0
 --- !u!81 &1526513929
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4135,7 +4117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8065c704efc85d346a9b5701db920ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: Unit71
+  key: Unit81
   isMesh: 1
 --- !u!102 &2126130289
 TextMesh:
