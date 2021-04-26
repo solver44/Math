@@ -10991,7 +10991,7 @@ MonoBehaviour:
   sizeOfIndex: 18
   Parent: {fileID: 0}
   IsWaitUntilClosing: 0
-  WhenClickThenClose: 0
+  WhenClickThenClose: 1
 --- !u!1 &582284824
 GameObject:
   m_ObjectHideFlags: 0
