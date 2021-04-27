@@ -11,6 +11,5 @@ public class ChildTrigger : MonoBehaviour
 
     private void Update()
     {
-        Panel
     }
 }
