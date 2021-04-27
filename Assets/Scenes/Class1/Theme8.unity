@@ -6426,8 +6426,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476059891}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.050000098, y: 0.09824509, z: 0}
-  m_LocalScale: {x: 0.17062338, y: 0.32230473, z: 1.706234}
+  m_LocalPosition: {x: -0.09, y: 0.064815246, z: 0}
+  m_LocalScale: {x: 0.17062336, y: 0.21263355, z: 1.706234}
   m_Children: []
   m_Father: {fileID: 745531302}
   m_RootOrder: 0
@@ -6440,12 +6440,14 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476059891}
-  m_Text: jami 10 ta bo'ldi
+  m_Text: 'Yechish: 13 - 3 = 10
+
+    Jami 10 ta qoldi'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 4
-  m_Alignment: 0
+  m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 23
   m_FontStyle: 0
@@ -11279,12 +11281,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 745531301}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.0162115, y: 0.749, z: 0}
-  m_LocalScale: {x: 2.5105903, y: 1.329077, z: 2.5105903}
+  m_LocalPosition: {x: -5.12, y: -4.92, z: 0}
+  m_LocalScale: {x: 2.5105903, y: 2.0145824, z: 2.5105903}
   m_Children:
   - {fileID: 476059892}
   m_Father: {fileID: 1331468416}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &745531303
 SpriteRenderer:
@@ -19195,8 +19197,8 @@ Transform:
   m_LocalPosition: {x: 1.19, y: -2.99, z: 0}
   m_LocalScale: {x: 0.23344, y: 0.23344, z: 0.23344}
   m_Children:
-  - {fileID: 745531302}
   - {fileID: 1603469642}
+  - {fileID: 745531302}
   m_Father: {fileID: 1939704224}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19235,7 +19237,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.117673, y: 0.44802618}
+  m_Offset: {x: -5.117673, y: -2.9909453}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -19246,7 +19248,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 17.925344, y: 3.7555413}
+  m_Size: {x: 17.925344, y: 10.633483}
   m_EdgeRadius: 0
 --- !u!212 &1331468419
 SpriteRenderer:
@@ -23373,7 +23375,7 @@ Transform:
   m_LocalScale: {x: 0.18248557, y: 0.18248557, z: 5.214118}
   m_Children: []
   m_Father: {fileID: 1331468416}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1603469643
 MonoBehaviour:
@@ -23382,7 +23384,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603469641}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8065c704efc85d346a9b5701db920ad5, type: 3}
   m_Name: 
@@ -27922,7 +27924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939704223}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 951848149}
