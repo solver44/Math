@@ -93,7 +93,7 @@ public class LocalizationManager : MonoBehaviour
         for (int i = 0; i < numLines; i++)
         {
             string line = GetLine(dataAJson, i);
-            if (line.Contains("\": \"") && !line.Contains(string.Format("{0}", "}")) && !line.Contains("{"))
+            if (line.Contains("\": \"") && (line.Contains("key") || line.Contains("value")))
             {
                 countRange.Add(i);
             }
@@ -106,7 +106,7 @@ public class LocalizationManager : MonoBehaviour
         {
             string line = GetLine(dataAJson, countRange[i]);
             string keyT = "", valueT = "";
-            if (line.Contains("key"))
+            if (line.Contains("\"key\""))
             {
                 keyT = line;
                 valueT = GetLine(dataAJson, countRange[i] + 1);

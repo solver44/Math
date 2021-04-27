@@ -14,7 +14,7 @@ public class MoveToLocation : MonoBehaviour
     [SerializeField]
     private float waitForSecond = 0f;
     [SerializeField]
-    private bool isTextShowing = true;
+    private bool isTextShowing = false;
 
 
     private GameObject textPanel = null;
@@ -33,7 +33,12 @@ public class MoveToLocation : MonoBehaviour
 
     private void Start()
     {
-        textPanel = GameObject.FindGameObjectWithTag("PanelText").transform.gameObject;
+        foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+        {
+            if (go.transform.name == "Panel")
+                textPanel = go.transform.gameObject;
+        }
+
         if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); }
         StartCoroutine(waitForSec());
 
