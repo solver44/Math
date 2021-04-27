@@ -243,6 +243,14 @@
     {
       "key": "Unit9.1.5.2",
       "value": "2) 12, 14, 16, 18 sonlaridan keyin||keladigan qo‘shni sonlarni yozing."
+    },
+    {
+      "key": "Unit831",
+      "value": "Bo‘yoqchi birinchi kuni 7 ta eshikni,||ikkinchi kuni undan 4 ta ortiq eshikni||bo‘yadi. Bo‘yoqchi ikkinchi kuni nechta||eshikni bo‘yagan?"
+    },
+    {
+      "key": "Unit921",
+      "value": "Qirg‘oqda 13 ta o‘rdak yurgan edi.||Ulardan 3 tasi suvga tushib, suzib ketdi.||Qirg‘oqda nechta o‘rdak qoldi?"
     }
   ]
 }

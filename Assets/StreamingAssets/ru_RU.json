@@ -246,7 +246,11 @@
     },
     {
       "key": "Unit831",
-      "value": "Bo‘yoqchi birinchi kuni 7 ta eshikni,||ikkinchi kuni undan 4 ta ortiq eshikni||bo‘yadi. Bo‘yoqchi ikkinchi kuni nechta||eshikni bo‘yagan?"
+      "value": "Маляр в первый день покрасил 7 дверей, а во второй – на 4 двери больше.||колько дверей покрасил маляр во второй||день?"
+    },
+    {
+      "key": "Unit921",
+      "value": "У пруда на берегу гуляли 13 уток, 3 из||них спустились к воде и уплыли. Сколько||уток осталось на берегу?"
     }
   ]
 }
