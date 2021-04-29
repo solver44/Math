@@ -28,7 +28,7 @@ public class ShowChildAlpha : MonoBehaviour
         for (int i = 0; i < ChildAnswer.Length; i++)
         {
             if (ChildAnswer[i].transform.name == "RectangleAnswer" )
-            { WhenClickThenClose = true; }
+            { WhenClickThenClose = true; rangeOfTransition = 0.1f; }
             try
             {
         

@@ -20,8 +20,8 @@ public class MoveToLocation : MonoBehaviour
     private GameObject textPanel = null;
 
     private bool gottaFinish = false;
-    public void SetLocationX(float x, bool finish) { locationX = x; stop = false; gottaFinish = finish; if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } }
-    public void SetLocationY(float y, bool finish) { locationY = y; stop = false; gottaFinish = finish; if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } }
+    public void SetLocationX(float x, bool finish) { locationX = x; stop = false; gottaFinish = finish; try { if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } }catch{} }
+    public void SetLocationY(float y, bool finish) { locationY = y; stop = false; gottaFinish = finish; try { if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } } catch { } }
 
     private bool stop = true;
 
@@ -39,7 +39,7 @@ public class MoveToLocation : MonoBehaviour
                 textPanel = go.transform.gameObject;
         }
 
-        if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); }
+        try { if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } } catch { }
         StartCoroutine(waitForSec());
 
     }

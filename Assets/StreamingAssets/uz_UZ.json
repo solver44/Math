@@ -152,10 +152,26 @@
       "key": "Unit451",
       "value": "Bu chiziqlarning qaysi birlarini siniq||chiziq deb aytish mumkin?"
     },
+
+//Start Lib
+    
+
     {
       "key": "CreateUnit",
       "value": "Masala tuzing va uni yeching:"
     },
+    {
+      "key": "CreateUnitWithPic",
+      "value": "Rasm asosida masala tuzing va uni||yeching:"
+    },
+    {
+      "key": "SolutionOfTheExams",
+      "value": "Misollarning yechilishini tushuntiring:"
+    },
+
+
+//End Lib
+
     {
       "key": "Unit46",
       "value": "Nol ishtirokida qo'shish va ayirish"
@@ -251,10 +267,6 @@
     {
       "key": "Unit921",
       "value": "Qirg'oqda 13 ta o'rdak yurgan edi.||Ulardan 3 tasi suvga tushib, suzib ketdi.||Qirg'oqda nechta o'rdak qoldi?"
-    },
-    {
-      "key": "Unit832",
-      "value": "Rasm asosida masala tuzing va uni||yeching:"
     },
     {
       "key": "Unit833",
