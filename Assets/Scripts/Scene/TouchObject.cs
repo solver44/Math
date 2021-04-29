@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class TouchObject : MonoBehaviour
 {
@@ -52,6 +53,23 @@ public class TouchObject : MonoBehaviour
                     sound.Play();
                 }
                 catch { sound = new AudioSource(); }
+                try
+                {
+                    animator = obj.GetComponent<Animator>() as Animator;
+                }
+                catch { }
+                if (!scaleWithoutAnim && animator != null)
+                    animator.SetBool("zoom", true);
+                else if (scaleWithoutAnim)
+                    scale = true;
+            }
+            else if (!hasSound && (transform == hitTouch.collider.transform))
+            {
+                //sound = new AudioSource();
+                if (hasName && text == null)
+                    text = GameObject.FindGameObjectWithTag("ObjectsName").gameObject.GetComponent<Text>() as Text;
+
+                obj = hitTouch.collider.transform.gameObject as GameObject;
 
                 isShowing = true;
                 try
@@ -59,29 +77,21 @@ public class TouchObject : MonoBehaviour
                     animator = obj.GetComponent<Animator>() as Animator;
                 }
                 catch { }
-                if (!scaleWithoutAnim)
+                if (!scaleWithoutAnim && animator != null)
                     animator.SetBool("zoom", true);
-                else
-                    scale = true;
-            }else if (!hasSound && (transform == hitTouch.collider.transform))
-            {
-                if (hasName && text == null)
-                    text = GameObject.FindGameObjectWithTag("ObjectsName").gameObject.GetComponent<Text>() as Text;
-
-                obj = hitTouch.collider.transform.gameObject as GameObject;
-                try
-                {
-                    animator = obj.GetComponent<Animator>() as Animator;
-                }
-                catch { }
-                if (!scaleWithoutAnim)
-                    animator.SetBool("zoom", true);
-                else
+                else if(scaleWithoutAnim)
                     scale = true;
             }
         }
     }
     bool isShowing = false;
+    bool wait = false;
+    private IEnumerator hideText()
+    {
+        yield return new WaitForSeconds(2);
+        isShowing = false;
+        wait = false;
+    }
     private void Update()
     {
 
@@ -102,11 +112,11 @@ public class TouchObject : MonoBehaviour
 
 
         if (animator != null || scaleWithoutAnim) {
-            if (sound.isPlaying || isShowing)
+            if (isShowing || (sound != null && sound.isPlaying))
             {
-                if (!scaleWithoutAnim)
-                    animator.SetBool("zoom", true);
-                else
+                if(!scaleWithoutAnim && animator != null)
+                        animator.SetBool("zoom", true);
+                else if(scaleWithoutAnim)
                     scale = true;
                 if(hasName)
                     text.text = obj.name;
@@ -115,8 +125,14 @@ public class TouchObject : MonoBehaviour
                     GetComponent<SpriteRenderer>().sortingLayerName = "Selected";
                 }
                 catch { }
+
+                if (!wait)
+                {
+                    wait = true;
+                    StartCoroutine(hideText());
+                }
             }
-            else
+            else if(!isShowing)
             {
                 try
                 {
@@ -125,9 +141,9 @@ public class TouchObject : MonoBehaviour
                 catch { }
 
                 isShowing = false;
-                if(!scaleWithoutAnim)
+                if(!scaleWithoutAnim && animator != null)
                     animator.SetBool("zoom", false);
-                else
+                else if(scaleWithoutAnim)
                     scale = false;
 
                 try
@@ -135,8 +151,11 @@ public class TouchObject : MonoBehaviour
                     GetComponent<SpriteRenderer>().sortingLayerName = "Top";
                 }
                 catch { }
-                if (hasName && text.text == obj.name)
-                    text.text = null;
+                try {
+                    if (hasName && text.text == obj.name)
+                        text.text = null;
+                }
+                catch { }
             }
         }
 
