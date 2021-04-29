@@ -349,6 +349,7 @@ MonoBehaviour:
   - {fileID: 1292493560}
   - {fileID: 1661261663}
   - {fileID: 1107984222}
+  - {fileID: 2123867353}
 --- !u!95 &23655121
 Animator:
   serializedVersion: 3
@@ -2665,7 +2666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &161952654
 Transform:
   m_ObjectHideFlags: 0
@@ -2935,6 +2936,7 @@ MonoBehaviour:
   - {fileID: 1292493560}
   - {fileID: 1661261663}
   - {fileID: 1107984222}
+  - {fileID: 2123867353}
 --- !u!95 &177088264
 Animator:
   serializedVersion: 3
@@ -3046,7 +3048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &183610193
 Transform:
   m_ObjectHideFlags: 0
@@ -13099,7 +13101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1067524133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13798,7 +13800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1107984221
 Transform:
   m_ObjectHideFlags: 0
@@ -15858,6 +15860,7 @@ MonoBehaviour:
   - {fileID: 1292493560}
   - {fileID: 1661261663}
   - {fileID: 1107984222}
+  - {fileID: 2123867353}
 --- !u!95 &1228061696
 Animator:
   serializedVersion: 3
@@ -17106,7 +17109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1292493559
 Transform:
   m_ObjectHideFlags: 0
@@ -20027,7 +20030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e1b20c84be4e24da66f00c8f5606b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countOfUnits: 5
+  countOfUnits: 6
 --- !u!81 &1526513929
 AudioListener:
   m_ObjectHideFlags: 0
@@ -21231,7 +21234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1661261662
 Transform:
   m_ObjectHideFlags: 0
@@ -27521,7 +27524,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2123867351}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 746687374}
@@ -27545,7 +27548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMove: 5
-  locationX: 0
+  locationX: 6.5
   locationY: 0
   isMoveToward: 0
   waitForSecond: 0
