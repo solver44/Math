@@ -52,6 +52,23 @@ public class TouchObject : MonoBehaviour
                     sound.Play();
                 }
                 catch { sound = new AudioSource(); }
+
+                isShowing = true;
+                try
+                {
+                    animator = obj.GetComponent<Animator>() as Animator;
+                }
+                catch { }
+                if (!scaleWithoutAnim)
+                    animator.SetBool("zoom", true);
+                else
+                    scale = true;
+            }else if (!hasSound && (transform == hitTouch.collider.transform))
+            {
+                if (hasName && text == null)
+                    text = GameObject.FindGameObjectWithTag("ObjectsName").gameObject.GetComponent<Text>() as Text;
+
+                obj = hitTouch.collider.transform.gameObject as GameObject;
                 try
                 {
                     animator = obj.GetComponent<Animator>() as Animator;
@@ -64,6 +81,7 @@ public class TouchObject : MonoBehaviour
             }
         }
     }
+    bool isShowing = false;
     private void Update()
     {
 
@@ -83,8 +101,8 @@ public class TouchObject : MonoBehaviour
         }
 
 
-        if (animator != null) {
-            if (sound.isPlaying)
+        if (animator != null || scaleWithoutAnim) {
+            if (sound.isPlaying || isShowing)
             {
                 if (!scaleWithoutAnim)
                     animator.SetBool("zoom", true);
@@ -92,17 +110,31 @@ public class TouchObject : MonoBehaviour
                     scale = true;
                 if(hasName)
                     text.text = obj.name;
-                GetComponent<SpriteRenderer>().sortingLayerName = "Selected";
+                try
+                {
+                    GetComponent<SpriteRenderer>().sortingLayerName = "Selected";
+                }
+                catch { }
             }
             else
             {
-                sound.Stop();
+                try
+                {
+                    sound.Stop();
+                }
+                catch { }
+
+                isShowing = false;
                 if(!scaleWithoutAnim)
                     animator.SetBool("zoom", false);
                 else
                     scale = false;
 
-                GetComponent<SpriteRenderer>().sortingLayerName = "Top";
+                try
+                {
+                    GetComponent<SpriteRenderer>().sortingLayerName = "Top";
+                }
+                catch { }
                 if (hasName && text.text == obj.name)
                     text.text = null;
             }

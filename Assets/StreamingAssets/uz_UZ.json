@@ -287,6 +287,38 @@
     {
       "key": "Unit96",
       "value": "Qavslar"
+    },
+    {
+      "key": "Unit101",
+      "value": "Sonlarni o‘nlikdan o‘tib ayirish"
+    },
+    {
+      "key": "Unit1021",
+      "value": "1 - likopchada - 11 ta olma||2 - likopchada - ?, 6 ta kam||Yechish: 11 - 6 = ? ta olma."
+    },
+    {
+      "key": "Unit1022",
+      "value": "O‘tloqda 11 ta qo‘y o‘tlab yurgan edi.||4 ta qo‘y ajratib qo‘raga olib ketildi.||O‘tloqda nechta qo‘y qoldi?"
+    },
+    {
+      "key": "Unit1023",
+      "value": "Har bir figuraning nechtadan tomoni bor?"
+    },
+    {
+      "key": "Unit1024",
+      "value": "Bir haftada birinchi hunarmand 10 ta, ikkinchisi||esa 9 ta ortiq beshik yasadi. Ikkinchi||hunarmand bir haftada nechta beshik yasagan?"
+    },
+    {
+      "key": "Unit1031",
+      "value": "Aeroportda bir nechta samolyot||bor edi. 4 ta||samolyot uchib ketgandan so‘ng, 7 ta samolyot qoldi.||Aeroportda oldin nechta samolyot bo‘lgan?"
+    },
+    {
+      "key": "Unit1041",
+      "value": "Gulzorda 13 ta oq va qizil chinnigullar ochilgan edi.||Qizil chinnigullar 7 ta bo‘lsa, oq chinnigullar nechta?"
+    },
+    {
+      "key": "Unit1042",
+      "value": "Qisqa yozuv bo‘yicha masala tuzing||va uni yeching:||Televizor – 13 ta||Kompyuter – ?, 7 ta kam"
     }
   ]
 }
