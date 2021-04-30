@@ -4,6 +4,7 @@ using UnityEngine;
 public class ShowChildAlpha : MonoBehaviour
 {
     [SerializeField] private bool makeShow = true;
+    [SerializeField] private bool getChildrenFromParent = false;
     public GameObject[] ChildAnswer = null;
     [SerializeField] private float visibleTime = 2f;
 
@@ -11,36 +12,68 @@ public class ShowChildAlpha : MonoBehaviour
     [SerializeField] private float rangeOfTransition = 0.5f;
     [SerializeField] private int sizeOfIndex = 18;
     public GameObject Parent = null;
-    public bool IsWaitUntilClosing = true;
+    bool IsWaitUntilClosing = true;
     public bool WhenClickThenClose = false;
 
     private bool isItStart = false;
     private bool isFirstTime = true;
 
     private float[] r, g, b;
+
+    private GameObject[] ChildAnswerF = null;
+
+    private int getCountOfChildren()
+    {
+        int result = 0;
+        for (int i = 0; i < ChildAnswer.Length; i++)
+        {
+            result += ChildAnswer[i].transform.childCount;
+        }
+        return result;
+    }
     private void Start()
     {
+        if(!getChildrenFromParent)
+            ChildAnswerF = ChildAnswer;
+        else
+        {
+            int cnt = 0;
+            ChildAnswerF = new GameObject[getCountOfChildren()];
+            
+            for (int i = 0; i < ChildAnswer.Length; i++)
+            {
+                for (int j=0; j<ChildAnswer[i].transform.childCount; j++)
+                {
+                    ChildAnswerF[cnt] = ChildAnswer[i].transform.GetChild(j).transform.gameObject;
+                    cnt++;
+                }
+            }
+        }
+        sizeOfIndex = ChildAnswerF.Length;
         IsWaitUntilClosing = true;
         r = new float[sizeOfIndex];
         g = new float[sizeOfIndex];
         b = new float[sizeOfIndex];
 
-        for (int i = 0; i < ChildAnswer.Length; i++)
+        for (int i = 0; i < ChildAnswerF.Length; i++)
         {
-            if (ChildAnswer[i].transform.name == "RectangleAnswer" )
-            { WhenClickThenClose = true; rangeOfTransition = 0.1f; }
             try
             {
-        
-                r[i] = ChildAnswer[i].GetComponent<TextMesh>().color.r;
-                g[i] = ChildAnswer[i].GetComponent<TextMesh>().color.g;
-                b[i] = ChildAnswer[i].GetComponent<TextMesh>().color.b;
+                if (ChildAnswerF[i].transform.name == "RectangleAnswer")
+                { WhenClickThenClose = true; rangeOfTransition = 0.1f; }
+            }
+            catch { }
+            try
+            {
+                r[i] = ChildAnswerF[i].GetComponent<TextMesh>().color.r;
+                g[i] = ChildAnswerF[i].GetComponent<TextMesh>().color.g;
+                b[i] = ChildAnswerF[i].GetComponent<TextMesh>().color.b;
             }
             catch
             {
-                r[i] = ChildAnswer[i].GetComponent<SpriteRenderer>().color.r;
-                g[i] = ChildAnswer[i].GetComponent<SpriteRenderer>().color.g;
-                b[i] = ChildAnswer[i].GetComponent<SpriteRenderer>().color.b;
+                r[i] = ChildAnswerF[i].GetComponent<SpriteRenderer>().color.r;
+                g[i] = ChildAnswerF[i].GetComponent<SpriteRenderer>().color.g;
+                b[i] = ChildAnswerF[i].GetComponent<SpriteRenderer>().color.b;
             }
         }
         
@@ -87,7 +120,7 @@ public class ShowChildAlpha : MonoBehaviour
 
                 if (WhenClickThenClose && isItStart)
                 {
-                    for (int i = 0; i < ChildAnswer.Length; i++)
+                    for (int i = 0; i < ChildAnswerF.Length; i++)
                     {
                         StartCoroutine(makeAlphaHideAndShow(0.0f, 1.0f, i, false));
                     }
@@ -118,7 +151,7 @@ public class ShowChildAlpha : MonoBehaviour
         {
             countIndex();
 
-            if (currentIndex >= ChildAnswer.Length)
+            if (currentIndex >= ChildAnswerF.Length)
             {
                 currentIndex = -1;
                 startAnim = false;
@@ -167,11 +200,11 @@ public class ShowChildAlpha : MonoBehaviour
 
         try
         {
-            alpha = ChildAnswer[index].GetComponent<TextMesh>().color.a;
+            alpha = ChildAnswerF[index].GetComponent<TextMesh>().color.a;
         }
         catch
         {
-            alpha = ChildAnswer[index].GetComponent<SpriteRenderer>().color.a;
+            alpha = ChildAnswerF[index].GetComponent<SpriteRenderer>().color.a;
         }
         if ((alpha == 1f && !WhenClickThenClose))
         {
@@ -200,11 +233,11 @@ public class ShowChildAlpha : MonoBehaviour
         float alpha = 0.0f;
         try
         {
-            alpha = ChildAnswer[index].GetComponent<TextMesh>().color.a;
+            alpha = ChildAnswerF[index].GetComponent<TextMesh>().color.a;
         }
         catch
         {
-            alpha = ChildAnswer[index].GetComponent<SpriteRenderer>().color.a;
+            alpha = ChildAnswerF[index].GetComponent<SpriteRenderer>().color.a;
         }
         
         for (float i = 0.0f; i < 1.0f; i += Time.deltaTime / aTime)
@@ -212,11 +245,11 @@ public class ShowChildAlpha : MonoBehaviour
             Color newColor = new Color(r[index], g[index], b[index], Mathf.Lerp(alpha, aValue, i));
             try
             {
-                ChildAnswer[index].GetComponent<TextMesh>().color = newColor;
+                ChildAnswerF[index].GetComponent<TextMesh>().color = newColor;
             }
             catch
             {
-                ChildAnswer[index].GetComponent<SpriteRenderer>().color = newColor;
+                ChildAnswerF[index].GetComponent<SpriteRenderer>().color = newColor;
             }
             yield return null;
         }
