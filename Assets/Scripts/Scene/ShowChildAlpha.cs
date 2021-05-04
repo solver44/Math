@@ -22,6 +22,7 @@ public class ShowChildAlpha : MonoBehaviour
 
     private GameObject[] ChildAnswerF = null;
 
+    private GameObject trail = null;
     private int getCountOfChildren()
     {
         int result = 0;
@@ -31,9 +32,45 @@ public class ShowChildAlpha : MonoBehaviour
         }
         return result;
     }
+    float yUpper, yLower, xStart, xEnd;
+    private Object LoadPrefabFromFile(string filename)
+    {
+        var loadedObject = Resources.Load("Prefabs/" + filename);
+        if (loadedObject == null)
+        {
+            throw new System.Exception("...no file found - please check the configuration");
+        }
+        return loadedObject;
+    }
+    private void Awake()
+    {
+
+            try
+            {
+                var prefab = LoadPrefabFromFile("trail");
+                trail = (GameObject)Instantiate(prefab, transform);
+            }
+            catch { }
+            collider1 = GetComponent<BoxCollider2D>();
+
+            var yHalfExtents = collider1.bounds.extents.y;
+            var yCenter = collider1.bounds.center.y;
+
+            yUpper = yCenter + yHalfExtents;
+            yLower = yCenter - yHalfExtents;
+
+            var xHalfExtents = collider1.bounds.extents.x;
+            var xCenter = collider1.bounds.center.x;
+
+            xStart = xCenter - xHalfExtents;
+            xEnd = xCenter + xHalfExtents;
+
+            trail.transform.position = new Vector3(xStart, yUpper, trail.transform.position.z);
+        
+    }
     private void Start()
     {
-        if(!getChildrenFromParent)
+        if (!getChildrenFromParent)
             ChildAnswerF = ChildAnswer;
         else
         {
@@ -133,9 +170,39 @@ public class ShowChildAlpha : MonoBehaviour
             
         }
     }
+    BoxCollider2D collider1;
+    float interpolate;
+    int curDot = 1;
     private void Update()
     {
-        if(Input.touchCount > 0)
+ 
+            interpolate = Time.fixedDeltaTime * 1f;
+            switch (curDot)
+            {
+                case 1:
+                    trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xEnd, yUpper), interpolate);
+                    if (Vector3.Distance(trail.transform.position, new Vector3(xEnd, yUpper)) <= 0)
+                        curDot = 2;
+                    break;
+                case 2:
+                    trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xEnd, yLower), interpolate);
+                    if (Vector3.Distance(trail.transform.position, new Vector3(xEnd, yLower)) <= 0)
+                        curDot = 3;
+                    break;
+                case 3:
+                    trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xStart, yLower), interpolate);
+                    if (Vector3.Distance(trail.transform.position, new Vector3(xStart, yLower)) <= 0)
+                        curDot =4;
+                    break;
+                case 4:
+                    trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xStart, yUpper), interpolate);
+                    if (Vector3.Distance(trail.transform.position, new Vector3(xStart, yUpper)) <= 0)
+                        curDot = 1;
+                    break;
+            }
+        
+
+        if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
             RaycastHit2D hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 0);

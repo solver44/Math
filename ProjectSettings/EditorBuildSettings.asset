@@ -35,6 +35,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Class1/Theme7.unity
     guid: 3a5dd764c49afb5458045ef10571fbe1
+  - enabled: 1
+    path: Assets/Scenes/Class1/Theme8.unity
+    guid: 88612920c11750e4facedb287402f585
+  - enabled: 1
+    path: Assets/Scenes/Class1/Theme9.unity
+    guid: be349aa870cc3a641ac595d900f43490
+  - enabled: 1
+    path: Assets/Scenes/Class1/Theme10.unity
+    guid: 2115cc330ab4b0a49b28525f3c9c109a
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 43e955b7925a6e940a7da8705a7e3bd3,
       type: 2}

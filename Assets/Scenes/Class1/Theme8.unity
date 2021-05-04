@@ -251,13 +251,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1891698868}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &15363108
 SpriteRenderer:
@@ -382,13 +382,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 533934918}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &22077994
 SpriteRenderer:
@@ -613,13 +613,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 454557799}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &50229438
 SpriteRenderer:
@@ -1027,6 +1027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 522344366}
   - {fileID: 1338530026}
@@ -1034,7 +1035,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &151255545
 BoxCollider2D:
@@ -1464,13 +1464,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 166924448}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &177196013
 SpriteRenderer:
@@ -1678,13 +1678,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1809832232}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &190716796
 SpriteRenderer:
@@ -2276,6 +2276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1221044688}
   - {fileID: 941256792}
@@ -2284,7 +2285,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &245141720
 SpriteRenderer:
@@ -2502,13 +2502,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1866818278}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &259261151
 SpriteRenderer:
@@ -2994,13 +2994,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1507998544}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &329711485
 SpriteRenderer:
@@ -3218,13 +3218,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1720308235}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &334474015
 SpriteRenderer:
@@ -3442,13 +3442,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 894696397}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &336668368
 SpriteRenderer:
@@ -3777,13 +3777,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 660357340}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &348911087
 SpriteRenderer:
@@ -3908,13 +3908,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 460394439}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &355039308
 SpriteRenderer:
@@ -4231,6 +4231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 293918282}
   - {fileID: 1647717461}
@@ -4241,7 +4242,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &387067284
 SpriteRenderer:
@@ -4676,13 +4676,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1980225416}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &433921115
 SpriteRenderer:
@@ -4807,13 +4807,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1820582286}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &442121229
 SpriteRenderer:
@@ -6045,13 +6045,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 965971462}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &552314269
 SpriteRenderer:
@@ -6269,13 +6269,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1422900270}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &585329183
 SpriteRenderer:
@@ -6457,6 +6457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1001064722}
   - {fileID: 1415541834}
@@ -6464,7 +6465,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &590798401
 BoxCollider2D:
@@ -6708,13 +6708,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 211958743}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &608907554
 SpriteRenderer:
@@ -6839,13 +6839,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 297068906}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &618581039
 SpriteRenderer:
@@ -7135,6 +7135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 529698026}
   - {fileID: 162479151}
@@ -7143,7 +7144,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &642475863
 SpriteRenderer:
@@ -8311,13 +8311,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1498781045}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &700823591
 SpriteRenderer:
@@ -8451,6 +8451,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &760926513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 760926514}
+  m_Layer: 0
+  m_Name: Trails
+  m_TagString: trail
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &760926514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760926513}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &762956742
 GameObject:
   m_ObjectHideFlags: 0
@@ -8608,6 +8638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 968355341}
   - {fileID: 214115042}
@@ -8615,7 +8646,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &768147811
 BoxCollider2D:
@@ -8769,6 +8799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 514269097}
   - {fileID: 932472990}
@@ -8778,7 +8809,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &770552215
 SpriteRenderer:
@@ -8878,6 +8908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1245558748}
   - {fileID: 1305347208}
@@ -8885,7 +8916,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &772474506
 BoxCollider2D:
@@ -9037,6 +9067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 643114695}
   - {fileID: 802043073}
@@ -9044,7 +9075,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &797122534
 SpriteRenderer:
@@ -9262,13 +9292,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1633400757}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &813348681
 SpriteRenderer:
@@ -9531,6 +9561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1125089573}
   - {fileID: 1880547432}
@@ -9539,7 +9570,6 @@ MonoBehaviour:
   rangeOfTransition: 0.1
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &877783330
 SpriteRenderer:
@@ -9664,13 +9694,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1801138467}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &881251150
 SpriteRenderer:
@@ -10037,13 +10067,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1757443903}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &907433197
 SpriteRenderer:
@@ -10484,6 +10514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1136564542}
   - {fileID: 192965108}
@@ -10491,7 +10522,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &928372779
 SpriteRenderer:
@@ -10709,13 +10739,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 658075043}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &933747694
 SpriteRenderer:
@@ -11107,13 +11137,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 643083374}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &957866005
 SpriteRenderer:
@@ -11762,13 +11792,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1772391805}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &981829242
 SpriteRenderer:
@@ -12650,13 +12680,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 695466676}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1076653453
 SpriteRenderer:
@@ -12981,6 +13011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 2091823383}
   - {fileID: 1388407983}
@@ -12989,7 +13020,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &1112455523
 BoxCollider2D:
@@ -13140,13 +13170,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 978090513}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1117734659
 SpriteRenderer:
@@ -13879,6 +13909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1972508092}
   - {fileID: 338642843}
@@ -13886,7 +13917,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &1157614593
 BoxCollider2D:
@@ -14105,6 +14135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1910759130}
   - {fileID: 1523144964}
@@ -14112,7 +14143,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &1176868554
 BoxCollider2D:
@@ -14356,13 +14386,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 643064284}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1202813666
 SpriteRenderer:
@@ -14487,13 +14517,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1425721960}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1207536069
 SpriteRenderer:
@@ -15076,13 +15106,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 664858721}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1257253331
 SpriteRenderer:
@@ -15300,13 +15330,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 914449321}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1273897700
 SpriteRenderer:
@@ -16025,6 +16055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 745531301}
   - {fileID: 476059891}
@@ -16032,7 +16063,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &1331468418
 BoxCollider2D:
@@ -16185,6 +16215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1793890192}
   - {fileID: 1888187297}
@@ -16193,7 +16224,6 @@ MonoBehaviour:
   rangeOfTransition: 0.1
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1333119857
 SpriteRenderer:
@@ -16625,6 +16655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1591991262}
   - {fileID: 1776641906}
@@ -16632,7 +16663,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &1371068726
 BoxCollider2D:
@@ -16866,6 +16896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1976088975}
   - {fileID: 1870330589}
@@ -16874,7 +16905,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1377046625
 SpriteRenderer:
@@ -16999,13 +17029,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 913229406}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1379351416
 SpriteRenderer:
@@ -17130,13 +17160,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1490102082}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1385498384
 SpriteRenderer:
@@ -17261,13 +17291,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1040023167}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1387261563
 SpriteRenderer:
@@ -17818,13 +17848,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 360315660}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1417087643
 SpriteRenderer:
@@ -18137,6 +18167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1148766680}
   - {fileID: 1009185113}
@@ -18145,7 +18176,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1428123958
 SpriteRenderer:
@@ -18272,6 +18302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1107861989}
   - {fileID: 1919290769}
@@ -18280,7 +18311,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1434586279
 SpriteRenderer:
@@ -18406,6 +18436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 286527444}
   - {fileID: 85526322}
@@ -18413,7 +18444,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1447758726
 SpriteRenderer:
@@ -18631,13 +18661,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1765773789}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1489216937
 SpriteRenderer:
@@ -19321,6 +19351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 411116184}
   - {fileID: 1812868089}
@@ -19328,7 +19359,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &1551025253
 BoxCollider2D:
@@ -19560,13 +19590,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 2090801765}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1585106902
 SpriteRenderer:
@@ -19772,13 +19802,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 240356261}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1593365086
 SpriteRenderer:
@@ -20554,13 +20584,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1015559598}
   visibleTime: 25
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &1634801711
 BoxCollider2D:
@@ -20792,13 +20822,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 357190123}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1638656091
 SpriteRenderer:
@@ -21220,13 +21250,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1181188174}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1678237610
 SpriteRenderer:
@@ -21433,13 +21463,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 687009092}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1682431699
 SpriteRenderer:
@@ -21564,13 +21594,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 335841410}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1684203664
 SpriteRenderer:
@@ -21695,13 +21725,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1322186804}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1699131372
 SpriteRenderer:
@@ -21955,13 +21985,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 916333441}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1711819867
 SpriteRenderer:
@@ -23224,13 +23254,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 548075441}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1853908956
 SpriteRenderer:
@@ -23730,6 +23760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1169888760}
   - {fileID: 175131893}
@@ -23739,7 +23770,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1889908406
 SpriteRenderer:
@@ -24334,13 +24364,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 248622123}
   visibleTime: 25
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &1947319427
 BoxCollider2D:
@@ -24493,6 +24523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1134153926}
   - {fileID: 414399694}
@@ -24501,7 +24532,6 @@ MonoBehaviour:
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1948942264
 SpriteRenderer:
@@ -24734,13 +24764,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1895585264}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1956328363
 SpriteRenderer:
@@ -24865,13 +24895,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 501331867}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &1958204985
 SpriteRenderer:
@@ -24971,7 +25001,7 @@ GameObject:
   - component: {fileID: 1969930231}
   m_Layer: 0
   m_Name: issue
-  m_TagString: Untagged
+  m_TagString: trail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24984,7 +25014,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969930229}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.21, y: -1.003, z: 0}
+  m_LocalPosition: {x: 1.21, y: -0.901, z: 0}
   m_LocalScale: {x: 0.23344, y: 0.23344, z: 0.23344}
   m_Children:
   - {fileID: 1678391370}
@@ -25005,6 +25035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1678391369}
   - {fileID: 2098791014}
@@ -25012,7 +25043,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &1969930232
 BoxCollider2D:
@@ -25027,7 +25057,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.117673, y: 0.44802618}
+  m_Offset: {x: -5.0646048, y: 0.63376474}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -25038,7 +25068,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 17.925344, y: 3.7555413}
+  m_Size: {x: 18.774431, y: 4.127018}
   m_EdgeRadius: 0
 --- !u!212 &1969930233
 SpriteRenderer:
@@ -25499,6 +25529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 80907397}
   - {fileID: 1668011951}
@@ -25506,7 +25537,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &2000367414
 BoxCollider2D:
@@ -25766,13 +25796,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1239412614}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &2017219064
 SpriteRenderer:
@@ -26005,13 +26035,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1119917431}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &2033628942
 SpriteRenderer:
@@ -26147,6 +26177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 627352585}
   - {fileID: 1362696953}
@@ -26154,7 +26185,6 @@ MonoBehaviour:
   rangeOfTransition: 0.5
   sizeOfIndex: 18
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!61 &2047675783
 BoxCollider2D:
@@ -26424,13 +26454,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1535468783}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &2072235191
 SpriteRenderer:
@@ -27130,13 +27160,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1263213444}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &2106040865
 SpriteRenderer:
@@ -27342,13 +27372,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makeShow: 1
+  getChildrenFromParent: 0
   ChildAnswer:
   - {fileID: 1974168429}
   visibleTime: 2
   rangeOfTransition: 0
   sizeOfIndex: 10
   Parent: {fileID: 0}
-  IsWaitUntilClosing: 0
   WhenClickThenClose: 0
 --- !u!212 &2141265451
 SpriteRenderer:

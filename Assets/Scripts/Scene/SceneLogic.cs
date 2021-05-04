@@ -46,13 +46,13 @@ public class SceneLogic : MonoBehaviour
 
     public void SetSelectedColor()
     {
-        if (Pens.AnyTogglesOn())
+        int cnt = 0;
+        foreach (var item in Pens.GetComponentsInChildren<Transform>())
         {
-            foreach (var item in Pens.GetComponentsInChildren<Transform>())
-            {
-                if (item)
-                    item.localPosition = Vector3.MoveTowards(item.localPosition, new Vector3(item.localPosition.x, item.localPosition.y - 50), 1f);
-            }
+            var item1 = Pens.GetComponentsInChildren<Toggle>()[cnt];
+            if(item1.isOn)
+                item.localPosition = Vector3.MoveTowards(item.localPosition, new Vector3(item.localPosition.x, item.localPosition.y + 20), 2f);
+            cnt++;
         }
     }
 
