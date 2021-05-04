@@ -10,13 +10,15 @@ public class MoveObject : MonoBehaviour
     [SerializeField] private bool anyLocation = false;
     [SerializeField] private float rangeX = 3f;
     [SerializeField] private float rangeY = 1f;
+    public bool isAnimator = true;
+    [SerializeField] private float scaleRadius = 0.1f;
 
 
     private Vector2 firstPosition;
     public static bool locked = false;
     private float deltaX, deltaY;
     private Vector3 mousePosition;
-    private Animator anim;
+    private Animator anim = null;
 
     private Touch touch;
 
@@ -24,12 +26,23 @@ public class MoveObject : MonoBehaviour
     private Transform currentTransform = null;
     private void Awake()
     {
-        anim = GetComponent<Animator>() as Animator;
         render = GetComponent<SpriteRenderer>() as SpriteRenderer;
         placeObjectAnim = placeObject.GetComponent<Animator>() as Animator;
         currentTransform = GetComponent<Transform>() as Transform;
     }
- 
+
+    private void Start()
+    {
+        if (isAnimator)
+            anim = GetComponent<Animator>() as Animator;
+        scaleS = transform.localScale;
+        xScale = scaleS.x;
+        yScale = scaleS.y;
+    }
+
+    Vector3 scaleS;
+    float xScale = 0;
+    float yScale = 0;
     private void OnMouseDown()
     {
         if(firstPosition != null)
@@ -41,37 +54,61 @@ public class MoveObject : MonoBehaviour
             deltaY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y;
         }
     }
+
+    private bool scale = false;
     private void OnMouseDrag()
     {
         if (!locked)
         {
             if(anyLocation)
                 firstPosition = GetComponent<Transform>().position;
-            anim.SetBool("zoom", true);
+
+
+            if (isAnimator)
+                anim.SetBool("zoom", true);
+            else
+            {
+                scale = true;
+            }
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
         }
     }
     bool toLocalPos = false;
+    bool destroy = false;
     private void OnMouseUp()
     {
         if (!locked)
         {
-            anim.SetBool("zoom", false);
             render.sortingOrder -= 1;
             if (Mathf.Abs(transform.position.x - placeObject.position.x) <= rangeX && 
                 Mathf.Abs(transform.position.y - placeObject.position.y) <= rangeY)
             {
-                anim.SetTrigger("destroy");
+                if (isAnimator)
+                {
+                    anim.SetTrigger("destroy");
+                }
+                else
+                {
+                    destroy = true;
+                }
                 if (killMe)
                     placeObjectAnim.SetTrigger("destroy");
                 StartCoroutine(makeInActive());
             }
             else
             {
+                if (isAnimator)
+                    anim.SetBool("zoom", false);
+                else
+                {
+                    scale = false;
+                }
                 toLocalPos = true;
                 transform.position = Vector2.Lerp(transform.position, firstPosition, 2f);
+
             }
+
         }
     }
     private IEnumerator makeInActive()
@@ -91,6 +128,24 @@ public class MoveObject : MonoBehaviour
         //}
         //else
         //    locked = false;
+
+        if (!isAnimator)
+        {
+
+            if (scale && !destroy)
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(xScale + (xScale * scaleRadius), yScale + (yScale * scaleRadius)), .08f);
+            }
+            else if (!destroy)
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, scaleS, .08f);
+            }
+            else
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0), .08f);
+
+            }
+        }
 
         if (Input.touchCount > 0)
         {
@@ -115,7 +170,10 @@ public class MoveObject : MonoBehaviour
                     {
                         if (anyLocation)
                             firstPosition = currentTransform.position;
-                        anim.SetBool("zoom", true);
+                        if (isAnimator)
+                            anim.SetBool("zoom", true);
+                        else
+                            scale = true;
                         mousePosition = Camera.main.ScreenToWorldPoint(touch.deltaPosition);
                         transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
                     }
@@ -124,7 +182,10 @@ public class MoveObject : MonoBehaviour
                 {
                     if (!locked)
                     {
-                        anim.SetBool("zoom", false);
+                        if ((isAnimator))
+                            anim.SetBool("zoom", false);
+                        else
+                            scale = false;
                         render.sortingOrder -= 1;
                         if (Mathf.Abs(transform.position.x - placeObject.position.x) <= rangeX &&
                             Mathf.Abs(transform.position.y - placeObject.position.y) <= rangeY)

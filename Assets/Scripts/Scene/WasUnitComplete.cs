@@ -33,7 +33,7 @@ public class WasUnitComplete : MonoBehaviour
     private bool wait = true;
     private void Update()
     {
-        if (ParentGameObjects.transform.childCount <= 0 || _countDifference == countOfDifference)
+        if (ParentGameObjects.transform.childCount <= 0 || _countDifference >= countOfDifference)
         {
             _sceneManager.SetItemsValue(ObjectsToExitScene, ObjectsToEnterScene, _lvlPrefs, _speedMove, toThatLocation, toThatLocationCanvas);
             

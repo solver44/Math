@@ -1508,8 +1508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6a21e525d5a8a408e1d81b94ff8a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDuration: 2
-  visibleTime: 0
+  animationDuration: 3
+  visibleTime: 2
   startOnAwake: 1
 --- !u!1 &54332063
 GameObject:
@@ -1903,8 +1903,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6a21e525d5a8a408e1d81b94ff8a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDuration: 2
-  visibleTime: 0
+  animationDuration: 3
+  visibleTime: 2
   startOnAwake: 1
 --- !u!120 &74101304
 LineRenderer:
@@ -3132,8 +3132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6a21e525d5a8a408e1d81b94ff8a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDuration: 2
-  visibleTime: 0
+  animationDuration: 3
+  visibleTime: 2
   startOnAwake: 1
 --- !u!120 &154462484
 LineRenderer:
@@ -11334,8 +11334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6a21e525d5a8a408e1d81b94ff8a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDuration: 2
-  visibleTime: 0
+  animationDuration: 3
+  visibleTime: 2
   startOnAwake: 1
 --- !u!120 &699532722
 LineRenderer:
@@ -22470,8 +22470,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6a21e525d5a8a408e1d81b94ff8a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDuration: 2
-  visibleTime: 0
+  animationDuration: 3
+  visibleTime: 2
   startOnAwake: 1
 --- !u!120 &1386756056
 LineRenderer:
@@ -30244,8 +30244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6a21e525d5a8a408e1d81b94ff8a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDuration: 2
-  visibleTime: 0
+  animationDuration: 3
+  visibleTime: 2
   startOnAwake: 1
 --- !u!120 &1837365976
 LineRenderer:
@@ -32212,8 +32212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6a21e525d5a8a408e1d81b94ff8a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDuration: 2
-  visibleTime: 0
+  animationDuration: 3
+  visibleTime: 2
   startOnAwake: 1
 --- !u!120 &1925787616
 LineRenderer:

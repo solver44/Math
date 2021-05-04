@@ -15,6 +15,7 @@ TagManager:
   - Russian
   - Uzbek
   - PanelText
+  - painting object
   layers:
   - Default
   - TransparentFX

@@ -14,6 +14,8 @@ public class SceneLogic : MonoBehaviour
 
     bool stop = false;
 
+    public ToggleGroup Pens;
+
     private void Start()
     {
         StartCoroutine(setUnitNumber());
@@ -22,8 +24,8 @@ public class SceneLogic : MonoBehaviour
 
     private IEnumerator setUnitNumber()
     {
-        yield return new WaitForSeconds(0.1f);
-        unitText.text += " " + PlayerPrefs.GetInt("ClickingUnit");
+        yield return new WaitForSeconds(0f);
+        unitText.text = PlayerPrefs.GetInt("ClickingUnit").ToString();
     }
     void Update()
     {
@@ -39,7 +41,21 @@ public class SceneLogic : MonoBehaviour
             StartCoroutine(enterBGPanel());
             PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("ClickingUnit"));
         }
+
     }
+
+    public void SetSelectedColor()
+    {
+        if (Pens.AnyTogglesOn())
+        {
+            foreach (var item in Pens.GetComponentsInChildren<Transform>())
+            {
+                if (item)
+                    item.localPosition = Vector3.MoveTowards(item.localPosition, new Vector3(item.localPosition.x, item.localPosition.y - 50), 1f);
+            }
+        }
+    }
+
     private IEnumerator enterBGPanel()
     {
         yield return new WaitForSeconds(1);
