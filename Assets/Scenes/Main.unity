@@ -1033,7 +1033,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 124034380}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 443224868}
+        m_MethodName: PreSchoolSceneClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &124034380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3630,18 +3641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbed11d40c7bb6488f40d832b38741b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAtSeconds: 1
-  isStartFromThisObj: 1
-  lastObject: {fileID: 0}
-  timeOfRange: 1
-  TypeOfTransition:
-  - Lerp
-  - Move Toward
-  - Scale
-  IndexOfTypes: 2
-  ToThatLocation: {x: 0, y: 0, z: 0}
-  ScaleRadius: 0.1
-  isGoNextObject: 0
 --- !u!1 &553862699
 GameObject:
   m_ObjectHideFlags: 0

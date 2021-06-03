@@ -342,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSound: 1
   hasName: 1
-  scaleWithoutAnim: 0
+  scaleWithoutAnim: 1
   scaleR: 0.1
 --- !u!95 &27946278
 Animator:
@@ -352,7 +352,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27946272}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f697658088479794eaf6f5dbd1059d3f, type: 2}
   m_CullingMode: 0
@@ -584,7 +584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSound: 1
   hasName: 1
-  scaleWithoutAnim: 0
+  scaleWithoutAnim: 1
   scaleR: 0.1
 --- !u!95 &61264986
 Animator:
@@ -594,7 +594,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61264980}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f697658088479794eaf6f5dbd1059d3f, type: 2}
   m_CullingMode: 0
@@ -969,6 +969,10 @@ MonoBehaviour:
   locationY: 0
   isMoveToward: 0
   waitForSecond: 0
+  isTextShowing: 1
+  FinishMove: 0
+  isWaitFinishAnother: 0
+  OtherObjects: []
 --- !u!1 &272661218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSound: 1
   hasName: 1
-  scaleWithoutAnim: 0
+  scaleWithoutAnim: 1
   scaleR: 0.1
 --- !u!95 &272661224
 Animator:
@@ -1200,7 +1204,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272661218}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f697658088479794eaf6f5dbd1059d3f, type: 2}
   m_CullingMode: 0
@@ -2590,7 +2594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSound: 1
   hasName: 1
-  scaleWithoutAnim: 0
+  scaleWithoutAnim: 1
   scaleR: 0.1
 --- !u!95 &482481660
 Animator:
@@ -2600,7 +2604,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482481654}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f697658088479794eaf6f5dbd1059d3f, type: 2}
   m_CullingMode: 0
@@ -2918,6 +2922,10 @@ MonoBehaviour:
   locationY: 0
   isMoveToward: 0
   waitForSecond: 0
+  isTextShowing: 1
+  FinishMove: 0
+  isWaitFinishAnother: 0
+  OtherObjects: []
 --- !u!1 &528832165
 GameObject:
   m_ObjectHideFlags: 0
@@ -3165,7 +3173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSound: 1
   hasName: 1
-  scaleWithoutAnim: 0
+  scaleWithoutAnim: 1
   scaleR: 0.1
 --- !u!95 &562486664
 Animator:
@@ -3175,7 +3183,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562486658}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f697658088479794eaf6f5dbd1059d3f, type: 2}
   m_CullingMode: 0
@@ -3988,7 +3996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSound: 1
   hasName: 1
-  scaleWithoutAnim: 0
+  scaleWithoutAnim: 1
   scaleR: 0.1
 --- !u!95 &686585771
 Animator:
@@ -3998,7 +4006,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686585765}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f697658088479794eaf6f5dbd1059d3f, type: 2}
   m_CullingMode: 0
@@ -5396,7 +5404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSound: 1
   hasName: 1
-  scaleWithoutAnim: 0
+  scaleWithoutAnim: 1
   scaleR: 0.1
 --- !u!95 &838851290
 Animator:
@@ -5406,7 +5414,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838851284}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f697658088479794eaf6f5dbd1059d3f, type: 2}
   m_CullingMode: 0
@@ -5474,6 +5482,10 @@ MonoBehaviour:
   locationY: 0
   isMoveToward: 0
   waitForSecond: 0
+  isTextShowing: 1
+  FinishMove: 0
+  isWaitFinishAnother: 0
+  OtherObjects: []
 --- !u!1 &896717569
 GameObject:
   m_ObjectHideFlags: 0
@@ -5695,7 +5707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSound: 1
   hasName: 1
-  scaleWithoutAnim: 0
+  scaleWithoutAnim: 1
   scaleR: 0.1
 --- !u!95 &896717575
 Animator:
@@ -5705,7 +5717,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896717569}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f697658088479794eaf6f5dbd1059d3f, type: 2}
   m_CullingMode: 0
@@ -7519,7 +7531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSound: 1
   hasName: 1
-  scaleWithoutAnim: 0
+  scaleWithoutAnim: 1
   scaleR: 0.1
 --- !u!95 &1383522307
 Animator:
@@ -7529,7 +7541,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383522301}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f697658088479794eaf6f5dbd1059d3f, type: 2}
   m_CullingMode: 0
@@ -9138,6 +9150,10 @@ MonoBehaviour:
   locationY: 0
   isMoveToward: 0
   waitForSecond: 0
+  isTextShowing: 1
+  FinishMove: 0
+  isWaitFinishAnother: 0
+  OtherObjects: []
 --- !u!1 &1665447861
 GameObject:
   m_ObjectHideFlags: 0
@@ -10668,7 +10684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSound: 1
   hasName: 1
-  scaleWithoutAnim: 0
+  scaleWithoutAnim: 1
   scaleR: 0.1
 --- !u!95 &2027606428
 Animator:
@@ -10678,7 +10694,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027606422}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f697658088479794eaf6f5dbd1059d3f, type: 2}
   m_CullingMode: 0

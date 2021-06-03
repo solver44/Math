@@ -117,8 +117,8 @@ public class PanelInfoScript : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
 
-        Name.text = "Имя:";
-        Surname.text = "Фамилия:";
-        Age.text = "Возраст:";
+        Name.text = locManage.GetLocalizedValue("NameT");
+        Surname.text = locManage.GetLocalizedValue("SurnameT");
+        Age.text = locManage.GetLocalizedValue("AgeT");
     }
 }

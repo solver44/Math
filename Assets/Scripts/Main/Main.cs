@@ -66,8 +66,10 @@ public class Main : MonoBehaviour
     {
         if (profilePanel.activeSelf)
         {
-            profilePanel.GetComponent<Animator>().SetTrigger("exit");
-            StartCoroutine(exitProfilePanel());
+            //profilePanel.GetComponent<Animator>().SetTrigger("exit");
+            profilePanel.SetActive(false);
+
+            //StartCoroutine(exitProfilePanel());
         }
         if (settingPanel.activeSelf)
         {
@@ -96,14 +98,17 @@ public class Main : MonoBehaviour
 
     public void OnClickProfileButton()
     {
-        if (!Age.text.Contains(PlayerPrefs.GetInt("ageUser").ToString()))
-        {
-            Name.text += "\n" + PlayerPrefs.GetString("nameUser");
-            Surname.text += "\n" + PlayerPrefs.GetString("surnameUser");
-            Age.text += "\n" + PlayerPrefs.GetInt("ageUser");
-        }
         profilePanel.SetActive(true);
         profilePanel.GetComponent<Animator>().SetTrigger("start");
+        StartCoroutine(writeTextProfile());
+    }
+
+    IEnumerator writeTextProfile()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Name.text = locManager.GetLocalizedValue("NameT") + "\n" + PlayerPrefs.GetString("nameUser");
+        Surname.text = locManager.GetLocalizedValue("SurnameT") + "\n" + PlayerPrefs.GetString("surnameUser");
+        Age.text = locManager.GetLocalizedValue("AgeT") + "\n" + PlayerPrefs.GetInt("ageUser");
     }
 
     public void OnClickSettingsButton()

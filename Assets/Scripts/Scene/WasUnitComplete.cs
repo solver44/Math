@@ -31,9 +31,16 @@ public class WasUnitComplete : MonoBehaviour
         set { _countDifference = value; }
     }
     private bool wait = true;
+
+    protected bool isCompleteThisUnit = false;
     private void Update()
     {
-        if (ParentGameObjects.transform.childCount <= 0 || _countDifference >= countOfDifference)
+        if(ParentGameObjects.transform.childCount <= 0 || _countDifference >= countOfDifference)
+        {
+            isCompleteThisUnit = true;
+        }
+
+        if (isCompleteThisUnit)
         {
             _sceneManager.SetItemsValue(ObjectsToExitScene, ObjectsToEnterScene, _lvlPrefs, _speedMove, toThatLocation, toThatLocationCanvas);
             

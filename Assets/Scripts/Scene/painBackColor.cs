@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class painBackColor : MonoBehaviour
 {
-    public Color[] colorList;
-    public Color currentColor;
+    private Color currentColor;
+    public float ScaleRadius = 0.1f;
 
 
     private Touch touch;
@@ -22,22 +23,52 @@ public class painBackColor : MonoBehaviour
         }
     }
 
-    public void SetColor(string colorStr)
+    GameObject prevBtn = null;
+    public void SetColor(GameObject pressedBtn)
     {
-        Color32 color = new Color32();
-        switch (colorStr)
+        if (prevBtn == pressedBtn || sleep)
+            return;
+
+        if (prevBtn != null)
         {
-            case "red":
-                color = new Color32(255, 47, 47, 255);
-                break;
-            case "orange":
-                color = new Color32(229, 138, 0, 255);
-                break;
-            case "green":
-                color = new Color32(0, 229, 54, 255);
-                break;
+            StartCoroutine(SmoothScaling(prevBtn.GetComponent<RectTransform>(), true));
         }
+
+        prevBtn = pressedBtn.gameObject;   
+
+        Color32 color = pressedBtn.GetComponent<Image>().color;
+        RectTransform scale = pressedBtn.GetComponent<RectTransform>();
+
+        StartCoroutine(SmoothScaling(scale, false));   
+
         currentColor = color;
+    }
+
+
+    bool sleep = false;
+    IEnumerator SmoothScaling(RectTransform scale, bool pros)
+    {
+        sleep = true;
+        float scaleDuration = 1;
+        float startX = scale.localScale.x;
+        float startY = scale.localScale.y;
+        Vector3 toScale = new Vector3();
+        if (!pros)
+            toScale = new Vector3(startX - ScaleRadius * startX, startY - ScaleRadius * startY);
+        else
+            toScale = new Vector3(startX + ScaleRadius * startX, startY + ScaleRadius * startY);
+
+        for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
+        {
+            scale.localScale = Vector3.Lerp(scale.localScale, toScale, t);
+            if (scale.localScale == toScale)
+            {
+                sleep = false;
+                StopAllCoroutines();
+                yield break;
+            }
+            yield return null;
+        }
     }
 
     private void Update()

@@ -45,27 +45,27 @@ public class ShowChildAlpha : MonoBehaviour
     private void Awake()
     {
 
-            try
-            {
-                var prefab = LoadPrefabFromFile("trail");
-                trail = (GameObject)Instantiate(prefab, transform);
-            }
-            catch { }
-            collider1 = GetComponent<BoxCollider2D>();
+            //try
+            //{
+                //var prefab = LoadPrefabFromFile("trail");
+                //trail = (GameObject)Instantiate(prefab, transform);
+            //}
+            //catch { }
+            //collider1 = GetComponent<BoxCollider2D>();
 
-            var yHalfExtents = collider1.bounds.extents.y;
-            var yCenter = collider1.bounds.center.y;
+            //var yHalfExtents = collider1.bounds.extents.y;
+            //var yCenter = collider1.bounds.center.y;
 
-            yUpper = yCenter + yHalfExtents;
-            yLower = yCenter - yHalfExtents;
+            //yUpper = yCenter + yHalfExtents;
+            //yLower = yCenter - yHalfExtents;
 
-            var xHalfExtents = collider1.bounds.extents.x;
-            var xCenter = collider1.bounds.center.x;
+            //var xHalfExtents = collider1.bounds.extents.x;
+            //var xCenter = collider1.bounds.center.x;
 
-            xStart = xCenter - xHalfExtents;
-            xEnd = xCenter + xHalfExtents;
+            //xStart = xCenter - xHalfExtents;
+            //xEnd = xCenter + xHalfExtents;
 
-            trail.transform.position = new Vector3(xStart, yUpper, trail.transform.position.z);
+            //trail.transform.position = new Vector3(xStart, yUpper, trail.transform.position.z);
         
     }
     private void Start()
@@ -176,30 +176,30 @@ public class ShowChildAlpha : MonoBehaviour
     private void Update()
     {
  
-            interpolate = Time.fixedDeltaTime * 1f;
-            switch (curDot)
-            {
-                case 1:
-                    trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xEnd, yUpper), interpolate);
-                    if (Vector3.Distance(trail.transform.position, new Vector3(xEnd, yUpper)) <= 0)
-                        curDot = 2;
-                    break;
-                case 2:
-                    trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xEnd, yLower), interpolate);
-                    if (Vector3.Distance(trail.transform.position, new Vector3(xEnd, yLower)) <= 0)
-                        curDot = 3;
-                    break;
-                case 3:
-                    trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xStart, yLower), interpolate);
-                    if (Vector3.Distance(trail.transform.position, new Vector3(xStart, yLower)) <= 0)
-                        curDot =4;
-                    break;
-                case 4:
-                    trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xStart, yUpper), interpolate);
-                    if (Vector3.Distance(trail.transform.position, new Vector3(xStart, yUpper)) <= 0)
-                        curDot = 1;
-                    break;
-            }
+            //interpolate = Time.fixedDeltaTime * 1f;
+            //switch (curDot)
+            //{
+            //    case 1:
+            //        trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xEnd, yUpper), interpolate);
+            //        if (Vector3.Distance(trail.transform.position, new Vector3(xEnd, yUpper)) <= 0)
+            //            curDot = 2;
+            //        break;
+            //    case 2:
+            //        trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xEnd, yLower), interpolate);
+            //        if (Vector3.Distance(trail.transform.position, new Vector3(xEnd, yLower)) <= 0)
+            //            curDot = 3;
+            //        break;
+            //    case 3:
+            //        trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xStart, yLower), interpolate);
+            //        if (Vector3.Distance(trail.transform.position, new Vector3(xStart, yLower)) <= 0)
+            //            curDot =4;
+            //        break;
+            //    case 4:
+            //        trail.transform.position = Vector3.MoveTowards(trail.transform.position, new Vector3(xStart, yUpper), interpolate);
+            //        if (Vector3.Distance(trail.transform.position, new Vector3(xStart, yUpper)) <= 0)
+            //            curDot = 1;
+            //        break;
+            //}
         
 
         if (Input.touchCount > 0)
