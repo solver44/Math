@@ -58,6 +58,9 @@ public class LocalizationManager : MonoBehaviour
         path = Path.Combine (Application.streamingAssetsPath + "/Raw", lang + ".json");
 #elif UNITY_ANDROID
         path = "jar:file://" + Application.dataPath + "!/assets/" + lang + ".json";
+#else
+        path = Application.streamingAssetsPath + "/" + lang + ".json";
+
 #endif
 
         //path = Application.streamingAssetsPath + "/Languages/" + lang + ".json";
@@ -79,11 +82,14 @@ public class LocalizationManager : MonoBehaviour
         {
             dataAJson = stream.ReadToEnd();
         }
-#elif UNITY_ANDROID 
+#elif UNITY_ANDROID || UNITY_WEBGL
         
-        WWW reader = new WWW(path);
-        while(!reader.isDone){}
-        dataAJson = reader.text;
+        if (path.Contains("://") || path.Contains(":///")) {        
+            WWW reader = new WWW(path);
+            while(!reader.isDone){}
+            dataAJson = reader.text;
+        } else
+            dataAJson = File.ReadAllText(path);
 
 #endif
         LocalizationData loadData = new LocalizationData();

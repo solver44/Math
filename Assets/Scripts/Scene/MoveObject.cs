@@ -4,31 +4,59 @@ using UnityEngine;
 public class MoveObject : MonoBehaviour
 {
     [SerializeField] private Transform placeObject = null;
+    [SerializeField] private Vector2 toThisLocation = Vector2.zero;
+    [SerializeField] private Vector2 toThisScale = Vector2.zero;
     private Animator placeObjectAnim = null;
-    public Transform GameObjects;
-    [SerializeField] private bool killMe = false;
+    [SerializeField] private bool killPlaceObject = false;
     [SerializeField] private bool anyLocation = false;
     [SerializeField] private float rangeX = 3f;
     [SerializeField] private float rangeY = 1f;
     public bool isAnimator = true;
     [SerializeField] private float scaleRadius = 0.1f;
+    [SerializeField] private bool isScale = false;
+    [SerializeField] private bool destroyEnd = false;
+    [SerializeField] private bool dontSortLayer = false;
+
+    [Header("Effects")]
+    public bool EffectScale = false;
+    public GameObject EffectLight = null;
 
 
     private Vector2 firstPosition;
-    public static bool locked = false;
+    private bool locked = false;
     private float deltaX, deltaY;
     private Vector3 mousePosition;
     private Animator anim = null;
 
+    private Vector2 placeLocation = Vector2.zero;
     private Touch touch;
 
     private SpriteRenderer render = null;
     private Transform currentTransform = null;
+
     private void Awake()
     {
         render = GetComponent<SpriteRenderer>() as SpriteRenderer;
-        placeObjectAnim = placeObject.GetComponent<Animator>() as Animator;
+        if (placeObject != null)
+        {
+            placeObjectAnim = placeObject.GetComponent<Animator>() as Animator;
+            placeLocation = placeObject.transform.position;
+        }
+        else if (toThisLocation != Vector2.zero)
+        {
+            placeLocation = toThisLocation;
+        }
+        else
+            empty = true;
+
         currentTransform = GetComponent<Transform>() as Transform;
+        
+        if(EffectLight != null)
+        {
+            EffectLight.AddComponent<RotateObject>();
+        }
+        if (EffectScale)
+            this.gameObject.AddComponent<ScaleEffect>();
     }
 
     private void Start()
@@ -38,6 +66,9 @@ public class MoveObject : MonoBehaviour
         scaleS = transform.localScale;
         xScale = scaleS.x;
         yScale = scaleS.y;
+
+        if (toThisScale == Vector2.zero)
+            toThisScale = this.transform.localScale;
     }
 
     Vector3 scaleS;
@@ -49,7 +80,8 @@ public class MoveObject : MonoBehaviour
             firstPosition = GetComponent<Transform>().position;
         if (!locked)
         {
-            this.GetComponent<SpriteRenderer>().sortingOrder += 1;
+            if(!dontSortLayer)
+                this.GetComponent<SpriteRenderer>().sortingOrder += 1;
             deltaX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
             deltaY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y;
         }
@@ -76,23 +108,31 @@ public class MoveObject : MonoBehaviour
     }
     bool toLocalPos = false;
     bool destroy = false;
+    bool empty = false;
     private void OnMouseUp()
     {
-        if (!locked)
+        if (!locked && !empty)
         {
-            render.sortingOrder -= 1;
-            if (Mathf.Abs(transform.position.x - placeObject.position.x) <= rangeX && 
-                Mathf.Abs(transform.position.y - placeObject.position.y) <= rangeY)
+            if(!dontSortLayer)
+                render.sortingOrder -= 1;
+            Debug.Log(transform.position + "\n" + placeLocation);
+            if (Mathf.Abs(transform.position.x - placeLocation.x) <= rangeX && 
+                Mathf.Abs(transform.position.y - placeLocation.y) <= rangeY)
             {
+                currentCnt++;
                 if (isAnimator)
                 {
                     anim.SetTrigger("destroy");
                 }
                 else
                 {
-                    destroy = true;
+                    scale = false;
+                    if (placeObject == null)
+                        StartCoroutine(moveAnim());
+                    else
+                        destroy = true;
                 }
-                if (killMe)
+                if (killPlaceObject)
                     placeObjectAnim.SetTrigger("destroy");
                 StartCoroutine(makeInActive());
             }
@@ -106,30 +146,37 @@ public class MoveObject : MonoBehaviour
                 }
                 toLocalPos = true;
                 transform.position = Vector2.Lerp(transform.position, firstPosition, 2f);
-
             }
-
+        }
+        else if (empty)
+        {
+            transform.position = Vector2.Lerp(transform.position, firstPosition, 2f);
         }
     }
     private IEnumerator makeInActive()
     {
         yield return new WaitForSeconds(1);
         //this.transform.gameObject.SetActive(false);
-        Destroy(this.transform.gameObject);
-        if(killMe)
+        if (countOfObjects == currentCnt)
+        {
+            currentCnt = 0;
+            this.transform.parent.transform.parent.transform.GetComponentInParent<WasUnitComplete>().CompleteUnit();
+        }
+        if (destroy)
+            Destroy(this.transform.gameObject);
+        if(killPlaceObject)
             Destroy(placeObject.transform.gameObject);
     }
 
     void Update()
     {
-        //if (GameObjects.position.x < .1f && GameObjects.position.x > -.1f)
-        //{
-        //    locked = true;
-        //}
-        //else
-        //    locked = false;
+        if (locked)
+            return;
 
-        if (!isAnimator)
+        if(placeObject != null)
+            placeLocation = placeObject.transform.position;
+
+        if (!isAnimator && isScale)
         {
 
             if (scale && !destroy)
@@ -143,7 +190,6 @@ public class MoveObject : MonoBehaviour
             else
             {
                 transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0), .08f);
-
             }
         }
 
@@ -156,7 +202,7 @@ public class MoveObject : MonoBehaviour
                 if(touch.phase == TouchPhase.Began)
                 {
                     if (firstPosition != null)
-                        firstPosition = currentTransform.position;
+                        firstPosition = currentTransform.localPosition;
                     if (!locked)
                     {
                         render.sortingOrder += 1;
@@ -169,7 +215,7 @@ public class MoveObject : MonoBehaviour
                     if (!locked)
                     {
                         if (anyLocation)
-                            firstPosition = currentTransform.position;
+                            firstPosition = currentTransform.localPosition;
                         if (isAnimator)
                             anim.SetBool("zoom", true);
                         else
@@ -187,23 +233,67 @@ public class MoveObject : MonoBehaviour
                         else
                             scale = false;
                         render.sortingOrder -= 1;
-                        if (Mathf.Abs(transform.position.x - placeObject.position.x) <= rangeX &&
-                            Mathf.Abs(transform.position.y - placeObject.position.y) <= rangeY)
+                        if (Mathf.Abs(transform.position.x - placeLocation.x) <= rangeX &&
+                            Mathf.Abs(transform.position.y - placeLocation.y) <= rangeY)
                         {
-                            anim.SetTrigger("destroy");
-                            if (killMe)
+                            currentCnt++;
+                            if (isAnimator)
+                            {
+                                anim.SetTrigger("destroy");
+                            }
+                            else
+                            {
+                                if(placeObject == null)
+                                    StartCoroutine(moveAnim());
+                                else
+                                    destroy = true;
+                            }
+                            if (killPlaceObject)
                                 placeObjectAnim.SetTrigger("destroy");
                             StartCoroutine(makeInActive());
                         }
                         else
                         {
+                            if (isAnimator)
+                                anim.SetBool("zoom", false);
+                            else
+                            {
+                                scale = false;
+                            }
                             toLocalPos = true;
-                            transform.position = Vector2.Lerp(transform.position, firstPosition, 2f);
+                            transform.localPosition = Vector2.Lerp(transform.localPosition, firstPosition, 2f);
                         }
                     }
                 }
 
             }
+        }
+    }
+    public int countOfObjects = 0;
+    static int currentCnt = 0;
+    IEnumerator moveAnim() 
+    {
+        float scaleDuration = 2f;
+        for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
+        {
+            transform.position = Vector3.Lerp(transform.position, placeLocation, t);
+            transform.localScale = Vector3.Lerp(transform.localScale, toThisScale, t);
+            if (transform.localPosition.Equals(placeLocation))
+            {
+                //transform.localScale = toThisScale;
+                IEnumerator co = moveAnim();
+                locked = true;
+                if (countOfObjects == currentCnt)
+                {
+                    currentCnt = 0;
+                    this.transform.parent.transform.parent.transform.GetComponentInParent<WasUnitComplete>().CompleteUnit();
+                }
+                if (destroyEnd)
+                    destroy = true;
+                StopCoroutine(co);
+                yield break;
+            }
+            yield return null;
         }
     }
 }
