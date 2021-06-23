@@ -97,7 +97,6 @@ public class PanelInfoScript : MonoBehaviour
         AgePanelAnim.SetTrigger("exit");
         Elements.SetTrigger("start");
         PanelInfoAnim.SetTrigger("start");
-        yield return new WaitForSeconds(2);
         SuccesText.SetTrigger("start");
         UserName.text = PlayerPrefs.GetString("nameUser") + " " + PlayerPrefs.GetString("surnameUser");
         yield return new WaitForSeconds(1.5f);
@@ -117,8 +116,12 @@ public class PanelInfoScript : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
 
-        Name.text = locManage.GetLocalizedValue("NameT");
-        Surname.text = locManage.GetLocalizedValue("SurnameT");
-        Age.text = locManage.GetLocalizedValue("AgeT");
+        try
+        {
+            Name.text = locManage.GetLocalizedValue("NameT");
+            Surname.text = locManage.GetLocalizedValue("SurnameT");
+            Age.text = locManage.GetLocalizedValue("AgeT");
+        }
+        catch { }
     }
 }

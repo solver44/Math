@@ -39,25 +39,24 @@ public class ScaleEffect : MonoBehaviour
             wait = true;
             targetScale = new Vector3(this.transform.localScale.x - (this.transform.localScale.x * scaleR), this.transform.localScale.y - (this.transform.localScale.y * scaleR), this.transform.localScale.z);
         }
-        StartCoroutine(Scale());
+        StartCoroutine(Scale(this.transform, targetScale, 10f));
     }
 
-    IEnumerator Scale()
+    public IEnumerator Scale(Transform transF, Vector2 target, float duration)
     {
-        float scaleDuration = 10f;
+        float scaleDuration = duration;
         for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
         {
-            this.transform.localScale = Vector3.MoveTowards(this.transform.localScale, targetScale, t);
-            if (this.transform.localScale.Equals(targetScale))
+            transF.localScale = Vector3.MoveTowards(transF.localScale, target, t);
+            if (transF.localScale.Equals(target))
             {
                 //transform.localScale = toThisScale;
-                IEnumerator co = Scale();
                 wait = false;
                 back = !back;
-                StopCoroutine(co);
                 yield break;
             }
             yield return null;
         }
     }
+
 }

@@ -28,7 +28,7 @@ public class NextUnit : MonoBehaviour
         textPrefs = textPrefs1;
         speed = speed1;
         location = location1;
-        locationCanvas = locationCanvas1; 
+        locationCanvas = locationCanvas1;
     }
 
     public void DoExitAndSaveUnit()

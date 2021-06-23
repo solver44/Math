@@ -1,0 +1,2276 @@
+fileFormatVersion: 2
+guid: 4cdc21dd72902fe42937760b7292ddae
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7397196552927279360
+    second: DottedEffect_0
+  - first:
+      213: 1627597700108812975
+    second: DottedEffect_1
+  - first:
+      213: 2298561495382162197
+    second: DottedEffect_2
+  - first:
+      213: -837634416988425952
+    second: DottedEffect_3
+  - first:
+      213: -2668013930416641025
+    second: DottedEffect_4
+  - first:
+      213: -7815227534296315502
+    second: DottedEffect_5
+  - first:
+      213: 5527646179938179676
+    second: DottedEffect_6
+  - first:
+      213: -3375319088420573053
+    second: DottedEffect_7
+  - first:
+      213: 5278402248799578369
+    second: DottedEffect_8
+  - first:
+      213: -7499991166605195460
+    second: DottedEffect_9
+  - first:
+      213: -3814812806667190504
+    second: DottedEffect_10
+  - first:
+      213: 2136127241704854233
+    second: DottedEffect_11
+  - first:
+      213: 8217867923090119549
+    second: DottedEffect_12
+  - first:
+      213: -9122696514465331787
+    second: DottedEffect_13
+  - first:
+      213: 8473251044785162060
+    second: DottedEffect_14
+  - first:
+      213: -7309012711448584998
+    second: DottedEffect_15
+  - first:
+      213: 7586057564148408143
+    second: DottedEffect_16
+  - first:
+      213: -8857804613628311072
+    second: DottedEffect_17
+  - first:
+      213: -8980028854083345645
+    second: DottedEffect_18
+  - first:
+      213: -8544100228268665361
+    second: DottedEffect_19
+  - first:
+      213: -8352072465182910142
+    second: DottedEffect_20
+  - first:
+      213: -8201194794554662604
+    second: DottedEffect_21
+  - first:
+      213: -8592163694789981967
+    second: DottedEffect_22
+  - first:
+      213: -5947270593738925808
+    second: DottedEffect_23
+  - first:
+      213: 7679712922603131269
+    second: DottedEffect_24
+  - first:
+      213: 8717088492541238122
+    second: DottedEffect_25
+  - first:
+      213: 3722677520848642523
+    second: DottedEffect_26
+  - first:
+      213: -5184012600347583294
+    second: DottedEffect_27
+  - first:
+      213: 372480444254717000
+    second: DottedEffect_28
+  - first:
+      213: -7433679080571641006
+    second: DottedEffect_29
+  - first:
+      213: 5759990238647857703
+    second: DottedEffect_30
+  - first:
+      213: -8196602646822756516
+    second: DottedEffect_31
+  - first:
+      213: 3449815671872117234
+    second: DottedEffect_32
+  - first:
+      213: -4034352021235752201
+    second: DottedEffect_33
+  - first:
+      213: 2194721364140638383
+    second: DottedEffect_34
+  - first:
+      213: 3680719084118207924
+    second: DottedEffect_35
+  - first:
+      213: -4267543938285298003
+    second: DottedEffect_36
+  - first:
+      213: -3224699902322210500
+    second: DottedEffect_37
+  - first:
+      213: 4458734223888994377
+    second: DottedEffect_38
+  - first:
+      213: -7063522300565269602
+    second: DottedEffect_39
+  - first:
+      213: 5436475539309246085
+    second: DottedEffect_40
+  - first:
+      213: 2534939386120115415
+    second: DottedEffect_41
+  - first:
+      213: 792100533819470758
+    second: DottedEffect_42
+  - first:
+      213: 9196823611608360572
+    second: DottedEffect_43
+  - first:
+      213: 1005239591365649650
+    second: DottedEffect_44
+  - first:
+      213: -2062860910630634843
+    second: DottedEffect_45
+  - first:
+      213: -5049520663399436562
+    second: DottedEffect_46
+  - first:
+      213: 7806592247560322306
+    second: DottedEffect_47
+  - first:
+      213: 3946829699921803634
+    second: DottedEffect_48
+  - first:
+      213: -8358086935292295747
+    second: DottedEffect_49
+  - first:
+      213: -3859716318366320126
+    second: DottedEffect_50
+  - first:
+      213: 4442763573262691724
+    second: DottedEffect_51
+  - first:
+      213: -6984545559556858681
+    second: DottedEffect_52
+  - first:
+      213: -8352133203773949105
+    second: DottedEffect_53
+  - first:
+      213: 112639046809360254
+    second: DottedEffect_54
+  - first:
+      213: 6258076251076144770
+    second: DottedEffect_55
+  - first:
+      213: 8738514612245623128
+    second: DottedEffect_56
+  - first:
+      213: 5493707472053053456
+    second: DottedEffect_57
+  - first:
+      213: -6542045133138515832
+    second: DottedEffect_58
+  - first:
+      213: -1755452977192479765
+    second: DottedEffect_59
+  - first:
+      213: -4228887520420583315
+    second: DottedEffect_60
+  - first:
+      213: 7770606896987076065
+    second: DottedEffect_61
+  - first:
+      213: -3421552174808157163
+    second: DottedEffect_62
+  - first:
+      213: -1970928803376548637
+    second: DottedEffect_63
+  - first:
+      213: -8298896707812407672
+    second: DottedEffect_64
+  - first:
+      213: -4517516471452028822
+    second: DottedEffect_65
+  - first:
+      213: -3521577835665433458
+    second: DottedEffect_66
+  - first:
+      213: -8120043571203772238
+    second: DottedEffect_67
+  - first:
+      213: -4715983073002244312
+    second: DottedEffect_68
+  - first:
+      213: -3492618304028545909
+    second: DottedEffect_69
+  - first:
+      213: -6033138139025916496
+    second: DottedEffect_70
+  - first:
+      213: -7935718979569931577
+    second: DottedEffect_71
+  - first:
+      213: 3323222701920818456
+    second: DottedEffect_72
+  - first:
+      213: 2814913701420018448
+    second: DottedEffect_73
+  - first:
+      213: -5103152889128671611
+    second: DottedEffect_74
+  - first:
+      213: 2980709852538992392
+    second: DottedEffect_75
+  - first:
+      213: 6439643830952284401
+    second: DottedEffect_76
+  - first:
+      213: 1945573635089028305
+    second: DottedEffect_77
+  - first:
+      213: -8408162065532296129
+    second: DottedEffect_78
+  - first:
+      213: 263124399760495054
+    second: DottedEffect_79
+  - first:
+      213: -8625224611095689959
+    second: DottedEffect_80
+  - first:
+      213: -16473781642393941
+    second: DottedEffect_81
+  - first:
+      213: 1087010252102210067
+    second: DottedEffect_82
+  - first:
+      213: 6307445778306577442
+    second: DottedEffect_83
+  - first:
+      213: -4701886963062220810
+    second: DottedEffect_84
+  - first:
+      213: -6795852993620784614
+    second: DottedEffect_85
+  - first:
+      213: 3413114742482565131
+    second: DottedEffect_86
+  - first:
+      213: 983675372146075373
+    second: DottedEffect_87
+  - first:
+      213: -2702153866641351558
+    second: DottedEffect_88
+  - first:
+      213: 4624231225884472423
+    second: DottedEffect_89
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DottedEffect_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1269
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00786095de0e75990800000000000000
+      internalID: -7397196552927279360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_1
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 1269
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa28a302c73669610800000000000000
+      internalID: 1627597700108812975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_2
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 1269
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51bf4a2708126ef10800000000000000
+      internalID: 2298561495382162197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_3
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 1269
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02173cb8fef1064f0800000000000000
+      internalID: -837634416988425952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_4
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 1269
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffbe8bd477f49fad0800000000000000
+      internalID: -2668013930416641025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_5
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 1269
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2998a63e6fbba8390800000000000000
+      internalID: -7815227534296315502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_6
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 1269
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5a9247f9e426bc40800000000000000
+      internalID: 5527646179938179676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_7
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 1269
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 380b81b1c257821d0800000000000000
+      internalID: -3375319088420573053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_8
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 1269
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 109625d01e6a04940800000000000000
+      internalID: 5278402248799578369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1128
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c370ee745cdaae790800000000000000
+      internalID: -7499991166605195460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_10
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 1128
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81fbdfdc6ff0f0bc0800000000000000
+      internalID: -3814812806667190504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_11
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 1128
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d25adc986c05ad10800000000000000
+      internalID: 2136127241704854233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_12
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 1128
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7b1ddef55bbb0270800000000000000
+      internalID: 8217867923090119549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_13
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 1128
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b5899daadba56180800000000000000
+      internalID: -9122696514465331787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_14
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 1128
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4780299ee8079570800000000000000
+      internalID: 8473251044785162060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_15
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 1128
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adcda4be9ab219a90800000000000000
+      internalID: -7309012711448584998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_16
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 1128
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4f1bb47927174960800000000000000
+      internalID: 7586057564148408143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_17
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 1128
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e94ed272a1c21580800000000000000
+      internalID: -8857804613628311072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 987
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 313aa9fd557806380800000000000000
+      internalID: -8980028854083345645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_19
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 987
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe556b86c124d6980800000000000000
+      internalID: -8544100228268665361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_20
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 987
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2499376185a771c80800000000000000
+      internalID: -8352072465182910142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_21
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 987
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43169c049c08f2e80800000000000000
+      internalID: -8201194794554662604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_22
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 987
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f8090094a082c880800000000000000
+      internalID: -8592163694789981967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_23
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 987
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 019901da7ec077da0800000000000000
+      internalID: -5947270593738925808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_24
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 987
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5819cb8d632d39a60800000000000000
+      internalID: 7679712922603131269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_25
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 987
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6bd0918cc159f870800000000000000
+      internalID: 8717088492541238122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_26
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 987
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1e38b4b7b99a330800000000000000
+      internalID: 3722677520848642523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 846
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cc122d8100be08b0800000000000000
+      internalID: -5184012600347583294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_28
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 846
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84405959df05b2500800000000000000
+      internalID: 372480444254717000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_29
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 846
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2536644f24446d890800000000000000
+      internalID: -7433679080571641006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_30
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 846
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 722b254ba989fef40800000000000000
+      internalID: 5759990238647857703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_31
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 846
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f5a17f151df3e80800000000000000
+      internalID: -8196602646822756516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_32
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 846
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f9538e531530ef20800000000000000
+      internalID: 3449815671872117234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_33
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 846
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f22d5b263a1308c0800000000000000
+      internalID: -4034352021235752201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_34
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 846
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa0409ad377357e10800000000000000
+      internalID: 2194721364140638383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_35
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 846
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bdedd6718a841330800000000000000
+      internalID: 3680719084118207924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 705
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dae12270663a6c4c0800000000000000
+      internalID: -4267543938285298003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_37
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 705
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3909d626809f33d0800000000000000
+      internalID: -3224699902322210500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_38
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 705
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 940d7ca372b90ed30800000000000000
+      internalID: 4458734223888994377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_39
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 705
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e93d1cb44e359fd90800000000000000
+      internalID: -7063522300565269602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_40
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 705
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 586b0a603bd327b40800000000000000
+      internalID: 5436475539309246085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_41
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 705
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d416d4e0f9ed2320800000000000000
+      internalID: 2534939386120115415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_42
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 705
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a3f4b02d3b1efa00800000000000000
+      internalID: 792100533819470758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_43
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 705
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7667df095ea1af70800000000000000
+      internalID: 9196823611608360572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_44
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 705
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f42285151453fd00800000000000000
+      internalID: 1005239591365649650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 564
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aa72d86eee3f53e0800000000000000
+      internalID: -2062860910630634843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_46
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 564
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeee41cc5bf7ce9b0800000000000000
+      internalID: -5049520663399436562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_47
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 564
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20db62eb946965c60800000000000000
+      internalID: 7806592247560322306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_48
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 564
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 279fccc63b4f5c630800000000000000
+      internalID: 3946829699921803634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_49
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 564
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db5c114273c120c80800000000000000
+      internalID: -8358086935292295747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_50
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 564
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20a3ff545788f6ac0800000000000000
+      internalID: -3859716318366320126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_51
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 564
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8d2e5d5eedd7ad30800000000000000
+      internalID: 4442763573262691724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_52
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 564
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ccd41db1d8e11f90800000000000000
+      internalID: -6984545559556858681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_53
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 564
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4bfe484a13471c80800000000000000
+      internalID: -8352133203773949105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 423
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7719e4cd9c209100800000000000000
+      internalID: 112639046809360254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_55
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 423
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28ea3b2913729d650800000000000000
+      internalID: 6258076251076144770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_56
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 423
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 851f57fbdb0754970800000000000000
+      internalID: 8738514612245623128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_57
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 423
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 018a1a3c6d19d3c40800000000000000
+      internalID: 5493707472053053456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_58
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 423
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 888a4b6dc9cf535a0800000000000000
+      internalID: -6542045133138515832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_59
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 423
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be35a8a61d063a7e0800000000000000
+      internalID: -1755452977192479765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_60
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 423
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d68af3ea439ff45c0800000000000000
+      internalID: -4228887520420583315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_61
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 423
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e57d186dcdb6db60800000000000000
+      internalID: 7770606896987076065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_62
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 423
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5143818dc643480d0800000000000000
+      internalID: -3421552174808157163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 282
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e4b72d12bad5a4e0800000000000000
+      internalID: -1970928803376548637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_64
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 282
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 886ce27e96564dc80800000000000000
+      internalID: -8298896707812407672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_65
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 282
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a60302c34be8e41c0800000000000000
+      internalID: -4517516471452028822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_66
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 282
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8cd548dd97d02fc0800000000000000
+      internalID: -3521577835665433458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_67
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 282
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b074b1d46fcf4f80800000000000000
+      internalID: -8120043571203772238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_68
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 282
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82732f6a1667d8eb0800000000000000
+      internalID: -4715983073002244312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_69
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 282
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8ce95c382ab78fc0800000000000000
+      internalID: -3492618304028545909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_70
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 282
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bdbf76d3dcf54ca0800000000000000
+      internalID: -6033138139025916496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_71
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 282
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7caa86122a9aed190800000000000000
+      internalID: -7935718979569931577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 141
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8151181b0757e1e20800000000000000
+      internalID: 3323222701920818456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_73
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 141
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b258ee815901720800000000000000
+      internalID: 2814913701420018448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_74
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 141
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5862af82c75fd29b0800000000000000
+      internalID: -5103152889128671611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_75
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 141
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 807f71381db9d5920800000000000000
+      internalID: 2980709852538992392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_76
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 141
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f052ff02f53e5950800000000000000
+      internalID: 6439643830952284401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_77
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 141
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d4d8dbb9e0100b10800000000000000
+      internalID: 1945573635089028305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_78
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 141
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3468065625305b80800000000000000
+      internalID: -8408162065532296129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_79
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 141
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec1567b5f3ec6a300800000000000000
+      internalID: 263124399760495054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_80
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 141
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9154fa32aeb0d4880800000000000000
+      internalID: -8625224611095689959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_81
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba60911de2975cff0800000000000000
+      internalID: -16473781642393941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_82
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 0
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31292c7a016d51f00800000000000000
+      internalID: 1087010252102210067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_83
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 0
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2243000648c888750800000000000000
+      internalID: 6307445778306577442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_84
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 0
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f7d2a008ba8fbeb0800000000000000
+      internalID: -4701886963062220810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_85
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 0
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1a457155b740b1a0800000000000000
+      internalID: -6795852993620784614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_86
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 0
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b08725b56c1dd5f20800000000000000
+      internalID: 3413114742482565131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_87
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 0
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de6211b0a87b6ad00800000000000000
+      internalID: 983675372146075373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_88
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 0
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7cd46aff55008ad0800000000000000
+      internalID: -2702153866641351558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DottedEffect_89
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 0
+        width: 277
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 764fc1abcc19c2040800000000000000
+      internalID: 4624231225884472423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

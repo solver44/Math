@@ -3,25 +3,20 @@ using UnityEngine;
 
 public class MoveToLocation : MonoBehaviour
 {
-    [SerializeField]
-    private float speedMove = 10; //Default 10
-    [SerializeField]
-    private float locationX = 0;
-    [SerializeField]
-    private float locationY = 1;
-    [SerializeField]
-    private bool isMoveToward = false;
-    [SerializeField]
-    private float waitForSecond = 0f;
-    [SerializeField]
-    private bool isTextShowing = false;
+    [SerializeField] private float speedMove = 10; //Default 10
+    [SerializeField] private float locationX = 0;
+    [SerializeField] private float locationY = 1;
+    public bool freezeY = false;
+    [SerializeField] private bool isMoveToward = false;
+    [SerializeField] private float waitForSecond = 0f;
+    [SerializeField] private bool isTextShowing = false;
 
 
     private GameObject textPanel = null;
 
     private bool gottaFinish = false;
     public void SetLocationX(float x, bool finish) { locationX = x; stop = false; gottaFinish = finish; try { if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } }catch{} }
-    public void SetLocationY(float y, bool finish) { locationY = y; stop = false; gottaFinish = finish; try { if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } } catch { } }
+    public void SetLocationY(float y, bool finish) { if (freezeY) locationY = this.transform.localPosition.y; else locationY = y; stop = false; gottaFinish = finish; try { if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } } catch { } }
 
     private bool stop = true;
 
@@ -42,6 +37,8 @@ public class MoveToLocation : MonoBehaviour
         try { if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } } catch { }
         StartCoroutine(waitForSec());
 
+        if (freezeY)
+            locationY = this.transform.localPosition.y;
     }
     void Update()
     {

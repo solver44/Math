@@ -44,6 +44,7 @@ public class Main : MonoBehaviour
             PlayerPrefs.SetInt("CurrentLevel", 0);
         }
 
+        SetLevelsInactive();
     }
     public bool StartLvlAnim = false;
     private void Update()
@@ -127,6 +128,20 @@ public class Main : MonoBehaviour
         {
             UzbLang.isOn = true;
             RusLang.isOn = false;
+        }
+    }
+
+    //Взять родител кнопок
+    [SerializeField] private GameObject levelsParent = null;
+    private void SetLevelsInactive() //Отключить все незавершенные кнопки задании
+    {
+        if (PlayerPrefs.HasKey("CurrentLevel"))
+        {
+            int allFinishedLevelsCount = PlayerPrefs.GetInt("CurrentLevel");
+            for (int i = allFinishedLevelsCount + 1; i < levelsParent.transform.childCount; i++)
+            {
+                levelsParent.transform.GetChild(i).transform.GetComponent<Button>().interactable = false;
+            }
         }
     }
 }
