@@ -46,10 +46,12 @@ public class ClickButton : MonoBehaviour
         return res;
     }
 
+    public bool Win = false;
     bool checkWin()
     {
         if(CurrentIndex >= QBoxes.Length)
         {
+            Win = true;
             Debug.Log("Win");
             return true;
         }
@@ -127,6 +129,9 @@ public class ClickButton : MonoBehaviour
     }
     public void CheckEqual(Text number)
     {
+        if (Win)
+            return;
+
         int num = int.Parse(number.text);
         string[] nums = QBoxes[CurrentIndex].GetComponent<Values>().Text.text.Trim(' ').Split('+');
         int result = int.Parse(nums[0]) + int.Parse(nums[1]);
