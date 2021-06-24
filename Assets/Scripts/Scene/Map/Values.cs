@@ -9,6 +9,7 @@ public class Values : MonoBehaviour
     public bool MakeNull = true;
     public bool MakeInactive = false;
     public GameObject Effect = null;
+    public GameObject Additional = null;
     public Text Text = null;
 
     private void Awake()

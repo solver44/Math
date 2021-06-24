@@ -8,6 +8,7 @@ public class Intro : MonoBehaviour
 
     public GameObject PreSchool;
     public GameObject Class1;
+    public GameObject BattlePanel;
 
     void Start()
     {
@@ -34,11 +35,17 @@ public class Intro : MonoBehaviour
         Class1.SetActive(true);
         Menu.SetActive(false);
     }
+    public void ActiveBattlePanel()
+    {
+        BattlePanel.SetActive(true);
+        Menu.SetActive(false);
+    }
 
     public void BackToMenu()
     {
         PreSchool.SetActive(false);
         Class1.SetActive(false);
+        BattlePanel.SetActive(false);
         Menu.SetActive(true);
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class CreatorMap : MonoBehaviour
     [SerializeField] private GameObject Vertical = null;
     public int CountOfBoxes = 1;
     public ClickButton click = null;
+    public PhotonView photonView;
     public int coinCount = 1;
 
     [Header("LeftBar")]
