@@ -8,6 +8,9 @@ using ExitGames.Client.Photon;
 
 public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
 {
+    [Header("Panels")]
+    public GameObject WaitingPanel = null;
+
     [Header("Main")]
     [SerializeField] private GameObject parent = null;
     public GameObject QuestionBox = null;
@@ -34,22 +37,26 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
     private string[] _qBoxesExamples;
     public void OnEvent(EventData photonEvent)
     {
-        if(photonEvent.Code == 42)
+        if (photonEvent.Code == 42)
         {
             Debug.Log("Get Event");
+            WaitingPanel.SetActive(false);
             isOnEvent = true;
             awake();
             _qBoxesExamples = (string[])photonEvent.CustomData;
             start();
+            InstantiateEnemy();
+            if (photonViewE != null)
+                click.PunView = photonViewE;
         }
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log(Server.isOwnerRoom);
         if (Server.isOwnerRoom)
         {
-            Debug.Log("Owner event");
+            Debug.Log("Send event");
+            WaitingPanel.SetActive(false);
             RaiseEventOptions options = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
             SendOptions sendOption = new SendOptions { Reliability = true };
             PhotonNetwork.RaiseEvent(42, _qBoxesExamples, options, sendOption);
@@ -57,15 +64,12 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
     }
 
     bool isOnEvent = false;
-    IEnumerator awakeStart()
-    {
-        yield return new WaitForSeconds(8);
-        awake();
-    }
     private void awake()
     {
         _qBoxesExamples = new string[CountOfBoxes];
         UserName.text = PlayerPrefs.GetString("nameUser") + "\n" + PlayerPrefs.GetString("surnameUser");
+        if (photonViewE != null)
+            click.PunView = photonViewE;
         click.AnswerTexts = this.AnswerTexts;
         Coin.text = "0";
         click.MainScroll = Vertical.transform.parent.transform.parent.transform.parent.gameObject;
@@ -79,6 +83,7 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
     }
     void Awake()
     {
+        WaitingPanel.SetActive(true);
         Screen.orientation = ScreenOrientation.Portrait;
         if (Server.isOwnerRoom)
             awake();
@@ -86,11 +91,6 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
 
     private Vector2 toThisScale = Vector2.zero;
 
-    IEnumerator startStart()
-    {
-        yield return new WaitForSeconds(8);
-        start();
-    }
     private void start()
     {
         var pos = TextAnchor.MiddleLeft;
@@ -113,6 +113,16 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
     {
         if (Server.isOwnerRoom)
             start();
+    }
+
+
+    GameObject enemy = null;
+    PhotonView photonViewE = null;
+    public void InstantiateEnemy()
+    {
+        enemy = PhotonNetwork.Instantiate(Resources.Load<GameObject>("Enemy").name, new Vector3(0, 0, 0), Quaternion.identity);
+        photonViewE = enemy.GetPhotonView();
+        photonViewE.RPC("Setting", RpcTarget.All, "enemy", "ParentEnemy");
     }
 
     private void Server_isOwner(bool isOwn)

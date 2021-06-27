@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class ClickButton : MonoBehaviour
     [HideInInspector] public Text CoinText;
     [HideInInspector] public int CntCoin;
     [HideInInspector] public float ScaleR = 0.2f;
+
+    [HideInInspector] public PhotonView PunView;
 
     [HideInInspector] public GameObject MainScroll, MainScrollContent, LeftBarScrollContent;
 
@@ -132,6 +135,9 @@ public class ClickButton : MonoBehaviour
         if (Win)
             return;
 
+        if (PunView == null)
+            SetPunView();
+
         int num = int.Parse(number.text);
         string[] nums = QBoxes[CurrentIndex].GetComponent<Values>().Text.text.Trim(' ').Split('+');
         int result = int.Parse(nums[0]) + int.Parse(nums[1]);
@@ -142,19 +148,19 @@ public class ClickButton : MonoBehaviour
             coins += CntCoin;
             CoinText.text = coins.ToString();
             CurrentIndex++;
+            PunView.RPC("GoUp", RpcTarget.All, CurrentIndex, Server.isOwnerRoom);
         }
         else
         {
             results[CurrentIndex] = 0;
             setInactivePrevious();
             CurrentIndex++;
+            PunView.RPC("GoUp", RpcTarget.All, CurrentIndex, Server.isOwnerRoom);
         }
     }
-    private async void _checking(string text)
-    {
-        
 
-        await Task.Delay(1);
-        return;
+    void SetPunView()
+    {
+        PunView = GameObject.Find("enemy").transform.GetComponent<PhotonView>();
     }
 }

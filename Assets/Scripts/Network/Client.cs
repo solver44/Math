@@ -5,10 +5,6 @@ public class Client : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject enemy;
     public GameObject parent;
-    private void Start()
-    {
-        //PhotonNetwork.Instantiate(enemy.name, parent.transform.position, Quaternion.identity);
-    }
 
     public void Leave()
     {
