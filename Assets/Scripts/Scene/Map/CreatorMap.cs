@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
-public class CreatorMap : MonoBehaviour
+public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     [Header("Main")]
     [SerializeField] private GameObject parent = null;
@@ -13,7 +15,6 @@ public class CreatorMap : MonoBehaviour
     [SerializeField] private GameObject Vertical = null;
     public int CountOfBoxes = 1;
     public ClickButton click = null;
-    public PhotonView photonView;
     public int coinCount = 1;
 
     [Header("LeftBar")]
@@ -29,8 +30,41 @@ public class CreatorMap : MonoBehaviour
     public Text[] AnswerTexts = null;
     public float ScaleR = 0.2f;
 
-    void Awake()
+
+    private string[] _qBoxesExamples;
+    public void OnEvent(EventData photonEvent)
     {
+        if(photonEvent.Code == 42)
+        {
+            Debug.Log("Get Event");
+            isOnEvent = true;
+            awake();
+            _qBoxesExamples = (string[])photonEvent.CustomData;
+            start();
+        }
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.Log(Server.isOwnerRoom);
+        if (Server.isOwnerRoom)
+        {
+            Debug.Log("Owner event");
+            RaiseEventOptions options = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+            SendOptions sendOption = new SendOptions { Reliability = true };
+            PhotonNetwork.RaiseEvent(42, _qBoxesExamples, options, sendOption);
+        }
+    }
+
+    bool isOnEvent = false;
+    IEnumerator awakeStart()
+    {
+        yield return new WaitForSeconds(8);
+        awake();
+    }
+    private void awake()
+    {
+        _qBoxesExamples = new string[CountOfBoxes];
         UserName.text = PlayerPrefs.GetString("nameUser") + "\n" + PlayerPrefs.GetString("surnameUser");
         click.AnswerTexts = this.AnswerTexts;
         Coin.text = "0";
@@ -43,9 +77,21 @@ public class CreatorMap : MonoBehaviour
         click.CoinText = Coin;
         click.CntCoin = coinCount;
     }
+    void Awake()
+    {
+        Screen.orientation = ScreenOrientation.Portrait;
+        if (Server.isOwnerRoom)
+            awake();
+    }
 
     private Vector2 toThisScale = Vector2.zero;
-    void Start()
+
+    IEnumerator startStart()
+    {
+        yield return new WaitForSeconds(8);
+        start();
+    }
+    private void start()
     {
         var pos = TextAnchor.MiddleLeft;
         bool minus = false;
@@ -63,6 +109,21 @@ public class CreatorMap : MonoBehaviour
         SetHeightMain();
         SetHeightLeftTopBar();
     }
+    void Start()
+    {
+        if (Server.isOwnerRoom)
+            start();
+    }
+
+    private void Server_isOwner(bool isOwn)
+    {
+        if (isOwn)
+        {
+            awake();
+            start();
+        }
+    }
+
     void SetMain(int i, ref TextAnchor pos, ref bool minus)
     {
         click.QBoxes[i] = Instantiate(QuestionBox, Vertical.transform);
@@ -88,7 +149,9 @@ public class CreatorMap : MonoBehaviour
 
         int[] rand = makeRandomlyNumbers(2, 0, 6, false);
         int result = rand[0] + rand[1];
-        click.QBoxes[i].GetComponent<Values>().Text.text = rand[0] + " + " + rand[1];
+        if(!isOnEvent)
+            _qBoxesExamples[i] = rand[0] + " + " + rand[1];
+        click.QBoxes[i].GetComponent<Values>().Text.text = _qBoxesExamples[i];
         if (i == 0)
         {
             int randS = Random.Range(0, 2);
@@ -208,4 +271,5 @@ public class CreatorMap : MonoBehaviour
             yield return null;
         }
     }
+
 }

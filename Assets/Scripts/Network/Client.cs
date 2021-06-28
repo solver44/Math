@@ -7,7 +7,7 @@ public class Client : MonoBehaviourPunCallbacks
     public GameObject parent;
     private void Start()
     {
-        PhotonNetwork.Instantiate(enemy.name, parent.transform.position, Quaternion.identity);
+        //PhotonNetwork.Instantiate(enemy.name, parent.transform.position, Quaternion.identity);
     }
 
     public void Leave()

@@ -3,7 +3,18 @@ using UnityEngine;
 
 public class Server : MonoBehaviourPunCallbacks
 {
+    public delegate void GetOwner(bool isOwn);
+    public static event GetOwner isOwner;
+
+    private static bool _isOwner = false;
+    public static bool isOwnerRoom
+    {
+        get { return _isOwner; }
+        set { _isOwner = value; isOwner?.Invoke(_isOwner); }
+    }
+
     private const byte MAX_USER = 2;
+
     private void Start()
     {
         PhotonNetwork.NickName = PlayerPrefs.GetString("nameUser");
@@ -14,14 +25,19 @@ public class Server : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("Connect");
+        Debug.Log("On Master");
     }
 
-    public void CreateRoom()
+    public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        Debug.Log("Creating Room...");
-        PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2});
+        isOwnerRoom = false;
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
         Debug.Log("Created Room");
+        PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2}, Photon.Realtime.TypedLobby.Default);
+        isOwnerRoom = true;
     }
 
     public override void OnJoinedRoom()
@@ -29,17 +45,9 @@ public class Server : MonoBehaviourPunCallbacks
         Debug.Log("Joined Room");
         PhotonNetwork.LoadLevel("Battle");
     }
-    public void JoinRoom()
-    {
-        Debug.Log("Joining Room...");
-        PhotonNetwork.JoinRandomRoom();
-    }
 
     public void CreateOrJoin()
     {
-        if (PhotonNetwork.JoinRandomOrCreateRoom(null, MAX_USER, Photon.Realtime.MatchmakingMode.FillRoom, null, null, null, new Photon.Realtime.RoomOptions { MaxPlayers = 2 }, null))
-        {
-
-        }
+        PhotonNetwork.JoinRandomRoom();
     }
 }
