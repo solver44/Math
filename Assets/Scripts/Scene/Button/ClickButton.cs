@@ -33,6 +33,7 @@ public class ClickButton : MonoBehaviour
     private void Timer_losingEventP()
     {
         Debug.Log("lose");
+        PunView.RPC("CheckWinOrLose", RpcTarget.All, results);
     }
 
     public int[] results;
@@ -49,13 +50,14 @@ public class ClickButton : MonoBehaviour
         return res;
     }
 
-    public bool Win = false;
+    public bool Finish = false;
     bool checkWin()
     {
         if(CurrentIndex >= QBoxes.Length)
         {
-            Win = true;
-            Debug.Log("Win");
+            Finish = true;
+            Debug.Log("Finish");
+            PunView.RPC("CheckWinOrLose", RpcTarget.All, results);
             return true;
         }
         return false;
@@ -80,13 +82,23 @@ public class ClickButton : MonoBehaviour
         ScrollRect scrollRect = MainScroll.GetComponent<ScrollRect>();
         StartCoroutine(MoveSmooth(scrollRect, new Vector2(0, 1)));
     }
+
+    int makeRandomlyNumWithoutEquals(int targetNum, int min, int max)
+    {
+        while (true)
+        {
+            int num = Random.Range(min, max);
+            if (targetNum != num)
+                return num;
+        }
+    }
     void changedIndex()
     {
         if (checkWin())
             return;
 
-        if(CurrentIndex == 12)
-            increaseSizeUI(MainScrollContent, -160);
+        //if(CurrentIndex == 12)
+           // increaseSizeUI(MainScrollContent, -160);
 
         int randS = Random.Range(0, 2);
         Values vals = QBoxes[CurrentIndex].GetComponent<Values>();
@@ -97,12 +109,12 @@ public class ClickButton : MonoBehaviour
         if (randS == 1)
         {
             int num = Random.Range(0, 11);
-            AnswerTexts[0].text = (num == result ? 8 : num).ToString();
+            AnswerTexts[0].text = (num == result ? makeRandomlyNumWithoutEquals(num, 0, 11) : num).ToString();
         }
         else
         {
             int num = Random.Range(0, 11);
-            AnswerTexts[1].text = (num == result ? 8 : num).ToString();
+            AnswerTexts[1].text = (num == result ? makeRandomlyNumWithoutEquals(num, 0, 11) : num).ToString();
         }
 
         Transform obj = QBoxes[CurrentIndex].transform.GetChild(0).transform.GetChild(0).transform;
@@ -130,9 +142,12 @@ public class ClickButton : MonoBehaviour
         else
             valsLine.UserImage.GetComponent<Image>().overrideSprite = Images[2];
     }
+
+    public delegate void Change();
+    public event Change changingResults;
     public void CheckEqual(Text number)
     {
-        if (Win)
+        if (Finish)
             return;
 
         if (PunView == null)
@@ -144,18 +159,20 @@ public class ClickButton : MonoBehaviour
         if (num.Equals(result))
         {
             results[CurrentIndex] = 1;
+            changingResults?.Invoke();
             setInactivePrevious();
             coins += CntCoin;
             CoinText.text = coins.ToString();
             CurrentIndex++;
-            PunView.RPC("GoUp", RpcTarget.All, CurrentIndex, Server.isOwnerRoom);
+            PunView.RPC("GoUp", RpcTarget.All, CurrentIndex, PunView.IsMine);
         }
         else
         {
             results[CurrentIndex] = 0;
+            changingResults?.Invoke();
             setInactivePrevious();
             CurrentIndex++;
-            PunView.RPC("GoUp", RpcTarget.All, CurrentIndex, Server.isOwnerRoom);
+            PunView.RPC("GoUp", RpcTarget.All, CurrentIndex, PunView.IsMine);
         }
     }
 

@@ -1,18 +1,14 @@
 ﻿using UnityEngine;
-using Photon.Pun;
+using UnityEngine.SceneManagement;
 
-public class Client : MonoBehaviourPunCallbacks
+public class Client : MonoBehaviour
 {
     [SerializeField] private GameObject enemy;
     public GameObject parent;
 
     public void Leave()
     {
-        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene(1);
     }
 
-    public override void OnLeftLobby()
-    {
-        PhotonNetwork.LoadLevel("Main");
-    }
 }

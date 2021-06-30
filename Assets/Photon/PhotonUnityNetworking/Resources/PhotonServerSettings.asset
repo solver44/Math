@@ -42,6 +42,7 @@ MonoBehaviour:
   - EnemySettings
   - Setting
   - GoUp
+  - CheckWinOrLose
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -8,8 +8,14 @@ using ExitGames.Client.Photon;
 
 public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
 {
+    [Header("Timer")]
+    public Timer timer = null;
+
     [Header("Panels")]
     public GameObject WaitingPanel = null;
+    public GameObject WinPanel = null;
+    public GameObject imageWinPanel = null;
+    public Text TextWinPanel = null;
 
     [Header("Main")]
     [SerializeField] private GameObject parent = null;
@@ -35,6 +41,8 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
 
 
     private string[] _qBoxesExamples;
+
+    public int[] ExamsResults;
     public void OnEvent(EventData photonEvent)
     {
         if (photonEvent.Code == 42)
@@ -48,7 +56,26 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
             InstantiateEnemy();
             if (photonViewE != null)
                 click.PunView = photonViewE;
+
+            timer.StartTick();
         }
+    }
+
+    public void WinOrLose(bool win)
+    {
+        WinPanel.SetActive(true);
+        if (win)
+        {
+            TextWinPanel.text = "Вы выграли!";
+        }
+        else
+        {
+            TextWinPanel.text = "Вы проиграли!";
+            imageWinPanel.transform.localScale = new Vector3(.8f, .8f, 1);
+            imageWinPanel.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("MathGame/Battle/Abort");
+        }
+        Time.timeScale = 0;
+        StartCoroutine(Scale(WinPanel.transform, new Vector3(1, 1, 1), 8f));
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -60,9 +87,13 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
             RaiseEventOptions options = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
             SendOptions sendOption = new SendOptions { Reliability = true };
             PhotonNetwork.RaiseEvent(42, _qBoxesExamples, options, sendOption);
+            timer.StartTick();
         }
     }
-
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        WinOrLose(true);
+    }
     bool isOnEvent = false;
     private void awake()
     {
@@ -87,6 +118,13 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
         Screen.orientation = ScreenOrientation.Portrait;
         if (Server.isOwnerRoom)
             awake();
+
+        click.changingResults += Click_changingResults;
+    }
+
+    private void Click_changingResults()
+    {
+        ExamsResults = click.results;
     }
 
     private Vector2 toThisScale = Vector2.zero;
@@ -159,8 +197,13 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
 
         int[] rand = makeRandomlyNumbers(2, 0, 6, false);
         int result = rand[0] + rand[1];
-        if(!isOnEvent)
+        if (!isOnEvent)
             _qBoxesExamples[i] = rand[0] + " + " + rand[1];
+        else
+        {
+            string[] nums = _qBoxesExamples[i].Trim(' ').Split('+');
+            result = int.Parse(nums[0]) + int.Parse(nums[1]);
+        }
         click.QBoxes[i].GetComponent<Values>().Text.text = _qBoxesExamples[i];
         if (i == 0)
         {
@@ -180,7 +223,7 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
 
             Transform obj = click.QBoxes[i].transform.GetChild(0).transform.GetChild(0).transform;
             toThisScale = new Vector2(obj.localScale.x + (obj.localScale.x * ScaleR), obj.localScale.y + (obj.localScale.x * ScaleR));
-            StartCoroutine(Scale(obj));
+            StartCoroutine(Scale(obj, toThisScale, 2f));
         }
     }
 
@@ -266,15 +309,14 @@ public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
         rtLB.offsetMax = new Vector2(rtLB.offsetMax.x, Mathf.Abs(scrollContentHeightLB - (CountOfBoxes * 320)));
     }
 
-    private IEnumerator Scale(Transform transF)
+    private IEnumerator Scale(Transform transF, Vector3 targetScale, float scaleDuration)
     {
-        float scaleDuration = 2f;
         for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
         {
-            transF.localScale = Vector3.Lerp(transF.localScale, toThisScale, t);
-            if (transF.localScale.Equals(toThisScale))
+            transF.localScale = Vector3.Lerp(transF.localScale, targetScale, t);
+            if (transF.localScale.Equals(targetScale))
             {
-                IEnumerator co = Scale(null);
+                IEnumerator co = Scale(null, Vector3.zero, 0);
                 StopCoroutine(co);
                 yield break;
             }

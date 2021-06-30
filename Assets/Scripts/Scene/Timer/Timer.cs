@@ -16,6 +16,9 @@ public class Timer : MonoBehaviour
     void Start()
     {
         currentSeconds = Seconds;
+    }
+    public void StartTick()
+    {
         StartCoroutine(tick());
         top.fillAmount = 1;
         StartCoroutine(fillAM());
