@@ -164,9 +164,11 @@ public class MoveObject : MonoBehaviour
                     if (placeObject == null || HasPlaceObjectCollider)
                     {
                         if (!HasPlaceObjectCollider)
-                            StartCoroutine(moveAnim(placeLocation));
+                            StartCoroutine(moveAnim(placeLocation, IsLocalPos));
                         else
-                            StartCoroutine(moveAnim(toThisLocation));
+                        {
+                            StartCoroutine(moveAnim(toThisLocation, false));
+                        }
                     }
                     else
                     {
@@ -201,6 +203,12 @@ public class MoveObject : MonoBehaviour
             else
                 transform.position = Vector2.Lerp(transform.position, firstPosition, 2f);
         }
+    }
+
+    public void DontMove()
+    {
+        currentCnt++;
+        locked = true;
     }
     private IEnumerator makeInActive()
     {
@@ -326,9 +334,9 @@ public class MoveObject : MonoBehaviour
                                 if (placeObject == null || HasPlaceObjectCollider)
                                 {
                                     if (!HasPlaceObjectCollider)
-                                        StartCoroutine(moveAnim(placeLocation));
+                                        StartCoroutine(moveAnim(placeLocation, IsLocalPos));
                                     else
-                                        StartCoroutine(moveAnim(toThisLocation));
+                                        StartCoroutine(moveAnim(toThisLocation, IsLocalPos));
                                 }
                                 else
                                 {
@@ -375,9 +383,9 @@ public class MoveObject : MonoBehaviour
     {
         get { return currentCnt1; }
         set { currentCnt1 = value;
-	    if(DestroyEffect){
-	        Destroy(EffectToDestroy);
-	    }
+	        if(DestroyEffect){
+	            Destroy(EffectToDestroy);
+	        }
             if (countOfObjects == currentCnt1)
             {
                 currentCnt1 = 0;
@@ -385,13 +393,13 @@ public class MoveObject : MonoBehaviour
             }
         }
     }
-    IEnumerator moveAnim(Vector2 _placeLocation) 
+    IEnumerator moveAnim(Vector2 _placeLocation, bool isLocal) 
     {
         Debug.Log(_placeLocation);
         float scaleDuration = 2f;
         for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
         {
-            if(IsLocalPos)
+            if(isLocal)
                 transform.localPosition = Vector3.Lerp(transform.localPosition, _placeLocation, t);
             else
                 transform.position = Vector3.Lerp(transform.position, _placeLocation, t);
@@ -401,7 +409,7 @@ public class MoveObject : MonoBehaviour
             {
                 currentCnt++;
                 //transform.localScale = toThisScale;
-                IEnumerator co = moveAnim(Vector2.zero);
+                IEnumerator co = moveAnim(Vector2.zero, false);
                 locked = true;
                 if (destroyEnd)
                     destroy = true;

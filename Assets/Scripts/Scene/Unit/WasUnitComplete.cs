@@ -1,29 +1,51 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WasUnitComplete : MonoBehaviour
 {
+    [Header("Main")]
     public GameObject[] ObjectsToExitScene;
     [Space]
     public GameObject ParentGameObjects;
+    [Header("Location")]
     [SerializeField] private Vector2 toThatLocation;
     [SerializeField] private bool freezeY = false;
     [SerializeField] private Vector2 toThatLocationCanvas;
     [SerializeField] private bool freezeYCanvas = false;
     [SerializeField] private float _speedMove = 5;
+    [Header("Condition")]
     [SerializeField] private int unitNumber;
     [SerializeField] private int countOfDifference = 5;
+    [Header("Additional")]
     [SerializeField] private float waitForSecondToExit = 0f;
-
+    [SerializeField] private Color colorToChange;
+    [SerializeField] private GameObject[] objectsToChangeColor = null;
+    [Header("Main")]
     public GameObject[] ObjectsToEnterScene;
 
     NextUnit _sceneManager;
 
     string _lvlPrefs;
+
+    //For Color
+    private bool changeColor = false;
+    private bool[] isSpriteRenderer;
     private void Start()
     {
-        _sceneManager = new NextUnit();
+        isSpriteRenderer = new bool[objectsToChangeColor.Length];
+        if (objectsToChangeColor != null)
+        {
+            changeColor = true;
+            SpriteRenderer temp;
+            for (int i = 0; i < objectsToChangeColor.Length; i++)
+            {
+                isSpriteRenderer[i] = objectsToChangeColor[i].TryGetComponent<SpriteRenderer>(out temp);
+            }
+        }
+
+
         _lvlPrefs = "lvl" + PlayerPrefs.GetInt("ClickingLevel") + "." + (SceneManager.GetActiveScene().buildIndex - 1) + "." + unitNumber;
 
         if (freezeY)
@@ -40,6 +62,9 @@ public class WasUnitComplete : MonoBehaviour
             }
             toThatLocationCanvas = new Vector2(toThatLocationCanvas.x, constY);
         }
+
+        _sceneManager = gameObject.AddComponent<NextUnit>();
+        _sceneManager.SetItemsValue(ObjectsToExitScene, ObjectsToEnterScene, _lvlPrefs, _speedMove, toThatLocation, toThatLocationCanvas);
     }
     private int _countDifference;
     public int SetCountOfDifference
@@ -64,9 +89,8 @@ public class WasUnitComplete : MonoBehaviour
 
         if (isCompleteThisUnit)
         {
-            _sceneManager.SetItemsValue(ObjectsToExitScene, ObjectsToEnterScene, _lvlPrefs, _speedMove, toThatLocation, toThatLocationCanvas);
             
-            if (wait)
+            if (!stop && wait)
             {
                 StartCoroutine(waitForSec());
             }
@@ -75,14 +99,49 @@ public class WasUnitComplete : MonoBehaviour
                 _sceneManager.DoExitAndSaveUnit();
                 _sceneManager.DoEnterNewUnit();
                 _sceneManager.DestroyObject(this.transform.gameObject);
+                if (changeColor && !changingColor)
+                {
+                    for (int i = 0; i < objectsToChangeColor.Length; i++)
+                    {
+                        StartCoroutine(changeColorIE(i));
+                    }
+                }
             }
         }
     }
 
+    bool stop = false;
     private IEnumerator waitForSec()
     {
         wait = true;
         yield return new WaitForSeconds(waitForSecondToExit);
         wait = false;
+    }
+
+    bool changingColor = false;
+    private IEnumerator changeColorIE(int index)
+    {
+        changingColor = true;
+        float scaleDuration = 10f;
+        SpriteRenderer spriteR = null;
+        Image imageR = null;
+        if (isSpriteRenderer[index])
+            spriteR = objectsToChangeColor[index].GetComponent<SpriteRenderer>();
+        else
+            imageR = objectsToChangeColor[index].GetComponent<Image>();
+        for (float i = 0; i < 1; i += Time.deltaTime / scaleDuration)
+        {
+            if (spriteR == null)
+                imageR.color = Color.Lerp(imageR.color, colorToChange, i);
+            else
+                spriteR.color = Color.Lerp(spriteR.color, colorToChange, i);
+
+            if ((spriteR != null && spriteR.color.Equals(colorToChange)) || imageR.color.Equals(colorToChange))
+            {
+                yield break;
+            }
+
+            yield return null;
+        }
     }
 }
