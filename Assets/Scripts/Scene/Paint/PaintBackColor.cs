@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PaintBackColor : MonoBehaviour
 {
     public bool CheckEqualShapes = true;
+    public bool DontCheck = false;
     public bool IsZoomScale = false;
     public float ScaleRadius = 0.1f;
 
@@ -40,7 +41,7 @@ public class PaintBackColor : MonoBehaviour
                         sum = true;
                 }
 
-                if (checkingEquals.CheckIt(currentShapesName, sum))
+                if (checkingEquals.CheckIt(currentShapesName, sum, false))
                 {
                     if (objectSprite != null)
                         objectSprite.color = currentColor;
@@ -51,12 +52,24 @@ public class PaintBackColor : MonoBehaviour
             {
                 EqualShapes checkingEquals = hitTouch.collider.transform.GetComponent<EqualShapes>();
                 bool sum = false;
-                objectSprite = hitTouch.collider.gameObject.GetComponent<SpriteRenderer>();
-                if (!objectSprite.color.Equals(currentColor))
-                    sum = true;
+                if (hitTouch.collider.gameObject.TryGetComponent<SpriteRenderer>(out objectSprite))
+                {
+                    if (!objectSprite.color.Equals(currentColor))
+                        sum = true;
+                }
+                else
+                {
+                    objectImage = hitTouch.collider.gameObject.GetComponent<Image>();
+                    if (!objectImage.color.Equals(currentColor))
+                        sum = true;
+                }
 
-                checkingEquals.CheckIt(currentShapesName, sum);
-                objectSprite.color = currentColor;
+
+                checkingEquals.CheckIt(currentShapesName, sum, DontCheck);
+                if (objectSprite != null)
+                    objectSprite.color = currentColor;
+                else
+                    objectImage.color = currentColor;
             }
         }
     }

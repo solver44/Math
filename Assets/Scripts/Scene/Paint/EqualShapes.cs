@@ -8,8 +8,15 @@ public class EqualShapes : MonoBehaviour
     private string nameOfShape => TargetShape.transform.name;
     private PaintInfo info => this.GetComponentInParent<PaintInfo>();
 
-    public bool CheckIt(string name, bool sumCount)
+    public bool CheckIt(string name, bool sumCount, bool dontCheck)
     {
+        if(dontCheck)
+        {
+            info.Count++;
+            return true;
+        }
+
+
         if (nameOfShape.Equals(name))
         {
             if(sumCount)

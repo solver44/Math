@@ -47,7 +47,7 @@ public class MoveObject : MonoBehaviour
             locked = true;
 
         render = GetComponent<SpriteRenderer>() as SpriteRenderer;
-        if (placeObject != null & !HasPlaceObjectCollider)
+        if (placeObject != null && !HasPlaceObjectCollider)
         {
             placeObjectAnim = placeObject.GetComponent<Animator>() as Animator;
             if(IsLocalPos)
@@ -56,7 +56,7 @@ public class MoveObject : MonoBehaviour
                 placeLocation = placeObject.transform.position;
 
         }
-        else if (toThisLocation != Vector2.zero & !HasPlaceObjectCollider)
+        else if (toThisLocation != Vector2.zero && !HasPlaceObjectCollider)
         {
             placeLocation = toThisLocation;
         }else if (HasPlaceObjectCollider)
@@ -162,7 +162,7 @@ public class MoveObject : MonoBehaviour
             else
                 location = GetComponent<Transform>().position;
 
-            if ((collOfPlaceObject != null && collOfPlaceObject.OnCollision && collOfPlaceObject.NameOfObject.Equals(placeObject.transform.name) & collOfPlaceObject.NameOfTriggeredObject.Equals(this.transform.name))
+            if ((collOfPlaceObject != null && collOfPlaceObject.OnCollision && collOfPlaceObject.NameOfObject.Equals(placeObject.transform.name) && collOfPlaceObject.NameOfTriggeredObject.Equals(this.transform.name))
                 || (((Mathf.Abs(location.x - placeLocation.x)) <= rangeX &&
                 Mathf.Abs(location.y - placeLocation.y) <= rangeY) && collOfPlaceObject == null))
             {
@@ -180,7 +180,7 @@ public class MoveObject : MonoBehaviour
                             StartCoroutine(moveAnim(placeLocation, IsLocalPos));
                         else
                         {
-                            StartCoroutine(moveAnim(toThisLocation, false));
+                            StartCoroutine(moveAnim(toThisLocation, IsLocalPos));
                         }
                     }
                     else

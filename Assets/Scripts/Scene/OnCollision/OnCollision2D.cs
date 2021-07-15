@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class OnCollision2D : MonoBehaviour
 {
+    public bool CheckInside = true;
     public string[] NameOfObjects = null;
 
     private bool _onCollision = false;
@@ -64,6 +65,10 @@ public class OnCollision2D : MonoBehaviour
 
         _onCollision = true;
         _nameOfTrggeredObject = coll.gameObject.name;
+
+        if (!CheckInside)
+            return;
+
         nameOfObjectsInside.Add(_nameOfTrggeredObject);
         scriptsOfObjectsInside.Add(coll.transform.GetComponent<MoveObject>());
 
@@ -103,6 +108,10 @@ public class OnCollision2D : MonoBehaviour
     void OnTriggerExit2D(Collider2D coll)
     {
         _onCollision = false;
+
+        if (!CheckInside)
+            return;
+
         nameOfObjectsInside.Remove(coll.gameObject.name);
         scriptsOfObjectsInside.Remove(coll.transform.GetComponent<MoveObject>());
 

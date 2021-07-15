@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 473946755}
   HasPlaceObjectCollider: 1
   toThisLocation: {x: 17.2, y: -0.37}
@@ -468,7 +469,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -623,6 +624,8 @@ MonoBehaviour:
   unitNumber: 2
   countOfDifference: 5
   waitForSecondToExit: 1
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene: []
 --- !u!1 &30967615
 GameObject:
@@ -792,6 +795,8 @@ MonoBehaviour:
   unitNumber: 1
   countOfDifference: 5
   waitForSecondToExit: 1
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene:
   - {fileID: 1906844111}
   - {fileID: 1829987782}
@@ -1211,6 +1216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 31.392, y: -1.048}
@@ -1685,6 +1691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 1543735586}
   HasPlaceObjectCollider: 1
   toThisLocation: {x: 34.96, y: -0.37}
@@ -1764,7 +1771,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1790,9 +1797,9 @@ GameObject:
   m_Component:
   - component: {fileID: 473946755}
   - component: {fileID: 473946756}
-  - component: {fileID: 473946759}
   - component: {fileID: 473946758}
   - component: {fileID: 473946757}
+  - component: {fileID: 473946759}
   m_Layer: 0
   m_Name: panel1
   m_TagString: Untagged
@@ -1923,6 +1930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13445617f8386354aa7bbf5063a164c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CheckInside: 0
+  NameOfObjects: []
 --- !u!1 &503337035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,6 +2077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 1543735586}
   HasPlaceObjectCollider: 1
   toThisLocation: {x: 31.85, y: -0.3}
@@ -2147,7 +2157,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2208,6 +2218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 2066763171}
   HasPlaceObjectCollider: 1
   toThisLocation: {x: 27.4, y: -0.21}
@@ -2287,7 +2298,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2389,6 +2400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: -2.68, y: 3.8}
@@ -2736,6 +2748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: -6.45, y: 3.8}
@@ -2900,6 +2913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 473946755}
   HasPlaceObjectCollider: 1
   toThisLocation: {x: 20.1, y: -0.31}
@@ -2979,7 +2993,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3176,6 +3190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 4.84, y: 3.8}
@@ -3529,6 +3544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 22.83, y: -1.048}
@@ -4807,9 +4823,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1543735586}
   - component: {fileID: 1543735589}
-  - component: {fileID: 1543735590}
   - component: {fileID: 1543735587}
   - component: {fileID: 1543735588}
+  - component: {fileID: 1543735590}
   m_Layer: 0
   m_Name: panel3
   m_TagString: Untagged
@@ -4940,6 +4956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13445617f8386354aa7bbf5063a164c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CheckInside: 0
+  NameOfObjects: []
 --- !u!1 &1638453543
 GameObject:
   m_ObjectHideFlags: 0
@@ -5335,6 +5353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 2066763171}
   HasPlaceObjectCollider: 1
   toThisLocation: {x: 24.25, y: -0.23}
@@ -5414,7 +5433,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -5476,6 +5495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0.9, y: 3.8}
@@ -5715,6 +5735,8 @@ MonoBehaviour:
   unitNumber: 2
   countOfDifference: 5
   waitForSecondToExit: 1
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene:
   - {fileID: 29679887}
   - {fileID: 121659442}
@@ -6304,9 +6326,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2066763171}
   - component: {fileID: 2066763174}
-  - component: {fileID: 2066763175}
   - component: {fileID: 2066763172}
   - component: {fileID: 2066763173}
+  - component: {fileID: 2066763175}
   m_Layer: 0
   m_Name: panel2
   m_TagString: Untagged
@@ -6437,6 +6459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13445617f8386354aa7bbf5063a164c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CheckInside: 0
+  NameOfObjects: []
 --- !u!1 &2106249538
 GameObject:
   m_ObjectHideFlags: 0
