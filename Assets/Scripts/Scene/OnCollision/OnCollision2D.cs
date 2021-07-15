@@ -59,6 +59,9 @@ public class OnCollision2D : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
+        if (locked)
+            return;
+
         _onCollision = true;
         _nameOfTrggeredObject = coll.gameObject.name;
         nameOfObjectsInside.Add(_nameOfTrggeredObject);
@@ -67,17 +70,17 @@ public class OnCollision2D : MonoBehaviour
         checkHasAll();
     }
 
+    bool locked = false;
     private void checkHasAll()
     {
         var a = NameOfObjects.All(nameOfObjectsInside.Contains) && NameOfObjects.Length == nameOfObjectsInside.Count;
         if (a)
         {
-            Debug.Log("Done!");
+            locked = true;
             StartCoroutine(makeDisableAllObjects());
         }
         else
         {
-            Debug.Log("No");
         }
     }
 

@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PaintInfo : MonoBehaviour
 {
+    public WasUnitComplete Parent;
     //Количество фигур
     public int SetCount;
     //Текущий количество
@@ -22,7 +21,11 @@ public class PaintInfo : MonoBehaviour
             if (count != SetCount)
                 return;
 
-            WasUnitComplete unit = this.GetComponentInParent<Transform>().transform.GetComponentInParent<WasUnitComplete>();
+            MoreAR ar = null;
+            Parent.transform.TryGetComponent<MoreAR>(out ar);
+            if (ar != null)
+                ar.Finish = true;
+            WasUnitComplete unit = Parent;
             unit.CompleteUnit();
         }catch{}
     }

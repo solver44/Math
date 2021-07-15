@@ -2,7 +2,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+    
+[RequireComponent(typeof(MoreAR))]
 public class WasUnitComplete : MonoBehaviour
 {
     [Header("Main")]
@@ -29,11 +30,17 @@ public class WasUnitComplete : MonoBehaviour
 
     string _lvlPrefs;
 
+    //MoreAR
+    MoreAR more = null;
+
     //For Color
     private bool changeColor = false;
     private bool[] isSpriteRenderer;
     private void Start()
     {
+        if(TryGetComponent<MoreAR>(out more))
+            more.Speed = _speedMove;
+        
         isSpriteRenderer = new bool[objectsToChangeColor.Length];
         if (objectsToChangeColor != null)
         {
@@ -78,13 +85,25 @@ public class WasUnitComplete : MonoBehaviour
 
     public void CompleteUnit()
     {
-        isCompleteThisUnit = true;
+        if ((more == null || !more.More) || more.Finish)
+            isCompleteThisUnit = true;
+        else
+        {
+            more.Exit();
+            more.Enter();
+        }
     }
     private void Update()
     {
         if(ParentGameObjects.transform.childCount <= 0 || _countDifference >= countOfDifference)
         {
-            isCompleteThisUnit = true;
+            if ((more == null || !more.More) || more.Finish)
+                isCompleteThisUnit = true;
+            else
+            {
+                more.Exit();
+                more.Enter();
+            }
         }
 
         if (isCompleteThisUnit)

@@ -291,6 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: -1.3, y: 5.05}
@@ -472,11 +473,15 @@ MonoBehaviour:
   - {fileID: 1734815939}
   ParentGameObjects: {fileID: 824217076}
   toThatLocation: {x: -35, y: -1}
+  freezeY: 0
   toThatLocationCanvas: {x: -2500, y: 34}
+  freezeYCanvas: 0
   _speedMove: 5
   unitNumber: 1
   countOfDifference: 5
   waitForSecondToExit: 1
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene:
   - {fileID: 1906844111}
   - {fileID: 1829987782}
@@ -713,6 +718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bfe2233b3b6af24987c601b2e5a0709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CheckEqualShapes: 1
+  IsZoomScale: 0
   ScaleRadius: 0.15
 --- !u!4 &155017661
 Transform:
@@ -917,6 +924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 1144506474}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -1291,11 +1299,15 @@ MonoBehaviour:
   - {fileID: 1937631522}
   ParentGameObjects: {fileID: 1604875338}
   toThatLocation: {x: -25, y: 1.18}
+  freezeY: 0
   toThatLocationCanvas: {x: -2500, y: 88}
+  freezeYCanvas: 0
   _speedMove: 5
   unitNumber: 3
   countOfDifference: 10
   waitForSecondToExit: 1.2
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene: []
 --- !u!1 &332512760
 GameObject:
@@ -1649,6 +1661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 573380330}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -2168,6 +2181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: -2.52, y: -4.36}
@@ -2511,6 +2525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 1.47, y: 3.42}
@@ -2653,6 +2668,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: 0
   locationY: -0.65
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0
@@ -2870,6 +2886,7 @@ MonoBehaviour:
   speedMove: 3
   locationX: 0
   locationY: 1080
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 1.5
   isTextShowing: 0
@@ -3841,6 +3858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0.727, y: 0.301}
@@ -4012,6 +4030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d29d3fbb997d3344a9f6bb8cd9a8708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Parent: {fileID: 1829987784}
   SetCount: 7
 --- !u!1 &1258791717
 GameObject:
@@ -5487,6 +5506,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: 0
   locationY: -1
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0
@@ -5890,11 +5910,15 @@ MonoBehaviour:
   - {fileID: 1906844111}
   ParentGameObjects: {fileID: 981427164}
   toThatLocation: {x: -18.7, y: 0}
+  freezeY: 0
   toThatLocationCanvas: {x: -2500, y: 169}
+  freezeYCanvas: 0
   _speedMove: 5
   unitNumber: 2
   countOfDifference: 5
   waitForSecondToExit: 1.2
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene:
   - {fileID: 1604875338}
   - {fileID: 1937631522}
@@ -6222,6 +6246,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: 0
   locationY: 34
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0

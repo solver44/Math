@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class MoveObject : MonoBehaviour
 {
+    public bool DontMoving = false;
+
     [SerializeField] private Transform placeObject = null;
     public bool HasPlaceObjectCollider = false;
     [SerializeField] private Vector2 toThisLocation = Vector2.zero;
@@ -38,10 +40,12 @@ public class MoveObject : MonoBehaviour
     //this Transform
     private SpriteRenderer render = null;
 
-    //
     private OnCollision2D collOfPlaceObject = null;
     private void Awake()
     {
+        if (DontMoving)
+            locked = true;
+
         render = GetComponent<SpriteRenderer>() as SpriteRenderer;
         if (placeObject != null & !HasPlaceObjectCollider)
         {
@@ -93,6 +97,9 @@ public class MoveObject : MonoBehaviour
     float yScale = 0;
     private void OnMouseDown()
     {
+        if (DontMoving)
+            return;
+
         if (firstPosition != null)
         {
             if(IsLocalPos)
@@ -112,6 +119,9 @@ public class MoveObject : MonoBehaviour
     private bool scale = false;
     private void OnMouseDrag()
     {
+        if (DontMoving)
+            return;
+
         if (!locked)
         {
             if (anyLocation)
@@ -138,6 +148,9 @@ public class MoveObject : MonoBehaviour
     bool empty = false;
     private void OnMouseUp()
     {
+        if (DontMoving)
+            return;
+
         if (!locked && !empty)
         {
             if(!dontSortLayer)
@@ -386,6 +399,7 @@ public class MoveObject : MonoBehaviour
 	        if(DestroyEffect){
 	            Destroy(EffectToDestroy);
 	        }
+            Debug.Log(currentCnt1);
             if (countOfObjects == currentCnt1)
             {
                 currentCnt1 = 0;
@@ -395,7 +409,6 @@ public class MoveObject : MonoBehaviour
     }
     IEnumerator moveAnim(Vector2 _placeLocation, bool isLocal) 
     {
-        Debug.Log(_placeLocation);
         float scaleDuration = 2f;
         for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
         {
@@ -405,18 +418,16 @@ public class MoveObject : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, _placeLocation, t);
 
             transform.localScale = Vector3.Lerp(transform.localScale, toThisScale, t);
-            if (transform.localPosition.Equals(_placeLocation) || (IsLocalPos && transform.position.Equals(_placeLocation)))
+            if ((IsLocalPos && transform.localPosition.Equals(_placeLocation)) || (!IsLocalPos && transform.position.Equals(_placeLocation)))
             {
                 currentCnt++;
                 //transform.localScale = toThisScale;
-                IEnumerator co = moveAnim(Vector2.zero, false);
                 locked = true;
                 if (destroyEnd)
                     destroy = true;
-                StopCoroutine(co);
                 yield break;
             }
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
     }
 }
