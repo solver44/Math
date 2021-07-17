@@ -8,6 +8,7 @@ public class PaintBackColor : MonoBehaviour
     public bool CheckEqualShapes = true;
     public bool DontCheck = false;
     public bool IsZoomScale = false;
+    public bool IsWhite = false;
     public float ScaleRadius = 0.1f;
 
     private Color currentColor;
@@ -32,12 +33,12 @@ public class PaintBackColor : MonoBehaviour
                 bool sum = false;
                 if (hitTouch.collider.gameObject.TryGetComponent<SpriteRenderer>(out objectSprite))
                 {
-                    if (!objectSprite.color.Equals(currentColor))
+                    if ((!IsWhite && !objectSprite.color.Equals(currentColor)) || (IsWhite && objectSprite.color.Equals(Color.white)))
                         sum = true;
                 }else
                 {
                     objectImage = hitTouch.collider.gameObject.GetComponent<Image>();
-                    if (!objectImage.color.Equals(currentColor))
+                    if ((!IsWhite && !objectImage.color.Equals(currentColor)) || (IsWhite && objectImage.color.Equals(Color.white)))
                         sum = true;
                 }
 
@@ -54,13 +55,13 @@ public class PaintBackColor : MonoBehaviour
                 bool sum = false;
                 if (hitTouch.collider.gameObject.TryGetComponent<SpriteRenderer>(out objectSprite))
                 {
-                    if (!objectSprite.color.Equals(currentColor))
+                    if ((!IsWhite && !objectSprite.color.Equals(currentColor)) || (IsWhite && objectSprite.color.Equals(Color.white)))
                         sum = true;
                 }
                 else
                 {
                     objectImage = hitTouch.collider.gameObject.GetComponent<Image>();
-                    if (!objectImage.color.Equals(currentColor))
+                    if ((!IsWhite && !objectImage.color.Equals(currentColor)) || (IsWhite && objectImage.color.Equals(Color.white)))
                         sum = true;
                 }
 

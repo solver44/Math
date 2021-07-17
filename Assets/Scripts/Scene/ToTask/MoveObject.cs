@@ -403,7 +403,7 @@ public class MoveObject : MonoBehaviour
             if (countOfObjects == currentCnt1)
             {
                 currentCnt1 = 0;
-                this.transform.parent.transform.parent.transform.GetComponentInParent<WasUnitComplete>().CompleteUnit();
+                this.transform.GetComponentInParent<WasUnitComplete>().CompleteUnit();
             }
         }
     }

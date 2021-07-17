@@ -58,7 +58,7 @@ public class SceneLogic : MonoBehaviour
 
     private IEnumerator enterBGPanel()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         BGPanel.SetTrigger("start");
     }
 

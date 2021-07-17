@@ -30,6 +30,18 @@ EditorBuildSettings:
     path: Assets/Scenes/PreSchool/Scene6.unity
     guid: 42d4a8b4a84db39408c3416042e0b8cf
   - enabled: 1
+    path: Assets/Scenes/PreSchool/Scene7.unity
+    guid: c606c98c835562b408967cafbf60db34
+  - enabled: 1
+    path: Assets/Scenes/PreSchool/Scene8.unity
+    guid: 98dc2055a7997704ba49605e7a35fe10
+  - enabled: 1
+    path: Assets/Scenes/PreSchool/Scene9.unity
+    guid: eb8284aaf32c6a840b51caaffcc7756d
+  - enabled: 1
+    path: Assets/Scenes/PreSchool/Scene10.unity
+    guid: 6d9fbc80f0c9ae144b572455e1b2cfa4
+  - enabled: 1
     path: Assets/Scenes/Class1/Theme1.unity
     guid: d6b371354913550498d8faac34c07219
   - enabled: 1

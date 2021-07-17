@@ -6,6 +6,8 @@ public class SameObjectsFinder : MonoBehaviour
 {
     public WasUnitComplete Parent = null;
     public int Cnt = 0;
+    public bool KillWithEffect = false;
+
     private int CountOfSameObjects = 1;
     private void Start()
     {
@@ -90,8 +92,19 @@ public class SameObjectsFinder : MonoBehaviour
 
         if (CountOfSameObjects == currentCount)
         {
-            previousChild.RemoveRange(0, previousChild.Count);
             currentCount = 0;
+            if(KillWithEffect)
+            {
+                for (int i = 0; i < previousChild.Count; i++)
+                {
+                    //Destroy(previousChild[i].transform.parent.gameObject, 0.5f);
+                    for (float x = 0; x < 1; x--)
+                    {
+                        previousChild[i].transform.localScale = new Vector3(previousChild[i].transform.localScale.x, x);
+                    }
+                }
+            }
+            previousChild.RemoveRange(0, previousChild.Count);
             previousName = null;
             currentSameObject++;
             Debug.Log(currentSameObject);

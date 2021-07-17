@@ -45,11 +45,11 @@ public class NextUnit : MonoBehaviour
         //StartCoroutine(destroyObject());
     }
     private bool destroy = false;
-    public void DestroyObject(GameObject parent)
+    public void DestroyObject(GameObject tempParent)
     {
         if (!destroy)
         {
-            Destroy(parent, 2);
+            Destroy(tempParent, 2);
             destroy = true;
         }
     }
