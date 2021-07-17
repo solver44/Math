@@ -542,7 +542,7 @@ MonoBehaviour:
   _speedMove: 4
   unitNumber: 2
   countOfDifference: 5
-  waitForSecondToExit: 1
+  waitForSecondToExit: 2
   colorToChange: {r: 1, g: 1, b: 1, a: 1}
   objectsToChangeColor:
   - {fileID: 920214416}
@@ -3617,8 +3617,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31dd7e8ef49aee5458d384650cd19f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Parent: {fileID: 0}
-  Cnt: 0
+  Parent: {fileID: 29679889}
+  Cnt: 3
 --- !u!1 &857840146
 GameObject:
   m_ObjectHideFlags: 0

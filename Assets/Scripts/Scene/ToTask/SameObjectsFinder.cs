@@ -6,7 +6,7 @@ public class SameObjectsFinder : MonoBehaviour
 {
     public WasUnitComplete Parent = null;
     public int Cnt = 0;
-    private int CountOfSameObjects = 0;
+    private int CountOfSameObjects = 1;
     private void Start()
     {
         List<string> names = new List<string>();
@@ -38,6 +38,7 @@ public class SameObjectsFinder : MonoBehaviour
     {
         if (hitTouch && hitTouch.collider.transform.parent.gameObject.Equals(this.gameObject))
         {
+            Debug.Log(currentCount);
             GameObject currentObj = hitTouch.collider.gameObject;
             if (currentObj.transform.GetChild(0).gameObject.activeSelf)
                 return;
@@ -46,6 +47,7 @@ public class SameObjectsFinder : MonoBehaviour
                 previousName = currentObj.name;
             if(currentObj.name != previousName)
             {
+                currentCount = 0;
                 if(previousChild.Count > 0)
                 {
                     for (int i = 0; i < previousChild.Count; i++)
@@ -53,9 +55,9 @@ public class SameObjectsFinder : MonoBehaviour
                         previousChild[i].SetActive(false);
                     }
                 }
-                currentObj.transform.GetChild(0).gameObject.SetActive(true);
-                currentCount = 0;
                 previousChild.RemoveRange(0, previousChild.Count);
+                currentObj.transform.GetChild(0).gameObject.SetActive(true);
+                currentCount++;
             }
             else
             {
