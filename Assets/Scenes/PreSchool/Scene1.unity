@@ -382,6 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 1860202380}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -452,11 +453,15 @@ MonoBehaviour:
   - {fileID: 1734815939}
   ParentGameObjects: {fileID: 824217076}
   toThatLocation: {x: -35, y: -1}
+  freezeY: 0
   toThatLocationCanvas: {x: -2500, y: 122}
+  freezeYCanvas: 0
   _speedMove: 5
   unitNumber: 1
   countOfDifference: 5
   waitForSecondToExit: 0
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene:
   - {fileID: 1906844111}
   - {fileID: 1829987782}
@@ -925,6 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 1144506474}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -1211,11 +1217,15 @@ MonoBehaviour:
   - {fileID: 1937631522}
   ParentGameObjects: {fileID: 1604875338}
   toThatLocation: {x: -25, y: 1.18}
+  freezeY: 0
   toThatLocationCanvas: {x: -2500, y: -430}
+  freezeYCanvas: 0
   _speedMove: 2
   unitNumber: 3
   countOfDifference: 10
   waitForSecondToExit: 2
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene: []
 --- !u!1 &309066521
 GameObject:
@@ -1332,6 +1342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 1144506474}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -1368,7 +1379,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.72, y: 7.08}
+    oldSize: {x: 5.724844, y: 7.08}
     newSize: {x: 5.72, y: 7.08}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1610,6 +1621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 341439090}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -1760,6 +1772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 331143919}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -2006,6 +2019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 632208137}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -2477,7 +2491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeObject: {fileID: 1144506474}
+  DontMoving: 0
+  placeObject: {fileID: 632208137}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
@@ -2983,6 +2998,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: 0
   locationY: -0.65
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0
@@ -3128,6 +3144,7 @@ MonoBehaviour:
   speedMove: 3
   locationX: 0
   locationY: 1080
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 1.5
   isTextShowing: 0
@@ -3230,6 +3247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 632208137}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -3521,6 +3539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 1405171701}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -4526,6 +4545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 948649342}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -5196,6 +5216,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: 0
   locationY: -1.56
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0
@@ -5406,11 +5427,15 @@ MonoBehaviour:
   - {fileID: 1906844111}
   ParentGameObjects: {fileID: 981427164}
   toThatLocation: {x: -18.7, y: 0}
+  freezeY: 0
   toThatLocationCanvas: {x: -2500, y: 112}
+  freezeYCanvas: 0
   _speedMove: 5
   unitNumber: 2
   countOfDifference: 5
   waitForSecondToExit: 0
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene:
   - {fileID: 1604875338}
   - {fileID: 1937631522}
@@ -5543,6 +5568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 38986131}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -5925,6 +5951,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: 0
   locationY: 122
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0

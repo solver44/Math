@@ -539,7 +539,7 @@ MonoBehaviour:
   freezeY: 1
   toThatLocationCanvas: {x: -2500, y: 20}
   freezeYCanvas: 1
-  _speedMove: 4
+  _speedMove: 5
   unitNumber: 2
   countOfDifference: 5
   waitForSecondToExit: 2
@@ -867,7 +867,7 @@ MonoBehaviour:
   freezeY: 1
   toThatLocationCanvas: {x: -2500, y: 81}
   freezeYCanvas: 1
-  _speedMove: 4
+  _speedMove: 5
   unitNumber: 1
   countOfDifference: 5
   waitForSecondToExit: 1.5
@@ -1001,7 +1001,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.26, y: 17.55}
+    oldSize: {x: 12.27129, y: 17.550001}
     newSize: {x: 5.21, y: 8.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3619,6 +3619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 29679889}
   Cnt: 3
+  KillWithEffect: 0
 --- !u!1 &857840146
 GameObject:
   m_ObjectHideFlags: 0
@@ -3973,7 +3974,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.9, y: 5.61}
+    oldSize: {x: 3.9007032, y: 5.61}
     newSize: {x: 5.21, y: 8.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4032,7 +4033,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.27, y: 17.54}
+    oldSize: {x: 12.2699995, y: 17.548157}
     newSize: {x: 5.21, y: 8.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4774,6 +4775,7 @@ MonoBehaviour:
   CheckEqualShapes: 1
   DontCheck: 0
   IsZoomScale: 0
+  IsWhite: 0
   ScaleRadius: 0.15
 --- !u!4 &1168635496
 Transform:
@@ -5513,7 +5515,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.27, y: 17.54}
+    oldSize: {x: 12.2699995, y: 17.548157}
     newSize: {x: 5.21, y: 8.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5622,7 +5624,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.26, y: 17.55}
+    oldSize: {x: 12.27129, y: 17.550001}
     newSize: {x: 5.21, y: 8.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6078,7 +6080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1549071716}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6895,7 +6897,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.26, y: 17.54}
+    oldSize: {x: 12.264297, y: 17.539999}
     newSize: {x: 5.21, y: 8.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7006,7 +7008,7 @@ MonoBehaviour:
   freezeY: 1
   toThatLocationCanvas: {x: -2500, y: 169}
   freezeYCanvas: 1
-  _speedMove: 4
+  _speedMove: 5
   unitNumber: 2
   countOfDifference: 5
   waitForSecondToExit: 2
@@ -7599,7 +7601,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.26, y: 17.54}
+    oldSize: {x: 12.264297, y: 17.539999}
     newSize: {x: 5.21, y: 8.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

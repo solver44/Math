@@ -273,12 +273,8 @@ public class ShowChildAlpha : MonoBehaviour
         {
             alpha = ChildAnswerF[index].GetComponent<SpriteRenderer>().color.a;
         }
-        if ((alpha == 1f && !WhenClickThenClose))
-        {
-            startAnim = false;
-            yield return 0;
-            StopCoroutine(makeAlphaShow(currentIndex));
-        }
+
+        ChildAnswerF[index].gameObject.GetComponent<Collider2D>().enabled = false;
 
         StartCoroutine(makeAlphaHideAndShow(1.0f, 1.0f, index, false));
         isItStart = true;

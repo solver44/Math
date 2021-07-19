@@ -117,7 +117,6 @@ public class WasUnitComplete : MonoBehaviour
             {
                 _sceneManager.DoExitAndSaveUnit();
                 _sceneManager.DoEnterNewUnit();
-                _sceneManager.DestroyObject(this.gameObject);
                 if (changeColor && !changingColor)
                 {
                     for (int i = 0; i < objectsToChangeColor.Length; i++)
