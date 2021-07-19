@@ -3619,7 +3619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 29679889}
   Cnt: 3
-  KillWithEffect: 0
+  KillWithEffect: 1
 --- !u!1 &857840146
 GameObject:
   m_ObjectHideFlags: 0

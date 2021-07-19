@@ -5,6 +5,7 @@ using UnityEngine;
 public class SameObjectsFinder : MonoBehaviour
 {
     public WasUnitComplete Parent = null;
+    public bool ScaleEffect = false;
     public int Cnt = 0;
     public bool KillWithEffect = false;
 
@@ -36,13 +37,14 @@ public class SameObjectsFinder : MonoBehaviour
                     Parent.CompleteUnit();
             } }
     }
+
+    ScaleEffect effects = new ScaleEffect();
     void SetRayCast(RaycastHit2D hitTouch)
     {
         if (hitTouch && hitTouch.collider.transform.parent.gameObject.Equals(this.gameObject))
         {
-            Debug.Log(currentCount);
             GameObject currentObj = hitTouch.collider.gameObject;
-            if (currentObj.transform.GetChild(0).gameObject.activeSelf)
+            if ((!ScaleEffect && currentObj.transform.GetChild(0).gameObject.activeSelf) || (ScaleEffect && currentObj.GetComponent<SpriteRenderer>().sortingLayerName == "Selected"))
                 return;
 
             if (previousName == null)
@@ -50,25 +52,38 @@ public class SameObjectsFinder : MonoBehaviour
             if(currentObj.name != previousName)
             {
                 currentCount = 0;
-                if(previousChild.Count > 0)
+
+                if (previousChild.Count > 0)
                 {
                     for (int i = 0; i < previousChild.Count; i++)
                     {
-                        previousChild[i].SetActive(false);
+                        if (!ScaleEffect)
+                            previousChild[i].SetActive(false);
+                        else {
+                            Vector2 tempTarget = new Vector2(previousChild[i].transform.localScale.x - (previousChild[i].transform.localScale.x * .1f), previousChild[i].transform.localScale.y - (previousChild[i].transform.localScale.y * .1f));
+                            StartCoroutine(effects.Scale(previousChild[i].transform, tempTarget, 3f));
+                            previousChild[i].GetComponent<SpriteRenderer>().sortingLayerName = "Top";
+                        }
                     }
                 }
                 previousChild.RemoveRange(0, previousChild.Count);
-                currentObj.transform.GetChild(0).gameObject.SetActive(true);
-                currentCount++;
+
             }
+            if (!ScaleEffect)
+                currentObj.transform.GetChild(0).gameObject.SetActive(true);
             else
             {
-                currentObj.transform.GetChild(0).gameObject.SetActive(true);
-                currentCount++;
+                Vector2 tempTarget = new Vector2(currentObj.transform.localScale.x + (currentObj.transform.localScale.x * .1f), currentObj.transform.localScale.y + (currentObj.transform.localScale.y * .1f));
+                StartCoroutine(effects.Scale(currentObj.transform, tempTarget, 3f));
+                currentObj.GetComponent<SpriteRenderer>().sortingLayerName = "Selected";
             }
+            currentCount++;
 
             previousName = currentObj.name;
-            previousChild.Add(currentObj.transform.GetChild(0).gameObject);
+            if(!ScaleEffect)
+                previousChild.Add(currentObj.transform.GetChild(0).gameObject);
+            else
+                previousChild.Add(currentObj.gameObject);
         }
     }
 
@@ -98,16 +113,38 @@ public class SameObjectsFinder : MonoBehaviour
                 for (int i = 0; i < previousChild.Count; i++)
                 {
                     //Destroy(previousChild[i].transform.parent.gameObject, 0.5f);
-                    for (float x = 0; x < 1; x--)
-                    {
-                        previousChild[i].transform.localScale = new Vector3(previousChild[i].transform.localScale.x, x);
-                    }
+                    if(!ScaleEffect)
+                        StartCoroutine(methodScale(previousChild[i].transform.parent, new Vector2(0, 0), true));
+                    else
+                        StartCoroutine(methodScale(previousChild[i].transform, new Vector2(0, 0), true));
+
                 }
             }
             previousChild.RemoveRange(0, previousChild.Count);
             previousName = null;
             currentSameObject++;
-            Debug.Log(currentSameObject);
+        }
+    }
+
+    private IEnumerator methodScale(Transform parent, Vector2 toScale, bool moreEffect)
+    {
+        if (moreEffect) {
+            Vector2 target = new Vector2(parent.localScale.x + (parent.localScale.x * .2f), parent.localScale.y + (parent.localScale.y * .2f));
+            for (float i = 0; i <= 1; i += Time.deltaTime / 3f)
+            {
+                parent.localScale = Vector2.MoveTowards(parent.localScale, target, i);
+                if (parent.localScale.Equals(target))
+                    break;
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
+        for (float i = 0; i <= 1; i += Time.deltaTime / 3f)
+        {
+            parent.localScale = Vector2.LerpUnclamped(parent.localScale, toScale, i);
+            if (parent.localScale.Equals(toScale))
+                yield break;
+            yield return new WaitForEndOfFrame();
         }
     }
 }

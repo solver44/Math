@@ -185,7 +185,7 @@ public class MoveObject : MonoBehaviour
                     }
                     else
                     {
-                        destroy = true;
+                        StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true));
                     }
                 }
                 if (killPlaceObject)
@@ -266,10 +266,6 @@ public class MoveObject : MonoBehaviour
             else if (!destroy)
             {
                 transform.localScale = Vector3.Lerp(transform.localScale, scaleS, .08f);
-            }
-            else
-            {
-                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0), .08f);
             }
         }
 
@@ -353,7 +349,7 @@ public class MoveObject : MonoBehaviour
                                 }
                                 else
                                 {
-                                    destroy = true;
+                                    StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true));
                                 }
                             }
                             if (killPlaceObject)
@@ -424,10 +420,40 @@ public class MoveObject : MonoBehaviour
                 //transform.localScale = toThisScale;
                 locked = true;
                 if (destroyEnd)
-                    destroy = true;
+                {
+                    StartCoroutine(methodScale(this.transform, new Vector2(0, 0 ), true));
+                }
                 yield break;
             }
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    private IEnumerator methodScale(Transform parent, Vector2 toScale, bool moreEffect)
+    {
+        if (destroy)
+            yield break;
+
+        if (moreEffect)
+        {
+            Vector2 target = new Vector2(parent.localScale.x + (parent.localScale.x * .2f), parent.localScale.y + (parent.localScale.y * .2f));
+            for (float i = 0; i <= 1; i += Time.deltaTime / 3f)
+            {
+                parent.localScale = Vector2.MoveTowards(parent.localScale, target, i);
+                if (parent.localScale.Equals(target))
+                    break;
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
+        for (float i = 0; i <= 1; i += Time.deltaTime / 3f)
+        {
+            parent.localScale = Vector2.LerpUnclamped(parent.localScale, toScale, i);
+            if (parent.localScale.Equals(toScale))
+                yield break;
+            yield return new WaitForEndOfFrame();
+        }
+
+        destroy = true;
     }
 }

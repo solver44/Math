@@ -15,7 +15,7 @@ public class ScaleEffect : MonoBehaviour
     void Start()
     {
         targetScale = new Vector3((this.transform.localScale.x * scaleR) + this.transform.localScale.x, (this.transform.localScale.y * scaleR) + this.transform.localScale.y, this.transform.localScale.z);
-        Debug.Log((this.transform.localScale.x * scaleR) + this.transform.localScale.x);
+
     }
     int interpolationFramesCount = 150;
     int elapsedFrames = 1;
