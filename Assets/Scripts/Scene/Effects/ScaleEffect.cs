@@ -59,4 +59,21 @@ public class ScaleEffect : MonoBehaviour
         }
     }
 
+    public IEnumerator MoveAnim(Transform parent, Vector2 target, bool isLocal, float duration)
+    {
+        float scaleDuration = duration;
+        for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
+        {
+            if (isLocal)
+                parent.localPosition = Vector3.Lerp(parent.localPosition, target, t);
+            else
+                parent.position = Vector3.Lerp(parent.position, target, t);
+
+            if ((isLocal && parent.localPosition.Equals(target)) || (!isLocal && parent.position.Equals(target)))
+            {
+                yield break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
 }

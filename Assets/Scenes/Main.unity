@@ -625,7 +625,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8003126, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 520.99994, y: 1.6999512}
+  m_AnchoredPosition: {x: 520.9999, y: 1.6999512}
   m_SizeDelta: {x: -202.28003, y: -0.39990234}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &78272093
@@ -4243,7 +4243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0.6083704}
-  m_AnchoredPosition: {x: 326, y: -782.7559}
+  m_AnchoredPosition: {x: 326, y: -782.75586}
   m_SizeDelta: {x: 422.8089, y: -57.678284}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &550892379
@@ -8302,7 +8302,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1222133397}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 443224868}
+        m_MethodName: PreSchoolSceneClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1222133397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9467,7 +9478,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1375720051}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 443224868}
+        m_MethodName: PreSchoolSceneClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1375720051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9700,7 +9722,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1426376556}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 443224868}
+        m_MethodName: PreSchoolSceneClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 12
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1426376556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11104,7 +11137,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1627013266}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 443224868}
+        m_MethodName: PreSchoolSceneClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1627013266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12616,7 +12660,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1922834974}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 443224868}
+        m_MethodName: PreSchoolSceneClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1922834974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14224,7 +14279,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2123936622}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 443224868}
+        m_MethodName: PreSchoolSceneClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 11
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2123936622
 MonoBehaviour:
   m_ObjectHideFlags: 0

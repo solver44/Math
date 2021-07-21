@@ -172,11 +172,15 @@ MonoBehaviour:
   - {fileID: 502125567}
   ParentGameObjects: {fileID: 857059804}
   toThatLocation: {x: -50, y: -0.22}
+  freezeY: 0
   toThatLocationCanvas: {x: -2500, y: 114}
+  freezeYCanvas: 0
   _speedMove: 5
   unitNumber: 2
   countOfDifference: 5
   waitForSecondToExit: 1
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene: []
 --- !u!1 &31395192
 GameObject:
@@ -247,7 +251,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041D\u0430\u0439\u0434\u0438, \u043A\u0442\u043E \u043B\u0438\u0448\u043D\u0438\u0439?"
+  m_Text: "\u041D\u0430\u0439\u0434\u0438 \u043B\u0438\u0448\u043D\u0438\u0439?"
 --- !u!222 &31395195
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -386,11 +390,15 @@ MonoBehaviour:
   - {fileID: 1815632250}
   ParentGameObjects: {fileID: 1448593298}
   toThatLocation: {x: -50, y: 0.5}
+  freezeY: 0
   toThatLocationCanvas: {x: -2500, y: 81}
+  freezeYCanvas: 0
   _speedMove: 5
   unitNumber: 1
   countOfDifference: 5
   waitForSecondToExit: 0
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene:
   - {fileID: 1906844111}
   - {fileID: 1829987782}
@@ -922,6 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -1162,6 +1171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -1296,6 +1306,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: 0
   locationY: -4.627
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0
@@ -1521,6 +1532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -1643,7 +1655,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455168184}
-  m_Text: "\u0420\u0430\u0441\u0442\u0435\u043D\u0438\u0435"
+  m_Text: "\u0420\u0430\u0441\u0442\u0435\u043D\u0438\u044F"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1899,6 +1911,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: 0
   locationY: -4.627
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0
@@ -2050,6 +2063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 1144506474}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: -0.5, y: -4}
@@ -2294,6 +2308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 1054109464}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -2535,6 +2550,7 @@ MonoBehaviour:
   speedMove: 3
   locationX: 0
   locationY: 1080
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 1.5
   isTextShowing: 0
@@ -2743,6 +2759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -3028,6 +3045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 2090330871}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -3253,6 +3271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -3385,6 +3404,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: -25.55
   locationY: -0.63
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0
@@ -3436,6 +3456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
@@ -3721,6 +3742,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: -25.55
   locationY: -0.63
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0
@@ -3862,7 +3884,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041D\u0430\u0439\u0434\u0438, \u043A\u0442\u043E \u043B\u0438\u0448\u043D\u0438\u0439?"
+  m_Text: "\u041D\u0430\u0439\u0434\u0438 \u043B\u0438\u0448\u043D\u0438\u0439?"
 --- !u!222 &1507846446
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3949,6 +3971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff838c2967079b42b575e4306c362ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontMoving: 0
   placeObject: {fileID: 74889342}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: -0.5, y: -4}
@@ -4158,6 +4181,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: 0
   locationY: -4.627
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0
@@ -4215,11 +4239,15 @@ MonoBehaviour:
   - {fileID: 404818608}
   ParentGameObjects: {fileID: 1149810931}
   toThatLocation: {x: -50, y: -0.22}
+  freezeY: 0
   toThatLocationCanvas: {x: -2500, y: 169}
+  freezeYCanvas: 0
   _speedMove: 5
   unitNumber: 2
   countOfDifference: 5
   waitForSecondToExit: 1
+  colorToChange: {r: 0, g: 0, b: 0, a: 0}
+  objectsToChangeColor: []
   ObjectsToEnterScene:
   - {fileID: 29679887}
   - {fileID: 121659442}
@@ -4820,6 +4848,7 @@ MonoBehaviour:
   speedMove: 4
   locationX: 0
   locationY: 34
+  freezeY: 0
   isMoveToward: 0
   waitForSecond: 2
   isTextShowing: 0

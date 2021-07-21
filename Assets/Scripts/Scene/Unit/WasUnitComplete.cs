@@ -40,8 +40,12 @@ public class WasUnitComplete : MonoBehaviour
     {
         if(TryGetComponent<MoreAR>(out more))
             more.Speed = _speedMove;
-        
-        isSpriteRenderer = new bool[objectsToChangeColor.Length];
+
+        try
+        {
+            isSpriteRenderer = new bool[objectsToChangeColor.Length];
+        }
+        catch { }
         if (objectsToChangeColor != null)
         {
             changeColor = true;

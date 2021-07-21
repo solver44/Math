@@ -185,7 +185,7 @@ public class MoveObject : MonoBehaviour
                     }
                     else
                     {
-                        StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true));
+                        StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true, .5f));
                     }
                 }
                 if (killPlaceObject)
@@ -349,7 +349,7 @@ public class MoveObject : MonoBehaviour
                                 }
                                 else
                                 {
-                                    StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true));
+                                    StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true, 1f));
                                 }
                             }
                             if (killPlaceObject)
@@ -421,7 +421,7 @@ public class MoveObject : MonoBehaviour
                 locked = true;
                 if (destroyEnd)
                 {
-                    StartCoroutine(methodScale(this.transform, new Vector2(0, 0 ), true));
+                    StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true, .1f));
                 }
                 yield break;
             }
@@ -429,26 +429,37 @@ public class MoveObject : MonoBehaviour
         }
     }
 
-    private IEnumerator methodScale(Transform parent, Vector2 toScale, bool moreEffect)
+    private IEnumerator methodScale(Transform parent, Vector2 toScale, bool moreEffect, float duration)
     {
         if (destroy)
             yield break;
 
         if (moreEffect)
         {
+            SpriteRenderer render = null;
+            parent.TryGetComponent<SpriteRenderer>(out render);
+
+
             Vector2 target = new Vector2(parent.localScale.x + (parent.localScale.x * .2f), parent.localScale.y + (parent.localScale.y * .2f));
-            for (float i = 0; i <= 1; i += Time.deltaTime / 3f)
+            for (float i = 0; i <= 1; i += Time.deltaTime / duration)
             {
-                parent.localScale = Vector2.MoveTowards(parent.localScale, target, i);
+                if (render == null)
+                    parent.localScale = Vector2.MoveTowards(parent.localScale, target, 3f);
+                else
+                {
+                    parent.localScale = Vector2.MoveTowards(parent.localScale, target, .1f);
+                    Debug.Log(parent.localScale);
+                }
+
                 if (parent.localScale.Equals(target))
                     break;
                 yield return new WaitForEndOfFrame();
             }
         }
 
-        for (float i = 0; i <= 1; i += Time.deltaTime / 3f)
+        for (float i = 0; i <= 1; i += Time.deltaTime / duration)
         {
-            parent.localScale = Vector2.LerpUnclamped(parent.localScale, toScale, i);
+            parent.localScale = Vector2.Lerp(parent.localScale, toScale, i);
             if (parent.localScale.Equals(toScale))
                 yield break;
             yield return new WaitForEndOfFrame();

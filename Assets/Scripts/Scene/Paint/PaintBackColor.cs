@@ -11,6 +11,10 @@ public class PaintBackColor : MonoBehaviour
     public bool IsWhite = false;
     public float ScaleRadius = 0.1f;
 
+    [Header("Other")]
+    public bool MoveUp = false;
+    private Vector2 firstPos = Vector2.zero;
+
     private Color currentColor;
     private string currentShapesName;
 
@@ -21,6 +25,7 @@ public class PaintBackColor : MonoBehaviour
 
     private void Start()
     {
+        prevBtn = null;
         currentColor = Color.white;
     }
     void SetRayCast(RaycastHit2D hitTouch)
@@ -75,7 +80,9 @@ public class PaintBackColor : MonoBehaviour
         }
     }
 
-    GameObject prevBtn = null;
+    private GameObject prevBtn = null;
+
+    private ScaleEffect effect = new ScaleEffect();
     public void SetColor(GameObject pressedBtn)
     {
         if (sleep || prevBtn == pressedBtn)
@@ -84,16 +91,29 @@ public class PaintBackColor : MonoBehaviour
         if (prevBtn != null)
         {
             //firstScale = prevBtn.transform.localScale;
-            StartCoroutine(SmoothScaling(prevBtn.GetComponent<RectTransform>(), !IsZoomScale, true));
+            if (!MoveUp)
+                StartCoroutine(SmoothScaling(prevBtn.GetComponent<RectTransform>(), !IsZoomScale, true));
+            else
+            {
+                StartCoroutine(effect.MoveAnim(prevBtn.transform, firstPos, false, 1f));
+            }
         }
 
         prevBtn = pressedBtn.gameObject;
-        firstScale = pressedBtn.transform.localScale;   
+        if (!MoveUp)
+            firstScale = pressedBtn.transform.localScale;
+        else
+            firstPos = prevBtn.transform.position;
 
         Color32 color = pressedBtn.GetComponent<Image>().color;
         RectTransform scale = pressedBtn.GetComponent<RectTransform>();
 
-        StartCoroutine(SmoothScaling(scale, IsZoomScale, false));
+        if(!MoveUp)
+            StartCoroutine(SmoothScaling(scale, IsZoomScale, false));
+        else
+        {
+            StartCoroutine(effect.MoveAnim(prevBtn.transform, new Vector2(prevBtn.transform.position.x, firstPos.y + .6f), false, 1f));
+        }
 
         currentShapesName = pressedBtn.GetComponentInParent<Toggle>().name;
         currentColor = color;

@@ -3566,7 +3566,7 @@ MonoBehaviour:
   DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
-  toThisLocation: {x: 22.83, y: -1.048}
+  toThisLocation: {x: 25.31, y: -0.33}
   toThisScale: {x: 0, y: 0}
   killPlaceObject: 0
   anyLocation: 0
@@ -3580,7 +3580,7 @@ MonoBehaviour:
   IsLocalPos: 1
   EffectScale: 0
   EffectLight: {fileID: 0}
-  DestroyEffect: 0
+  DestroyEffect: 1
   EffectToDestroy: {fileID: 2094263347}
   countOfObjects: 1
 --- !u!212 &1516927747
@@ -4496,7 +4496,7 @@ MonoBehaviour:
   DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
-  toThisLocation: {x: 25.3, y: -0.29}
+  toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
   killPlaceObject: 0
   anyLocation: 0
@@ -4510,7 +4510,7 @@ MonoBehaviour:
   IsLocalPos: 1
   EffectScale: 0
   EffectLight: {fileID: 0}
-  DestroyEffect: 1
+  DestroyEffect: 0
   EffectToDestroy: {fileID: 2094263347}
   countOfObjects: 1
 --- !u!212 &1834070278
