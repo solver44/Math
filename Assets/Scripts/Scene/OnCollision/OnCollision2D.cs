@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class OnCollision2D : MonoBehaviour
 {
+    public delegate void ChangeCollision(bool coll, string name);
+    public event ChangeCollision changingColl;
+
     public bool CheckInside = true;
     public string[] NameOfObjects = null;
 
@@ -14,6 +17,13 @@ public class OnCollision2D : MonoBehaviour
     public bool OnCollision
     {
         get { return _onCollision; }
+    }
+
+    private bool collObject = false;
+    public bool OnCollisionRayObject
+    {
+        get { return collObject; }
+        set { collObject = value; changingColl?.Invoke(collObject, scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].transform.parent.name); }
     }
 
     private string _nameOfObject = "";
@@ -69,10 +79,15 @@ public class OnCollision2D : MonoBehaviour
         if (!CheckInside)
             return;
 
-        nameOfObjectsInside.Add(_nameOfTrggeredObject);
-        scriptsOfObjectsInside.Add(coll.transform.GetComponent<MoveObject>());
+        if (coll.transform.tag == "RayObjects") {
+            nameOfObjectsInside.Add(_nameOfTrggeredObject);
+            scriptsOfObjectsInside.Add(coll.transform.GetComponent<MoveObject>());
+            scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveFirstPosition = true;
 
-        checkHasAll();
+            OnCollisionRayObject = true;
+
+            checkHasAll();
+        }
     }
 
     bool locked = false;
@@ -83,9 +98,6 @@ public class OnCollision2D : MonoBehaviour
         {
             locked = true;
             StartCoroutine(makeDisableAllObjects());
-        }
-        else
-        {
         }
     }
 
@@ -112,9 +124,15 @@ public class OnCollision2D : MonoBehaviour
         if (!CheckInside)
             return;
 
-        nameOfObjectsInside.Remove(coll.gameObject.name);
-        scriptsOfObjectsInside.Remove(coll.transform.GetComponent<MoveObject>());
+        if (coll.transform.tag == "RayObjects")
+        {
+            coll.transform.GetComponent<MoveObject>().DontMoveFirstPosition = false;
+            nameOfObjectsInside.Remove(coll.gameObject.name);
+            scriptsOfObjectsInside.Remove(coll.transform.GetComponent<MoveObject>());
 
-        checkHasAll();
+            OnCollisionRayObject = false;
+
+            checkHasAll();
+        }
     }
 }

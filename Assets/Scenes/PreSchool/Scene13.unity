@@ -3283,7 +3283,7 @@ MonoBehaviour:
   DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
-  toThisLocation: {x: 23.53, y: -3.2}
+  toThisLocation: {x: 23.53, y: -3}
   toThisScale: {x: 0, y: 0}
   killPlaceObject: 0
   anyLocation: 0
@@ -3860,8 +3860,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetShape: {fileID: 332301601}
---- !u!60 &745847363
-PolygonCollider2D:
+--- !u!61 &745847363
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3883,12 +3883,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -6.685, y: 6.423867}
-      - {x: -6.685, y: -6.423867}
-      - {x: 6.685, y: -6.423867}
-      - {x: 6.685, y: 6.423867}
+  serializedVersion: 2
+  m_Size: {x: 13.37, y: 12.847734}
+  m_EdgeRadius: 0
 --- !u!1 &746686947
 GameObject:
   m_ObjectHideFlags: 0
@@ -4035,7 +4032,6 @@ GameObject:
   - component: {fileID: 787610601}
   - component: {fileID: 787610603}
   - component: {fileID: 787610602}
-  - component: {fileID: 787610604}
   m_Layer: 0
   m_Name: a5
   m_TagString: painting object
@@ -4120,35 +4116,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &787610604
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 787610600}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.29000002, y: 5.3028574}
-    newSize: {x: 11.610929, y: 8.3}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.14500001, y: 2.6514287}
-      - {x: -0.14500001, y: -2.6514287}
-      - {x: 0.14500001, y: -2.6514287}
-      - {x: 0.14500001, y: 2.6514287}
 --- !u!1 &815882714
 GameObject:
   m_ObjectHideFlags: 0
@@ -4342,7 +4309,6 @@ GameObject:
   - component: {fileID: 834687073}
   - component: {fileID: 834687075}
   - component: {fileID: 834687074}
-  - component: {fileID: 834687076}
   m_Layer: 0
   m_Name: a4
   m_TagString: painting object
@@ -4427,42 +4393,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &834687076
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 834687072}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.2312498, y: 4.08}
-    newSize: {x: 11.610929, y: 8.3}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.115625, y: 1.9284375}
-      - {x: 1.115625, y: 2.04}
-      - {x: 0.7490625, y: 2.04}
-      - {x: -0.49406248, y: -0.49406248}
-      - {x: -1.115625, y: -1.8328124}
-      - {x: -1.115625, y: -1.9443749}
-      - {x: -0.9403125, y: -2.04}
-      - {x: -0.8128125, y: -2.04}
-      - {x: -0.3825, y: -1.1793749}
-      - {x: 0.7490625, y: 1.1953125}
-      - {x: 1.0040625, y: 1.6734375}
 --- !u!1 &847207802
 GameObject:
   m_ObjectHideFlags: 0
@@ -4620,7 +4550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Parent: {fileID: 29679889}
-  SetCount: 12
+  SetCount: 10
 --- !u!1 &857840146
 GameObject:
   m_ObjectHideFlags: 0
@@ -4817,7 +4747,7 @@ MonoBehaviour:
   DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
-  toThisLocation: {x: 27.23, y: -3.48}
+  toThisLocation: {x: 27.23, y: -3.2}
   toThisScale: {x: 0, y: 0}
   killPlaceObject: 0
   anyLocation: 0
@@ -5114,7 +5044,7 @@ MonoBehaviour:
   DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
-  toThisLocation: {x: 23.53, y: -3.187}
+  toThisLocation: {x: 23.53, y: -2.9}
   toThisScale: {x: 0, y: 0}
   killPlaceObject: 0
   anyLocation: 0
@@ -5512,7 +5442,7 @@ MonoBehaviour:
   DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
-  toThisLocation: {x: 23.53, y: -3.2}
+  toThisLocation: {x: 23.53, y: -3}
   toThisScale: {x: 0, y: 0}
   killPlaceObject: 0
   anyLocation: 0
@@ -5926,7 +5856,7 @@ MonoBehaviour:
   DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
-  toThisLocation: {x: 23.53, y: -3.2}
+  toThisLocation: {x: 23.53, y: -3}
   toThisScale: {x: 0, y: 0}
   killPlaceObject: 0
   anyLocation: 0
@@ -6448,7 +6378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388ef3f750fb62246b6578d133bbc3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetShape: {fileID: 332301601}
+  TargetShape: {fileID: 713168283}
 --- !u!212 &1333960256
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7691,7 +7621,7 @@ MonoBehaviour:
   DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
-  toThisLocation: {x: 27.19, y: -3.35}
+  toThisLocation: {x: 27.19, y: -3.1}
   toThisScale: {x: 0, y: 0}
   killPlaceObject: 0
   anyLocation: 0
@@ -7908,7 +7838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388ef3f750fb62246b6578d133bbc3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetShape: {fileID: 332301601}
+  TargetShape: {fileID: 713168283}
 --- !u!212 &1798217498
 SpriteRenderer:
   m_ObjectHideFlags: 0
