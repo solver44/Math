@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OnCollision2D : MonoBehaviour
 {
@@ -11,8 +12,11 @@ public class OnCollision2D : MonoBehaviour
     public event ChangeCollision changingColl;
 
     public bool CheckInside = true;
+    public GameObject CheckButton = null;
+    public GameObject ErrorPanel = null; 
     public string[] NameOfObjects = null;
 
+    private bool hasCheckButton = false;
     private bool _onCollision = false;
     public bool OnCollision
     {
@@ -23,7 +27,7 @@ public class OnCollision2D : MonoBehaviour
     public bool OnCollisionRayObject
     {
         get { return collObject; }
-        set { collObject = value; changingColl?.Invoke(collObject, scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].transform.parent.name); }
+        set { collObject = value; changingColl?.Invoke(collObject, currentGameObj.transform.parent.name); }
     }
 
     private string _nameOfObject = "";
@@ -63,6 +67,12 @@ public class OnCollision2D : MonoBehaviour
     void Awake()
     {
         _nameOfObject = this.transform.name;
+
+        if (CheckButton != null)
+        {
+            hasCheckButton = true;
+            CheckButton.GetComponent<Button>().onClick.AddListener(delegate () { checkHaveAll(true); });
+        }
     }
 
     List<string> nameOfObjectsInside = new List<string>();
@@ -80,34 +90,66 @@ public class OnCollision2D : MonoBehaviour
             return;
 
         if (coll.transform.tag == "RayObjects") {
+            currentGameObj = coll.gameObject;
+
             nameOfObjectsInside.Add(_nameOfTrggeredObject);
-            scriptsOfObjectsInside.Add(coll.transform.GetComponent<MoveObject>());
-            scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveFirstPosition = true;
+            scriptsOfObjectsInside.Add(currentGameObj.transform.GetComponent<MoveObject>());
+            scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition = true;
 
             OnCollisionRayObject = true;
 
-            checkHasAll();
+            if(!hasCheckButton)
+                checkHaveAll(false);
         }
     }
 
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!other.transform.tag.Equals("RayObjects"))
+            return;
+
+        bool a = scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition;
+        if (!a)
+            scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition = true;
+    }
+
     bool locked = false;
-    private void checkHasAll()
+    private void checkHaveAll(bool showMessage)
     {
         var a = NameOfObjects.All(nameOfObjectsInside.Contains) && NameOfObjects.Length == nameOfObjectsInside.Count;
         if (a)
         {
             locked = true;
-            StartCoroutine(makeDisableAllObjects());
+            StartCoroutine(makeDisableAllObjects(!hasCheckButton));
+        }
+        else if (showMessage)
+        {
+            Debug.Log("Dont equal");
+            if(ErrorPanel != null)
+            {
+                StartCoroutine(ErrorPanelAnimation());
+            }
         }
     }
 
-    private IEnumerator makeDisableAllObjects()
+    private IEnumerator ErrorPanelAnimation()
+    {
+        ErrorPanel.SetActive(true);
+        ErrorPanel.GetComponent<Animator>().SetBool("start", true);
+        yield return new WaitForSeconds(1f);
+        ErrorPanel.GetComponent<Animator>().SetBool("start", false);
+        yield return new WaitForSeconds(0.2f);
+        ErrorPanel.SetActive(false);
+    }
+
+    private IEnumerator makeDisableAllObjects(bool _lock)
     {
         yield return new WaitForSeconds(1);
 
         for (int i = 0; i < scriptsOfObjectsInside.Count; i++)
         {
-            scriptsOfObjectsInside[i].DontMove();
+            scriptsOfObjectsInside[i].DontMove(_lock);
         }
     }
 
@@ -117,6 +159,9 @@ public class OnCollision2D : MonoBehaviour
         // Because closest=point if point is inside - not clear from docs I feel
         return closest == pos;
     }
+
+    GameObject currentGameObj = null;
+
     void OnTriggerExit2D(Collider2D coll)
     {
         _onCollision = false;
@@ -126,13 +171,16 @@ public class OnCollision2D : MonoBehaviour
 
         if (coll.transform.tag == "RayObjects")
         {
-            coll.transform.GetComponent<MoveObject>().DontMoveFirstPosition = false;
-            nameOfObjectsInside.Remove(coll.gameObject.name);
-            scriptsOfObjectsInside.Remove(coll.transform.GetComponent<MoveObject>());
+            currentGameObj = coll.gameObject;
+             
+            coll.transform.GetComponent<MoveObject>().DontMoveTo1stPosition = false;
+            nameOfObjectsInside.Remove(currentGameObj.name);
+            scriptsOfObjectsInside.Remove(currentGameObj.transform.GetComponent<MoveObject>());
 
             OnCollisionRayObject = false;
 
-            checkHasAll();
+            if (!hasCheckButton)
+                checkHaveAll(false);
         }
     }
 }

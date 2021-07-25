@@ -24,7 +24,8 @@ public class OpacityEffect : MonoBehaviour
         if (this.TryGetComponent<Image>(out imageRender))
             image = true;
 
-        if (!image) { 
+        if (!image) {
+            renderer = this.GetComponent<SpriteRenderer>();
             currentAlpha = this.GetComponent<SpriteRenderer>().color.a;
             r = renderer.color.r; g = renderer.color.g; b = renderer.color.b;
             renderer.color = new Color(r, g, b, From);

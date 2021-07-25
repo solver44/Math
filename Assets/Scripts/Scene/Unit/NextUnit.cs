@@ -98,7 +98,7 @@ public class NextUnit : MonoBehaviour
     {
         if (stop)
             return;
-        
+
         for (int i = 0; i < nextUnit.Length; i++)
         {
             Transform temp = nextUnit[i].transform;

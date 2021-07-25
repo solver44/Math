@@ -7,7 +7,7 @@ public class LoopingGameObject : MonoBehaviour
     [Header("Main")]
     public bool Infinite = true;
     public int Count = 0;
-    public OnCollision2D ParentPlace = null;
+    public OnCollision2D[] ParentPlace = null;
     public GameObject Prefab;
     public string Name = "temp";
     [Header("Additional")]
@@ -17,7 +17,7 @@ public class LoopingGameObject : MonoBehaviour
     private List<GameObject> tempPrefabs = new List<GameObject>();
 
     private void ParentPlace_changingColl(bool coll, string name)
-    {
+    { 
         if (name != this.name)
             return;
 
@@ -33,25 +33,33 @@ public class LoopingGameObject : MonoBehaviour
         int cnt = tempPrefabs.Count - 1;
         tempPrefabs[cnt].transform.parent = this.transform;
         tempPrefabs[cnt].name = Name;
+        //tempPrefabs[cnt].GetComponent<MoveObject>().Uping += ParentPlace_changingColl;
     }
 
     public void DeleteFirst()
     {
-        tempPrefabs.RemoveAt(0);
+        if (tempPrefabs.Count < 1)
+            return;
+
+        Destroy(tempPrefabs[tempPrefabs.Count - 1]);
+        tempPrefabs.RemoveAt(tempPrefabs.Count - 1);
     }
     void Start()
     {
-        if(ParentPlace != null)
-            ParentPlace.changingColl += ParentPlace_changingColl;
-
         if (Infinite)
         {
-            for (int i = 0; i < 2; i++)
+            if (ParentPlace.Length > 0)
             {
-                tempPrefabs.Add(Instantiate(Prefab, this.transform.position, Quaternion.identity));
-                tempPrefabs[i].transform.parent = this.transform;
-                tempPrefabs[i].name = Name;
+                for (int i = 0; i < ParentPlace.Length; i++)
+                {
+                    ParentPlace[i].changingColl += ParentPlace_changingColl;
+                }
             }
+
+            tempPrefabs.Add(Instantiate(Prefab, this.transform.position, Quaternion.identity));
+            tempPrefabs[0].transform.parent = this.transform;
+            tempPrefabs[0].name = Name;
+            //tempPrefabs[0].GetComponent<MoveObject>().Uping += ParentPlace_changingColl;
         }
         else
         {
@@ -60,6 +68,7 @@ public class LoopingGameObject : MonoBehaviour
                 tempPrefabs.Add(Instantiate(Prefab, this.transform.position, Quaternion.identity));
                 tempPrefabs[i].transform.parent = this.transform;
                 tempPrefabs[i].name = Name;
+                //tempPrefabs[i].GetComponent<MoveObject>().Uping += ParentPlace_changingColl;
             }
         }
     }

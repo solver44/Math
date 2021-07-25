@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7052404112801129808}
   - component: {fileID: 3850752097979669495}
   - component: {fileID: 5028952837457506834}
+  - component: {fileID: 5467910175531543966}
   m_Layer: 0
   m_Name: ce
   m_TagString: RayObjects
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7052404112801129810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1992147, y: 0.1992147, z: 0.1992147}
+  m_LocalScale: {x: 0.17562665, y: 0.17562665, z: 0.17562665}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -130,7 +131,7 @@ MonoBehaviour:
   anyLocation: 0
   rangeX: 3
   rangeY: 1
-  isAnimator: 1
+  isAnimator: 0
   scaleRadius: 0.1
   isScale: 1
   destroyEnd: 0
@@ -142,3 +143,24 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveFirstPosition: 0
   countOfObjects: 0
+--- !u!50 &5467910175531543966
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052404112801129810}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

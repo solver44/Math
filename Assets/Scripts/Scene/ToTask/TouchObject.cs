@@ -8,6 +8,9 @@ public class TouchObject : MonoBehaviour
     [SerializeField] private bool hasName = false;
     [SerializeField] private bool scaleWithoutAnim = false;
     [SerializeField] private float scaleR = .1f;
+    [Space]
+    public int CountOfObjects = 0;
+    public WasUnitComplete Parent = null;
 
     private Animator animator = null;
     private AudioSource sound = null;
@@ -20,6 +23,7 @@ public class TouchObject : MonoBehaviour
 
     private Touch touch;
 
+    private static int currentCount = 0;
     private void Start()
     {
         scaleS = transform.localScale;
@@ -30,7 +34,7 @@ public class TouchObject : MonoBehaviour
     bool scale = false;
     void SetRayCast(RaycastHit2D hitTouch)
     {
-        if (hitTouch)
+        if (hitTouch && transform == hitTouch.collider.transform)
         {
             //if(hitTouch.collider.CompareTag("Difference"))
             //{
@@ -40,7 +44,7 @@ public class TouchObject : MonoBehaviour
             //        Parent.GetComponent<WasUnitComplete>().SetCountOfDifference +=  1;
             //    obj.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
             //}
-            if (hasSound && (transform == hitTouch.collider.transform) && (sound == null || !sound.isPlaying))
+            if (hasSound && (sound == null || !sound.isPlaying))
             {
                 if (hasName && text == null)
                     text = GameObject.FindGameObjectWithTag("ObjectsName").gameObject.GetComponent<Text>() as Text;
@@ -63,7 +67,7 @@ public class TouchObject : MonoBehaviour
                 else if (scaleWithoutAnim)
                     scale = true;
             }
-            else if (!hasSound && (transform == hitTouch.collider.transform))
+            else if (!hasSound)
             {
                 //sound = new AudioSource();
                 if (hasName && text == null)
@@ -81,6 +85,15 @@ public class TouchObject : MonoBehaviour
                     animator.SetBool("zoom", true);
                 else if(scaleWithoutAnim)
                     scale = true;
+            }
+
+            if (Parent != null)
+            {
+                currentCount++;
+                if (currentCount == CountOfObjects)
+                {
+                    Parent.CompleteUnit();
+                }
             }
         }
     }

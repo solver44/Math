@@ -95,7 +95,7 @@ public class PaintBackColor : MonoBehaviour
                 StartCoroutine(SmoothScaling(prevBtn.GetComponent<RectTransform>(), !IsZoomScale, true));
             else
             {
-                StartCoroutine(effect.MoveAnim(prevBtn.transform, firstPos, false, 1f));
+                StartCoroutine(effect.MoveAnim(prevBtn.transform, firstPos, true, 1f));
             }
         }
 
@@ -103,7 +103,7 @@ public class PaintBackColor : MonoBehaviour
         if (!MoveUp)
             firstScale = pressedBtn.transform.localScale;
         else
-            firstPos = prevBtn.transform.position;
+            firstPos = prevBtn.transform.localPosition;
 
         Color32 color = pressedBtn.GetComponent<Image>().color;
         RectTransform scale = pressedBtn.GetComponent<RectTransform>();
@@ -112,7 +112,7 @@ public class PaintBackColor : MonoBehaviour
             StartCoroutine(SmoothScaling(scale, IsZoomScale, false));
         else
         {
-            StartCoroutine(effect.MoveAnim(prevBtn.transform, new Vector2(prevBtn.transform.position.x, firstPos.y + .6f), false, 1f));
+            StartCoroutine(effect.MoveAnim(prevBtn.transform, new Vector2(prevBtn.transform.localPosition.x, firstPos.y + 60f), true, 1f));
         }
 
         currentShapesName = pressedBtn.GetComponentInParent<Toggle>().name;

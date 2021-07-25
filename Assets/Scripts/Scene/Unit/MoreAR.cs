@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MoreAR : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MoreAR : MonoBehaviour
     [HideInInspector] public float Speed;
     public GameObject[] ObjectsToExit = null;
     public GameObject[] ObjectsToEnter = null;
+
+    public bool WaitAndComplete = false;
 
     public bool Finish = false;
 
@@ -64,9 +67,15 @@ public class MoreAR : MonoBehaviour
         if (stop)
             return;
 
+        RectTransform temp = null;
         for (int i = 0; i < ObjectsToExit.Length; i++)
         {
-            Vector2 target = new Vector2(firstLocation[i].x + RangeX, firstLocation[i].y + RangeY);
+            Vector2 target = Vector2.zero;
+            if(!ObjectsToExit[i].transform.TryGetComponent<RectTransform>(out temp))
+                target = new Vector2(firstLocation[i].x + RangeX, firstLocation[i].y + RangeY);
+            else
+                target = new Vector2(firstLocation[i].x + RangeX * 150, firstLocation[i].y + RangeY * 150);
+
             ObjectsToExit[i].transform.localPosition = Vector2.Lerp(ObjectsToExit[i].transform.localPosition, target, Speed * Time.deltaTime);
         }
     }
@@ -95,11 +104,20 @@ public class MoreAR : MonoBehaviour
                 ObjectsToEnter[i].transform.localPosition = target;
                 move = false;
                 stop = true;
+                Finish = true;
+                if (WaitAndComplete)
+                    StartCoroutine(WaitAndCompleteF());
             }
         }
     }
     //End Enter
 
+    private IEnumerator WaitAndCompleteF()
+    {
+        yield return new WaitForSeconds(WaitSecondsExit);
+        Finish = true;
+        this.GetComponent<WasUnitComplete>().CompleteUnit();
+    }
     private void Update()
     {
         if (!move)

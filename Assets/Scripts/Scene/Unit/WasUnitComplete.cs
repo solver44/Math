@@ -6,6 +6,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(MoreAR))]
 public class WasUnitComplete : MonoBehaviour
 {
+    #region Events
+    public delegate void Finish(int unit);
+    public static event Finish Finishing;
+    #endregion
+
     [Header("Main")]
     public GameObject[] ObjectsToExitScene;
     [Space]
@@ -97,6 +102,14 @@ public class WasUnitComplete : MonoBehaviour
             more.Enter();
         }
     }
+
+    static int currentUnit = 1;
+    bool finish = false;
+    public static int CurrentUnit
+    {
+        get { return currentUnit; }
+        set { currentUnit = value; Finishing?.Invoke(currentUnit); }
+    }
     private void Update()
     {
         if(ParentGameObjects.transform.childCount <= 0 || _countDifference >= countOfDifference)
@@ -112,13 +125,17 @@ public class WasUnitComplete : MonoBehaviour
 
         if (isCompleteThisUnit)
         {
-            
             if (!stop && wait)
             {
                 StartCoroutine(waitForSec());
             }
             else
             {
+                if (!finish)
+                {
+                    finish = true;
+                    CurrentUnit++;
+                }
                 _sceneManager.DoExitAndSaveUnit();
                 _sceneManager.DoEnterNewUnit();
                 if (changeColor && !changingColor)
