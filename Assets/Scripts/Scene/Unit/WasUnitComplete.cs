@@ -110,7 +110,7 @@ public class WasUnitComplete : MonoBehaviour
         get { return currentUnit; }
         set { currentUnit = value; Finishing?.Invoke(currentUnit); }
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if(ParentGameObjects.transform.childCount <= 0 || _countDifference >= countOfDifference)
         {
@@ -138,7 +138,7 @@ public class WasUnitComplete : MonoBehaviour
                 }
                 _sceneManager.DoExitAndSaveUnit();
                 _sceneManager.DoEnterNewUnit();
-                if (changeColor && !changingColor)
+                if (!changingColor && changeColor)
                 {
                     for (int i = 0; i < objectsToChangeColor.Length; i++)
                     {

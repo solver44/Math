@@ -8,6 +8,7 @@ public class MoreAR : MonoBehaviour
 {
     public bool More = false;
     [HideInInspector] public float Speed;
+    public bool KillObjectsAfterExit = false;
     public GameObject[] ObjectsToExit = null;
     public GameObject[] ObjectsToEnter = null;
 
@@ -36,11 +37,13 @@ public class MoreAR : MonoBehaviour
     }
 
     private Vector3[] firstLocation = null;
+    private Vector3[] firstLocationExits = null;
 
     private void Start()
     {
         RectTransform rect = null;
         firstLocation = new Vector3[ObjectsToEnter.Length];
+        firstLocationExits = new Vector3[ObjectsToExit.Length];
         for (int i = 0; i < ObjectsToEnter.Length; i++)
         {
             firstLocation[i] = ObjectsToEnter[i].transform.localPosition;
@@ -52,6 +55,10 @@ public class MoreAR : MonoBehaviour
             }
 
             ObjectsToEnter[i].transform.localPosition = target;
+        }
+        for (int i = 0; i < ObjectsToExit.Length; i++)
+        {
+            firstLocationExits[i] = ObjectsToExit[i].transform.localPosition;
         }
     }
     //Exit
@@ -72,9 +79,9 @@ public class MoreAR : MonoBehaviour
         {
             Vector2 target = Vector2.zero;
             if(!ObjectsToExit[i].transform.TryGetComponent<RectTransform>(out temp))
-                target = new Vector2(firstLocation[i].x + RangeX, firstLocation[i].y + RangeY);
+                target = new Vector2(firstLocationExits[i].x + RangeX, firstLocationExits[i].y + RangeY);
             else
-                target = new Vector2(firstLocation[i].x + RangeX * 150, firstLocation[i].y + RangeY * 150);
+                target = new Vector2(firstLocationExits[i].x + RangeX * 150, firstLocationExits[i].y + RangeY * 150);
 
             ObjectsToExit[i].transform.localPosition = Vector2.Lerp(ObjectsToExit[i].transform.localPosition, target, Speed * Time.deltaTime);
         }
@@ -105,6 +112,11 @@ public class MoreAR : MonoBehaviour
                 move = false;
                 stop = true;
                 Finish = true;
+                if(KillObjectsAfterExit)
+                    for (int k = 0; k < ObjectsToExit.Length; k++)
+                    {
+                        Destroy(ObjectsToExit[k]);
+                    }
                 if (WaitAndComplete)
                     StartCoroutine(WaitAndCompleteF());
             }

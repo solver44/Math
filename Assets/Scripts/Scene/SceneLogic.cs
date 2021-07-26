@@ -16,6 +16,10 @@ public class SceneLogic : MonoBehaviour
 
     public ToggleGroup Pens;
 
+    private void Awake()
+    {
+        Application.targetFrameRate = 1000;
+    }
     private void Start()
     {
         StartCoroutine(setUnitNumber());
@@ -27,7 +31,7 @@ public class SceneLogic : MonoBehaviour
         yield return new WaitForSeconds(0f);
         unitText.text = PlayerPrefs.GetInt("ClickingUnit").ToString();
     }
-    void Update()
+    void FixedUpdate()
     {
         if(!stop && GameObjects.transform.childCount <= 0)
         {
@@ -69,7 +73,7 @@ public class SceneLogic : MonoBehaviour
 
     public void NextLevel()
     {
-        if (PlayerPrefs.GetInt("ClickingUnit") >= 6)
+        if (PlayerPrefs.GetInt("ClickingUnit") >= 21)
             return;
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

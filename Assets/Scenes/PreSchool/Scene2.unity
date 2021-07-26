@@ -295,10 +295,13 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: -1.3, y: 5.05}
   toThisScale: {x: 0.945, y: 0.945}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
-  rangeX: 3
-  rangeY: 3
+  rangeX: 2.5
+  rangeY: 2.5
   isAnimator: 0
   scaleRadius: 0.5
   isScale: 1
@@ -309,7 +312,7 @@ MonoBehaviour:
   EffectLight: {fileID: 185494116}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 185494116}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 4
 --- !u!58 &7272371
 CircleCollider2D:
@@ -932,6 +935,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -939,14 +945,14 @@ MonoBehaviour:
   isAnimator: 0
   scaleRadius: 0.1
   isScale: 1
-  destroyEnd: 0
+  destroyEnd: 1
   dontSortLayer: 0
   IsLocalPos: 1
   EffectScale: 0
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 2
 --- !u!1 &250457276
 GameObject:
@@ -1752,6 +1758,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -1759,14 +1768,14 @@ MonoBehaviour:
   isAnimator: 0
   scaleRadius: 0.1
   isScale: 1
-  destroyEnd: 0
+  destroyEnd: 1
   dontSortLayer: 0
   IsLocalPos: 1
   EffectScale: 0
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 2
 --- !u!65 &417045370
 BoxCollider:
@@ -2272,10 +2281,13 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: -2.52, y: -4.36}
   toThisScale: {x: 0.976, y: 0.976}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
-  rangeX: 3
-  rangeY: 3
+  rangeX: 2.5
+  rangeY: 2.5
   isAnimator: 0
   scaleRadius: 0.5
   isScale: 1
@@ -2286,7 +2298,7 @@ MonoBehaviour:
   EffectLight: {fileID: 2076320382}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 2076320382}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 4
 --- !u!212 &638441100
 SpriteRenderer:
@@ -2616,10 +2628,13 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 1.47, y: 3.42}
   toThisScale: {x: 0.957, y: 0.957}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
-  rangeX: 3
-  rangeY: 3
+  rangeX: 2.5
+  rangeY: 2.5
   isAnimator: 0
   scaleRadius: 0.5
   isScale: 1
@@ -2630,7 +2645,7 @@ MonoBehaviour:
   EffectLight: {fileID: 508160902}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 508160902}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 4
 --- !u!212 &740480761
 SpriteRenderer:
@@ -3949,10 +3964,13 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0.727, y: 0.301}
   toThisScale: {x: 0.974, y: 0.974}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
-  rangeX: 3
-  rangeY: 3
+  rangeX: 2.5
+  rangeY: 2.5
   isAnimator: 0
   scaleRadius: 0.5
   isScale: 1
@@ -3963,7 +3981,7 @@ MonoBehaviour:
   EffectLight: {fileID: 2023622004}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 2023622004}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 4
 --- !u!212 &1220794570
 SpriteRenderer:

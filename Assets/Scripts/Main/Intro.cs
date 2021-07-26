@@ -58,6 +58,6 @@ public class Intro : MonoBehaviour
     public void Class1SceneClick(int index)
     {
         PlayerPrefs.SetInt("ClickingLevel", 1);
-        SceneManager.LoadScene(index + 7);
+        SceneManager.LoadScene(index + 21);
     }
 }

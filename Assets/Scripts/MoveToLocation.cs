@@ -14,11 +14,21 @@ public class MoveToLocation : MonoBehaviour
 
     private GameObject textPanel = null;
 
-    private bool gottaFinish = false;
+    private bool _gottaFinish = false;
+    private bool gottaFinish
+    {
+        get { return _gottaFinish; }
+        set { _gottaFinish = value; if (gottaFinish && _stop) FinishMove = true;}
+    }
     public void SetLocationX(float x, bool finish) { locationX = x; stop = false; gottaFinish = finish; try { if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } }catch{} }
     public void SetLocationY(float y, bool finish) { if (freezeY) locationY = this.transform.localPosition.y; else locationY = y; stop = false; gottaFinish = finish; try { if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } } catch { } }
 
-    private bool stop = true;
+    private bool _stop = true;
+    private bool stop
+    {
+        get { return _stop; }
+        set { _stop = value; if (gottaFinish && _stop) FinishMove = true; }
+    }
 
     public bool FinishMove = false;
 
@@ -28,10 +38,13 @@ public class MoveToLocation : MonoBehaviour
 
     private void Start()
     {
-        foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+        if (isTextShowing)
         {
-            if (go.transform.name == "Panel")
-                textPanel = go.transform.gameObject;
+            foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+            {
+                if (go.transform.name == "Panel")
+                    textPanel = go.transform.gameObject;
+            }
         }
 
         try { if (textPanel != null && !isTextShowing) { textPanel.SetActive(false); } else { textPanel.SetActive(true); } } catch { }
@@ -40,23 +53,27 @@ public class MoveToLocation : MonoBehaviour
         if (freezeY)
             locationY = this.transform.localPosition.y;
     }
-    void Update()
+
+    Vector2 target = new Vector2();
+    void FixedUpdate()
     {
-        if (stop == false && ((this.transform.localPosition.x > locationX + .01f || this.transform.localPosition.x < locationX - .01f) || (this.transform.localPosition.y > locationY + .01f || this.transform.localPosition.y < locationY - .01f)))
+        if (stop)
+            return;
+
+        target = new Vector2(locationX, locationY);
+        if (!stop && Vector2.Distance(this.transform.localPosition, target) > 0.01f) //((this.transform.localPosition.x > locationX + .01f || this.transform.localPosition.x < locationX - .01f) || (this.transform.localPosition.y > locationY + .01f || this.transform.localPosition.y < locationY - .01f))
         {
             if (!isMoveToward)
-                this.transform.localPosition = Vector2.Lerp(this.transform.localPosition, new Vector2(locationX, locationY), speedMove * Time.fixedDeltaTime);
+                this.transform.localPosition = Vector2.Lerp(this.transform.localPosition, target, speedMove * Time.deltaTime);
             else
-                this.transform.localPosition = Vector2.MoveTowards(this.transform.localPosition, new Vector2(locationX, locationY), speedMove * Time.fixedUnscaledDeltaTime);
+                this.transform.localPosition = Vector2.MoveTowards(this.transform.localPosition, target, speedMove * Time.deltaTime);
         }
         else if (!stop)
         {
-            this.transform.localPosition = new Vector2(locationX, locationY);
+            this.transform.localPosition = target;
             stop = true;
         }
 
-        if (gottaFinish && stop)
-            FinishMove = true;
     }
 
     private IEnumerator waitForSec()

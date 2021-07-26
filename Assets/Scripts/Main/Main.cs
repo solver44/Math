@@ -20,9 +20,7 @@ public class Main : MonoBehaviour
     
     private void Awake()
     {
-        Application.targetFrameRate = 500;
-        Screen.orientation = ScreenOrientation.Landscape; //Сделать экран альбомный
-
+        Application.targetFrameRate = 1000;
         UserName.text = PlayerPrefs.GetString("nameUser") + " " + PlayerPrefs.GetString("surnameUser");//Поставить имя пользователя на Username Text
     }
     float rangeOfLevel = 0;

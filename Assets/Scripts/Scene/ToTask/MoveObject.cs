@@ -154,7 +154,7 @@ public class MoveObject : MonoBehaviour
             if (isAnimator)
                 anim.SetBool("zoom", true);
             else
-                StartCoroutine(effect.Scale(transform, new Vector3(xScale + (xScale * scaleRadius), yScale + (yScale * scaleRadius)), 1f));
+                StartCoroutine(methodScale(transform, new Vector3(xScale + (xScale * scaleRadius), yScale + (yScale * scaleRadius)), false, 1f));
 
             if (!dontSortLayer)
                 this.GetComponent<SpriteRenderer>().sortingOrder += 1;
@@ -225,7 +225,9 @@ public class MoveObject : MonoBehaviour
                     }
                     else
                     {
-                        StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true, .5f));
+                        StartCoroutine(moveAnim2(placeObject.position, false, 1f));
+                        if (destroyEnd)
+                            StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true, 1f));
                     }
                 }
                 if (killPlaceObject)
@@ -288,7 +290,7 @@ public class MoveObject : MonoBehaviour
             Destroy(placeObject.transform.gameObject);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (locked)
             return;
@@ -314,10 +316,12 @@ public class MoveObject : MonoBehaviour
         //    }
         //}
 
+#if UNITY_ANDROID && !UNITY_EDITOR
         if (Input.touchCount > 0)
         {
             TouchFunc();   
         }
+#endif
     }
 
     #region Touch for mobile devices
@@ -490,7 +494,6 @@ public class MoveObject : MonoBehaviour
             if ((IsLocalPos && transform.localPosition.Equals(_placeLocation)) || (!IsLocalPos && transform.position.Equals(_placeLocation)))
             {
                 currentCnt++;
-                //transform.localScale = toThisScale;
                 locked = true;
                 if (destroyEnd)
                 {
@@ -532,14 +535,13 @@ public class MoveObject : MonoBehaviour
             SpriteRenderer render = null;
             parent.TryGetComponent<SpriteRenderer>(out render);
 
-
             Vector2 target = new Vector2(parent.localScale.x + (parent.localScale.x * .2f), parent.localScale.y + (parent.localScale.y * .2f));
             for (float i = 0; i <= 1; i += Time.deltaTime / duration)
             {
                 if (render == null)
                     parent.localScale = Vector2.MoveTowards(parent.localScale, target, 3f);
                 else
-                    parent.localScale = Vector2.MoveTowards(parent.localScale, target, .1f);
+                    parent.localScale = Vector2.MoveTowards(parent.localScale, target, 1f);
 
                 if (parent.localScale.Equals(target))
                     break;
@@ -551,7 +553,9 @@ public class MoveObject : MonoBehaviour
         {
             parent.localScale = Vector2.Lerp(parent.localScale, toScale, i);
             if (parent.localScale.Equals(toScale))
+            {
                 yield break;
+            }
 
             yield return new WaitForEndOfFrame();
         }
