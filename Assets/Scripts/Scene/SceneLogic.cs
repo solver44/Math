@@ -31,21 +31,25 @@ public class SceneLogic : MonoBehaviour
         yield return new WaitForSeconds(0f);
         unitText.text = PlayerPrefs.GetInt("ClickingUnit").ToString();
     }
-    void FixedUpdate()
-    {
-        if(!stop && GameObjects.transform.childCount <= 0)
-        {
-            stop = true;
-            for (int i = 0; i < ForDestroying.Length; i++)
-            {
-                Destroy(ForDestroying[i].transform.gameObject);
-            }
-            PanelWin.SetActive(true);
-            panelWinAnim.SetTrigger("start");
-            StartCoroutine(enterBGPanel());
-            PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("ClickingUnit"));
-        }
 
+    private float timer;
+    void Update()
+    {
+        if (Time.unscaledTime > timer + .5f) {
+            if (!stop && GameObjects.transform.childCount <= 0)
+            {
+                stop = true;
+                for (int i = 0; i < ForDestroying.Length; i++)
+                {
+                    Destroy(ForDestroying[i].transform.gameObject);
+                }
+                PanelWin.SetActive(true);
+                panelWinAnim.SetTrigger("start");
+                StartCoroutine(enterBGPanel());
+                PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("ClickingUnit"));
+            }
+            timer = Time.unscaledTime;
+        }
     }
 
     public void SetSelectedColor()

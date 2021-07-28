@@ -180,7 +180,7 @@ public class WasUnitComplete : MonoBehaviour
                 yield break;
             }
 
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
     }
 }

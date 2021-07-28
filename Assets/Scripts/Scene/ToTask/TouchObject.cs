@@ -30,8 +30,12 @@ public class TouchObject : MonoBehaviour
         xScale = scaleS.x;
         yScale = scaleS.y;
 
+
+        this.TryGetComponent<SpriteRenderer>(out renderer);
     }
     bool scale = false;
+
+    SpriteRenderer renderer = null;
     void SetRayCast(RaycastHit2D hitTouch)
     {
         if (hitTouch && transform == hitTouch.collider.transform)
@@ -133,11 +137,9 @@ public class TouchObject : MonoBehaviour
                     scale = true;
                 if(hasName)
                     text.text = obj.name;
-                try
-                {
-                    GetComponent<SpriteRenderer>().sortingLayerName = "Selected";
-                }
-                catch { }
+
+                if (renderer != null)
+                    renderer.sortingLayerName = "Selected";
 
                 if (!wait)
                 {
@@ -159,11 +161,9 @@ public class TouchObject : MonoBehaviour
                 else if(scaleWithoutAnim)
                     scale = false;
 
-                try
-                {
-                    GetComponent<SpriteRenderer>().sortingLayerName = "Top";
-                }
-                catch { }
+                if (renderer != null)
+                    renderer.sortingLayerName = "Top";
+
                 try {
                     if (hasName && text.text == obj.name)
                         text.text = null;

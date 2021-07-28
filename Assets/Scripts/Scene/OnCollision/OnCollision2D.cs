@@ -106,16 +106,12 @@ public class OnCollision2D : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!other.transform.tag.Equals("RayObjects"))
+        if (!other.tag.Equals("RayObjects") && scriptsOfObjectsInside.Count < 1)
             return;
 
-        try
-        {
-            bool a = scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition;
-            if (!a)
-                scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition = true;
-        }
-        catch { }
+        bool a = scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition;
+        if (!a)
+            scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition = true;
     }
 
     bool locked = false;
@@ -129,7 +125,6 @@ public class OnCollision2D : MonoBehaviour
         }
         else if (showMessage)
         {
-            Debug.Log("Dont equal");
             if(ErrorPanel != null)
             {
                 StartCoroutine(ErrorPanelAnimation());

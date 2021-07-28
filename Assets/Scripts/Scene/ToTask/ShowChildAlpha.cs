@@ -214,7 +214,7 @@ public class ShowChildAlpha : MonoBehaviour
             SetRayCast(hitTouch);
         }
 
-        if (currentIndex > -1 && startAnim )
+        if (startAnim && currentIndex > -1)
         {
             countIndex();
 

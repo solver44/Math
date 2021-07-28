@@ -150,7 +150,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 857059805}
-  - {fileID: 502125568}
   m_Father: {fileID: 1529013730}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -167,9 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectsToExitScene:
-  - {fileID: 857059804}
+  - {fileID: 29679887}
   - {fileID: 121659442}
-  - {fileID: 502125567}
   ParentGameObjects: {fileID: 857059804}
   toThatLocation: {x: -50, y: -0.22}
   freezeY: 0
@@ -935,6 +933,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -949,6 +950,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!1 &239469277
 GameObject:
@@ -1176,6 +1178,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -1190,6 +1195,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &256697813
 SpriteRenderer:
@@ -1537,6 +1543,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -1551,6 +1560,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &429402440
 SpriteRenderer:
@@ -1793,6 +1803,7 @@ GameObject:
   - component: {fileID: 473946755}
   - component: {fileID: 473946757}
   - component: {fileID: 473946756}
+  - component: {fileID: 473946758}
   m_Layer: 5
   m_Name: panel1
   m_TagString: Untagged
@@ -1858,66 +1869,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 473946754}
   m_CullTransparentMesh: 0
---- !u!1 &502125567
-GameObject:
+--- !u!61 &473946758
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 502125568}
-  - component: {fileID: 502125569}
-  m_Layer: 0
-  m_Name: Additional
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &502125568
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502125567}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1.1248, y: 1.1248, z: 1.1248}
-  m_Children:
-  - {fileID: 1087742278}
-  - {fileID: 817505947}
-  m_Father: {fileID: 29679888}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.54, y: -4.57}
-  m_SizeDelta: {x: 0.8301139, y: 0.8301139}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &502125569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502125567}
+  m_GameObject: {fileID: 473946754}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cfee944f0d678f489f60250b509c10b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMove: 4
-  locationX: 0
-  locationY: -4.627
-  freezeY: 0
-  isMoveToward: 0
-  waitForSecond: 2
-  isTextShowing: 0
-  FinishMove: 0
-  isWaitFinishAnother: 0
-  OtherObjects: []
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &503337035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,6 +2045,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: -0.5, y: -4}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -2082,6 +2062,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &733437407
 SpriteRenderer:
@@ -2213,11 +2194,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817505946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.47, y: -0.31, z: -0.88904697}
-  m_LocalScale: {x: 1.7586774, y: 0.7758451, z: 0.60323745}
+  m_LocalPosition: {x: 30.977856, y: -4.6935034, z: 0}
+  m_LocalScale: {x: 1.9781603, y: 0.87267053, z: 0.67852145}
   m_Children:
   - {fileID: 2089910546}
-  m_Father: {fileID: 502125568}
+  m_Father: {fileID: 857059805}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &817505948
@@ -2313,20 +2294,24 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
-  rangeX: 3.5
+  rangeX: 2
   rangeY: 3
   isAnimator: 0
   scaleRadius: 0.1
   isScale: 1
-  destroyEnd: 0
+  destroyEnd: 1
   dontSortLayer: 1
-  IsLocalPos: 0
+  IsLocalPos: 1
   EffectScale: 0
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 2
 --- !u!1 &838590285
 GameObject:
@@ -2584,6 +2569,8 @@ Transform:
   m_LocalPosition: {x: -25.41, y: -0.22518516, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1087742278}
+  - {fileID: 817505947}
   - {fileID: 2090330871}
   - {fileID: 1054109464}
   m_Father: {fileID: 29679888}
@@ -2764,6 +2751,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -2778,6 +2768,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &946287591
 SpriteRenderer:
@@ -2867,11 +2858,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054109463}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.64, y: -0.03, z: 1}
+  m_LocalPosition: {x: 30.64, y: -0.029999971, z: 1}
   m_LocalScale: {x: 0.102005385, y: 0.102005385, z: 0.032298867}
   m_Children: []
   m_Father: {fileID: 857059805}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1054109466
 SpriteRenderer:
@@ -2950,11 +2941,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087742277}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.61, y: -0.31, z: -0.88904697}
-  m_LocalScale: {x: 1.7586774, y: 0.7758451, z: 0.60323745}
+  m_LocalPosition: {x: 20.764671, y: -4.6935034, z: 0}
+  m_LocalScale: {x: 1.9781603, y: 0.87267053, z: 0.67852145}
   m_Children:
   - {fileID: 455168185}
-  m_Father: {fileID: 502125568}
+  m_Father: {fileID: 857059805}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1087742279
@@ -3050,20 +3041,24 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
-  rangeX: 3.5
+  rangeX: 2
   rangeY: 3
   isAnimator: 0
   scaleRadius: 0.1
   isScale: 1
-  destroyEnd: 0
+  destroyEnd: 1
   dontSortLayer: 1
-  IsLocalPos: 0
+  IsLocalPos: 1
   EffectScale: 0
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 2
 --- !u!1 &1131705312
 GameObject:
@@ -3276,6 +3271,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -3290,6 +3288,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &1145780868
 SpriteRenderer:
@@ -3461,6 +3460,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -3475,6 +3477,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &1156587612
 SpriteRenderer:
@@ -3539,6 +3542,51 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8800002, y: 2.3400002, z: 0.2}
   m_Center: {x: 0.0000019073486, y: 0, z: 0}
+--- !u!1 &1244655908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1244655910}
+  - component: {fileID: 1244655909}
+  m_Layer: 0
+  m_Name: PhotonMono
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1244655909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244655908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177bddf229f8d8445a70c0652f03b7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KeepAliveInBackground: 60000
+  ApplyDontDestroyOnLoad: 1
+--- !u!4 &1244655910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244655908}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1277141741
 GameObject:
   m_ObjectHideFlags: 0
@@ -3976,6 +4024,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: -0.5, y: -4}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -3990,6 +4041,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &1577573527
 SpriteRenderer:
@@ -5269,7 +5321,7 @@ Transform:
   m_LocalScale: {x: 0.102005385, y: 0.102005385, z: 0.032298867}
   m_Children: []
   m_Father: {fileID: 857059805}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2090330873
 SpriteRenderer:

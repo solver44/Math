@@ -54,6 +54,7 @@ public class MoveObject : MonoBehaviour
     private SpriteRenderer render = null;
 
     private OnCollision2D collOfPlaceObject = null;
+
     private void Awake()
     {
         if (DontMoving)
@@ -63,11 +64,16 @@ public class MoveObject : MonoBehaviour
         if (placeObject != null && !HasPlaceObjectCollider)
         {
             placeObjectAnim = placeObject.GetComponent<Animator>() as Animator;
-            if(IsLocalPos)
-                placeLocation = placeObject.transform.localPosition;
+            if (IsLocalPos)
+            {
+                RectTransform temp = null;
+                if (placeObject.TryGetComponent<RectTransform>(out temp))
+                    placeLocation = placeObject.transform.position;
+                else
+                    placeLocation = placeObject.transform.localPosition;
+            }
             else
                 placeLocation = placeObject.transform.position;
-
         }
         else if (toThisLocation != Vector2.zero && !HasPlaceObjectCollider)
         {

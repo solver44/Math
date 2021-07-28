@@ -47,9 +47,9 @@ public class Main : MonoBehaviour
     public bool StartLvlAnim = false;
     private void Update()
     {
-        if (CurrentLevelImg.fillAmount <= rangeOfLevel && StartLvlAnim)
+        if (StartLvlAnim && CurrentLevelImg.fillAmount <= rangeOfLevel)
             CurrentLevelImg.fillAmount += Time.fixedDeltaTime * 0.1f;
-        else if (CurrentLevelImg.fillAmount > rangeOfLevel && !StartLvlAnim)
+        else if (!StartLvlAnim && CurrentLevelImg.fillAmount > rangeOfLevel)
             StartLvlAnim = false;
     }
     IEnumerator menuAnimTime()
@@ -59,7 +59,6 @@ public class Main : MonoBehaviour
         yield return new WaitForSeconds(2);
         StartLvlAnim = true;
     }
-
     [SerializeField] private LocalizationManager locManager;
     public void OnClickOkButton()
     {
