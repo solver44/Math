@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ScaleEffect : MonoBehaviour
 {
+    #region Events
+    public delegate void Effects();
+    public event Effects Scaled;
+    #endregion
     public float scaleR = 0.2f;
 
     private bool _lock = false;
@@ -48,6 +52,24 @@ public class ScaleEffect : MonoBehaviour
         for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
         {
             transF.localScale = Vector3.MoveTowards(transF.localScale, target, t);
+            if (transF.localScale.Equals(target))
+            {
+                //transform.localScale = toThisScale;
+                wait = false;
+                back = !back;
+                Scaled?.Invoke();
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    public IEnumerator Scale2(Transform transF, Vector2 target, float duration)
+    {
+        float scaleDuration = duration;
+        for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
+        {
+            transF.localScale = Vector3.Lerp(transF.localScale, target, t);
             if (transF.localScale.Equals(target))
             {
                 //transform.localScale = toThisScale;

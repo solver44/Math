@@ -110,7 +110,7 @@ public class WasUnitComplete : MonoBehaviour
         get { return currentUnit; }
         set { currentUnit = value; Finishing?.Invoke(currentUnit); }
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if(ParentGameObjects.transform.childCount <= 0 || _countDifference >= countOfDifference)
         {
