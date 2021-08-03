@@ -8,13 +8,14 @@ public class TouchObject : MonoBehaviour
     [SerializeField] private bool hasName = false;
     [SerializeField] private bool scaleWithoutAnim = false;
     [SerializeField] private float scaleR = .1f;
+    [SerializeField] private bool hide = false;
+    [SerializeField] private bool dontChangeEnd = false;
     [Space]
     public int CountOfObjects = 0;
     public WasUnitComplete Parent = null;
 
     private Animator animator = null;
-    private AudioSource sound = null;
-    private GameObject obj = null;
+    private AudioSource sound = new AudioSource();
     private Text text = null;
 
     Vector3 scaleS;
@@ -22,6 +23,7 @@ public class TouchObject : MonoBehaviour
     float yScale = 0;
 
     private Touch touch;
+    private bool calculated = false;
 
     private static int currentCount = 0;
     private void Start()
@@ -32,8 +34,25 @@ public class TouchObject : MonoBehaviour
 
 
         this.TryGetComponent<SpriteRenderer>(out renderer);
+
+        this.TryGetComponent<AudioSource>(out sound);
+        this.TryGetComponent<Animator>(out animator);
+
+        if (hasName && text == null)
+            text = GameObject.FindGameObjectWithTag("ObjectsName").gameObject.GetComponent<Text>() as Text;
+
+        if (hide)
+            StartCoroutine(SetSpriteNull());
+
     }
     bool scale = false;
+
+
+    private IEnumerator SetSpriteNull()
+    {
+        yield return new WaitForSeconds(2f);
+        GetComponent<SpriteRenderer>().sprite = null;
+    }
 
     SpriteRenderer renderer = null;
     void SetRayCast(RaycastHit2D hitTouch)
@@ -49,23 +68,10 @@ public class TouchObject : MonoBehaviour
             //    obj.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
             //}
             if (hasSound && (sound == null || !sound.isPlaying))
-            {
-                if (hasName && text == null)
-                    text = GameObject.FindGameObjectWithTag("ObjectsName").gameObject.GetComponent<Text>() as Text;
-
-                obj = hitTouch.collider.transform.gameObject as GameObject;
-
-                try
-                {
-                    sound = obj.GetComponent<AudioSource>() as AudioSource;
+            {     
+                if(sound != null)
                     sound.Play();
-                }
-                catch { sound = new AudioSource(); }
-                try
-                {
-                    animator = obj.GetComponent<Animator>() as Animator;
-                }
-                catch { }
+
                 if (!scaleWithoutAnim && animator != null)
                     animator.SetBool("zoom", true);
                 else if (scaleWithoutAnim)
@@ -73,26 +79,16 @@ public class TouchObject : MonoBehaviour
             }
             else if (!hasSound)
             {
-                //sound = new AudioSource();
-                if (hasName && text == null)
-                    text = GameObject.FindGameObjectWithTag("ObjectsName").gameObject.GetComponent<Text>() as Text;
-
-                obj = hitTouch.collider.transform.gameObject as GameObject;
-
                 isShowing = true;
-                try
-                {
-                    animator = obj.GetComponent<Animator>() as Animator;
-                }
-                catch { }
                 if (!scaleWithoutAnim && animator != null)
                     animator.SetBool("zoom", true);
                 else if(scaleWithoutAnim)
                     scale = true;
             }
 
-            if (Parent != null)
+            if (Parent != null && !calculated)
             {
+                calculated = true;
                 currentCount++;
                 if (currentCount == CountOfObjects)
                 {
@@ -111,7 +107,6 @@ public class TouchObject : MonoBehaviour
     }
     private void Update()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0);
@@ -136,7 +131,7 @@ public class TouchObject : MonoBehaviour
                 else if(scaleWithoutAnim)
                     scale = true;
                 if(hasName)
-                    text.text = obj.name;
+                    text.text = this.name;
 
                 if (renderer != null)
                     renderer.sortingLayerName = "Selected";
@@ -149,26 +144,22 @@ public class TouchObject : MonoBehaviour
             }
             else if(!isShowing)
             {
-                try
-                {
+                if (sound != null)
                     sound.Stop();
-                }
-                catch { }
 
                 isShowing = false;
                 if(!scaleWithoutAnim && animator != null)
-                    animator.SetBool("zoom", false);
+                    if(!dontChangeEnd)
+                        animator.SetBool("zoom", false);
                 else if(scaleWithoutAnim)
-                    scale = false;
+                    if (!dontChangeEnd)
+                        scale = false;
 
                 if (renderer != null)
                     renderer.sortingLayerName = "Top";
 
-                try {
-                    if (hasName && text.text == obj.name)
-                        text.text = null;
-                }
-                catch { }
+                if (hasName && (text != null && text.text == this.name))
+                    text.text = null;
             }
         }
 

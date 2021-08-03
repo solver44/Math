@@ -42,6 +42,7 @@ public class MoveObject : MonoBehaviour
 
 
     private Vector2 firstPosition;
+    private Vector2 firstScale;
     private bool locked = false;
     private float deltaX, deltaY;
     private Vector3 mousePosition;
@@ -115,9 +116,12 @@ public class MoveObject : MonoBehaviour
         else
             firstPosition = this.transform.position;
 
+        firstScale = this.transform.localScale;
+
         if(StartFromThisPos)
         {
             this.transform.localPosition = toThisLocation;
+            this.transform.localScale = toThisScale;
             DontMoving = true;
             if(CurrentUnit > 1)
                 WasUnitComplete.Finishing += WasUnitComplete_Finishing;
@@ -140,6 +144,7 @@ public class MoveObject : MonoBehaviour
     {
         yield return new WaitForSeconds(TimeToStart);
         StartCoroutine(moveAnim2(firstPosition, true, 5f));
+        StartCoroutine(methodScale(transform, firstScale, false, 2f));
     }
 
     Vector3 scaleS;
@@ -290,13 +295,13 @@ public class MoveObject : MonoBehaviour
         }
         if (destroy)
         {
-            Destroy(this.transform.gameObject);
+            Destroy(this.gameObject);
         }
         if(killPlaceObject)
             Destroy(placeObject.transform.gameObject);
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (locked)
             return;
