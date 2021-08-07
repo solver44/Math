@@ -125,7 +125,7 @@ public class PaintBackColor : MonoBehaviour
     IEnumerator SmoothScaling(RectTransform scale, bool pros, bool isFirst)
     {
         sleep = true;
-        float scaleDuration = 1;
+        float scaleDuration = 1f;
         float startX = firstScale.x;
         float startY = firstScale.y;
         Vector3 toScale = new Vector3();

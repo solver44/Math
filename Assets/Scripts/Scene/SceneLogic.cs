@@ -77,7 +77,7 @@ public class SceneLogic : MonoBehaviour
 
     public void NextLevel()
     {
-        if (PlayerPrefs.GetInt("ClickingUnit") >= 21)
+        if (PlayerPrefs.GetInt("ClickingUnit") >= 25)
             return;
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

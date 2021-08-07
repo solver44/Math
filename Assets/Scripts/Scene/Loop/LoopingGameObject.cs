@@ -16,15 +16,20 @@ public class LoopingGameObject : MonoBehaviour
 
     private List<GameObject> tempPrefabs = new List<GameObject>();
 
-    private void ParentPlace_changingColl(bool coll, string name)
-    { 
-        if (name != this.name)
+    public static GameObject CurrentObj = null;
+
+    private void ParentPlace_changingColl(bool coll, GameObject child)
+    {
+        if (child.transform.parent.name != this.name)
             return;
 
         if (coll)
             CreateOneMore();
         else
+        {
             DeleteFirst();
+            CurrentObj = child;
+        }
     }
 
     public void CreateOneMore()
@@ -33,6 +38,7 @@ public class LoopingGameObject : MonoBehaviour
         int cnt = tempPrefabs.Count - 1;
         tempPrefabs[cnt].transform.parent = this.transform;
         tempPrefabs[cnt].name = Name;
+        CurrentObj = tempPrefabs[cnt];
         //tempPrefabs[cnt].GetComponent<MoveObject>().Uping += ParentPlace_changingColl;
     }
 
@@ -41,8 +47,8 @@ public class LoopingGameObject : MonoBehaviour
         if (tempPrefabs.Count < 1)
             return;
 
-        Destroy(tempPrefabs[tempPrefabs.Count - 1]);
-        tempPrefabs.RemoveAt(tempPrefabs.Count - 1);
+        Destroy(CurrentObj);
+        tempPrefabs.Remove(CurrentObj);
     }
     void Start()
     {

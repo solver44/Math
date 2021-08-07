@@ -473,7 +473,7 @@ public class MoveObject : MonoBehaviour
     #endregion
 
     public int countOfObjects = 0;
-    static int currentCnt1 = 0;
+    public static int currentCnt1 = 0;
 
     private int currentCnt
     {

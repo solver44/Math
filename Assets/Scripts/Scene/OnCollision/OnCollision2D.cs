@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class OnCollision2D : MonoBehaviour
 {
-    public delegate void ChangeCollision(bool coll, string name);
+    public delegate void ChangeCollision(bool coll, GameObject child);
     public event ChangeCollision changingColl;
 
     public bool CheckInside = true;
@@ -21,13 +21,13 @@ public class OnCollision2D : MonoBehaviour
     public bool OnCollision
     {
         get { return _onCollision; }
-    }
+    } 
 
     private bool collObject = false;
     public bool OnCollisionRayObject
     {
         get { return collObject; }
-        set { collObject = value; changingColl?.Invoke(collObject, currentGameObj.transform.parent.name); }
+        set { collObject = value; changingColl?.Invoke(collObject, currentGameObj); }
     }
 
     private string _nameOfObject = "";
@@ -92,11 +92,11 @@ public class OnCollision2D : MonoBehaviour
         if (coll.transform.tag == "RayObjects") {
             currentGameObj = coll.gameObject;
 
+            OnCollisionRayObject = true;
+
             nameOfObjectsInside.Add(_nameOfTrggeredObject);
             scriptsOfObjectsInside.Add(currentGameObj.transform.GetComponent<MoveObject>());
             scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition = true;
-
-            OnCollisionRayObject = true;
 
             if(!hasCheckButton)
                 checkHaveAll(false);
@@ -106,7 +106,7 @@ public class OnCollision2D : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!other.tag.Equals("RayObjects") && scriptsOfObjectsInside.Count < 1)
+        if (!other.tag.Equals("RayObjects") || scriptsOfObjectsInside.Count < 1)
             return;
 
         bool a = scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition;
@@ -126,14 +126,15 @@ public class OnCollision2D : MonoBehaviour
         else if (showMessage)
         {
             if(ErrorPanel != null)
-            {
                 StartCoroutine(ErrorPanelAnimation());
-            }
         }
     }
 
     private IEnumerator ErrorPanelAnimation()
     {
+        MoveObject.currentCnt1 = 0;
+        locked = false;
+
         ErrorPanel.SetActive(true);
         ErrorPanel.GetComponent<Animator>().SetBool("start", true);
         yield return new WaitForSeconds(1f);
@@ -145,6 +146,8 @@ public class OnCollision2D : MonoBehaviour
     private IEnumerator makeDisableAllObjects(bool _lock)
     {
         yield return new WaitForSeconds(1);
+        if (ErrorPanel != null && ErrorPanel.activeSelf)
+            yield break;
 
         for (int i = 0; i < scriptsOfObjectsInside.Count; i++)
         {
@@ -171,12 +174,12 @@ public class OnCollision2D : MonoBehaviour
         if (coll.transform.tag == "RayObjects")
         {
             currentGameObj = coll.gameObject;
+
+            OnCollisionRayObject = false;
              
             coll.transform.GetComponent<MoveObject>().DontMoveTo1stPosition = false;
             nameOfObjectsInside.Remove(currentGameObj.name);
             scriptsOfObjectsInside.Remove(currentGameObj.transform.GetComponent<MoveObject>());
-
-            OnCollisionRayObject = false;
 
             if (!hasCheckButton)
                 checkHaveAll(false);
