@@ -103,7 +103,7 @@ public class WasUnitComplete : MonoBehaviour
         }
     }
 
-    static int currentUnit = 1;
+    public static int currentUnit = 1;
     bool finish = false;
     public static int CurrentUnit
     {

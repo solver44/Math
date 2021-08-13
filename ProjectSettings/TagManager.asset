@@ -16,6 +16,8 @@ TagManager:
   - Uzbek
   - PanelText
   - trail
+  - KeyboardValue
+  - BalanceItem
   layers:
   - Default
   - TransparentFX

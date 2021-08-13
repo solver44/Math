@@ -5,8 +5,13 @@ using UnityEngine.UI;
 
 public class OpacityEffect : MonoBehaviour
 {
+
     public float From = 20f;
     public float To = 80f;
+
+    [Space]
+    public float Value = -1;
+    public int Unit;
 
     private float currentAlpha = 0f;
 
@@ -16,10 +21,16 @@ public class OpacityEffect : MonoBehaviour
     private bool image = false;
 
     private float r, g, b;
+
+    public static IDictionary<string, string> AllKeybordValues = new Dictionary<string, string>();
     private void Start()
     {
+        Stop = false;
         From /= 100f;
         To /= 100f;
+
+        if (Value != -1)
+            AllKeybordValues.Add(this.transform.parent.name, Value.ToString() + ";" + Unit.ToString());
 
         if (this.TryGetComponent<Image>(out imageRender))
             image = true;
@@ -40,33 +51,42 @@ public class OpacityEffect : MonoBehaviour
     }
 
     private bool up = false;
+    private float timer;
+    private bool _stop = false;
+    public bool Stop { set { _stop = value; if (!value) { imageRender = GetComponent<Image>(); r = imageRender.color.r; g = imageRender.color.g; b = imageRender.color.b; } } get { return _stop; } }
     private void Update()
     {
-        if (!image)
-            currentAlpha = renderer.color.a;
-        else
-            currentAlpha = imageRender.color.a;
+        if (Stop)
+            return;
 
-        if (currentAlpha <= From)
-            up = true;
-        else if (currentAlpha >= To)
-            up = false;
+        if (Time.unscaledTime > timer + .5f)
+        {
+            if (!image)
+                currentAlpha = renderer.color.a;
+            else
+                currentAlpha = imageRender.color.a;
 
-        if (up)
-        {
-            currentAlpha += .01f;
-            if (!image)
-                renderer.color = new Color(r, g, b, currentAlpha);
+            if (currentAlpha <= From)
+                up = true;
+            else if (currentAlpha >= To)
+                up = false;
+
+            if (up)
+            {
+                currentAlpha += .003f;
+                if (!image)
+                    renderer.color = new Color(r, g, b, currentAlpha);
+                else
+                    imageRender.color = new Color(r, g, b, currentAlpha);
+            }
             else
-                imageRender.color = new Color(r, g, b, currentAlpha);
-        }
-        else
-        {
-            currentAlpha -= .01f;
-            if (!image)
-                renderer.color = new Color(r, g, b, currentAlpha);
-            else
-                imageRender.color = new Color(r, g, b, currentAlpha);
+            {
+                currentAlpha -= .003f;
+                if (!image)
+                    renderer.color = new Color(r, g, b, currentAlpha);
+                else
+                    imageRender.color = new Color(r, g, b, currentAlpha);
+            }
         }
     }
 }
