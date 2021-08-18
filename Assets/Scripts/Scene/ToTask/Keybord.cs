@@ -42,7 +42,6 @@ public class Keybord : MonoBehaviour
     {
         foreach (var item in OpacityEffect.AllKeybordValues.Where(c => c.Value.Split(';')[1] == WasUnitComplete.CurrentUnit.ToString()))
         {
-            Debug.Log(item.Value.Split(';')[1]);
             string val = item.Value.Split(';')[0];
             listValueAnswers.Add(item.Key, val);
         }
@@ -55,7 +54,7 @@ public class Keybord : MonoBehaviour
     {
         if (hitTouch && hitTouch.collider.transform.CompareTag("KeyboardValue"))
         {
-            if (currentText != null && currentText.GetComponent<OpacityEffect>().Stop != true)
+            if (currentText != null && !currentText.GetComponent<OpacityEffect>().Stop)
             {
                 currentText.GetComponent<OpacityEffect>().Stop = true;
                 currentText.GetComponent<Image>().color = new Color(1, 1, 1, 0.3f);
@@ -69,8 +68,36 @@ public class Keybord : MonoBehaviour
                 currentText.GetComponent<Image>().color = new Color32(255, 195, 100, 100);
                 currentText.GetComponent<OpacityEffect>().Stop = false;
             }
+            currentSprite = currentText.GetComponent<Image>().sprite;
             parentName = currentText.transform.parent.name;
+            ChangeKeyboardType();
             StartCoroutine(showKeyboard());
+        }
+    }
+
+    private void ChangeKeyboardType()
+    {
+        string contentType = OpacityEffect.AllKeybordValues.First(c => c.Key == parentName).Value;
+        contentType = contentType.Split(';')[2];
+
+        KeyboardType type = keyboard.GetComponent<KeyboardType>();
+        switch (contentType)
+        {
+            case "Numbers":
+                type.Numbers.SetActive(true);
+                type.Symbols.SetActive(false);
+                type.Alphabetics.SetActive(false);
+                break;
+            case "Symbols":
+                type.Numbers.SetActive(false);
+                type.Symbols.SetActive(true);
+                type.Alphabetics.SetActive(false);
+                break;
+            case "Alphabetics":
+                type.Numbers.SetActive(false);
+                type.Symbols.SetActive(false);
+                type.Alphabetics.SetActive(true);
+                break;
         }
     }
 
@@ -143,10 +170,10 @@ public class Keybord : MonoBehaviour
         }
         else
         {
-            tempText.color = new Color32(0, 0, 0, 255);
+            tempText.color = currentTextColor;
         }
     }
-    private void write(int num)
+    private void write(string num)
     {
         if (currentText == null)
             return;
@@ -171,7 +198,10 @@ public class Keybord : MonoBehaviour
         }
     }
     string parentName;
-    private IEnumerator addComponent(int num)
+
+    Color currentTextColor;
+    Sprite currentSprite;
+    private IEnumerator addComponent(string num)
     {
         yield return new WaitForSeconds(0.1f);
 
@@ -180,7 +210,10 @@ public class Keybord : MonoBehaviour
         textComponent.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
         textComponent.alignment = TextAnchor.MiddleCenter;
         textComponent.fontSize = FontSize;
-        textComponent.color = new Color(0, 0, 0, 1);
+        string[] rgb = OpacityEffect.AllKeybordValues[parentName].Split(';')[3].Split('/');
+        currentTextColor = new Color(float.Parse(rgb[0]), float.Parse(rgb[1]), float.Parse(rgb[2]));
+
+        textComponent.color = currentTextColor;
         textComponent.resizeTextForBestFit = true;
         textComponent.resizeTextMaxSize = FontSize;
 
@@ -193,34 +226,46 @@ public class Keybord : MonoBehaviour
         switch (nameBtn)
         {
             case "Num1":
-                write(1);
+                write("1");
                 break;
             case "Num2":
-                write(2);
+                write("2");
                 break;
             case "Num3":
-                write(3);
+                write("3");
                 break;
             case "Num4":
-                write(4);
+                write("4");
                 break;
             case "Num5":
-                write(5);
+                write("5");
                 break;
             case "Num6":
-                write(6);
+                write("6");
                 break;
             case "Num7":
-                write(7);
+                write("7");
                 break;
             case "Num8":
-                write(8);
+                write("8");
                 break;
             case "Num9":
-                write(9);
+                write("9");
                 break;
             case "Num0":
-                write(0);
+                write("0");
+                break;
+            case "DontEqual":
+                write("≠");
+                break;
+            case "Equal":
+                write("=");
+                break;
+            case "BigSymbol":
+                write("<");
+                break;
+            case "SmallSymbol":
+                write(">");
                 break;
             case "BackSpace":
                 delete();
@@ -265,7 +310,8 @@ public class Keybord : MonoBehaviour
     {
         Destroy(textComponent);
         yield return new WaitForSeconds(0.1f);
-        currentText.AddComponent<Image>();
+        Image temp = currentText.AddComponent<Image>();
+        temp.sprite = currentSprite;
         yield return new WaitForSeconds(0.1f);
         currentText.GetComponent<OpacityEffect>().Stop = false;
     }

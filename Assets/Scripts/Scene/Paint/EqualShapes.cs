@@ -28,6 +28,7 @@ public class EqualShapes : MonoBehaviour
         {
             if(sumCount)
                 info.Count++;
+            Debug.Log(info.Count);
             return true;
         }
         else

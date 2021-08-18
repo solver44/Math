@@ -10,8 +10,11 @@ public class OpacityEffect : MonoBehaviour
     public float To = 80f;
 
     [Space]
-    public float Value = -1;
+    public string Value = "null";
     public int Unit;
+    [Tooltip("Numbers, Symbols, Alphabetics")]
+    public string KeyboardType = "Numbers";
+    public Color ColorValue = new Color(1, 1, 1, 1);
 
     private float currentAlpha = 0f;
 
@@ -29,8 +32,8 @@ public class OpacityEffect : MonoBehaviour
         From /= 100f;
         To /= 100f;
 
-        if (Value != -1)
-            AllKeybordValues.Add(this.transform.parent.name, Value.ToString() + ";" + Unit.ToString());
+        if (Value != "null")
+            AllKeybordValues.Add(this.transform.parent.name, Value.ToString() + ";" + Unit.ToString() + ";" + KeyboardType.ToString() + ";" + ColorValue.r + "/" + ColorValue.g + "/" + ColorValue.b);
 
         if (this.TryGetComponent<Image>(out imageRender))
             image = true;
