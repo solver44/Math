@@ -1708,6 +1708,8 @@ MonoBehaviour:
   To: 30
   Value: 1
   Unit: 2
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &255931249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2575,6 +2577,8 @@ MonoBehaviour:
   To: 30
   Value: 8
   Unit: 2
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &418438666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3167,6 +3171,8 @@ MonoBehaviour:
   To: 30
   Value: 2
   Unit: 4
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &475506498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3808,6 +3814,8 @@ MonoBehaviour:
   To: 30
   Value: 2
   Unit: 2
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &630995064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3925,6 +3933,8 @@ MonoBehaviour:
   To: 30
   Value: -1
   Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &632455998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4104,6 +4114,8 @@ MonoBehaviour:
   To: 30
   Value: 8
   Unit: 2
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &667874895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4248,6 +4260,8 @@ MonoBehaviour:
   To: 30
   Value: 4
   Unit: 4
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &677794256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4664,6 +4678,8 @@ MonoBehaviour:
   To: 30
   Value: 3
   Unit: 4
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &774899229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4755,6 +4771,8 @@ MonoBehaviour:
   To: 30
   Value: -1
   Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &809539060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5780,6 +5798,8 @@ MonoBehaviour:
   To: 30
   Value: 6
   Unit: 2
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1079145975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6043,6 +6063,8 @@ MonoBehaviour:
   To: 30
   Value: 8
   Unit: 2
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1154839443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6188,7 +6210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.4117647}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6471,6 +6493,8 @@ MonoBehaviour:
   To: 30
   Value: 8
   Unit: 2
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!61 &1307521569
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7805,6 +7829,8 @@ MonoBehaviour:
   To: 30
   Value: 7
   Unit: 2
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1675669063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9401,6 +9427,8 @@ MonoBehaviour:
   To: 30
   Value: -1
   Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &2017823086
 MonoBehaviour:
   m_ObjectHideFlags: 0

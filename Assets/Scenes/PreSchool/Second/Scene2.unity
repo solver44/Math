@@ -2007,8 +2007,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442636674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7030001, y: -4.44, z: 0}
-  m_LocalScale: {x: 0.41062987, y: 0.41457123, z: 1.5849375}
+  m_LocalPosition: {x: 1.72, y: -4.933, z: 0}
+  m_LocalScale: {x: 0.31455192, y: 0.31757107, z: 1.2140985}
   m_Children: []
   m_Father: {fileID: 1549071716}
   m_RootOrder: 0
@@ -2104,7 +2104,7 @@ MonoBehaviour:
   DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
-  toThisLocation: {x: -7.36, y: -4.42}
+  toThisLocation: {x: -6.46, y: -2.41}
   toThisScale: {x: 0.2872553, y: 0.2900124}
   StartFromThisPos: 0
   CurrentUnit: 1
@@ -2160,7 +2160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -841.79987, y: 71}
+  m_AnchoredPosition: {x: -841.79987, y: 228}
   m_SizeDelta: {x: 1231.7318, y: 305.96924}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &444942826
@@ -3229,7 +3229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 143, y: 25}
+  m_AnchoredPosition: {x: 45, y: 244}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &807322101
@@ -3275,7 +3275,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 657, y: -152.98}
+  m_AnchoredPosition: {x: 657, y: 4.019989}
   m_SizeDelta: {x: 2192.5903, y: 305.96924}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &816710246
@@ -4950,6 +4950,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1255261290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5441,7 +5445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -194, y: 25}
+  m_AnchoredPosition: {x: -93, y: 244}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1390446661
@@ -5616,6 +5620,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1444719340
 GameObject:
   m_ObjectHideFlags: 0
@@ -6598,6 +6606,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1596173157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6798,6 +6810,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1621099638
 GameObject:
   m_ObjectHideFlags: 0
@@ -7002,6 +7018,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1637618785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7814,7 +7834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -643, y: -153}
+  m_AnchoredPosition: {x: -643, y: 3.9999847}
   m_SizeDelta: {x: 2394.2163, y: 305.96924}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1753025012
@@ -8532,8 +8552,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914315015}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.37, y: -4.44, z: 0}
-  m_LocalScale: {x: 0.41083306, y: 0.41074035, z: 1.4589142}
+  m_LocalPosition: {x: -1.49, y: -4.937, z: 0}
+  m_LocalScale: {x: 0.31470755, y: 0.31463656, z: 1.1175618}
   m_Children: []
   m_Father: {fileID: 1549071716}
   m_RootOrder: 1
@@ -8629,7 +8649,7 @@ MonoBehaviour:
   DontMoving: 0
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
-  toThisLocation: {x: 7.18, y: -4.46}
+  toThisLocation: {x: 6.28, y: -2.39}
   toThisScale: {x: 0.2873974, y: 0.2873974}
   StartFromThisPos: 0
   CurrentUnit: 1
@@ -9058,7 +9078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 626.99994, y: 69}
+  m_AnchoredPosition: {x: 626.99994, y: 225.99998}
   m_SizeDelta: {x: 2394.2163, y: 305.96924}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2060440752

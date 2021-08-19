@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,6 +52,7 @@ public class OpacityEffect : MonoBehaviour
             imageRender.color = new Color(r, g, b, From);
         }
         currentAlpha = From;
+
     }
 
     private bool up = false;

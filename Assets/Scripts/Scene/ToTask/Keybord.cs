@@ -47,16 +47,18 @@ public class Keybord : MonoBehaviour
         }
     }
 
-    private GameObject currentText;
+    private GameObject currentText = null;
 
     Image tempImg = null;
     void SetRayCast(RaycastHit2D hitTouch)
     {
         if (hitTouch && hitTouch.collider.transform.CompareTag("KeyboardValue"))
         {
-            if (currentText != null && !currentText.GetComponent<OpacityEffect>().Stop)
+            if (currentText != null && !currentText.GetComponent<OpacityEffect>().Stop && currentText.TryGetComponent<Image>(out tempImg))
             {
                 currentText.GetComponent<OpacityEffect>().Stop = true;
+                if(currentSprite != null)
+                    currentText.GetComponent<Image>().sprite = currentSprite;
                 currentText.GetComponent<Image>().color = new Color(1, 1, 1, 0.3f);
                 currentText.GetComponent<OpacityEffect>().Stop = false;
             }
@@ -67,8 +69,8 @@ public class Keybord : MonoBehaviour
                 currentText.GetComponent<OpacityEffect>().Stop = true;
                 currentText.GetComponent<Image>().color = new Color32(255, 195, 100, 100);
                 currentText.GetComponent<OpacityEffect>().Stop = false;
+                currentSprite = currentText.GetComponent<Image>().sprite;
             }
-            currentSprite = currentText.GetComponent<Image>().sprite;
             parentName = currentText.transform.parent.name;
             ChangeKeyboardType();
             StartCoroutine(showKeyboard());
@@ -77,7 +79,7 @@ public class Keybord : MonoBehaviour
 
     private void ChangeKeyboardType()
     {
-        string contentType = OpacityEffect.AllKeybordValues.First(c => c.Key == parentName).Value;
+        string contentType = OpacityEffect.AllKeybordValues.FirstOrDefault(c => c.Key == parentName).Value;
         contentType = contentType.Split(';')[2];
 
         KeyboardType type = keyboard.GetComponent<KeyboardType>();
@@ -173,6 +175,8 @@ public class Keybord : MonoBehaviour
             tempText.color = currentTextColor;
         }
     }
+
+    Text tempText = null;
     private void write(string num)
     {
         if (currentText == null)
@@ -186,14 +190,13 @@ public class Keybord : MonoBehaviour
         }
 
 
-        Text temp = null;
-        if (!currentText.TryGetComponent<Text>(out temp)) {
+        if (!currentText.TryGetComponent<Text>(out tempText)) {
             currentText.GetComponent<OpacityEffect>().Stop = true;
             Destroy(currentText.GetComponent<Image>());
             StartCoroutine(addComponent(num));
         }else
         {
-            textComponent = temp;
+            textComponent = tempText;
             textComponent.text += num.ToString();
         }
     }
@@ -308,10 +311,12 @@ public class Keybord : MonoBehaviour
     }
     private IEnumerator deleteComponent()
     {
-        Destroy(textComponent);
+        if(currentText.TryGetComponent<Text>(out textComponent))
+            Destroy(textComponent);
         yield return new WaitForSeconds(0.1f);
         Image temp = currentText.AddComponent<Image>();
-        temp.sprite = currentSprite;
+        if (currentSprite != null) 
+            temp.sprite = currentSprite;
         yield return new WaitForSeconds(0.1f);
         currentText.GetComponent<OpacityEffect>().Stop = false;
     }
