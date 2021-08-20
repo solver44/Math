@@ -4,8 +4,8 @@ using UnityEngine;
 public class MoveObject : MonoBehaviour
 {
     #region Events
-    public delegate void MouseOrTouchUp();
-    public event MouseOrTouchUp Uping;
+    public delegate void MouseOrTouchUp(GameObject currObj);
+    public static event MouseOrTouchUp MouseUp;
     #endregion
 
     public bool DontMoving = false;
@@ -164,7 +164,7 @@ public class MoveObject : MonoBehaviour
 
             if (isAnimator)
                 anim.SetBool("zoom", true);
-            else
+            else if (isScale)
                 StartCoroutine(methodScale(transform, new Vector3(xScale + (xScale * scaleRadius), yScale + (yScale * scaleRadius)), false, 1f));
 
             if (!dontSortLayer)
@@ -202,6 +202,8 @@ public class MoveObject : MonoBehaviour
     {
         if (DontMoving)
             return;
+
+        MouseUp?.Invoke(this.transform.gameObject);
 
         if (!locked && !empty)
         {
@@ -369,7 +371,7 @@ public class MoveObject : MonoBehaviour
 
             if (isAnimator)
                 anim.SetBool("zoom", true);
-            else
+            else if(isScale)
                 StartCoroutine(effect.Scale(transform, new Vector3(xScale + (xScale * scaleRadius), yScale + (yScale * scaleRadius)), 1f));
 
             if (!dontSortLayer)

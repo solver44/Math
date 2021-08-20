@@ -12,6 +12,7 @@ public class OnCollision2D : MonoBehaviour
     public event ChangeCollision changingColl;
 
     public bool CheckInside = true;
+    public bool HaveCells = false;
     public GameObject CheckButton = null;
     public GameObject ErrorPanel = null; 
     public string[] NameOfObjects = null;
@@ -80,6 +81,9 @@ public class OnCollision2D : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
+        if (HaveCells && !CellScript.collAnotherObj && currentGameObj != null)
+            DeleteEntered(coll.gameObject, true);
+
         if (locked)
             return;
 
@@ -98,7 +102,7 @@ public class OnCollision2D : MonoBehaviour
             scriptsOfObjectsInside.Add(currentGameObj.transform.GetComponent<MoveObject>());
             scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition = true;
 
-            if(!hasCheckButton)
+            if(!hasCheckButton && !HaveCells)
                 checkHaveAll(false);
         }
     }
@@ -106,7 +110,7 @@ public class OnCollision2D : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!other.tag.Equals("RayObjects") || scriptsOfObjectsInside.Count < 1)
+        if (HaveCells || !other.tag.Equals("RayObjects") || scriptsOfObjectsInside.Count < 1)
             return;
 
         bool a = scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition;
@@ -173,16 +177,25 @@ public class OnCollision2D : MonoBehaviour
 
         if (coll.transform.tag == "RayObjects")
         {
-            currentGameObj = coll.gameObject;
-
-            OnCollisionRayObject = false;
-             
-            coll.transform.GetComponent<MoveObject>().DontMoveTo1stPosition = false;
-            nameOfObjectsInside.Remove(currentGameObj.name);
-            scriptsOfObjectsInside.Remove(currentGameObj.transform.GetComponent<MoveObject>());
-
-            if (!hasCheckButton)
-                checkHaveAll(false);
+            DeleteEntered(coll.gameObject, false);
         }
+    }
+
+    public void DeleteEntered(GameObject coll, bool onlyThis)
+    {
+        currentGameObj = coll;
+
+        if (!onlyThis)
+        {
+            OnCollisionRayObject = false;
+            collObject = false;
+        }
+
+        coll.transform.GetComponent<MoveObject>().DontMoveTo1stPosition = false;
+        nameOfObjectsInside.Remove(currentGameObj.name);
+        scriptsOfObjectsInside.Remove(currentGameObj.transform.GetComponent<MoveObject>());
+
+        if (!hasCheckButton && !HaveCells)
+            checkHaveAll(false);
     }
 }

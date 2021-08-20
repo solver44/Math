@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class LoopingGameObject : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class LoopingGameObject : MonoBehaviour
     public int Columns = 0;   //bo'yi 
     public int Rows = 0;    //eni
     public GameObject Cell = null;
+    //Values
+    public Vector2[] dontCreateThesePlaces;
     [Header("Additional")]
     public float RangeX = 0f;
     public float RangeY = 0f;
@@ -26,6 +29,9 @@ public class LoopingGameObject : MonoBehaviour
     public static GameObject CurrentObj = null;
 
     RectTransform rectT;
+
+
+    Touch touch;
     private void Awake()
     {
         if(Cells)
@@ -35,31 +41,53 @@ public class LoopingGameObject : MonoBehaviour
             float width = rectT.rect.width / Columns;
             float height = rectT.rect.height / Rows;
 
-            Vector2 leftUpCorner = new Vector2(0 - (rectT.rect.width / 2), 0 - rectT.rect.height / 2);
+            BoxCollider2D coll = new BoxCollider2D();
+            Rigidbody2D rb = new Rigidbody2D();
+
+            Vector2 leftUpCorner = new Vector2(0 - (rectT.rect.width / 2) + width / 2, 0 - rectT.rect.height / 2 + height / 2);
             float firstX = leftUpCorner.x;
             for (int r = 0; r < Rows; r++)
             {
                 for (int c = 0; c < Columns; c++)
                 {
+                    if(dontCreateThesePlaces.Contains(new Vector2(r, c)))
+                    {
+                        leftUpCorner = new Vector2(leftUpCorner.x + width, leftUpCorner.y);
+                        continue;
+                    }
                     cells[r, c] = Instantiate(Cell, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<RectTransform>();
                     cells[r, c].parent = rectT.transform;
-                    cells[r, c].name = "cell" + (r * 10 + c + 1).ToString();
+                    cells[r, c].name = "cell" + r.ToString() + "." + c.ToString();
                     cells[r, c].localScale = new Vector3(1, 1, 1);
                     cells[r, c].rect.Set(leftUpCorner.x, leftUpCorner.y, width, height);
                     cells[r, c].localPosition = leftUpCorner;
+                    coll = cells[r, c].transform.gameObject.AddComponent<BoxCollider2D>();
+                    rb = cells[r, c].transform.gameObject.AddComponent<Rigidbody2D>();
+                    cells[r, c].transform.gameObject.AddComponent<CellScript>();
+                    cells[r, c].transform.GetComponent<CellScript>().TouchedCell += LoopingGameObject_TouchedCell;
+                    rb.bodyType = RigidbodyType2D.Kinematic;
+                    rb.useFullKinematicContacts = true;
+                    coll.isTrigger = true;
+                    coll.size = new Vector2(width/ 4, height / 4);
                     leftUpCorner = new Vector2(leftUpCorner.x + width, leftUpCorner.y);
                 }
                 leftUpCorner = new Vector2(firstX, leftUpCorner.y + height);
             }
         }
     }
+
+    private void LoopingGameObject_TouchedCell(int r, int c, GameObject obj)
+    {
+        obj.transform.position = cells[r, c].transform.position;
+    }
+
     private void ParentPlace_changingColl(bool coll, GameObject child)
     {
         if (child.transform.parent.name != this.name)
             return;
 
         if (coll)
-            CreateOneMore();
+            CreateOneMore(false);
         else
         {
             DeleteFirst();
@@ -67,13 +95,16 @@ public class LoopingGameObject : MonoBehaviour
         }
     }
 
-    public void CreateOneMore()
+    public void CreateOneMore(bool dontCreateMoreOne)
     {
-        tempPrefabs.Add(Instantiate(Prefab, this.transform.position, Quaternion.identity));
-        int cnt = tempPrefabs.Count - 1;
-        tempPrefabs[cnt].transform.parent = this.transform;
-        tempPrefabs[cnt].name = Name;
-        CurrentObj = tempPrefabs[cnt];
+        if ((dontCreateMoreOne && tempPrefabs.Count < 2) || !dontCreateMoreOne)
+        {
+            tempPrefabs.Add(Instantiate(Prefab, this.transform.position, Quaternion.identity));
+            int cnt = tempPrefabs.Count - 1;
+            tempPrefabs[cnt].transform.parent = this.transform;
+            tempPrefabs[cnt].name = Name;
+            CurrentObj = tempPrefabs[cnt];
+        }
         //tempPrefabs[cnt].GetComponent<MoveObject>().Uping += ParentPlace_changingColl;
     }
 
