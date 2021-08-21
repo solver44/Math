@@ -77,12 +77,12 @@ public class Keybord : MonoBehaviour
         }
     }
 
+    KeyboardType type => keyboard.GetComponent<KeyboardType>();
     private void ChangeKeyboardType()
     {
         string contentType = OpacityEffect.AllKeybordValues.FirstOrDefault(c => c.Key == parentName).Value;
         contentType = contentType.Split(';')[2];
 
-        KeyboardType type = keyboard.GetComponent<KeyboardType>();
         switch (contentType)
         {
             case "Numbers":
@@ -197,7 +197,11 @@ public class Keybord : MonoBehaviour
         }else
         {
             textComponent = tempText;
-            textComponent.text += num.ToString();
+            if(type.Symbols.activeSelf && textComponent.text.Length < 1)
+                textComponent.text += num.ToString();
+            else if(!type.Symbols.activeSelf)
+                textComponent.text += num.ToString();
+
         }
     }
     string parentName;
@@ -269,6 +273,12 @@ public class Keybord : MonoBehaviour
                 break;
             case "SmallSymbol":
                 write(">");
+                break;
+            case "PlusSymbol":
+                write("+");
+                break;
+            case "MinusSymbol":
+                write("-");
                 break;
             case "BackSpace":
                 delete();

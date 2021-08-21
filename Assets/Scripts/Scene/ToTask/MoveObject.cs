@@ -152,7 +152,7 @@ public class MoveObject : MonoBehaviour
     float yScale = 0;
 
     ScaleEffect effect = new ScaleEffect();
-    private void OnMouseDown()
+    void MouseDown()
     {
         if (DontMoving)
             return;
@@ -173,32 +173,29 @@ public class MoveObject : MonoBehaviour
     }
 
     private bool scale = false;
-    private void OnMouseDrag()
+    void MouseDrag()
     {
-        if (DontMoving)
+        if (DontMoving || locked)
             return;
 
-        if (!locked)
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
+
+        if (anyLocation)
         {
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
-
-            if (anyLocation)
-            {
-                if (IsLocalPos)
-                    firstPosition = transform.localPosition;
-                else
-                    firstPosition = transform.position;
-            }
-
+            if (IsLocalPos)
+                firstPosition = transform.localPosition;
+            else
+                firstPosition = transform.position;
         }
+
     }
     bool toLocalPos = false;
     bool destroy = false;
     bool empty = false;
 
     [HideInInspector] public bool DontMoveTo1stPosition = false;
-    private void OnMouseUp()
+    void MouseUpFunc()
     {
         if (DontMoving)
             return;
@@ -303,6 +300,8 @@ public class MoveObject : MonoBehaviour
             Destroy(placeObject.transform.gameObject);
     }
 
+    bool drag = false;
+    RaycastHit2D hit;
     void Update()
     {
         if (locked)
@@ -314,6 +313,37 @@ public class MoveObject : MonoBehaviour
                 placeLocation = placeObject.transform.localPosition;
             else
                 placeLocation = placeObject.transform.position;
+        }
+
+                    
+        if (Application.isEditor)
+        {
+            if (drag)
+                MouseDrag();
+            hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0);
+            if (!hit || hit.collider.transform != this.transform)
+                return;
+            // For Mouse
+            if (Input.GetMouseButtonDown(0)) { MouseDown(); drag = true; }
+            if(Input.GetMouseButtonUp(0)) { MouseUpFunc(); drag = false; }
+        }
+        else
+        {
+            // For Touches
+            if (Input.touchCount > 0)
+            {
+                touch = Input.GetTouch(0);
+                hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 0);
+                if (hit && transform == hit.collider.transform)
+                {
+                    if (touch.phase == TouchPhase.Began)
+                        MouseDown();
+                    if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+                        MouseDrag();
+                    if (touch.phase == TouchPhase.Ended)
+                        MouseUpFunc();
+                }
+            }
         }
 
         //if (!isAnimator && isScale)
@@ -328,13 +358,6 @@ public class MoveObject : MonoBehaviour
         //        transform.localScale = Vector3.Lerp(transform.localScale, scaleS, .08f);
         //    }
         //}
-
-#if UNITY_ANDROID && !UNITY_EDITOR
-        if (Input.touchCount > 0)
-        {
-            TouchFunc();   
-        }
-#endif
     }
 
     #region Touch for mobile devices

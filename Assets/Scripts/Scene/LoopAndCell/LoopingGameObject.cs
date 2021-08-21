@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class LoopingGameObject : MonoBehaviour
 {
@@ -16,8 +17,10 @@ public class LoopingGameObject : MonoBehaviour
     public int Columns = 0;   //bo'yi 
     public int Rows = 0;    //eni
     public GameObject Cell = null;
+    public WasUnitComplete Unit = null;
     //Values
     public Vector2[] dontCreateThesePlaces;
+    public Vector2[] AnswersPlaces;
     [Header("Additional")]
     public float RangeX = 0f;
     public float RangeY = 0f;
@@ -76,9 +79,23 @@ public class LoopingGameObject : MonoBehaviour
         }
     }
 
+    List<Vector2> objPlaces = new List<Vector2>();
     private void LoopingGameObject_TouchedCell(int r, int c, GameObject obj)
     {
         obj.transform.position = cells[r, c].transform.position;
+        if (objPlaces.Contains(new Vector2(r, c)))
+            objPlaces.Remove(new Vector2(r, c));
+
+        objPlaces.Add(new Vector2(r, c));
+        if(objPlaces.Count == AnswersPlaces.Count())
+            checkIt();
+    }
+
+    private void checkIt()
+    {
+        bool getBoolean = objPlaces.All(AnswersPlaces.Contains);
+        if (getBoolean)
+            Unit.CompleteUnit();
     }
 
     private void ParentPlace_changingColl(bool coll, GameObject child)
@@ -99,10 +116,11 @@ public class LoopingGameObject : MonoBehaviour
     {
         if ((dontCreateMoreOne && tempPrefabs.Count < 2) || !dontCreateMoreOne)
         {
-            tempPrefabs.Add(Instantiate(Prefab, this.transform.position, Quaternion.identity));
+            tempPrefabs.Add(Instantiate(Prefab, Vector3.zero, Quaternion.identity));
             int cnt = tempPrefabs.Count - 1;
             tempPrefabs[cnt].transform.parent = this.transform;
             tempPrefabs[cnt].name = Name;
+            tempPrefabs[cnt].transform.localPosition = Vector3.zero;
             CurrentObj = tempPrefabs[cnt];
         }
         //tempPrefabs[cnt].GetComponent<MoveObject>().Uping += ParentPlace_changingColl;
@@ -144,5 +162,4 @@ public class LoopingGameObject : MonoBehaviour
             }
         }
     }
-
 }

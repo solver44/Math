@@ -7,7 +7,7 @@ public class CellScript : MonoBehaviour
     public delegate void Cell(int r, int c, GameObject obj);
     public event Cell TouchedCell;
 
-    public static bool collAnotherObj = false;
+    public static List<Transform> StaticObjects = new List<Transform>();
     GameObject tempObj = null;
 
 
@@ -34,19 +34,16 @@ public class CellScript : MonoBehaviour
             return;
         if(coll.gameObject.name.Contains("cube"))
         {
-            collAnotherObj = true;
             tempObj = coll.gameObject;
+            StaticObjects.Add(tempObj.transform);
             onCollision = true;
             stop = true;
         }
     }
-    void OnTriggerStay2D(Collider2D coll)
-    {
-        collAnotherObj = true;
-    }
     void OnTriggerExit2D(Collider2D coll)
     {
-        collAnotherObj = false;
+        if (coll.gameObject.name.Contains("cube") && tempObj != null)
+            StaticObjects.Remove(tempObj.transform);
         onCollision = false;
         tempObj = null;
         stop = false;

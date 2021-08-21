@@ -74,6 +74,14 @@ public class OnCollision2D : MonoBehaviour
             hasCheckButton = true;
             CheckButton.GetComponent<Button>().onClick.AddListener(delegate () { checkHaveAll(true); });
         }
+
+        MoveObject.MouseUp += MoveObject_MouseUp;
+    }
+
+    private void MoveObject_MouseUp(GameObject currObj)
+    {
+        if (HaveCells && !CellScript.StaticObjects.Contains(currObj.transform))
+            DeleteEntered(currObj.gameObject, true);
     }
 
     List<string> nameOfObjectsInside = new List<string>();
@@ -81,9 +89,6 @@ public class OnCollision2D : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (HaveCells && !CellScript.collAnotherObj && currentGameObj != null)
-            DeleteEntered(coll.gameObject, true);
-
         if (locked)
             return;
 
