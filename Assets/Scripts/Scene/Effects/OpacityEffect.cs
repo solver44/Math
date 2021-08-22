@@ -34,7 +34,9 @@ public class OpacityEffect : MonoBehaviour
         To /= 100f;
 
         if (Value != "null")
+        {
             AllKeybordValues.Add(this.transform.parent.name, Value.ToString() + ";" + Unit.ToString() + ";" + KeyboardType.ToString() + ";" + ColorValue.r + "/" + ColorValue.g + "/" + ColorValue.b);
+        }
 
         if (this.TryGetComponent<Image>(out imageRender))
             image = true;

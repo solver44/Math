@@ -34,7 +34,7 @@ public class Main : MonoBehaviour
         {
             int currentLVL = PlayerPrefs.GetInt("CurrentLevel");
             CurrentLevel.text = currentLVL.ToString();
-            rangeOfLevel = currentLVL * 0.2f; //Начислить сумма заполнения лвл рисункок
+            rangeOfLevel = currentLVL * 0.02f; //Начислить сумма заполнения лвл рисункок
             CurrentLevelImg.fillAmount = 0; //И поставить
         }
         else

@@ -636,7 +636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 113676781}
   m_Layer: 0
-  m_Name: t1
+  m_Name: empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1009,9 +1009,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256697811}
-  - component: {fileID: 256697814}
   - component: {fileID: 256697813}
   - component: {fileID: 256697812}
+  - component: {fileID: 256697814}
   m_Layer: 0
   m_Name: res2
   m_TagString: RayObjects
@@ -1050,6 +1050,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 25.63, y: 0.15}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -1064,6 +1067,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 2094263347}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &256697813
 SpriteRenderer:
@@ -1115,19 +1119,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &256697814
-BoxCollider:
+--- !u!61 &256697814
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256697810}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.17, y: 2.12}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5100002, y: 2.4524083, z: 0.2}
-  m_Center: {x: 0, y: -0.12932548, z: 0}
+  m_Size: {x: 2.17, y: 2.12}
+  m_EdgeRadius: 0
 --- !u!1 &280086491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,9 +2036,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 579837804}
-  - component: {fileID: 579837807}
   - component: {fileID: 579837806}
   - component: {fileID: 579837805}
+  - component: {fileID: 579837807}
   m_Layer: 0
   m_Name: t2
   m_TagString: RayObjects
@@ -2060,6 +2077,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -2074,6 +2094,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &579837806
 SpriteRenderer:
@@ -2125,19 +2146,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &579837807
-BoxCollider:
+--- !u!61 &579837807
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579837803}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.17, y: 2.12}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.7014627, y: 3.5197682, z: 0.19999999}
-  m_Center: {x: 0, y: 0.0000009536743, z: 0}
+  m_Size: {x: 2.17, y: 2.12}
+  m_EdgeRadius: 0
 --- !u!1 &583851645
 GameObject:
   m_ObjectHideFlags: 0
@@ -3032,9 +3066,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 946287589}
-  - component: {fileID: 946287592}
   - component: {fileID: 946287591}
   - component: {fileID: 946287590}
+  - component: {fileID: 946287592}
   m_Layer: 0
   m_Name: res1
   m_TagString: RayObjects
@@ -3073,6 +3107,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.5
@@ -3087,6 +3124,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 2094263347}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &946287591
 SpriteRenderer:
@@ -3138,19 +3176,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &946287592
-BoxCollider:
+--- !u!61 &946287592
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946287588}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.17, y: 1.08}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5100002, y: 1.4602239, z: 0.2}
-  m_Center: {x: 0, y: -0.1422588, z: 0}
+  m_Size: {x: 2.17, y: 1.08}
+  m_EdgeRadius: 0
 --- !u!1 &959048974
 GameObject:
   m_ObjectHideFlags: 0
@@ -5282,9 +5333,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1767481358}
-  - component: {fileID: 1767481361}
   - component: {fileID: 1767481360}
   - component: {fileID: 1767481359}
+  - component: {fileID: 1767481361}
   m_Layer: 0
   m_Name: t3
   m_TagString: RayObjects
@@ -5323,6 +5374,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0.12, y: 3.78}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -5337,6 +5391,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 693303558}
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &1767481360
 SpriteRenderer:
@@ -5388,19 +5443,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1767481361
-BoxCollider:
+--- !u!61 &1767481361
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767481357}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.17, y: 1.08}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8343709, y: 3.4372525, z: 0.19999999}
-  m_Center: {x: 0, y: 0.0000009536743, z: 0}
+  m_Size: {x: 2.17, y: 1.08}
+  m_EdgeRadius: 0
 --- !u!1 &1775943294
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class DrawLines : MonoBehaviour
     //Public Variables
     public bool SpecialPositions = true; 
     public bool StartFromFirstObject = true;
+    public bool DontReturn = false;
     public GameObject[] Objects;
     public Material material;
     public float Range = .3f;
@@ -54,7 +55,10 @@ public class DrawLines : MonoBehaviour
             }
         }
 
-        WasUnitComplete.Finishing += WasUnitComplete_Finishing;
+        if(CurrentUnit > 1)
+            WasUnitComplete.Finishing += WasUnitComplete_Finishing;
+        else
+            StartCoroutine(setPos());
     }
 
     private void Effect_Scaled()
@@ -96,7 +100,9 @@ public class DrawLines : MonoBehaviour
     {
         get { return _currentChildIndex; }
         set { _currentChildIndex = value;
-            if (_currentChildIndex >= tempCount || childObjects[_currentParentIndex, _currentChildIndex] == null)
+            if (_currentChildIndex < 0)
+                _currentChildIndex += 2;
+            else if (_currentChildIndex >= tempCount || childObjects[_currentParentIndex, _currentChildIndex] == null)
                 _currentChildIndex = 0;
             childPos = childObjects[_currentParentIndex, _currentChildIndex].transform.position; }
     }
@@ -107,56 +113,94 @@ public class DrawLines : MonoBehaviour
         get { return completedTasksCount; }
         set { completedTasksCount = value; if (completedTasksCount == count) Parent.CompleteUnit(); }
     }
+    Touch touch;
+    RaycastHit2D hit;
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Application.isEditor)
         {
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePos.z = 0;
-
-            if (Vector2.Distance(mousePos, childPos) > Range)
-                return;
-
-            if (line == null)
+            if (Input.GetMouseButtonDown(0))
             {
-                createLine();
+                mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePos.z = 0;
+
+                downFunc();
             }
+            else if (Input.GetMouseButtonUp(0) && line)
+            {
+                dragFunc();
+            }
+            else if (Input.GetMouseButton(0) && line)
+            {
+                upFunc();
+            }
+        }else
+        {
+            // For Touches
+            if (Input.touchCount > 0)
+            {
+                touch = Input.GetTouch(0);
+                hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 0);
 
-            line.SetPosition(0, childPos);
-            line.SetPosition(1, childPos);
-
-            currentChildIndex++;
+                if (hit && transform == hit.collider.transform)
+                {
+                    if (touch.phase == TouchPhase.Began)
+                        downFunc();
+                    if ((touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary) && line)
+                        upFunc();
+                    if (touch.phase == TouchPhase.Ended && line)
+                        dragFunc();
+                }
+            }
         }
-        else if (Input.GetMouseButtonUp(0) && line)
+
+    }
+
+    private void downFunc()
+    {
+        if (Vector2.Distance(mousePos, childPos) > Range)
+            return;
+
+        if (line == null)
         {
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePos.z = 0;
+            createLine();
+        }
 
-            if (Vector2.Distance(mousePos, childPos) > Range)
-            {
-                currentChildIndex--;
-                Debug.Log("Destroy");
-                Destroy(line);
-                line = null;
-                return;
-            }
+        line.SetPosition(0, childPos);
+        line.SetPosition(1, childPos);
 
-            line.SetPosition(1, childPos);
+        currentChildIndex++;
+    }
+    private void dragFunc()
+    {
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+
+        if (Vector2.Distance(mousePos, childPos) > Range)
+        {
+            currentChildIndex--;
+            Debug.Log("Destroy");
+            Destroy(line.gameObject);
             line = null;
-            currLines++;
-            if (currLines > 0 && _currentChildIndex == 0)
-            {
-                _completedTasksCount++;
-                currentParentIndex++;
-            }
+            return;
+        }
 
-        }
-        else if (Input.GetMouseButton(0) && line)
+        line.SetPosition(1, childPos);
+        line = null;
+        currLines++;
+
+        if ((currLines > 0 && _currentChildIndex == 0) || (_currentChildIndex + 1 >= tempCount && DontReturn))
         {
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePos.z = 0;
-            line.SetPosition(1, mousePos);
+            _completedTasksCount++;
+            currentParentIndex++;
         }
+
+    }
+    private void upFunc()
+    {
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+        line.SetPosition(1, mousePos);
     }
 
     void createLine()

@@ -660,6 +660,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -674,7 +677,7 @@ MonoBehaviour:
   EffectLight: {fileID: 1453865328}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 1453865328}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &68006057
 SpriteRenderer:
@@ -803,6 +806,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.5
@@ -817,7 +823,7 @@ MonoBehaviour:
   EffectLight: {fileID: 1942359705}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 1942359705}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &116726972
 SpriteRenderer:
@@ -1032,6 +1038,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 1
   toThisLocation: {x: -1.29, y: -1.47}
   toThisScale: {x: 0.2930877, y: 0.2930877}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -1046,7 +1055,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &237344629
 SpriteRenderer:
@@ -1251,6 +1260,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -1265,7 +1277,7 @@ MonoBehaviour:
   EffectLight: {fileID: 702349693}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 702349693}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &256697813
 SpriteRenderer:
@@ -1459,6 +1471,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckInside: 0
+  HaveCells: 0
+  CheckButton: {fileID: 0}
+  ErrorPanel: {fileID: 0}
   NameOfObjects: []
 --- !u!50 &279759970
 Rigidbody2D:
@@ -2139,9 +2154,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 579837804}
-  - component: {fileID: 579837807}
   - component: {fileID: 579837806}
   - component: {fileID: 579837805}
+  - component: {fileID: 579837807}
   m_Layer: 0
   m_Name: t2
   m_TagString: RayObjects
@@ -2180,6 +2195,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -2194,7 +2212,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &579837806
 SpriteRenderer:
@@ -2246,19 +2264,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &579837807
-BoxCollider:
+--- !u!61 &579837807
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579837803}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.17, y: 2.12}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.7014627, y: 3.5197682, z: 0.19999999}
-  m_Center: {x: 0, y: 0.0000009536743, z: 0}
+  m_Size: {x: 2.17, y: 2.12}
+  m_EdgeRadius: 0
 --- !u!1 &624064838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,6 +2500,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -2483,7 +2517,7 @@ MonoBehaviour:
   EffectLight: {fileID: 624195695}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 624195695}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &643630118
 SpriteRenderer:
@@ -2651,6 +2685,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckInside: 0
+  HaveCells: 0
+  CheckButton: {fileID: 0}
+  ErrorPanel: {fileID: 0}
   NameOfObjects: []
 --- !u!61 &659150227
 BoxCollider2D:
@@ -3010,6 +3047,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 20
   To: 80
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &788098568
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,6 +3102,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.5
@@ -3075,7 +3119,7 @@ MonoBehaviour:
   EffectLight: {fileID: 125252896}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 125252896}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &788098571
 SpriteRenderer:
@@ -3232,6 +3276,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -3246,7 +3293,7 @@ MonoBehaviour:
   EffectLight: {fileID: 1557671515}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 1557671515}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &821642544
 SpriteRenderer:
@@ -3660,6 +3707,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.5
@@ -3674,7 +3724,7 @@ MonoBehaviour:
   EffectLight: {fileID: 2124879393}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 2124879393}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &946287591
 SpriteRenderer:
@@ -3923,6 +3973,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0, y: 0}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.5
@@ -3937,7 +3990,7 @@ MonoBehaviour:
   EffectLight: {fileID: 1519760574}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 1519760574}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &968648380
 SpriteRenderer:
@@ -4183,6 +4236,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 1
   toThisLocation: {x: 10.48, y: -1.53}
   toThisScale: {x: 0.2930877, y: 0.2930877}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -4197,7 +4253,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &1161828074
 SpriteRenderer:
@@ -4365,6 +4421,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckInside: 1
+  HaveCells: 0
+  CheckButton: {fileID: 0}
+  ErrorPanel: {fileID: 0}
   NameOfObjects:
   - res1
   - res3
@@ -4545,6 +4604,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 1
   toThisLocation: {x: 8.97, y: 0.14}
   toThisScale: {x: 0.2930877, y: 0.2930877}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -4559,7 +4621,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &1291084021
 SpriteRenderer:
@@ -4687,6 +4749,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 1
   toThisLocation: {x: -1.3, y: 0.23}
   toThisScale: {x: 0.2930877, y: 0.2930877}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -4701,7 +4766,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &1311019993
 SpriteRenderer:
@@ -4819,6 +4884,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 1
   toThisLocation: {x: 10.456, y: 0.14}
   toThisScale: {x: 0.2930877, y: 0.2930877}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -4833,7 +4901,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &1323955829
 SpriteRenderer:
@@ -5076,6 +5144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckInside: 1
+  HaveCells: 0
+  CheckButton: {fileID: 0}
+  ErrorPanel: {fileID: 0}
   NameOfObjects:
   - res1
   - res3
@@ -5308,6 +5379,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 1
   toThisLocation: {x: -2.98, y: 0.23}
   toThisScale: {x: 0.2930877, y: 0.2930877}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -5322,7 +5396,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &1477327091
 SpriteRenderer:
@@ -5936,6 +6010,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 1
   toThisLocation: {x: -2.938, y: -1.47}
   toThisScale: {x: 0.2930877, y: 0.2930877}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -5950,7 +6027,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &1550957494
 SpriteRenderer:
@@ -6373,6 +6450,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 1
   toThisLocation: {x: 8.98, y: -1.53}
   toThisScale: {x: 0.2930877, y: 0.2930877}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -6387,7 +6467,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
 --- !u!212 &1627634171
 SpriteRenderer:
@@ -6596,9 +6676,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1767481358}
-  - component: {fileID: 1767481361}
   - component: {fileID: 1767481360}
   - component: {fileID: 1767481359}
+  - component: {fileID: 1767481361}
   m_Layer: 0
   m_Name: t3
   m_TagString: RayObjects
@@ -6637,6 +6717,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0.1, y: 3.78}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -6651,7 +6734,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 693303558}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 1
 --- !u!212 &1767481360
 SpriteRenderer:
@@ -6703,19 +6786,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1767481361
-BoxCollider:
+--- !u!61 &1767481361
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767481357}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.17, y: 1.08}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8343709, y: 3.4372525, z: 0.19999999}
-  m_Center: {x: 0, y: 0.0000009536743, z: 0}
+  m_Size: {x: 2.17, y: 1.08}
+  m_EdgeRadius: 0
 --- !u!1 &1815632250
 GameObject:
   m_ObjectHideFlags: 0

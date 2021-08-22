@@ -925,9 +925,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 370592750}
-  - component: {fileID: 370592753}
   - component: {fileID: 370592752}
   - component: {fileID: 370592751}
+  - component: {fileID: 370592753}
   m_Layer: 0
   m_Name: beat3
   m_TagString: RayObjects
@@ -966,6 +966,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 32.62, y: -0.2}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.8
@@ -980,6 +983,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 9
 --- !u!212 &370592752
 SpriteRenderer:
@@ -1031,19 +1035,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &370592753
-BoxCollider:
+--- !u!61 &370592753
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370592749}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.22, y: 1}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3202116, y: 1.2558525, z: 0.2}
-  m_Center: {x: 0, y: -0.00000011920929, z: 0}
+  m_Size: {x: 1.22, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &389988494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,9 +1070,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 389988495}
-  - component: {fileID: 389988498}
   - component: {fileID: 389988497}
   - component: {fileID: 389988496}
+  - component: {fileID: 389988498}
   m_Layer: 0
   m_Name: ring4
   m_TagString: RayObjects
@@ -1094,6 +1111,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 35.2, y: -4.1}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.8
@@ -1108,6 +1128,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 9
 --- !u!212 &389988497
 SpriteRenderer:
@@ -1159,19 +1180,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &389988498
-BoxCollider:
+--- !u!61 &389988498
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389988494}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.07, y: 1.304381}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7254535, y: 1.4667252, z: 0.2}
-  m_Center: {x: 0, y: -0.000000029802322, z: 0}
+  m_Size: {x: 1.07, y: 1.304381}
+  m_EdgeRadius: 0
 --- !u!1 &416456721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,9 +1308,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 429181685}
-  - component: {fileID: 429181688}
   - component: {fileID: 429181687}
   - component: {fileID: 429181686}
+  - component: {fileID: 429181688}
   m_Layer: 0
   m_Name: cake3
   m_TagString: RayObjects
@@ -1315,6 +1349,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 32.62, y: -2.1}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.8
@@ -1329,6 +1366,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 9
 --- !u!212 &429181687
 SpriteRenderer:
@@ -1380,19 +1418,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &429181688
-BoxCollider:
+--- !u!61 &429181688
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429181684}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.19, y: 1.15}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4071857, y: 1.3356606, z: 0.2}
-  m_Center: {x: 0, y: -0.000000029802322, z: 0}
+  m_Size: {x: 1.19, y: 1.15}
+  m_EdgeRadius: 0
 --- !u!1 &441200017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,9 +1673,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 579837804}
-  - component: {fileID: 579837807}
   - component: {fileID: 579837806}
   - component: {fileID: 579837805}
+  - component: {fileID: 579837807}
   m_Layer: 0
   m_Name: t2
   m_TagString: RayObjects
@@ -1664,6 +1715,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 0.36, y: 4}
   toThisScale: {x: 0.07126211, y: 0.1092865}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -1678,6 +1732,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 931937321}
+  DontMoveTo1stPosition: 0
   countOfObjects: 3
 --- !u!212 &579837806
 SpriteRenderer:
@@ -1729,19 +1784,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &579837807
-BoxCollider:
+--- !u!61 &579837807
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579837803}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 21.26959, y: 4.31}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 21.805492, y: 5.511043, z: 0.19999999}
-  m_Center: {x: 0, y: 0.0000038146973, z: 0}
+  m_Size: {x: 21.26959, y: 4.31}
+  m_EdgeRadius: 0
 --- !u!1 &607632898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,9 +1819,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 607632899}
-  - component: {fileID: 607632902}
   - component: {fileID: 607632901}
   - component: {fileID: 607632900}
+  - component: {fileID: 607632902}
   m_Layer: 0
   m_Name: cake1
   m_TagString: RayObjects
@@ -1792,6 +1860,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 27.26, y: -2.1}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.8
@@ -1806,6 +1877,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 9
 --- !u!212 &607632901
 SpriteRenderer:
@@ -1857,19 +1929,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &607632902
-BoxCollider:
+--- !u!61 &607632902
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607632898}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.77, y: 0.74}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2256314, y: 1.1419606, z: 0.2}
-  m_Center: {x: 0, y: -0.000000029802322, z: 0}
+  m_Size: {x: 0.77, y: 0.74}
+  m_EdgeRadius: 0
 --- !u!1 &624064838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,9 +2566,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 850615338}
-  - component: {fileID: 850615341}
   - component: {fileID: 850615340}
   - component: {fileID: 850615339}
+  - component: {fileID: 850615341}
   m_Layer: 0
   m_Name: ring1
   m_TagString: RayObjects
@@ -2522,6 +2607,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 27.26, y: -4.1}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.8
@@ -2536,6 +2624,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 9
 --- !u!212 &850615340
 SpriteRenderer:
@@ -2587,19 +2676,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &850615341
-BoxCollider:
+--- !u!61 &850615341
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850615337}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.78}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2256314, y: 1.1419606, z: 0.2}
-  m_Center: {x: 0, y: -0.000000029802322, z: 0}
+  m_Size: {x: 0.64, y: 0.78}
+  m_EdgeRadius: 0
 --- !u!1 &879255691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2609,9 +2711,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 879255692}
-  - component: {fileID: 879255695}
   - component: {fileID: 879255694}
   - component: {fileID: 879255693}
+  - component: {fileID: 879255695}
   m_Layer: 0
   m_Name: t4
   m_TagString: RayObjects
@@ -2651,6 +2753,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: -6.83, y: 4}
   toThisScale: {x: 0.07126211, y: 0.1092865}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -2665,6 +2770,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 693303558}
+  DontMoveTo1stPosition: 0
   countOfObjects: 3
 --- !u!212 &879255694
 SpriteRenderer:
@@ -2716,19 +2822,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &879255695
-BoxCollider:
+--- !u!61 &879255695
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879255691}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 21.26959, y: 4.31}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 21.805492, y: 5.511043, z: 0.19999999}
-  m_Center: {x: 0, y: 0.0000038146973, z: 0}
+  m_Size: {x: 21.26959, y: 4.31}
+  m_EdgeRadius: 0
 --- !u!1 &906046440
 GameObject:
   m_ObjectHideFlags: 0
@@ -2738,9 +2857,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 906046441}
-  - component: {fileID: 906046444}
   - component: {fileID: 906046443}
   - component: {fileID: 906046442}
+  - component: {fileID: 906046444}
   m_Layer: 0
   m_Name: cake4
   m_TagString: RayObjects
@@ -2779,6 +2898,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 35.2, y: -2.1}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.8
@@ -2793,6 +2915,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 9
 --- !u!212 &906046443
 SpriteRenderer:
@@ -2844,19 +2967,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &906046444
-BoxCollider:
+--- !u!61 &906046444
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906046440}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.363252, y: 1.3100001}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7254535, y: 1.4667252, z: 0.2}
-  m_Center: {x: 0, y: -0.000000029802322, z: 0}
+  m_Size: {x: 1.363252, y: 1.3100001}
+  m_EdgeRadius: 0
 --- !u!1 &920214416
 GameObject:
   m_ObjectHideFlags: 0
@@ -3092,9 +3228,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 946287589}
-  - component: {fileID: 946287592}
   - component: {fileID: 946287591}
   - component: {fileID: 946287590}
+  - component: {fileID: 946287592}
   m_Layer: 0
   m_Name: beat1
   m_TagString: RayObjects
@@ -3133,6 +3269,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 27.26, y: -0.2}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.8
@@ -3147,6 +3286,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 9
 --- !u!212 &946287591
 SpriteRenderer:
@@ -3198,19 +3338,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &946287592
-BoxCollider:
+--- !u!61 &946287592
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946287588}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7, y: 0.58}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1826159, y: 1.0986885, z: 0.2}
-  m_Center: {x: 0, y: -0.00000023841858, z: 0}
+  m_Size: {x: 0.7, y: 0.58}
+  m_EdgeRadius: 0
 --- !u!1 &959048974
 GameObject:
   m_ObjectHideFlags: 0
@@ -3913,9 +4066,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1374832844}
-  - component: {fileID: 1374832847}
   - component: {fileID: 1374832846}
   - component: {fileID: 1374832845}
+  - component: {fileID: 1374832847}
   m_Layer: 0
   m_Name: beat4
   m_TagString: RayObjects
@@ -3954,6 +4107,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 35.2, y: -0.2}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.8
@@ -3968,6 +4124,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 9
 --- !u!212 &1374832846
 SpriteRenderer:
@@ -4019,19 +4176,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1374832847
-BoxCollider:
+--- !u!61 &1374832847
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374832843}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.511619, y: 1.24}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7254535, y: 1.4667252, z: 0.2}
-  m_Center: {x: 0, y: -0.000000029802322, z: 0}
+  m_Size: {x: 1.511619, y: 1.24}
+  m_EdgeRadius: 0
 --- !u!1 &1405796143
 GameObject:
   m_ObjectHideFlags: 0
@@ -4838,9 +5008,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1627657696}
-  - component: {fileID: 1627657699}
   - component: {fileID: 1627657698}
   - component: {fileID: 1627657697}
+  - component: {fileID: 1627657699}
   m_Layer: 0
   m_Name: ring3
   m_TagString: RayObjects
@@ -4879,6 +5049,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 32.5, y: -4.1}
   toThisScale: {x: 0, y: 0}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1.8
@@ -4893,6 +5066,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
+  DontMoveTo1stPosition: 0
   countOfObjects: 9
 --- !u!212 &1627657698
 SpriteRenderer:
@@ -4944,19 +5118,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1627657699
-BoxCollider:
+--- !u!61 &1627657699
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627657695}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.94, y: 1.14}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4071857, y: 1.3356606, z: 0.2}
-  m_Center: {x: 0, y: -0.000000029802322, z: 0}
+  m_Size: {x: 0.94, y: 1.14}
+  m_EdgeRadius: 0
 --- !u!1 &1638453543
 GameObject:
   m_ObjectHideFlags: 0
@@ -5242,9 +5429,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1767481358}
-  - component: {fileID: 1767481361}
   - component: {fileID: 1767481360}
   - component: {fileID: 1767481359}
+  - component: {fileID: 1767481361}
   m_Layer: 0
   m_Name: t3
   m_TagString: RayObjects
@@ -5284,6 +5471,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 5.95, y: 4}
   toThisScale: {x: 0.07126211, y: 0.1092865}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 2
@@ -5298,6 +5488,7 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 1
   EffectToDestroy: {fileID: 1528783451}
+  DontMoveTo1stPosition: 0
   countOfObjects: 3
 --- !u!212 &1767481360
 SpriteRenderer:
@@ -5349,19 +5540,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1767481361
-BoxCollider:
+--- !u!61 &1767481361
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767481357}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 21.26959, y: 4.31}
+    newSize: {x: 5.21, y: 8.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 21.805492, y: 5.511043, z: 0.19999999}
-  m_Center: {x: 0, y: 0.0000038146973, z: 0}
+  m_Size: {x: 21.26959, y: 4.31}
+  m_EdgeRadius: 0
 --- !u!1 &1815632250
 GameObject:
   m_ObjectHideFlags: 0

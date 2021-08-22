@@ -54,7 +54,7 @@ public class Keybord : MonoBehaviour
     {
         if (hitTouch && hitTouch.collider.transform.CompareTag("KeyboardValue"))
         {
-            if (currentText != null && !currentText.GetComponent<OpacityEffect>().Stop && currentText.TryGetComponent<Image>(out tempImg))
+            if (currentText != null && currentText.TryGetComponent<Image>(out tempImg))
             {
                 currentText.GetComponent<OpacityEffect>().Stop = true;
                 if(currentSprite != null)
@@ -67,10 +67,12 @@ public class Keybord : MonoBehaviour
             if (currentText.TryGetComponent<Image>(out tempImg))
             {
                 currentText.GetComponent<OpacityEffect>().Stop = true;
-                currentText.GetComponent<Image>().color = new Color32(255, 195, 100, 100);
-                currentText.GetComponent<OpacityEffect>().Stop = false;
+                currentText.GetComponent<Image>().color = new Color32(255, 195, 100, 150);
                 currentSprite = currentText.GetComponent<Image>().sprite;
             }
+            else
+                currentText.TryGetComponent<Text>(out textComponent);
+
             parentName = currentText.transform.parent.name;
             ChangeKeyboardType();
             StartCoroutine(showKeyboard());
@@ -202,6 +204,11 @@ public class Keybord : MonoBehaviour
             else if(!type.Symbols.activeSelf)
                 textComponent.text += num.ToString();
 
+            if (listAnswers.ContainsKey(parentName))
+            {
+                listAnswers.Remove(parentName);
+                listAnswers.Add(parentName, textComponent.text);
+            }
         }
     }
     string parentName;

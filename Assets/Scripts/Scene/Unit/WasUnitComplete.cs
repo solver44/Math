@@ -23,7 +23,7 @@ public class WasUnitComplete : MonoBehaviour
     [SerializeField] private float _speedMove = 5;
     [Header("Condition")]
     [SerializeField] private int unitNumber;
-    [SerializeField] private int countOfDifference = 5;
+    [SerializeField] private int countOfDifference = 8;
     [Header("Additional")]
     [SerializeField] private float waitForSecondToExit = 0f;
     [SerializeField] private Color colorToChange;
