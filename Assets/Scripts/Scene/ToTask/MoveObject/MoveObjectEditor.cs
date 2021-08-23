@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(MoveObject))]
+#endif
+#if UNITY_EDITOR
 public class MoveObjectEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -25,3 +30,4 @@ public class MoveObjectEditor : Editor
         EditorGUILayout.Space(20);
     }
 }
+#endif

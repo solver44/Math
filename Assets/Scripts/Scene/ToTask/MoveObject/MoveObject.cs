@@ -50,6 +50,7 @@ public class MoveObject : MonoBehaviour
 
     private Vector2 placeLocation = Vector2.zero;
     private Touch touch;
+    bool isTouch = false;
 
     //this Transform
     private SpriteRenderer render = null;
@@ -167,8 +168,11 @@ public class MoveObject : MonoBehaviour
 
         if (!locked)
         {
-            deltaX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
-            deltaY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y;
+            if (!isTouch)
+            {
+                deltaX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
+                deltaY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y;
+            }
 
             if (isAnimator)
                 anim.SetBool("zoom", true);
@@ -186,8 +190,16 @@ public class MoveObject : MonoBehaviour
         if (DontMoving || locked)
             return;
 
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
+        if (!isTouch)
+        {
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
+        }
+        else
+        {
+            mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
+            transform.position = mousePosition;
+        }
 
         if (anyLocation)
         {
@@ -328,9 +340,6 @@ public class MoveObject : MonoBehaviour
         {
             if (drag)
                 MouseDrag();
-            hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0);
-            if (!hit || hit.collider.transform != this.transform)
-                return;
             // For Mouse
             if (Input.GetMouseButtonDown(0)) { MouseDown(); drag = true; }
             if(Input.GetMouseButtonUp(0)) { MouseUpFunc(); drag = false; }
@@ -342,9 +351,7 @@ public class MoveObject : MonoBehaviour
             {
                 touch = Input.GetTouch(0);
                 hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 0);
-                
-                if (hit && transform == hit.collider.transform)
-                {
+                if (hit && hit.collider.transform == this.transform) {
                     if (touch.phase == TouchPhase.Began)
                         MouseDown();
                     if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)

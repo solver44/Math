@@ -115,6 +115,8 @@ public class DrawLines : MonoBehaviour
     }
     Touch touch;
     RaycastHit2D hit;
+
+    bool isTouch = false;
     void Update()
     {
         if (Application.isEditor)
@@ -136,14 +138,17 @@ public class DrawLines : MonoBehaviour
             }
         }else
         {
-            // For Touches
             if (Input.touchCount > 0)
             {
-                touch = Input.GetTouch(0);
+                isTouch = true; touch = Input.GetTouch(0);
                 hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 0);
-
-                if (hit && transform == hit.collider.transform)
+                if (hit && hit.collider.transform == this.transform)
                 {
+                    touch = Input.GetTouch(0);
+
+                    mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
+                    mousePos.z = 0;
+
                     if (touch.phase == TouchPhase.Began)
                         downFunc();
                     if ((touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary) && line)
@@ -173,7 +178,11 @@ public class DrawLines : MonoBehaviour
     }
     private void dragFunc()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if(!isTouch)
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        else
+            mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
+
         mousePos.z = 0;
 
         if (Vector2.Distance(mousePos, childPos) > Range)
@@ -198,8 +207,13 @@ public class DrawLines : MonoBehaviour
     }
     private void upFunc()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (!isTouch)
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        else
+            mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
+
         mousePos.z = 0;
+
         line.SetPosition(1, mousePos);
     }
 
