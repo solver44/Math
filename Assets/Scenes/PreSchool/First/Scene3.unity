@@ -1202,7 +1202,7 @@ MonoBehaviour:
   isScale: 1
   destroyEnd: 0
   dontSortLayer: 0
-  IsLocalPos: 0
+  IsLocalPos: 1
   EffectScale: 0
   EffectLight: {fileID: 0}
   DestroyEffect: 0
@@ -1521,7 +1521,7 @@ MonoBehaviour:
   isScale: 1
   destroyEnd: 0
   dontSortLayer: 0
-  IsLocalPos: 0
+  IsLocalPos: 1
   EffectScale: 0
   EffectLight: {fileID: 0}
   DestroyEffect: 0
@@ -2755,7 +2755,7 @@ MonoBehaviour:
   isScale: 1
   destroyEnd: 0
   dontSortLayer: 0
-  IsLocalPos: 0
+  IsLocalPos: 1
   EffectScale: 0
   EffectLight: {fileID: 0}
   DestroyEffect: 0

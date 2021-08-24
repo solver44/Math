@@ -130,6 +130,7 @@ public class OnCollision2D : MonoBehaviour
         if (a)
         {
             locked = true;
+            CheckButton.GetComponent<Button>().interactable = false;
             StartCoroutine(makeDisableAllObjects(!hasCheckButton));
         }
         else if (showMessage)

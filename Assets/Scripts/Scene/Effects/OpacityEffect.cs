@@ -27,16 +27,19 @@ public class OpacityEffect : MonoBehaviour
     private float r, g, b;
 
     public static IDictionary<string, string> AllKeybordValues = new Dictionary<string, string>();
+
+    private void Awake()
+    {
+        if (Value != "null")
+        {
+            AllKeybordValues.Add(this.transform.parent.name, Value.ToString() + ";" + Unit.ToString() + ";" + KeyboardType.ToString() + ";" + ColorValue.r + "/" + ColorValue.g + "/" + ColorValue.b);
+        }
+    }
     private void Start()
     {
         Stop = false;
         From /= 100f;
         To /= 100f;
-
-        if (Value != "null")
-        {
-            AllKeybordValues.Add(this.transform.parent.name, Value.ToString() + ";" + Unit.ToString() + ";" + KeyboardType.ToString() + ";" + ColorValue.r + "/" + ColorValue.g + "/" + ColorValue.b);
-        }
 
         if (this.TryGetComponent<Image>(out imageRender))
             image = true;

@@ -41,6 +41,7 @@ public class WasUnitComplete : MonoBehaviour
     //For Color
     private bool changeColor = false;
     private bool[] isSpriteRenderer;
+
     private void Start()
     {
         if(TryGetComponent<MoreAR>(out more))
@@ -125,11 +126,11 @@ public class WasUnitComplete : MonoBehaviour
 
         if (isCompleteThisUnit)
         {
-            if (!stop && wait)
+            if (wait && !stopCoroutine)
             {
                 StartCoroutine(waitForSec());
             }
-            else
+            else if(!stopCoroutine)
             {
                 if (!finish)
                 {
@@ -149,11 +150,13 @@ public class WasUnitComplete : MonoBehaviour
         }
     }
 
-    bool stop = false;
+    bool stopCoroutine = false;
     private IEnumerator waitForSec()
     {
-        wait = true;
+        stopCoroutine = true;
         yield return new WaitForSeconds(waitForSecondToExit);
+        stopCoroutine = false;
+        _sceneManager.DisableAllAnim();
         wait = false;
     }
 

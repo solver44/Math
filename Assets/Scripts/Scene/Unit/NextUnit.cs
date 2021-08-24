@@ -20,7 +20,38 @@ public class NextUnit : MonoBehaviour
     private bool _isExit = false;
     public bool IsExit { get { return _isExit; } }
 
+    private static MoveToLocation[] anims = null;
+    private static MoveObject[] objs = null;
+    static void getAllAnim()
+    {
+        anims = GameObject.FindObjectsOfType<MoveToLocation>();
+        objs = GameObject.FindObjectsOfType<MoveObject>();
+    }
 
+    public void DisableAllAnim()
+    {
+        for (int i = 0; i < anims.Length; i++)
+        {
+            anims[i].stop = true;
+        }
+        for (int i = 0; i < objs.Length; i++)
+        {
+            objs[i].DontMoving = true;
+        }
+    }
+    public void EnableObjs()
+    {
+        for (int i = 0; i < objs.Length; i++)
+        {
+            objs[i].DontMoving = false;
+        }
+    }
+    void Start()
+    {
+        if (anims == null)
+            getAllAnim();
+
+    }
     public void SetItemsValue(GameObject[] objects1, GameObject[] unit, string textPrefs1, float speed1, Vector2 location1, Vector2 locationCanvas1)
     {
         if (unit.Length < 1)
@@ -35,17 +66,19 @@ public class NextUnit : MonoBehaviour
     }
 
     private int countOfObjectsToExit = 0, countOfObjectsToEnter = 0;
+    Transform temp;
+    string parentName;
     public void DoExitAndSaveUnit()
     {
         if (destroy || stopExit)
             return;
 
-        PlayerPrefs.SetInt(textPrefs, 1);
+        //PlayerPrefs.SetInt(textPrefs, 1);
 
         for (int i = 0; i < objects.Length; i++)
         {
-            Transform temp = objects[i].transform;
-            string parentName = objects[i].transform.parent.name;
+            temp = objects[i].transform;
+            parentName = objects[i].transform.parent.name;
 
             if (temp.parent.name != "Backgrounds")
                 temp.position = Vector2.Lerp(temp.position, location, speed * Time.deltaTime);
@@ -101,8 +134,8 @@ public class NextUnit : MonoBehaviour
 
         for (int i = 0; i < nextUnit.Length; i++)
         {
-            Transform temp = nextUnit[i].transform;
-            string parentName = nextUnit[i].transform.parent.name;
+            temp = nextUnit[i].transform;
+            parentName = nextUnit[i].transform.parent.name;
 
             if ((Vector2.Distance(temp.position, new Vector2(0, temp.position.x)) > .05f && temp.parent.name != "Backgrounds") 
                 || (Vector2.Distance(temp.localPosition, new Vector2(0, temp.localPosition.y)) > .05f && temp.parent.name == "Backgrounds"))
@@ -125,6 +158,7 @@ public class NextUnit : MonoBehaviour
             if (countOfObjectsToEnter >= nextUnit.Length)
             {
                 stop = true;
+                EnableObjs();
                 DestroyObject(objects);
             }
         }

@@ -161,7 +161,7 @@ public class Keybord : MonoBehaviour
             temp.GetComponent<Image>().color = new Color32(255, 0, 0, 100);
             temp.GetComponent<OpacityEffect>().Stop = false;
         }
-        else if (tempText.text != listValueAnswers[temp.transform.parent.name])
+        else if (listValueAnswers.ContainsKey(temp.transform.parent.name) && tempText.text != listValueAnswers[temp.transform.parent.name])
         {
             tempText.color = new Color32(255, 0, 0, 255);
         }
@@ -390,7 +390,7 @@ public class Keybord : MonoBehaviour
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            RaycastHit2D hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 0);
+            RaycastHit2D hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.position).x, Camera.main.ScreenToWorldPoint(touch.position).y), Vector2.zero, 0);
 
             SetRayCast(hitTouch);
         }

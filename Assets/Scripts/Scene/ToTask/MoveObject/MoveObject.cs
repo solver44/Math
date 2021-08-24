@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class MoveObject : MonoBehaviour
@@ -50,7 +51,6 @@ public class MoveObject : MonoBehaviour
 
     private Vector2 placeLocation = Vector2.zero;
     private Touch touch;
-    bool isTouch = false;
 
     //this Transform
     private SpriteRenderer render = null;
@@ -70,6 +70,7 @@ public class MoveObject : MonoBehaviour
         }
         if (EffectScale)
             this.gameObject.AddComponent<ScaleEffect>();
+
     }
 
     private IEnumerator waitUntilStart()
@@ -101,10 +102,13 @@ public class MoveObject : MonoBehaviour
         else
             empty = true;
 
-        if (IsLocalPos)
-            firstPosition = this.transform.localPosition;
-        else
-            firstPosition = this.transform.position;
+        if (!StartFromThisPos)
+        {
+            if (IsLocalPos)
+                firstPosition = this.transform.localPosition;
+            else
+                firstPosition = this.transform.position;
+        }
 
     }
     private void Start()
@@ -127,14 +131,20 @@ public class MoveObject : MonoBehaviour
 
         firstScale = this.transform.localScale;
 
-        if(StartFromThisPos)
+        if (StartFromThisPos)
         {
+
+            if (IsLocalPos)
+                firstPosition = this.transform.localPosition;
+            else
+                firstPosition = this.transform.position;
+
             this.transform.localPosition = toThisLocation;
             this.transform.localScale = toThisScale;
             DontMoving = true;
-            if(CurrentUnit > 1)
+            if (CurrentUnit > 1)
                 WasUnitComplete.Finishing += WasUnitComplete_Finishing;
-            else if(CurrentUnit == 1)
+            else if (CurrentUnit == 1)
             {
                 TimeToStart += 2;
                 WasUnitComplete_Finishing(1);
@@ -168,11 +178,9 @@ public class MoveObject : MonoBehaviour
 
         if (!locked)
         {
-            if (!isTouch)
-            {
-                deltaX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
-                deltaY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y;
-            }
+
+            deltaX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
+            deltaY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y; 
 
             if (isAnimator)
                 anim.SetBool("zoom", true);
@@ -185,21 +193,15 @@ public class MoveObject : MonoBehaviour
     }
 
     private bool scale = false;
+
+#if UNITY_EDITOR
     void MouseDrag()
     {
         if (DontMoving || locked)
             return;
 
-        if (!isTouch)
-        {
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
-        }
-        else
-        {
-            mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
-            transform.position = mousePosition;
-        }
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
 
         if (anyLocation)
         {
@@ -210,11 +212,31 @@ public class MoveObject : MonoBehaviour
         }
 
     }
+#else
+    void MouseDrag()
+    {
+        if (DontMoving || locked)
+            return;
+
+        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
+        transform.position = mousePosition;
+
+        if (anyLocation)
+        {
+            if (IsLocalPos)
+                firstPosition = transform.localPosition;
+            else
+                firstPosition = transform.position;
+        }
+
+    }
+#endif
     bool toLocalPos = false;
     bool destroy = false;
     bool empty = false;
 
     [HideInInspector] public bool DontMoveTo1stPosition = false;
+    Vector2 location;
     void MouseUpFunc()
     {
         if (DontMoving)
@@ -227,7 +249,6 @@ public class MoveObject : MonoBehaviour
             if(!dontSortLayer)
                 render.sortingOrder -= 1;
 
-            Vector2 location = Vector2.zero;
             if (IsLocalPos)
                 location = GetComponent<Transform>().localPosition;
             else
@@ -257,7 +278,10 @@ public class MoveObject : MonoBehaviour
                     {
                         StartCoroutine(moveAnim2(placeObject.position, false, 1f));
                         if (destroyEnd)
+                        {
+                            locked = true;
                             StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true, 20f));
+                        }
                     }
                 }
                 if (killPlaceObject)
@@ -322,6 +346,11 @@ public class MoveObject : MonoBehaviour
 
     bool drag = false;
     RaycastHit2D hit;
+    bool isTouching = false;
+
+    static bool readyToMove = true;
+
+#if UNITY_EDITOR
     void Update()
     {
         if (locked)
@@ -329,52 +358,88 @@ public class MoveObject : MonoBehaviour
 
         if (placeObject != null)
         {
-            if(IsLocalPos)
+            if (IsLocalPos)
                 placeLocation = placeObject.transform.localPosition;
             else
                 placeLocation = placeObject.transform.position;
         }
 
-                    
-        if (Application.isEditor)
+        if (drag && !readyToMove)
+            MouseDrag();
+        // For Mouse
+        if (Input.GetMouseButtonDown(0) && readyToMove)
         {
-            if (drag)
-                MouseDrag();
-            // For Mouse
-            if (Input.GetMouseButtonDown(0)) { MouseDown(); drag = true; }
-            if(Input.GetMouseButtonUp(0)) { MouseUpFunc(); drag = false; }
+            hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0);
+            if (hit && hit.collider.transform == this.transform)
+            {
+                readyToMove = false;
+                MouseDown(); drag = true;
+            }
         }
-        else
+        if (Input.GetMouseButtonUp(0))
         {
-            // For Touches
+            hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0);
+            if (hit && hit.collider.transform == this.transform)
+            {
+                readyToMove = true;
+                MouseUpFunc(); drag = false;
+            }
+        }
+    }
+#else
+    void Update()
+        {
+            if (locked)
+                return;
+
+            if (placeObject != null)
+            {
+                if(IsLocalPos)
+                    placeLocation = placeObject.transform.localPosition;
+                else
+                    placeLocation = placeObject.transform.position;
+            }
+
             if (Input.touchCount > 0)
             {
+                // For Touches
                 touch = Input.GetTouch(0);
-                hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 0);
-                if (hit && hit.collider.transform == this.transform) {
+                if (drag){
+                    MouseDrag();
+                }
+                hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.position).x, Camera.main.ScreenToWorldPoint(touch.position).y), Vector2.zero, 10);
+
+                if (hit && hit.collider.transform == this.transform)
+                {
                     if (touch.phase == TouchPhase.Began)
+                    {
+                        readyToMove = false;
                         MouseDown();
-                    if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
-                        MouseDrag();
-                    if (touch.phase == TouchPhase.Ended)
+                        drag = true;
+                    }
+                    if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                    {
+                        drag = false;
                         MouseUpFunc();
+                        readyToMove = true;
+                    }
                 }
             }
         }
+#endif
 
-        //if (!isAnimator && isScale)
-        //{
+    //if (!isAnimator && isScale)
+    //{
 
-        //    if (scale && !destroy)
-        //    {
-        //        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(xScale + (xScale * scaleRadius), yScale + (yScale * scaleRadius)), .08f);
-        //    }
-        //    else if (!destroy)
-        //    {
-        //        transform.localScale = Vector3.Lerp(transform.localScale, scaleS, .08f);
-        //    }
-        //}
-    }
+    //    if (scale && !destroy)
+    //    {
+    //        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(xScale + (xScale * scaleRadius), yScale + (yScale * scaleRadius)), .08f);
+    //    }
+    //    else if (!destroy)
+    //    {
+    //        transform.localScale = Vector3.Lerp(transform.localScale, scaleS, .08f);
+    //    }
+    //}
 
     #region Touch for mobile devices
     private void TouchFunc()
@@ -511,7 +576,7 @@ public class MoveObject : MonoBehaviour
                 transform.position = Vector2.Lerp(transform.position, firstPosition, 2f);
         }
     }
-    #endregion
+#endregion
 
     public int countOfObjects = 0;
     public static int currentCnt1 = 0;
@@ -549,6 +614,7 @@ public class MoveObject : MonoBehaviour
                 locked = true;
                 if (destroyEnd)
                 {
+                    locked = true;
                     StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true, 20f));
                 }
                 yield break;
@@ -612,7 +678,11 @@ public class MoveObject : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        if(destroyEnd)
+        if (destroyEnd)
+        {
+            locked = true;
             destroy = true;
+        }
     }
+
 }

@@ -385,8 +385,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
-  Value: null
-  Unit: 0
+  Value: 8
+  Unit: 2
   KeyboardType: Numbers
   ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &25521207
@@ -2255,7 +2255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
-  Value: null
+  Value: 6
   Unit: 2
   KeyboardType: Numbers
   ColorValue: {r: 1, g: 1, b: 1, a: 1}
@@ -5042,7 +5042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
-  Value: null
+  Value: 3
   Unit: 2
   KeyboardType: Numbers
   ColorValue: {r: 1, g: 1, b: 1, a: 1}
@@ -6821,7 +6821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
-  Value: null
+  Value: 5
   Unit: 2
   KeyboardType: Numbers
   ColorValue: {r: 1, g: 1, b: 1, a: 1}

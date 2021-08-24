@@ -30,7 +30,7 @@ public class Script : MonoBehaviour
     {
         if (load < 100)
         {
-            load += range * Time.fixedDeltaTime; //Сделать плавный скорость
+            load += range * Time.deltaTime; //Сделать плавный скорость
             loadImg.fillAmount = load / 100;
         }
         else if(!finishCurr)

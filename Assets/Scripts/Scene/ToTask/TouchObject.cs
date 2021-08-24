@@ -99,6 +99,7 @@ public class TouchObject : MonoBehaviour
     }
     bool isShowing = false;
     bool wait = false;
+    RaycastHit2D hitTouch;
     private IEnumerator hideText()
     {
         yield return new WaitForSeconds(2);
@@ -109,7 +110,7 @@ public class TouchObject : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit2D hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0);
+            hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0);
 
             SetRayCast(hitTouch);
         }
@@ -117,7 +118,7 @@ public class TouchObject : MonoBehaviour
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            RaycastHit2D hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 0);
+            hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.position).x, Camera.main.ScreenToWorldPoint(touch.position).y), Vector2.zero, 0);
 
             SetRayCast(hitTouch);
         }
