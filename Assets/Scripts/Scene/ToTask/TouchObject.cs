@@ -106,19 +106,14 @@ public class TouchObject : MonoBehaviour
         isShowing = false;
         wait = false;
     }
+
+    #if UNITY_EDITOR
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0);
-
-            SetRayCast(hitTouch);
-        }
-
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.position).x, Camera.main.ScreenToWorldPoint(touch.position).y), Vector2.zero, 0);
+            hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 10);
 
             SetRayCast(hitTouch);
         }
@@ -172,4 +167,65 @@ public class TouchObject : MonoBehaviour
             transform.localScale = Vector3.Lerp(transform.localScale, scaleS, .05f);
         }
     }
+#else
+    private void Update()
+    {
+        if (Input.touchCount > 0)
+        {
+            touch = Input.GetTouch(0);
+            hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 10);
+
+            SetRayCast(hitTouch);
+        }
+
+
+        if (animator != null || scaleWithoutAnim) {
+            if (isShowing || (sound != null && sound.isPlaying))
+            {
+                if(!scaleWithoutAnim && animator != null)
+                        animator.SetBool("zoom", true);
+                else if(scaleWithoutAnim)
+                    scale = true;
+                if(hasName)
+                    text.text = this.name;
+
+                if (renderer != null)
+                    renderer.sortingLayerName = "Selected";
+
+                if (!wait)
+                {
+                    wait = true;
+                    StartCoroutine(hideText());
+                }
+            }
+            else if(!isShowing)
+            {
+                if (sound != null)
+                    sound.Stop();
+
+                isShowing = false;
+                if(!scaleWithoutAnim && animator != null)
+                    if(!dontChangeEnd)
+                        animator.SetBool("zoom", false);
+                else if(scaleWithoutAnim)
+                    if (!dontChangeEnd)
+                        scale = false;
+
+                if (renderer != null)
+                    renderer.sortingLayerName = "Top";
+
+                if (hasName && (text != null && text.text == this.name))
+                    text.text = null;
+            }
+        }
+
+        if(scale && scaleWithoutAnim)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(xScale  + (xScale * scaleR), yScale + (yScale * scaleR)), .05f);
+        }else if(!scale && scaleWithoutAnim)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, scaleS, .05f);
+        }
+    }
+#endif
 }

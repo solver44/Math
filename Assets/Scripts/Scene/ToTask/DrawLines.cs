@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DrawLines : MonoBehaviour
 {
@@ -27,8 +28,14 @@ public class DrawLines : MonoBehaviour
     int tempCount = 0;
 
     ScaleEffect effect = new ScaleEffect();
+    Text txt = null;
     void Start()
     {
+        foreach (var item in GameObject.FindObjectsOfType<Text>())
+        {
+            if (item.name == "Text23")
+                txt = item as Text;
+        }
         effect.Scaled += Effect_Scaled;
         count = Objects.Length;
         bool tempBool = false;
@@ -116,51 +123,53 @@ public class DrawLines : MonoBehaviour
     Touch touch;
     RaycastHit2D hit;
 
-    bool isTouch = false;
+#if UNITY_EDITOR
     void Update()
     {
-        if (Application.isEditor)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            downFunc();
+        }
+        else if (Input.GetMouseButtonUp(0) && line)
+        {
+            dragFunc();
+        }
+        else if (Input.GetMouseButton(0) && line)
+        {
+            upFunc();
+        }
+    }
+#else
+    void Update()
+    {
+        if (Input.touchCount > 0)
+        {
+            touch = Input.GetTouch(0);
+            hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.position).x, Camera.main.ScreenToWorldPoint(touch.position).y), Vector2.zero, 0);
+            
+            if(txt != null)
+                txt.text = hit.collider.transform.name + "/" + this.transform.name;
+            if (hit && hit.collider.transform == this.transform)
             {
-                mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                
+                touch = Input.GetTouch(0);
+
+                mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
                 mousePos.z = 0;
 
-                downFunc();
-            }
-            else if (Input.GetMouseButtonUp(0) && line)
-            {
-                dragFunc();
-            }
-            else if (Input.GetMouseButton(0) && line)
-            {
-                upFunc();
-            }
-        }else
-        {
-            if (Input.touchCount > 0)
-            {
-                isTouch = true; touch = Input.GetTouch(0);
-                hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 0);
-                if (hit && hit.collider.transform == this.transform)
-                {
-                    touch = Input.GetTouch(0);
-
-                    mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
-                    mousePos.z = 0;
-
-                    if (touch.phase == TouchPhase.Began)
-                        downFunc();
-                    if ((touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary) && line)
-                        upFunc();
-                    if (touch.phase == TouchPhase.Ended && line)
-                        dragFunc();
-                }
+                if (touch.phase == TouchPhase.Began)
+                    downFunc();
+                if ((touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary) && line)
+                    upFunc();
+                if (touch.phase == TouchPhase.Ended && line)
+                    dragFunc();
             }
         }
 
     }
-
+#endif
     private void downFunc()
     {
         if (Vector2.Distance(mousePos, childPos) > Range)
@@ -176,13 +185,11 @@ public class DrawLines : MonoBehaviour
 
         currentChildIndex++;
     }
+
+#if UNITY_EDITOR
     private void dragFunc()
     {
-        if(!isTouch)
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        else
-            mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
-
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
 
         if (Vector2.Distance(mousePos, childPos) > Range)
@@ -207,15 +214,45 @@ public class DrawLines : MonoBehaviour
     }
     private void upFunc()
     {
-        if (!isTouch)
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        else
-            mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
-
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
 
         line.SetPosition(1, mousePos);
     }
+#else
+    private void dragFunc()
+    {
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
+        mousePos.z = 0;
+
+        if (Vector2.Distance(mousePos, childPos) > Range)
+        {
+            currentChildIndex--;
+            Destroy(line.gameObject);
+            line = null;
+            return;
+        }
+
+        line.SetPosition(1, childPos);
+        line = null;
+        currLines++;
+
+        if ((currLines > 0 && _currentChildIndex == 0) || (_currentChildIndex + 1 >= tempCount && DontReturn))
+        {
+            _completedTasksCount++;
+            currentParentIndex++;
+        }
+
+    }
+    private void upFunc()
+    {
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
+        mousePos.z = 0;
+
+        line.SetPosition(1, mousePos);
+    }
+#endif
+
 
     void createLine()
     {

@@ -1072,6 +1072,7 @@ Transform:
   - {fileID: 1913683060}
   - {fileID: 1131097091}
   - {fileID: 1646052568}
+  - {fileID: 1220082844}
   m_Father: {fileID: 1149810932}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1528,7 +1529,7 @@ GameObject:
   - component: {fileID: 458272458}
   - component: {fileID: 458272457}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3056,6 +3057,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1149810931
 GameObject:
   m_ObjectHideFlags: 0
@@ -3104,6 +3109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpecialPositions: 1
   StartFromFirstObject: 1
+  DontReturn: 0
   Objects:
   - {fileID: 657252611}
   - {fileID: 338634986}
@@ -3114,6 +3120,36 @@ MonoBehaviour:
   Parent: {fileID: 1829987784}
   ScaleEffect: 1
   ScaleR: 0.2
+--- !u!1 &1220082843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1220082844}
+  m_Layer: 0
+  m_Name: 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1220082844
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220082843}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.55, y: 3.59, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 338634987}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1264947745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3758,6 +3794,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1411138165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4410,6 +4450,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 10
   To: 30
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1568433941
 MonoBehaviour:
   m_ObjectHideFlags: 0

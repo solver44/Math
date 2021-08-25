@@ -185,7 +185,7 @@ public class MoveObject : MonoBehaviour
             if (isAnimator)
                 anim.SetBool("zoom", true);
             else if (isScale)
-                StartCoroutine(methodScale(transform, new Vector3(xScale + (xScale * scaleRadius), yScale + (yScale * scaleRadius)), false, 5f));
+                StartCoroutine(methodScale(transform, new Vector3(xScale + (xScale * scaleRadius), yScale + (yScale * scaleRadius), 20), false, 5f));
 
             if (!dontSortLayer)
                 this.GetComponent<SpriteRenderer>().sortingOrder += 1;
@@ -201,7 +201,7 @@ public class MoveObject : MonoBehaviour
             return;
 
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
+        transform.position = new Vector3(mousePosition.x - deltaX, mousePosition.y - deltaY);
 
         if (anyLocation)
         {
@@ -254,7 +254,7 @@ public class MoveObject : MonoBehaviour
             else
                 location = GetComponent<Transform>().position;
 
-            if ((collOfPlaceObject != null && collOfPlaceObject.OnCollision && collOfPlaceObject.NameOfObject.Equals(placeObject.transform.name) && collOfPlaceObject.NameOfTriggeredObject.Equals(this.transform.name))
+            if ((collOfPlaceObject != null && collOfPlaceObject.OnCollision && collOfPlaceObject.NameOfObject.Equals(placeObject.transform) && collOfPlaceObject.NameOfTriggeredObject.Equals(this.transform))
                 || (((Mathf.Abs(location.x - placeLocation.x)) <= rangeX &&
                 Mathf.Abs(location.y - placeLocation.y) <= rangeY) && collOfPlaceObject == null))
             {
@@ -440,143 +440,6 @@ public class MoveObject : MonoBehaviour
     //        transform.localScale = Vector3.Lerp(transform.localScale, scaleS, .08f);
     //    }
     //}
-
-    #region Touch for mobile devices
-    private void TouchFunc()
-    {
-        touch = Input.GetTouch(0);
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 0);
-        if (hit && transform.name == hit.collider.transform.name)
-        {
-            if (touch.phase == TouchPhase.Began)
-            {
-                beganTouch();
-            }
-            if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
-            {
-                dragingTouch();
-            }
-            if (touch.phase == TouchPhase.Ended)
-            {
-                endedTouch();
-            }
-
-        }
-    }
-    private void beganTouch()
-    {
-        if (DontMoving)
-            return;
-
-        if (!locked)
-        {
-            deltaX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
-            deltaY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y;
-
-            if (isAnimator)
-                anim.SetBool("zoom", true);
-            else if(isScale)
-                StartCoroutine(effect.Scale(transform, new Vector3(xScale + (xScale * scaleRadius), yScale + (yScale * scaleRadius)), 1f));
-
-            if (!dontSortLayer)
-                this.GetComponent<SpriteRenderer>().sortingOrder += 1;
-        }
-    }
-    private void dragingTouch()
-    {
-        if (DontMoving)
-            return;
-
-        if (!locked)
-        {
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
-
-            if (anyLocation)
-            {
-                if (IsLocalPos)
-                    firstPosition = transform.localPosition;
-                else
-                    firstPosition = transform.position;
-            }
-        }
-    }
-    private void endedTouch()
-    {
-        if (DontMoving)
-            return;
-
-        if (!locked && !empty)
-        {
-            if (!dontSortLayer)
-                render.sortingOrder -= 1;
-
-            Vector2 location = Vector2.zero;
-            if (IsLocalPos)
-                location = GetComponent<Transform>().localPosition;
-            else
-                location = GetComponent<Transform>().position;
-
-            if ((collOfPlaceObject != null && collOfPlaceObject.OnCollision && collOfPlaceObject.NameOfObject.Equals(placeObject.transform.name) && collOfPlaceObject.NameOfTriggeredObject.Equals(this.transform.name))
-                || (((Mathf.Abs(location.x - placeLocation.x)) <= rangeX &&
-                Mathf.Abs(location.y - placeLocation.y) <= rangeY) && collOfPlaceObject == null))
-            {
-                if (isAnimator)
-                {
-                    anim.SetTrigger("destroy");
-                    //currentCnt++;
-                }
-                else
-                {
-                    StartCoroutine(methodScale(transform, scaleS, false, 1f)); //Уменшить когда отпускат мышку
-
-                    if (placeObject == null || HasPlaceObjectCollider)
-                    {
-                        if (!HasPlaceObjectCollider)
-                            StartCoroutine(moveAnim(placeLocation, IsLocalPos));
-                        else
-                        {
-                            StartCoroutine(moveAnim(toThisLocation, IsLocalPos));
-                        }
-                    }
-                    else
-                    {
-                        StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true, .5f));
-                    }
-                }
-                if (killPlaceObject)
-                    placeObjectAnim.SetTrigger("destroy");
-                StartCoroutine(makeInActive());
-            }
-            else
-            {
-                if (isAnimator)
-                    anim.SetBool("zoom", false);
-                else
-                {
-                    StartCoroutine(methodScale(transform, scaleS, false, 1f));
-                }
-
-                toLocalPos = true;
-
-                if (IsLocalPos && !DontMoveTo1stPosition)
-                    transform.localPosition = Vector2.Lerp(transform.localPosition, firstPosition, 2f);
-                else if (!DontMoveTo1stPosition)
-                    transform.position = Vector2.Lerp(transform.position, firstPosition, 2f);
-
-            }
-        }
-        else if (empty)
-        {
-            StartCoroutine(methodScale(transform, scaleS, false, 1f));
-
-            if (IsLocalPos && !DontMoveTo1stPosition)
-                transform.localPosition = Vector2.Lerp(transform.localPosition, firstPosition, 2f);
-            else if (!DontMoveTo1stPosition)
-                transform.position = Vector2.Lerp(transform.position, firstPosition, 2f);
-        }
-    }
-#endregion
 
     public int countOfObjects = 0;
     public static int currentCnt1 = 0;

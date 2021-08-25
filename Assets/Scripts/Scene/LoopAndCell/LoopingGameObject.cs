@@ -27,7 +27,7 @@ public class LoopingGameObject : MonoBehaviour
 
     private RectTransform[,] cells;
 
-    private List<GameObject> tempPrefabs = new List<GameObject>();
+    public List<GameObject> tempPrefabs = new List<GameObject>();
 
     public static GameObject CurrentObj = null;
 

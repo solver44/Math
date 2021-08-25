@@ -31,13 +31,13 @@ public class OnCollision2D : MonoBehaviour
         set { collObject = value; changingColl?.Invoke(collObject, currentGameObj); }
     }
 
-    private string _nameOfObject = "";
-    private string _nameOfTrggeredObject = "";
-    public string NameOfObject
+    private Transform _nameOfObject;
+    private Transform _nameOfTrggeredObject;
+    public Transform NameOfObject
     {
         get { return _nameOfObject; }
     }
-    public string NameOfTriggeredObject
+    public Transform NameOfTriggeredObject
     {
         get { return _nameOfTrggeredObject; }
     }
@@ -67,7 +67,7 @@ public class OnCollision2D : MonoBehaviour
 
     void Awake()
     {
-        _nameOfObject = this.transform.name;
+        _nameOfObject = this.transform;
 
         if (CheckButton != null)
         {
@@ -84,8 +84,8 @@ public class OnCollision2D : MonoBehaviour
             DeleteEntered(currObj.gameObject, true);
     }
 
-    List<string> nameOfObjectsInside = new List<string>();
-    List<MoveObject> scriptsOfObjectsInside = new List<MoveObject>();
+    public List<Transform> nameOfObjectsInside = new List<Transform>();
+    public List<MoveObject> scriptsOfObjectsInside = new List<MoveObject>();
 
     void OnTriggerEnter2D(Collider2D coll)
     {
@@ -93,7 +93,7 @@ public class OnCollision2D : MonoBehaviour
             return;
 
         _onCollision = true;
-        _nameOfTrggeredObject = coll.gameObject.name;
+        _nameOfTrggeredObject = coll.gameObject.transform;
 
         if (!CheckInside)
             return;
@@ -126,17 +126,21 @@ public class OnCollision2D : MonoBehaviour
     bool locked = false;
     private void checkHaveAll(bool showMessage)
     {
-        var a = NameOfObjects.All(nameOfObjectsInside.Contains) && NameOfObjects.Length == nameOfObjectsInside.Count;
+        var a = NameOfObjects.All(nameOfObjectsInside.Select(c => c.transform.name).Contains) && NameOfObjects.Length == nameOfObjectsInside.Count;
         if (a)
         {
             locked = true;
-            CheckButton.GetComponent<Button>().interactable = false;
+            if(hasCheckButton)
+                CheckButton.GetComponent<Button>().interactable = false;
             StartCoroutine(makeDisableAllObjects(!hasCheckButton));
         }
         else if (showMessage)
         {
             if(ErrorPanel != null)
                 StartCoroutine(ErrorPanelAnimation());
+
+            if (hasCheckButton)
+                CheckButton.GetComponent<Button>().interactable = true;
         }
     }
 
@@ -198,7 +202,7 @@ public class OnCollision2D : MonoBehaviour
         }
 
         coll.transform.GetComponent<MoveObject>().DontMoveTo1stPosition = false;
-        nameOfObjectsInside.Remove(currentGameObj.name);
+        nameOfObjectsInside.Remove(currentGameObj.transform);
         scriptsOfObjectsInside.Remove(currentGameObj.transform.GetComponent<MoveObject>());
 
         if (!hasCheckButton && !HaveCells)
