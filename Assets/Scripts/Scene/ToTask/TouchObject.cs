@@ -55,51 +55,48 @@ public class TouchObject : MonoBehaviour
     }
 
     SpriteRenderer renderer = null;
-    void SetRayCast(RaycastHit2D hitTouch)
+    void OnMouseDown()
     {
-        if (hitTouch && transform == hitTouch.collider.transform)
+
+        //if(hitTouch.collider.CompareTag("Difference"))
+        //{
+        //    obj = hitTouch.collider.transform.gameObject as GameObject;
+
+        //    if (obj.GetComponent<SpriteRenderer>().color.a == 0)
+        //        Parent.GetComponent<WasUnitComplete>().SetCountOfDifference +=  1;
+        //    obj.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
+        //}
+        if (hasSound && (sound == null || !sound.isPlaying))
+        {     
+            if(sound != null)
+                sound.Play();
+
+            if (!scaleWithoutAnim && animator != null)
+                animator.SetBool("zoom", true);
+            else if (scaleWithoutAnim)
+                scale = true;
+        }
+        else if (!hasSound)
         {
-            //if(hitTouch.collider.CompareTag("Difference"))
-            //{
-            //    obj = hitTouch.collider.transform.gameObject as GameObject;
+            isShowing = true;
+            if (!scaleWithoutAnim && animator != null)
+                animator.SetBool("zoom", true);
+            else if(scaleWithoutAnim)
+                scale = true;
+        }
 
-            //    if (obj.GetComponent<SpriteRenderer>().color.a == 0)
-            //        Parent.GetComponent<WasUnitComplete>().SetCountOfDifference +=  1;
-            //    obj.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
-            //}
-            if (hasSound && (sound == null || !sound.isPlaying))
-            {     
-                if(sound != null)
-                    sound.Play();
-
-                if (!scaleWithoutAnim && animator != null)
-                    animator.SetBool("zoom", true);
-                else if (scaleWithoutAnim)
-                    scale = true;
-            }
-            else if (!hasSound)
+        if (Parent != null && !calculated)
+        {
+            calculated = true;
+            currentCount++;
+            if (currentCount == CountOfObjects)
             {
-                isShowing = true;
-                if (!scaleWithoutAnim && animator != null)
-                    animator.SetBool("zoom", true);
-                else if(scaleWithoutAnim)
-                    scale = true;
-            }
-
-            if (Parent != null && !calculated)
-            {
-                calculated = true;
-                currentCount++;
-                if (currentCount == CountOfObjects)
-                {
-                    Parent.CompleteUnit();
-                }
+                Parent.CompleteUnit();
             }
         }
     }
     bool isShowing = false;
     bool wait = false;
-    RaycastHit2D hitTouch;
     private IEnumerator hideText()
     {
         yield return new WaitForSeconds(2);
@@ -107,17 +104,8 @@ public class TouchObject : MonoBehaviour
         wait = false;
     }
 
-    #if UNITY_EDITOR
     private void Update()
     {
-        if (Input.touchCount > 0)
-        {
-            touch = Input.GetTouch(0);
-            hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 10);
-
-            SetRayCast(hitTouch);
-        }
-
 
         if (animator != null || scaleWithoutAnim) {
             if (isShowing || (sound != null && sound.isPlaying))
@@ -167,65 +155,5 @@ public class TouchObject : MonoBehaviour
             transform.localScale = Vector3.Lerp(transform.localScale, scaleS, .05f);
         }
     }
-#else
-    private void Update()
-    {
-        if (Input.touchCount > 0)
-        {
-            touch = Input.GetTouch(0);
-            hitTouch = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.deltaPosition).x, Camera.main.ScreenToWorldPoint(touch.deltaPosition).y), Vector2.zero, 10);
 
-            SetRayCast(hitTouch);
-        }
-
-
-        if (animator != null || scaleWithoutAnim) {
-            if (isShowing || (sound != null && sound.isPlaying))
-            {
-                if(!scaleWithoutAnim && animator != null)
-                        animator.SetBool("zoom", true);
-                else if(scaleWithoutAnim)
-                    scale = true;
-                if(hasName)
-                    text.text = this.name;
-
-                if (renderer != null)
-                    renderer.sortingLayerName = "Selected";
-
-                if (!wait)
-                {
-                    wait = true;
-                    StartCoroutine(hideText());
-                }
-            }
-            else if(!isShowing)
-            {
-                if (sound != null)
-                    sound.Stop();
-
-                isShowing = false;
-                if(!scaleWithoutAnim && animator != null)
-                    if(!dontChangeEnd)
-                        animator.SetBool("zoom", false);
-                else if(scaleWithoutAnim)
-                    if (!dontChangeEnd)
-                        scale = false;
-
-                if (renderer != null)
-                    renderer.sortingLayerName = "Top";
-
-                if (hasName && (text != null && text.text == this.name))
-                    text.text = null;
-            }
-        }
-
-        if(scale && scaleWithoutAnim)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(xScale  + (xScale * scaleR), yScale + (yScale * scaleR)), .05f);
-        }else if(!scale && scaleWithoutAnim)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, scaleS, .05f);
-        }
-    }
-#endif
 }
