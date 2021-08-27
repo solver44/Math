@@ -135,6 +135,21 @@ public class DrawLines : MonoBehaviour
             upFunc();
         }
     }
+#else
+    void Update()
+    {
+        if(Input.touchCount > 0)
+        {
+            touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+                downFunc();
+            if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+                dragFunc();
+            if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                upFunc();
+
+        }
+    }
 #endif
 
 
@@ -187,9 +202,9 @@ public class DrawLines : MonoBehaviour
         line.SetPosition(1, mousePos);
     }
 #else
-    private void OnMouseDown()
+    private void downFunc()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
 
         if (Vector2.Distance(mousePos, childPos) > Range)
             return;
@@ -204,7 +219,7 @@ public class DrawLines : MonoBehaviour
 
         currentChildIndex++;
     }
-    private void OnMouseDrag()
+    private void upFunc()
     {
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
         mousePos.z = 0;
@@ -228,10 +243,10 @@ public class DrawLines : MonoBehaviour
         }
 
     }
-    private void OnMouseUp()
+    private void dragFunc()
     {
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
-        mousePos.z = -1;
+        mousePos.z = 0;
 
         line.SetPosition(1, mousePos);
     }

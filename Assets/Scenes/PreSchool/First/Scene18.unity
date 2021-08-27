@@ -3784,7 +3784,7 @@ MonoBehaviour:
   placeObject: {fileID: 0}
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 6.37, y: 2.08}
-  toThisScale: {x: 0.2827906, y: 0.2827906}
+  toThisScale: {x: 0, y: 0}
   StartFromThisPos: 1
   CurrentUnit: 1
   TimeToStart: 2

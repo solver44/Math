@@ -39,15 +39,24 @@ public class Server : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2}, Photon.Realtime.TypedLobby.Default);
         isOwnerRoom = true;
     }
+    private void CreateRoom()
+    {
+        Debug.Log("Created Room");
+        PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2 }, Photon.Realtime.TypedLobby.Default);
+        isOwnerRoom = true;
+    }
 
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined Room");
-        PhotonNetwork.LoadLevel("Battle");
+        PhotonNetwork.LoadLevel("FirstBattle");
     }
 
     public void CreateOrJoin()
     {
-        PhotonNetwork.JoinRandomRoom();
+        try {
+            PhotonNetwork.JoinRandomRoom();
+        }
+        catch { CreateRoom(); }
     }
 }
