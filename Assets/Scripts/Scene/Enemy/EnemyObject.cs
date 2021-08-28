@@ -16,12 +16,12 @@ public class EnemyObject : MonoBehaviourPunCallbacks, IOnEventCallback
     }
 
     PhotonView view;
-    CreatorMap map;
+    CreatorMapFirst map;
 
     private void Start()
     {
         view = GetComponent<PhotonView>();
-        map = GameObject.Find("Creator").GetComponent<CreatorMap>();
+        map = GameObject.Find("Creator").GetComponent<CreatorMapFirst>();
     }
     [PunRPC]
     public void GoUp(int index, bool isOwn)

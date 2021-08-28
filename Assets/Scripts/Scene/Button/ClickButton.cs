@@ -75,12 +75,13 @@ public class ClickButton : MonoBehaviour
             yield return null;
         }
     }
-    void increaseSizeUI(GameObject obj, float interval)
+    void increaseSizeUI(GameObject obj)
     {
         RectTransform rect = obj.GetComponent<RectTransform>();
         //StartCoroutine(MoveSmooth(rect, new Vector2(rect.localPosition.x, rect.localPosition.y + interval)));
         ScrollRect scrollRect = MainScroll.GetComponent<ScrollRect>();
-        StartCoroutine(MoveSmooth(scrollRect, new Vector2(0, 1)));
+        //StartCoroutine(MoveSmooth(scrollRect, new Vector2(scrollRect.preferredHeight)));
+        //ContentSizeFitter ft = scrollRect.transform.GetChild(0).GetComponent<>;
     }
 
     int makeRandomlyNumWithoutEquals(int targetNum, int min, int max)
@@ -98,7 +99,7 @@ public class ClickButton : MonoBehaviour
             return;
 
         //if(CurrentIndex == 12)
-           // increaseSizeUI(MainScrollContent, -160);
+        increaseSizeUI(MainScrollContent);
 
         int randS = Random.Range(0, 2);
         Values vals = QBoxes[CurrentIndex].GetComponent<Values>();
@@ -145,9 +146,17 @@ public class ClickButton : MonoBehaviour
 
     public delegate void Change();
     public event Change changingResults;
+    bool wait = false;
+
+    private IEnumerator dontWait()
+    {
+        wait = true;
+        yield return new WaitForSeconds(1);
+        wait = false;
+    }
     public void CheckEqual(Text number)
     {
-        if (Finish)
+        if (Finish || wait)
             return;
 
         if (PunView == null)
@@ -171,9 +180,15 @@ public class ClickButton : MonoBehaviour
             results[CurrentIndex] = 0;
             changingResults?.Invoke();
             setInactivePrevious();
+            if (coins > -1)
+            {
+                coins -= CntCoin;
+                CoinText.text = coins.ToString();
+            }
             CurrentIndex++;
             PunView.RPC("GoUp", RpcTarget.All, CurrentIndex, PunView.IsMine);
         }
+        StartCoroutine(dontWait());
     }
 
     void SetPunView()

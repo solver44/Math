@@ -54,9 +54,6 @@ public class Server : MonoBehaviourPunCallbacks
 
     public void CreateOrJoin()
     {
-        try {
-            PhotonNetwork.JoinRandomRoom();
-        }
-        catch { CreateRoom(); }
+        PhotonNetwork.JoinRandomRoom();
     }
 }

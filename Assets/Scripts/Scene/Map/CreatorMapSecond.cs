@@ -17,15 +17,39 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
     public Text TextWinPanel = null;
 
     GameObject currentTemp;
+    SpriteRenderer[] currentTempChildren = new SpriteRenderer[2];
     int currentCount = 1;
     private void Start()
     {
         currentTemp = Instantiate(QuestionTemplate, this.transform, false);
         currentTemp.name = "Template" + currentCount; currentCount++;
         currentTemp.transform.localPosition = new Vector3(-1250, 0);
+
+        for (int i = 0; i < currentTemp.transform.childCount; i++)
+        {
+            currentTempChildren[i] = currentTemp.transform.GetChild(i).GetComponent<SpriteRenderer>();
+        }
         StartCoroutine(IeStart());
     }
 
+    private void SetQuestions()
+    {
+        int[] randNums = new int[2];
+        for (int i = 0; i < 3; i++)
+        {
+
+        }
+    }
+    private int getRandomNumber(int[] target, int min, int max)
+    {
+        int rand = UnityEngine.Random.Range(min, max);
+        while (!target.Contains(rand))
+        {
+            rand = UnityEngine.Random.Range(min, max);
+        }
+
+        return rand;
+    }
     ScaleEffect effect = new ScaleEffect();
     private IEnumerator IeStart()
     {

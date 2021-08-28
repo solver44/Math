@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 
-public class CreatorMap : MonoBehaviourPunCallbacks, IOnEventCallback
+public class CreatorMapFirst : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     [Header("Timer")]
     public Timer timer = null;
