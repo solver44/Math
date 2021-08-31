@@ -56,9 +56,9 @@ public class EnemyObject : MonoBehaviourPunCallbacks, IOnEventCallback
             PhotonNetwork.RaiseEvent(100, currentCntR, options, sendOption);
 
             if (cntR > currentCntR)
-                map.WinOrLose(false);
+                map.WinOrLose(false, currentCntR);
             else
-                map.WinOrLose(true);
+                map.WinOrLose(true, currentCntR);
         }
     }
 
@@ -76,9 +76,9 @@ public class EnemyObject : MonoBehaviourPunCallbacks, IOnEventCallback
 
             Debug.Log(cntR + "\n" + currentCntR);
             if (cntR > currentCntR)
-                map.WinOrLose(false);
+                map.WinOrLose(false, currentCntR);
             else
-                map.WinOrLose(true);
+                map.WinOrLose(true, currentCntR);
         }
     }
 }

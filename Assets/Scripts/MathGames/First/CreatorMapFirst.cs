@@ -8,6 +8,9 @@ using ExitGames.Client.Photon;
 
 public class CreatorMapFirst : MonoBehaviourPunCallbacks, IOnEventCallback
 {
+    [Space(30)]
+    public bool StartWithoutPlayer = false;
+
     [Header("Timer")]
     public Timer timer = null;
 
@@ -61,16 +64,18 @@ public class CreatorMapFirst : MonoBehaviourPunCallbacks, IOnEventCallback
         }
     }
 
-    public void WinOrLose(bool win)
+    public void WinOrLose(bool win, int trueAnswers)
     {
         WinPanel.SetActive(true);
         if (win)
         {
             TextWinPanel.text = "Вы выграли!";
+            WinPanel.transform.GetChild(2).transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = trueAnswers.ToString();
         }
         else
         {
             TextWinPanel.text = "Вы проиграли!";
+            WinPanel.transform.GetChild(2).transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = trueAnswers.ToString();
             imageWinPanel.transform.localScale = new Vector3(.8f, .8f, 1);
             imageWinPanel.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("MathGame/Battle/Abort");
         }
@@ -80,7 +85,7 @@ public class CreatorMapFirst : MonoBehaviourPunCallbacks, IOnEventCallback
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        if (Server.isOwnerRoom)
+        if (Server.isOwnerRoom && !StartWithoutPlayer)
         {
             Debug.Log("Send event");
             WaitingPanel.SetActive(false);
@@ -92,7 +97,7 @@ public class CreatorMapFirst : MonoBehaviourPunCallbacks, IOnEventCallback
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        WinOrLose(true);
+        WinOrLose(true, 0);
     }
     bool isOnEvent = false;
     private void awake()
@@ -114,9 +119,10 @@ public class CreatorMapFirst : MonoBehaviourPunCallbacks, IOnEventCallback
     }
     void Awake()
     {
-        WaitingPanel.SetActive(true);
+        if(!StartWithoutPlayer)
+            WaitingPanel.SetActive(true);
         Screen.orientation = ScreenOrientation.Portrait;
-        if (Server.isOwnerRoom)
+        if (Server.isOwnerRoom || StartWithoutPlayer)
             awake();
 
         click.changingResults += Click_changingResults;
@@ -134,6 +140,8 @@ public class CreatorMapFirst : MonoBehaviourPunCallbacks, IOnEventCallback
         var pos = TextAnchor.MiddleLeft;
         bool minus = false;
 
+        click.StartWithoutPlayer = this.StartWithoutPlayer;
+
         click.QBoxes = new GameObject[CountOfBoxes];
         click.Lines = new GameObject[CountOfBoxes];
 
@@ -149,7 +157,7 @@ public class CreatorMapFirst : MonoBehaviourPunCallbacks, IOnEventCallback
     }
     void Start()
     {
-        if (Server.isOwnerRoom)
+        if (Server.isOwnerRoom || StartWithoutPlayer)
             start();
     }
 

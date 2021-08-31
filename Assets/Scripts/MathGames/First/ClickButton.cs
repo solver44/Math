@@ -1,12 +1,14 @@
 ﻿using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ClickButton : MonoBehaviour
 {
+    [HideInInspector] public bool StartWithoutPlayer = false;
     [HideInInspector] public GameObject[] QBoxes;
     [HideInInspector] public GameObject[] Lines;
     [HideInInspector] public Sprite[] Images;
@@ -57,11 +59,18 @@ public class ClickButton : MonoBehaviour
         {
             Finish = true;
             Debug.Log("Finish");
-            PunView.RPC("CheckWinOrLose", RpcTarget.All, results);
+            if (!StartWithoutPlayer)
+                PunView.RPC("CheckWinOrLose", RpcTarget.All, results);
+            else
+            {
+                CreatorMapFirst map = GameObject.Find("Creator").GetComponent<CreatorMapFirst>();
+                map.WinOrLose(true, results.Where(c => c == 1).Count());
+            }
             return true;
         }
         return false;
     }
+
     IEnumerator MoveSmooth(ScrollRect transF, Vector2 target)
     {
         float scaleDuration = 5f;
@@ -77,11 +86,36 @@ public class ClickButton : MonoBehaviour
     }
     void increaseSizeUI(GameObject obj)
     {
-        RectTransform rect = obj.GetComponent<RectTransform>();
         //StartCoroutine(MoveSmooth(rect, new Vector2(rect.localPosition.x, rect.localPosition.y + interval)));
         ScrollRect scrollRect = MainScroll.GetComponent<ScrollRect>();
+        ScrollRect lineScrollRect = LeftBarScrollContent.GetComponent<ScrollRect>();
         //StartCoroutine(MoveSmooth(scrollRect, new Vector2(scrollRect.preferredHeight)));
-        //ContentSizeFitter ft = scrollRect.transform.GetChild(0).GetComponent<>;
+        StartCoroutine(LerpToChild(scrollRect, QBoxes[_currentIndex].GetComponent<RectTransform>(), true));
+        StartCoroutine(LerpToChild(lineScrollRect, Lines[_currentIndex].GetComponent<RectTransform>(), false));
+    }
+    private IEnumerator LerpToChild(ScrollRect _scrollRectComponent, RectTransform target, bool isMain)
+    {
+        RectTransform child;
+        if(isMain)
+            child = _scrollRectComponent.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<RectTransform>();
+        else
+            child = _scrollRectComponent.transform.GetChild(1).GetComponent<RectTransform>();
+
+        Vector2 _lerpTo = child.anchoredPosition - (Vector2)_scrollRectComponent.transform.InverseTransformPoint(target.position) - new Vector2(0, 690);
+        bool _lerp = true;
+        Canvas.ForceUpdateCanvases();
+
+        float decelerate = 3f;
+        for (float i = 0; i < 1; i += Time.deltaTime * decelerate)
+        {
+            child.anchoredPosition = Vector2.Lerp(child.anchoredPosition, _lerpTo, i);
+            if (Vector2.Distance(child.anchoredPosition, _lerpTo) < 0.25f)
+            {
+                child.anchoredPosition = _lerpTo;
+                yield break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     int makeRandomlyNumWithoutEquals(int targetNum, int min, int max)
@@ -151,7 +185,7 @@ public class ClickButton : MonoBehaviour
     private IEnumerator dontWait()
     {
         wait = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.3f);
         wait = false;
     }
     public void CheckEqual(Text number)
@@ -173,7 +207,8 @@ public class ClickButton : MonoBehaviour
             coins += CntCoin;
             CoinText.text = coins.ToString();
             CurrentIndex++;
-            PunView.RPC("GoUp", RpcTarget.All, CurrentIndex, PunView.IsMine);
+            if(!StartWithoutPlayer)
+                PunView.RPC("GoUp", RpcTarget.All, CurrentIndex, PunView.IsMine);
         }
         else
         {
@@ -186,13 +221,15 @@ public class ClickButton : MonoBehaviour
                 CoinText.text = coins.ToString();
             }
             CurrentIndex++;
-            PunView.RPC("GoUp", RpcTarget.All, CurrentIndex, PunView.IsMine);
+            if (!StartWithoutPlayer)
+                PunView.RPC("GoUp", RpcTarget.All, CurrentIndex, PunView.IsMine);
         }
         StartCoroutine(dontWait());
     }
 
     void SetPunView()
     {
-        PunView = GameObject.Find("enemy").transform.GetComponent<PhotonView>();
+        if(!StartWithoutPlayer)
+            PunView = GameObject.Find("enemy").transform.GetComponent<PhotonView>();
     }
 }
