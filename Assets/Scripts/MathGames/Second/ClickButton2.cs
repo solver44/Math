@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,27 +9,56 @@ using UnityEngine.UI;
 
 public class ClickButton2 : MonoBehaviour
 {
-    [HideInInspector] public bool StartWithoutPlayer = false;
+    [HideInInspector] public bool StartWithoutPlayer = true;
     [HideInInspector] public GameObject[] Lvls = null;
     [HideInInspector] public GameObject[] Questions = null;
-    [HideInInspector]public GameObject[] AnswerBtns = null;
-    [HideInInspector]public Sprite[] Shapes = null;
+    [HideInInspector] public GameObject[] AnswerBtns = null;
+    [HideInInspector] public Sprite[] Shapes = null;
+    [HideInInspector] public Color[] Colors;
+    [HideInInspector] public Text StatsHealth;
+    [HideInInspector] public int Health;
 
     [HideInInspector] public bool Finish = false;
 
-    IEnumerator MoveSmooth(ScrollRect transF, Vector2 target)
-    {
-        float scaleDuration = 5f;
-        for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
+
+    private int health { get { return Health; } set
         {
-            transF.normalizedPosition = Vector2.Lerp(transF.normalizedPosition, target, t);
-            if (transF.normalizedPosition.Equals(target))
+            Health = value;
+            changeStats();
+            if (value < 1)
             {
-                yield break;
+                Finish = true;
+                lose();
             }
-            yield return null;
+        } }
+
+    private void lose()
+    {
+        Debug.Log("Finish");
+        if (!StartWithoutPlayer)
+        {
+            try
+            {
+                PunView.RPC("CheckWinOrLose", RpcTarget.All, results);
+            }
+            catch {
+                CreatorMapSecond map = GameObject.Find("Creator").GetComponent<CreatorMapSecond>();
+                map.WinOrLose(false);
+            }
+        }
+        else
+        {
+            CreatorMapSecond map = GameObject.Find("Creator").GetComponent<CreatorMapSecond>();
+            map.WinOrLose(false);
         }
     }
+    private void changeStats()
+    {
+        StatsHealth.text = health.ToString();
+        StatsHealth.GetComponent<Animator>().SetTrigger("start");
+    }
+    int[] results;
+    ScaleEffect effect = new ScaleEffect();
     private IEnumerator LerpToChild(ScrollRect _scrollRectComponent, RectTransform target, bool isMain)
     {
         //StartCoroutine(LerpToChild(lineScrollRect, Lines[_currentIndex].GetComponent<RectTransform>(), false));
@@ -55,14 +85,16 @@ public class ClickButton2 : MonoBehaviour
         }
     }
 
-    int makeRandomlyNumWithoutEquals(int targetNum, int min, int max)
+    int makeRandomlyNumWithoutEquals(int[] targetNum, int min, int max)
     {
-        while (true)
+        int num;
+        do
         {
-            int num = Random.Range(min, max);
-            if (targetNum != num)
-                return num;
+            num = UnityEngine.Random.Range(min, max);
         }
+        while (targetNum.Contains(num));
+
+        return num;
     }
 
     ScaleEffect scl = new ScaleEffect();
@@ -76,19 +108,144 @@ public class ClickButton2 : MonoBehaviour
         yield return new WaitForSeconds(1f);
         wait = false;
     }
+    int currentIndex = 0;
+    private IEnumerator IeStart()
+    {
+        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(-37, 0), true, 12f));
+    }
+    bool won()
+    {
+        if (currentIndex >= Lvls.Length)
+        {
+            Finish = true;
+            Debug.Log("Finish");
+            if (!StartWithoutPlayer)
+                PunView.RPC("CheckWinOrLose", RpcTarget.All, results);
+            else
+            {
+                CreatorMapSecond map = GameObject.Find("Creator").GetComponent<CreatorMapSecond>();
+                map.WinOrLose(true);
+            }
+            return true;
+        }
+        return false;
+    }
+    public void CreateNewAns()
+    {
+        StartCoroutine(IeStart());
+
+        Image temp;
+        IDictionary<int, Sprite> values = new Dictionary<int, Sprite>();
+
+        int[] indexes = new int[2];
+        for (int i = 0, cnt = 0; i < 3; i++)
+        {
+            temp = Questions[currentIndex].transform.GetChild(i).GetComponent<Image>();
+            if (temp.overrideSprite != null)
+            {
+                indexes[cnt] = i;
+                cnt++;
+                values.Add(i, temp.overrideSprite);
+            }
+        }
+
+        int randIndex = values.Keys.ElementAt(UnityEngine.Random.Range(0, values.Count()));
+        int[] randAnsIndexes = getRandomNumber(0, 2, 2, false);
+
+
+        Image child = AnswerBtns[randAnsIndexes[0]].transform.GetChild(0).GetComponent<Image>();
+        child.overrideSprite = values[randIndex];
+        child.color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
+        child.SetNativeSize();
+
+        child = AnswerBtns[randAnsIndexes[1]].transform.GetChild(0).GetComponent<Image>();
+        child.overrideSprite = Shapes[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Shapes, c => c == values[indexes[0]]), Array.FindIndex(Shapes, c => c == values[indexes[1]]) }, 0, Shapes.Length)];
+        child.color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
+        child.SetNativeSize();
+
+        Lvls[currentIndex].GetComponent<Image>().color = new Color32(255, 212, 47, 255);
+    }
     public void CheckEqual(Image sprite)
     {
         if (Finish || wait)
             return;
 
+        bool equalThreeObjects = false;
+        Image temp;
+        IDictionary<int, Sprite> values = new Dictionary<int, Sprite>();
 
+        int[] indexes = new int[2];
+        for (int i = 0, cnt=0; i < 3; i++)
+        {
+            temp = Questions[currentIndex].transform.GetChild(i).GetComponent<Image>();
+            if (temp.overrideSprite != null)
+            {
+                indexes[cnt] = i;
+                cnt++;
+                values.Add(i, temp.overrideSprite);
+            }
+        }
+        if (values[indexes[0]] == values[indexes[1]])
+            equalThreeObjects = true;
+
+        if ((values[indexes[0]].name == sprite.overrideSprite.name && equalThreeObjects) || (values.Where(c => c.Value.name == sprite.overrideSprite.name).Count() < 1 && !equalThreeObjects))
+            results[currentIndex] = 1;
+        else
+            results[currentIndex] = 0;
+
+        setInactivePrevious(results[currentIndex] == 1);
+
+        currentIndex++;
+
+        CreateNewAns();
 
         StartCoroutine(waitSeconds());
     }
+    private void setInactivePrevious(bool isAnsTrue)
+    {
+        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(1250, 0), true, 12f));
 
+        if (isAnsTrue)
+        {
+            Lvls[currentIndex].GetComponent<Image>().color = new Color32(15, 225, 10, 255);
+        }
+        else
+        {
+            Lvls[currentIndex].GetComponent<Image>().color = new Color32(225, 15, 10, 255);
+            health--;
+        }
+
+    }
+    private int[] getRandomNumber(int min, int max, int count, bool equalNums)
+    {
+        int rand = UnityEngine.Random.Range(min, max);
+        int[] rands = new int[count];
+        for (int i = 0; i < rands.Length; i++)
+        {
+            rands[i] = -1;
+        }
+        for (int i = 0; i < rands.Length; i++)
+        {
+            while (!equalNums && rands.Contains(rand))
+            {
+                rand = UnityEngine.Random.Range(min, max);
+            }
+            if (equalNums)
+                rand = UnityEngine.Random.Range(min, max);
+
+            rands[i] = rand;
+        }
+
+        return rands;
+    }
     void SetPunView()
     {
         if (!StartWithoutPlayer)
             PunView = GameObject.Find("enemy").transform.GetComponent<PhotonView>();
+    }
+    private void Start()
+    {
+        results = new int[Lvls.Length];
     }
 }

@@ -98,4 +98,22 @@ public class ScaleEffect : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
+
+    public IEnumerator MoveAnimTowards(Transform parent, Vector2 target, bool isLocal, float duration)
+    {
+        float scaleDuration = duration;
+        for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
+        {
+            if (isLocal)
+                parent.localPosition = Vector3.MoveTowards(parent.localPosition, target, duration);
+            else
+                parent.position = Vector3.MoveTowards(parent.position, target, duration);
+
+            if ((isLocal && parent.localPosition.Equals(target)) || (!isLocal && parent.position.Equals(target)))
+            {
+                yield break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
 }
