@@ -112,7 +112,7 @@ public class ClickButton2 : MonoBehaviour
     private IEnumerator IeStart()
     {
         yield return new WaitForSeconds(0.2f);
-        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(-37, 0), true, 12f));
+        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(-37, Questions[currentIndex].transform.localPosition.y), true, 12f));
     }
     bool won()
     {
@@ -137,17 +137,30 @@ public class ClickButton2 : MonoBehaviour
 
         Image temp;
         IDictionary<int, Sprite> values = new Dictionary<int, Sprite>();
-
-        int[] indexes = new int[2];
-        for (int i = 0, cnt = 0; i < 3; i++)
+        IDictionary<int, Color> colorVals = new Dictionary<int, Color>();
+        int[] indexes = new int[3];
+        bool stop = false;
+        for (int l = 0; l < Questions[currentIndex].transform.childCount; l++)
         {
-            temp = Questions[currentIndex].transform.GetChild(i).GetComponent<Image>();
-            if (temp.overrideSprite != null)
+            values = new Dictionary<int, Sprite>();
+            colorVals = new Dictionary<int, Color>();
+            for (int i = 0, cnt = 0; i < 3; i++)
             {
-                indexes[cnt] = i;
-                cnt++;
-                values.Add(i, temp.overrideSprite);
+                temp = Questions[currentIndex].transform.GetChild(l).transform.GetChild(i).GetComponent<Image>();
+                if (temp.overrideSprite != null)
+                {
+                    indexes[cnt] = i;
+                    cnt++;
+                    values.Add(i, temp.overrideSprite);
+                    colorVals.Add(i, temp.color);
+                }
+                else
+                {
+                    stop = true;
+                }
             }
+            if (stop)
+                break;
         }
 
         int randIndex = values.Keys.ElementAt(UnityEngine.Random.Range(0, values.Count()));
@@ -156,7 +169,11 @@ public class ClickButton2 : MonoBehaviour
 
         Image child = AnswerBtns[randAnsIndexes[0]].transform.GetChild(0).GetComponent<Image>();
         child.overrideSprite = values[randIndex];
-        child.color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
+        if (Questions[currentIndex].transform.childCount < 2)
+            child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[indexes[0]]), Array.FindIndex(Colors, c => c == colorVals[indexes[1]]) }, 0, Colors.Length)];
+        else
+            child.color = Colors[];
+
         child.SetNativeSize();
 
         child = AnswerBtns[randAnsIndexes[1]].transform.GetChild(0).GetComponent<Image>();
@@ -176,16 +193,23 @@ public class ClickButton2 : MonoBehaviour
         IDictionary<int, Sprite> values = new Dictionary<int, Sprite>();
 
         int[] indexes = new int[2];
-        for (int i = 0, cnt=0; i < 3; i++)
+        for (int l = 0; l < Questions[currentIndex].transform.childCount; l++)
         {
-            temp = Questions[currentIndex].transform.GetChild(i).GetComponent<Image>();
-            if (temp.overrideSprite != null)
+            if (Questions[currentIndex].transform.GetChild(l).transform.GetComponentsInChildren<Image>().Where(c => c.overrideSprite == null).Count() > 0)
             {
-                indexes[cnt] = i;
-                cnt++;
-                values.Add(i, temp.overrideSprite);
+                for (int i = 0, cnt = 0; i < 3; i++)
+                {
+                    temp = Questions[currentIndex].transform.GetChild(l).transform.GetChild(i).GetComponent<Image>();
+                    if (temp.overrideSprite != null)
+                    {
+                        indexes[cnt] = i;
+                        cnt++;
+                        values.Add(i, temp.overrideSprite);
+                    }
+                }
             }
         }
+
         if (values[indexes[0]] == values[indexes[1]])
             equalThreeObjects = true;
 
@@ -204,7 +228,7 @@ public class ClickButton2 : MonoBehaviour
     }
     private void setInactivePrevious(bool isAnsTrue)
     {
-        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(1250, 0), true, 12f));
+        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(1250, Questions[currentIndex].transform.localPosition.y), true, 12f));
 
         if (isAnsTrue)
         {

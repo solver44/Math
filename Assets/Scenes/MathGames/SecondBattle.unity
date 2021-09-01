@@ -446,13 +446,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0808cfffe17a46042849d4c2fe222b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestionTemplate: {fileID: 9031802061718322324, guid: 2066948936ff0f54f8ed72d0dd53cde3,
-    type: 3}
+  QuestionTemplate:
+  - {fileID: 9031802061718322324, guid: 2066948936ff0f54f8ed72d0dd53cde3, type: 3}
+  - {fileID: 9031802061718322324, guid: 8cb97cc7ed96a5f4783173ccf267c633, type: 3}
+  - {fileID: 9031802061718322324, guid: 64287bd1184d178419c70862e146f298, type: 3}
   AnswerButtons:
   - {fileID: 482919783}
   - {fileID: 1557293972}
   Parent: {fileID: 1897609462}
-  CountQuestions: 15
+  CountQuestions: 18
   click: {fileID: 1065146752}
   Shapes:
   - {fileID: 21300000, guid: a297f657fc01fbd49a25454dea629f7e, type: 3}

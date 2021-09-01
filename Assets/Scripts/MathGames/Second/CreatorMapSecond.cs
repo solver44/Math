@@ -11,7 +11,7 @@ using System.Linq;
 public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     [Header("Main")]
-    public GameObject QuestionTemplate = null;
+    public GameObject[] QuestionTemplate = null;
     public GameObject[] AnswerButtons = null;
     private GameObject[] questions = null;
     public Transform Parent = null;
@@ -36,6 +36,7 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
 
     GameObject currentTemp;
     Image[] currentTempChildren = new Image[3];
+    List<Image[]> columnTempChildren = new List<Image[]>();
     private void Awake()
     {
         Screen.orientation = ScreenOrientation.Landscape;
@@ -92,20 +93,38 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
     {
         int[] randNums;
 
-        for (int i = 0; i < CountQuestions; i++)
+        for (int i = 0, c = 0; i < CountQuestions; i++)
         {
-            randNums = getRandomNumber(0, 3, 2, false);
-            currentTemp = Instantiate(QuestionTemplate, Parent, false);
+            currentTemp = Instantiate(QuestionTemplate[c], Parent, false);
             currentTemp.name = "Template" + (i+1).ToString();
-            currentTemp.transform.localPosition = new Vector3(-1250, 0);
+            currentTemp.transform.localPosition = new Vector3(-1250, currentTemp.transform.localPosition.y);
 
-            for (int k = 0; k < randNums.Length; k++)
+            int[] randIndexShape = getRandomNumber(0, Shapes.Length, currentTemp.transform.childCount, false);
+            int[] colorIndexes = getRandomNumber(0, Colors.Length, 3, false);
+
+            int randColumn = UnityEngine.Random.Range(0, currentTemp.transform.childCount);
+            for (int l = 0; l < currentTemp.transform.childCount; l++)
             {
-                currentTempChildren[randNums[k]] = currentTemp.transform.GetChild(randNums[k]).GetComponent<Image>();
-                currentTempChildren[randNums[k]].overrideSprite = Shapes[UnityEngine.Random.Range(0, Shapes.Length)];
-                currentTempChildren[randNums[k]].color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
-                currentTempChildren[randNums[k]].GetComponent<Image>().SetNativeSize();
+                currentTempChildren = new Image[3];
+
+                if (randColumn == l)
+                    randNums = getRandomNumber(0, 3, 2, false);
+                else
+                    randNums = getRandomNumber(0, 3, 3, false);
+
+                for (int k = 0; k < randNums.Length; k++)
+                {
+                    currentTempChildren[randNums[k]] = currentTemp.transform.GetChild(l).transform.GetChild(randNums[k]).GetComponent<Image>();
+                    currentTempChildren[randNums[k]].overrideSprite = Shapes[randIndexShape[l]];
+                    currentTempChildren[randNums[k]].color = Colors[colorIndexes[randNums[k]]];
+                    currentTempChildren[randNums[k]].GetComponent<Image>().SetNativeSize();
+                }
+
+                columnTempChildren.Add(currentTempChildren);
             }
+
+            if ((i + 1) % (CountQuestions / QuestionTemplate.Length) == 0 && c < QuestionTemplate.Length)
+                c++;
 
             questions[i] = currentTemp;
         }
@@ -113,35 +132,47 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
         StartCoroutine(IeStart());
         Image temp;
         IDictionary<int, Sprite> values = new Dictionary<int, Sprite>();
-        for (int i = 0; i < 3; i++)
+        IDictionary<int, Color> colorVals = new Dictionary<int, Color>();
+        int[] indexes = new int[2];
+
+        int rowIndex = columnTempChildren.IndexOf(columnTempChildren.Where(c => c.Contains(null)).First());
+ 
+        for (int i = 0, cnt = 0; i < 3; i++)
         {
-            temp = questions[0].transform.GetChild(i).GetComponent<Image>();
+            temp = questions[0].transform.GetChild(rowIndex).transform.GetChild(i).GetComponent<Image>();
             if (temp.overrideSprite != null)
             {
+                indexes[cnt] = i;
+                cnt++;
                 values.Add(i, temp.overrideSprite);
+                colorVals.Add(i, temp.color);
+
             }
         }
+
         int randIndex = values.Keys.ElementAt(UnityEngine.Random.Range(0, values.Count()));
         int[] randAnsIndexes = getRandomNumber(0, 2, 2, false);
 
         Image child = AnswerButtons[randAnsIndexes[0]].transform.GetChild(0).GetComponent<Image>();
         child.overrideSprite = values[randIndex];
-        child.color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
+        child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[indexes[0]]), Array.FindIndex(Colors, c => c == colorVals[indexes[1]]) }, 0, Colors.Length)];
         child.SetNativeSize();
 
         child = AnswerButtons[randAnsIndexes[1]].transform.GetChild(0).GetComponent<Image>();
-        child.overrideSprite = Shapes[makeRandomlyNumWithoutEquals(Array.FindIndex(Shapes, c => c == values[randIndex]), 0, Shapes.Length)];
+        child.overrideSprite = Shapes[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Shapes, c => c == values[randIndex]) }, 0, Shapes.Length)];
         child.color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
         child.SetNativeSize();
     }
-    int makeRandomlyNumWithoutEquals(int targetNum, int min, int max)
+    int makeRandomlyNumWithoutEquals(int[] targetNum, int min, int max)
     {
-        while (true)
+        int num;
+        do
         {
-            int num = UnityEngine.Random.Range(min, max);
-            if (targetNum != num)
-                return num;
+            num = UnityEngine.Random.Range(min, max);
         }
+        while (targetNum.Contains(num));
+
+        return num;
     }
     private int[] getRandomNumber(int min, int max, int count, bool equalNums)
     {
