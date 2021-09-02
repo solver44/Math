@@ -93,17 +93,32 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
     {
         int[] randNums;
 
-        for (int i = 0, c = 0; i < CountQuestions; i++)
+        int[] randIndexShape = null;
+        int[] colorIndexes = null;
+        Sprite[] shapes = null;
+        for (int i = 0, c = 0, c1 = 0; i < CountQuestions; i++)
         {
             currentTemp = Instantiate(QuestionTemplate[c], Parent, false);
             currentTemp.name = "Template" + (i+1).ToString();
             currentTemp.transform.localPosition = new Vector3(-1250, currentTemp.transform.localPosition.y);
 
-            int[] randIndexShape = getRandomNumber(0, Shapes.Length, currentTemp.transform.childCount, false);
-            int[] colorIndexes = getRandomNumber(0, Colors.Length, 3, false);
+            randIndexShape = getRandomNumber(0, Shapes.Length, currentTemp.transform.childCount, false);
+            colorIndexes = getRandomNumber(0, Colors.Length, 3, false);
+
 
             int randColumn = UnityEngine.Random.Range(0, currentTemp.transform.childCount);
-            for (int l = 0; l < currentTemp.transform.childCount; l++)
+            if (c1 != 0)
+            {
+                shapes = new Sprite[currentTemp.transform.childCount * 3];
+                blendArrays(shapes, Shapes, randIndexShape, out shapes);
+                int cnt = 1;
+                foreach (var item in shapes)
+                {
+                    Debug.Log(item.name + "     " + cnt);
+                    cnt++;
+                }
+            }
+            for (int l = 0, q = 0; l < currentTemp.transform.childCount; l++)
             {
                 currentTempChildren = new Image[3];
 
@@ -115,8 +130,17 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
                 for (int k = 0; k < randNums.Length; k++)
                 {
                     currentTempChildren[randNums[k]] = currentTemp.transform.GetChild(l).transform.GetChild(randNums[k]).GetComponent<Image>();
-                    currentTempChildren[randNums[k]].overrideSprite = Shapes[randIndexShape[l]];
-                    currentTempChildren[randNums[k]].color = Colors[colorIndexes[randNums[k]]];
+                    if (c1 == 0)
+                    {
+                        currentTempChildren[randNums[k]].overrideSprite = Shapes[randIndexShape[l]];
+                        currentTempChildren[randNums[k]].color = Colors[colorIndexes[randNums[k]]];
+                    }
+                    else
+                    {
+                        currentTempChildren[randNums[k]].overrideSprite = shapes[q];
+                        q++;
+                        currentTempChildren[randNums[k]].color = Colors[colorIndexes[randNums[k]]];
+                    }
                     currentTempChildren[randNums[k]].GetComponent<Image>().SetNativeSize();
                 }
 
@@ -124,7 +148,11 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
             }
 
             if ((i + 1) % (CountQuestions / QuestionTemplate.Length) == 0 && c < QuestionTemplate.Length)
-                c++;
+            { c++; c1 = 0; }
+
+            //Debug.Log(((c + 1) * (CountQuestions / QuestionTemplate.Length)) - ((CountQuestions / QuestionTemplate.Length) / 2));
+            if ((i + 1) >= ((c + 1) * (CountQuestions / QuestionTemplate.Length)) - ((CountQuestions / QuestionTemplate.Length) / 2) && currentTemp.transform.childCount > 1)
+                c1 = 1;
 
             questions[i] = currentTemp;
         }
@@ -162,6 +190,31 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
         child.overrideSprite = Shapes[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Shapes, c => c == values[randIndex]) }, 0, Shapes.Length)];
         child.color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
         child.SetNativeSize();
+    }
+
+    private void blendArrays(Sprite[] array1, Sprite[] array2, int[] indexes, out Sprite[] result)
+    {
+        Sprite[] currentSprites = new Sprite[indexes.Length];
+        for (int i = 0; i < currentSprites.Length; i++)
+        {
+            currentSprites[i] = array2[indexes[i]];
+        }
+
+        int[] counter = new int[currentSprites.Length];
+
+        for (int i = 0, cnt = 0; i < array1.Length; i++)
+        {
+            cnt = UnityEngine.Random.Range(0, currentSprites.Length);
+            if (counter[cnt] < 3)
+            {
+                array1[i] = currentSprites[cnt];
+                counter[cnt]++;
+            }
+            else
+                i--;
+        }
+
+        result = array1;
     }
     int makeRandomlyNumWithoutEquals(int[] targetNum, int min, int max)
     {
