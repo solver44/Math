@@ -105,7 +105,7 @@ public class ClickButton2 : MonoBehaviour
     private IEnumerator waitSeconds()
     {
         wait = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.8f);
         wait = false;
     }
     int currentIndex = 0;
@@ -120,8 +120,16 @@ public class ClickButton2 : MonoBehaviour
         {
             Finish = true;
             Debug.Log("Finish");
-            if (!StartWithoutPlayer)
-                PunView.RPC("CheckWinOrLose", RpcTarget.All, results);
+            if (!StartWithoutPlayer) {
+                try
+                {
+                    PunView.RPC("CheckWinOrLose", RpcTarget.All, results);
+                }
+                catch {
+                    CreatorMapSecond map = GameObject.Find("Creator").GetComponent<CreatorMapSecond>();
+                    map.WinOrLose(true);
+                }
+            }
             else
             {
                 CreatorMapSecond map = GameObject.Find("Creator").GetComponent<CreatorMapSecond>();
@@ -133,12 +141,14 @@ public class ClickButton2 : MonoBehaviour
     }
     public void CreateNewAns()
     {
+
         StartCoroutine(IeStart());
 
         Image temp;
         IDictionary<int, Sprite> values = new Dictionary<int, Sprite>();
         IDictionary<int, Color> colorVals = new Dictionary<int, Color>();
         int[] indexes = new int[3];
+        int columnIndex = 0;
         bool stop = false;
         for (int l = 0; l < Questions[currentIndex].transform.childCount; l++)
         {
@@ -156,6 +166,7 @@ public class ClickButton2 : MonoBehaviour
                 }
                 else
                 {
+                    columnIndex = l;
                     stop = true;
                 }
             }
@@ -172,7 +183,7 @@ public class ClickButton2 : MonoBehaviour
         if (Questions[currentIndex].transform.childCount < 2)
             child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[indexes[0]]), Array.FindIndex(Colors, c => c == colorVals[indexes[1]]) }, 0, Colors.Length)];
         else
-            child.color = Colors[];
+            child.color = Questions[currentIndex].transform.GetChild(Mathf.Abs(columnIndex - 1)).transform.GetChild(3 - (indexes[0] + indexes[1])).GetComponent<Image>().color;
 
         child.SetNativeSize();
 
@@ -221,6 +232,9 @@ public class ClickButton2 : MonoBehaviour
         setInactivePrevious(results[currentIndex] == 1);
 
         currentIndex++;
+
+        if (won())
+            return;
 
         CreateNewAns();
 
