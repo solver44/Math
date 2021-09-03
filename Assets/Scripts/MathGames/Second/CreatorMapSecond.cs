@@ -96,6 +96,7 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
         int[] randIndexShape = null;
         int[] colorIndexes = null;
         Sprite[] shapes = null;
+        Color[] shapesColor = null;
         for (int i = 0, c = 0, c1 = 0; i < CountQuestions; i++)
         {
             currentTemp = Instantiate(QuestionTemplate[c], Parent, false);
@@ -110,12 +111,12 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
             if (c1 != 0)
             {
                 shapes = new Sprite[currentTemp.transform.childCount * 3];
-                blendArrays(shapes, Shapes, randIndexShape, out shapes);
-                int cnt = 1;
+                blendArrays(shapes, Shapes, colorIndexes, randIndexShape, out shapes);
+                int cnt1 = 1;
                 foreach (var item in shapes)
                 {
-                    Debug.Log(item.name + "     " + cnt);
-                    cnt++;
+                    Debug.Log(item.name + "     " + cnt1);
+                    cnt1++;
                 }
             }
             for (int l = 0, q = 0; l < currentTemp.transform.childCount; l++)
@@ -151,7 +152,7 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
             { c++; c1 = 0; }
 
             //Debug.Log(((c + 1) * (CountQuestions / QuestionTemplate.Length)) - ((CountQuestions / QuestionTemplate.Length) / 2));
-            if ((i + 1) >= ((c + 1) * (CountQuestions / QuestionTemplate.Length)) - ((CountQuestions / QuestionTemplate.Length) / 2) && currentTemp.transform.childCount > 1)
+            if ((i + 1) >= ((c + 1) * (CountQuestions / QuestionTemplate.Length)) - ((CountQuestions / QuestionTemplate.Length) / 2) && currentTemp.transform.childCount > 2)
                 c1 = 1;
 
             questions[i] = currentTemp;
@@ -192,7 +193,7 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
         child.SetNativeSize();
     }
 
-    private void blendArrays(Sprite[] array1, Sprite[] array2, int[] indexes, out Sprite[] result)
+    private void blendArrays(Sprite[] array1, Sprite[] array2, int[] colorIndexes, int[] indexes, out Sprite[] result)
     {
         Sprite[] currentSprites = new Sprite[indexes.Length];
         for (int i = 0; i < currentSprites.Length; i++)
@@ -202,11 +203,29 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
 
         int[] counter = new int[currentSprites.Length];
 
+        int rowCnt = array1.Length / 3;
         for (int i = 0, cnt = 0; i < array1.Length; i++)
         {
             cnt = UnityEngine.Random.Range(0, currentSprites.Length);
-            if (counter[cnt] < 3)
+
+            int res = i / rowCnt, po = 0;
+            int[] rowIndexes = new int[rowCnt];
+            for (int p = 0; p < rowIndexes.Length; p++)
             {
+                rowIndexes[p] = i + (3 * p);
+            }
+            for (int k = 0; k < array1.Length; k++)
+            {
+                //Debug.Log(k / rowCnt + "  |  " + res);
+
+                if(k / rowCnt == res || rowIndexes.Contains(k))
+                {
+                    if (array1[k] == currentSprites[cnt])
+                        po++;
+                }
+            }
+            if (counter[cnt] < 3 && po < 1)
+            {      
                 array1[i] = currentSprites[cnt];
                 counter[cnt]++;
             }
