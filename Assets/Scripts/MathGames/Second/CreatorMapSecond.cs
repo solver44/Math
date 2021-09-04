@@ -112,12 +112,6 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
             {
                 shapes = new Sprite[currentTemp.transform.childCount * 3];
                 blendArrays(shapes, Shapes, colorIndexes, randIndexShape, out shapes);
-                int cnt1 = 1;
-                foreach (var item in shapes)
-                {
-                    Debug.Log(item.name + "     " + cnt1);
-                    cnt1++;
-                }
             }
             for (int l = 0, q = 0; l < currentTemp.transform.childCount; l++)
             {
@@ -210,14 +204,13 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
 
             int res = i / rowCnt, po = 0;
             int[] rowIndexes = new int[rowCnt];
+            int ind = i % rowCnt;
             for (int p = 0; p < rowIndexes.Length; p++)
             {
-                rowIndexes[p] = i + (3 * p);
+                rowIndexes[p] = ind + (3 * p);
             }
             for (int k = 0; k < array1.Length; k++)
             {
-                //Debug.Log(k / rowCnt + "  |  " + res);
-
                 if(k / rowCnt == res || rowIndexes.Contains(k))
                 {
                     if (array1[k] == currentSprites[cnt])
@@ -229,7 +222,7 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
                 array1[i] = currentSprites[cnt];
                 counter[cnt]++;
             }
-            else
+            else if(array1[i] == null)
                 i--;
         }
 

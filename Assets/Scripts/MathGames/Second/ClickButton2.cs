@@ -147,31 +147,35 @@ public class ClickButton2 : MonoBehaviour
         Image temp;
         IDictionary<int, Sprite> values = new Dictionary<int, Sprite>();
         IDictionary<int, Color> colorVals = new Dictionary<int, Color>();
+        IDictionary<Sprite, int> allValues = new Dictionary<Sprite, int>();
         int[] indexes = new int[3];
         int columnIndex = 0;
         bool stop = false;
         for (int l = 0; l < Questions[currentIndex].transform.childCount; l++)
         {
-            values = new Dictionary<int, Sprite>();
-            colorVals = new Dictionary<int, Color>();
             for (int i = 0, cnt = 0; i < 3; i++)
             {
                 temp = Questions[currentIndex].transform.GetChild(l).transform.GetChild(i).GetComponent<Image>();
                 if (temp.overrideSprite != null)
                 {
-                    indexes[cnt] = i;
-                    cnt++;
-                    values.Add(i, temp.overrideSprite);
-                    colorVals.Add(i, temp.color);
-                }
-                else
-                {
-                    columnIndex = l;
-                    stop = true;
+                    if (allValues.ContainsKey(temp.overrideSprite))
+                    {
+                        int tempCnt = allValues[temp.overrideSprite] + 1;
+                        allValues.Remove(temp.overrideSprite);
+                        allValues.Add(temp.overrideSprite, tempCnt);
+                    }
+                    else
+                        allValues.Add(temp.overrideSprite, 1);
+
+                    if (!stop)
+                    {
+                        colorVals.Add(i, temp.color);
+                        indexes[cnt] = i;
+                        cnt++;
+                        values.Add(i, temp.overrideSprite);
+                    }
                 }
             }
-            if (stop)
-                break;
         }
 
         int randIndex = values.Keys.ElementAt(UnityEngine.Random.Range(0, values.Count()));
@@ -187,8 +191,16 @@ public class ClickButton2 : MonoBehaviour
 
         child.SetNativeSize();
 
+        foreach (var item in indexes)
+        {
+            //Debug.Log(item);
+        }
         child = AnswerBtns[randAnsIndexes[1]].transform.GetChild(0).GetComponent<Image>();
-        child.overrideSprite = Shapes[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Shapes, c => c == values[indexes[0]]), Array.FindIndex(Shapes, c => c == values[indexes[1]]) }, 0, Shapes.Length)];
+        if (Questions[currentIndex].transform.childCount < 3)
+            child.overrideSprite = Shapes[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Shapes, c => c == values[indexes[0]]), Array.FindIndex(Shapes, c => c == values[indexes[1]]) }, 0, Shapes.Length)];
+        else
+            child.overrideSprite = allValues.Where(c => c.Value == 20).First().Key;
+
         child.color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
         child.SetNativeSize();
 
