@@ -1,5 +1,6 @@
 ﻿using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Server : MonoBehaviourPunCallbacks
 {
@@ -54,6 +55,7 @@ public class Server : MonoBehaviourPunCallbacks
 
     public void CreateOrJoin()
     {
-        PhotonNetwork.JoinRandomRoom();
+        SceneManager.LoadScene("FirstBattle");
+        //PhotonNetwork.JoinRandomRoom();
     }
 }

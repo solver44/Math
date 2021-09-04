@@ -111,7 +111,7 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
             if (c1 != 0)
             {
                 shapes = new Sprite[currentTemp.transform.childCount * 3];
-                blendArrays(shapes, Shapes, colorIndexes, randIndexShape, out shapes);
+                blendArrays(shapes, colorIndexes, randIndexShape, out shapes);
             }
             for (int l = 0, q = 0; l < currentTemp.transform.childCount; l++)
             {
@@ -187,24 +187,26 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
         child.SetNativeSize();
     }
 
-    private void blendArrays(Sprite[] array1, Sprite[] array2, int[] colorIndexes, int[] indexes, out Sprite[] result)
+    private void blendArrays(Sprite[] array1, int[] colorIndexes, int[] indexes, out Sprite[] result)
     {
         Sprite[] currentSprites = new Sprite[indexes.Length];
         for (int i = 0; i < currentSprites.Length; i++)
         {
-            currentSprites[i] = array2[indexes[i]];
+            currentSprites[i] = Shapes[indexes[i]];
         }
 
-        int[] counter = new int[currentSprites.Length];
+        int[] counter = new int[currentSprites.Length], rowIndexes; 
 
-        int rowCnt = array1.Length / 3;
+        int rowCnt = array1.Length / 3, res, po, ind;
+        int prevIndex = 0;
         for (int i = 0, cnt = 0; i < array1.Length; i++)
         {
+            //i = prevIndex;
             cnt = UnityEngine.Random.Range(0, currentSprites.Length);
 
-            int res = i / rowCnt, po = 0;
-            int[] rowIndexes = new int[rowCnt];
-            int ind = i % rowCnt;
+            res = i / rowCnt; po = 0;
+            rowIndexes = new int[rowCnt];
+            ind = i % rowCnt; 
             for (int p = 0; p < rowIndexes.Length; p++)
             {
                 rowIndexes[p] = ind + (3 * p);
@@ -221,9 +223,10 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
             {      
                 array1[i] = currentSprites[cnt];
                 counter[cnt]++;
+                prevIndex = i + 1;
             }
-            else if(array1[i] == null)
-                i--;
+            //else
+            //    i--;
         }
 
         result = array1;

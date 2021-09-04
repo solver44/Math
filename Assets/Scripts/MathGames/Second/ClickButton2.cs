@@ -145,15 +145,13 @@ public class ClickButton2 : MonoBehaviour
         StartCoroutine(IeStart());
 
         Image temp;
-        IDictionary<int, Sprite> values = new Dictionary<int, Sprite>();
         IDictionary<int, Color> colorVals = new Dictionary<int, Color>();
         IDictionary<Sprite, int> allValues = new Dictionary<Sprite, int>();
         int[] indexes = new int[3];
         int columnIndex = 0;
-        bool stop = false;
         for (int l = 0; l < Questions[currentIndex].transform.childCount; l++)
         {
-            for (int i = 0, cnt = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 temp = Questions[currentIndex].transform.GetChild(l).transform.GetChild(i).GetComponent<Image>();
                 if (temp.overrideSprite != null)
@@ -167,41 +165,45 @@ public class ClickButton2 : MonoBehaviour
                     else
                         allValues.Add(temp.overrideSprite, 1);
 
-                    if (!stop)
-                    {
+                    if (colorVals.Count < 3)
                         colorVals.Add(i, temp.color);
-                        indexes[cnt] = i;
-                        cnt++;
-                        values.Add(i, temp.overrideSprite);
+                }
+                else
+                {
+                    columnIndex = i;
+                    if (colorVals.Count < 3 && Questions[currentIndex].transform.childCount > 1)
+                    {
+                        colorVals.Clear();
                     }
                 }
             }
         }
 
-        int randIndex = values.Keys.ElementAt(UnityEngine.Random.Range(0, values.Count()));
         int[] randAnsIndexes = getRandomNumber(0, 2, 2, false);
 
-
         Image child = AnswerBtns[randAnsIndexes[0]].transform.GetChild(0).GetComponent<Image>();
-        child.overrideSprite = values[randIndex];
-        if (Questions[currentIndex].transform.childCount < 2)
-            child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[indexes[0]]), Array.FindIndex(Colors, c => c == colorVals[indexes[1]]) }, 0, Colors.Length)];
+        Sprite tempSpr = allValues.Where(c => c.Value < 3).First().Key;
+        child.overrideSprite = tempSpr;
+        if (Questions[currentIndex].transform.childCount > 1)
+            child.color = colorVals[columnIndex];
         else
-            child.color = Questions[currentIndex].transform.GetChild(Mathf.Abs(columnIndex - 1)).transform.GetChild(3 - (indexes[0] + indexes[1])).GetComponent<Image>().color;
+            child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[0]), Array.FindIndex(Colors, c => c == colorVals[1]) }, 0, Colors.Length)];
+        //if (Questions[currentIndex].transform.childCount < 2)
+        //    child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[indexes[0]]), Array.FindIndex(Colors, c => c == colorVals[indexes[1]]) }, 0, Colors.Length)];
+        //else
+        //    child.color = Questions[currentIndex].transform.GetChild(Mathf.Abs(columnIndex - 1)).transform.GetChild(3 - (indexes[0] + indexes[1])).GetComponent<Image>().color;
 
         child.SetNativeSize();
-
-        foreach (var item in indexes)
-        {
-            //Debug.Log(item);
-        }
+        int randShapeIndex = makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Shapes, c => c == tempSpr) }, 0, Shapes.Length);
         child = AnswerBtns[randAnsIndexes[1]].transform.GetChild(0).GetComponent<Image>();
-        if (Questions[currentIndex].transform.childCount < 3)
-            child.overrideSprite = Shapes[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Shapes, c => c == values[indexes[0]]), Array.FindIndex(Shapes, c => c == values[indexes[1]]) }, 0, Shapes.Length)];
-        else
-            child.overrideSprite = allValues.Where(c => c.Value == 20).First().Key;
-
+        child.overrideSprite = Shapes[randShapeIndex];
         child.color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
+        //if (Questions[currentIndex].transform.childCount < 3)
+        //    child.overrideSprite = Shapes[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Shapes, c => c == values[indexes[0]]), Array.FindIndex(Shapes, c => c == values[indexes[1]]) }, 0, Shapes.Length)];
+        //else
+        //    child.overrideSprite = allValues.Where(c => c.Value == 20).First().Key;
+
+        //child.color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
         child.SetNativeSize();
 
         Lvls[currentIndex].GetComponent<Image>().color = new Color32(255, 212, 47, 255);
