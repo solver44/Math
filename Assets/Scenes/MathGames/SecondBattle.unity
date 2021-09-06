@@ -454,7 +454,7 @@ MonoBehaviour:
   - {fileID: 482919783}
   - {fileID: 1557293972}
   Parent: {fileID: 1897609462}
-  CountQuestions: 6
+  CountQuestions: 18
   click: {fileID: 1065146752}
   Shapes:
   - {fileID: 21300000, guid: a297f657fc01fbd49a25454dea629f7e, type: 3}

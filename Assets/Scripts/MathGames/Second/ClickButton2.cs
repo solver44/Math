@@ -151,7 +151,7 @@ public class ClickButton2 : MonoBehaviour
         int columnIndex = 0;
         for (int l = 0; l < Questions[currentIndex].transform.childCount; l++)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0, cnt=0; i < 3; i++)
             {
                 temp = Questions[currentIndex].transform.GetChild(l).transform.GetChild(i).GetComponent<Image>();
                 if (temp.overrideSprite != null)
@@ -166,7 +166,11 @@ public class ClickButton2 : MonoBehaviour
                         allValues.Add(temp.overrideSprite, 1);
 
                     if (colorVals.Count < 3)
+                    {
+                        indexes[cnt] = i;
+                        cnt++;
                         colorVals.Add(i, temp.color);
+                    }
                 }
                 else
                 {
@@ -187,7 +191,7 @@ public class ClickButton2 : MonoBehaviour
         if (Questions[currentIndex].transform.childCount > 1)
             child.color = colorVals[columnIndex];
         else
-            child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[0]), Array.FindIndex(Colors, c => c == colorVals[1]) }, 0, Colors.Length)];
+            child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[indexes[0]]), Array.FindIndex(Colors, c => c == colorVals[indexes[1]]) }, 0, Colors.Length)];
         //if (Questions[currentIndex].transform.childCount < 2)
         //    child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[indexes[0]]), Array.FindIndex(Colors, c => c == colorVals[indexes[1]]) }, 0, Colors.Length)];
         //else
