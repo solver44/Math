@@ -123,6 +123,8 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
             {
                 shapes = blendArrays(currentTemp.transform.childCount * 3, randColorIndexes, randShapesIndexes);
             }
+
+            IDictionary<Sprite, int[]> vals = new Dictionary<Sprite, int[]>();
             for (int l = 0, q = 0; l < currentTemp.transform.childCount; l++)
             {
                 currentTempChildren = new Image[3];
@@ -145,8 +147,25 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
                     {
                         currentTempChildren[k] = currentTemp.transform.GetChild(l).transform.GetChild(k).GetComponent<Image>();
                         currentTempChildren[k].overrideSprite = shapes[q];
+                        int rnd = 0;
+                        if (vals.Count > 0)
+                            rnd = makeRandomlyNumWithoutEquals(vals.Where(o => o.Key == shapes[q]).First().Value, 0, randColorIndexes.Length);
+                        else
+                            rnd = UnityEngine.Random.Range(0, randColorIndexes.Length);
                         q++;
-                        currentTempChildren[k].color = Colors[randColorIndexes[k]];
+                        if (!vals.ContainsKey(shapes[q])) {
+                            List<int> shps = new List<int>();
+                            shps.Add(rnd);
+                            vals.Add(shapes[q], shps.ToArray());
+                        }
+                        else
+                        {
+                            List<int> shps = vals[shapes[q]].ToList();
+                            shps.Add(rnd);
+                            vals.Remove(shapes[q]);
+                            vals.Add(shapes[q], shps.ToArray());
+                        }
+                        currentTempChildren[k].color = Colors[randColorIndexes[rnd]];
                         currentTempChildren[k].GetComponent<Image>().SetNativeSize();
                     }
                 }
@@ -208,118 +227,66 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
     private Sprite[] blendArrays(int arrayLength, int[] colorIndexes, int[] shapesIndexes)
     {
         Sprite[] result = new Sprite[arrayLength];
-        string[] counter = new string[shapesIndexes.Length];
+        int[] counter = new int[shapesIndexes.Length];
 
-        int rowCnt = arrayLength / 3, currRowIndex, currColumnIndex, tempI = 0;
-        int[] prevColumnIndex, prevRowIndex;
+        int rowCnt = arrayLength / 3, tempI = 0;
 
         //int[,] locationsAllShapes = new int[rowCnt, 3];
-        int tempRandCnt;
-        int countOfLoop = 0;
+        int tempRandCnt, countOfLoop= 0;
+        int q = 0;
 
-        int[] indexes = new int[arrayLength];
-        for (int i = 0; i < arrayLength; i++)
+        int[] indexes = new int[shapesIndexes.Length];
+        int[] indexesL = new int[] { 0, 4, 8, 1, 5, 6, 2, 3, 7 };
+        //for (int i = 0; i < arrayLength; i++)
+        //{
+        //    currRowIndex = i / 3;
+        //    currColumnIndex = i - (currRowIndex * 3);
+        //    indexes[i] = i;
+        //    if (currRowIndex < rowCnt)
+        //    {
+        //        if (currColumnIndex == 1)
+        //            indexes[i] = i + 1;
+        //        else if (currColumnIndex == 2)
+        //            indexes[i] = i - 1;
+        //    }
+        //}
+        indexes = indexes.Select(c => c = -1).ToArray();
+        tempRandCnt = UnityEngine.Random.Range(0, shapesIndexes.Length);
+        while (true)
         {
-            currRowIndex = i / 3;
-            currColumnIndex = i - (currRowIndex * 3);
-            indexes[i] = i;
-            if (currRowIndex == 1)
+            indexes[tempI] = tempRandCnt;
+
+            if (counter[tempRandCnt] < 3)
             {
-                if (currColumnIndex == 1)
-                    indexes[i] = i + 1;
-                else if (currColumnIndex == 2)
-                    indexes[i] = i - 1;
-            }
-        }
-
-        while (tempI < arrayLength)
-        {
-            tempRandCnt = UnityEngine.Random.Range(0, shapesIndexes.Length);
-
-            currRowIndex = indexes[tempI] / 3;
-            currColumnIndex = indexes[tempI] - (currRowIndex * 3);
-
-            if (!string.IsNullOrEmpty(counter[tempRandCnt]))
-            {
-                prevRowIndex = counter[tempRandCnt].Split('/').Where(c => !string.IsNullOrEmpty(c)).Select(c => int.Parse(c) / 3).ToArray();
-                prevColumnIndex = counter[tempRandCnt].Split('/').Where(c => !string.IsNullOrEmpty(c)).Select(c => int.Parse(c) - (prevRowIndex[Array.FindIndex(counter[tempRandCnt].Split('/'), f => f == c)] * 3)).ToArray();
-                
+                result[indexesL[q]] = Shapes[shapesIndexes[tempRandCnt]];
+                q++;
+                counter[tempRandCnt]++;
             }
             else
             {
-                prevColumnIndex = null;
-                prevRowIndex = null;
-            }
-            if (string.IsNullOrEmpty(counter[tempRandCnt]) || (prevRowIndex != null && !prevColumnIndex.Contains(currColumnIndex) && !prevRowIndex.Contains(currRowIndex)))
-            {
-                result[indexes[tempI]] = Shapes[shapesIndexes[tempRandCnt]];
-                counter[tempRandCnt] += indexes[tempI] + "/";
-
                 tempI++;
-            }
-            else
-            {
-                countOfLoop++;
+                tempRandCnt = makeRandomlyNumWithoutEquals(indexes, 0, shapesIndexes.Length);
             }
 
-            if (countOfLoop > 1000)
-            {
-                Debug.Log("Stop it");
-                //result[tempI] = result[tempI - 1];
-                //counter[Array.FindIndex(shapesIndexes, c => c == Array.FindIndex(Shapes, f => f == result[tempI - 1]))] = tempI;
-                //result[tempI - 1] = Shapes[shapesIndexes[tempRandCnt]];
-                //counter[tempRandCnt] = tempI - 1;
-                //tempI++;  
+            if (q >= indexesL.Length)
                 break;
-            }
-            //breakLoop = false;
-
-            //if (counter[tempRandCnt] > 0)
-            //{
-            //    for (int l = 0; l < currColumnIndex + 1; l++)
-            //    {
-            //        if (locationsAllShapes[currRowIndex, l] == tempRandCnt + 1)
-            //        {
-            //            breakLoop = true;
-            //            break;
-            //        }
-            //    }
-
-            //    if (!breakLoop)
-            //    {
-            //        for (int i = 0; i < rowCnt; i++)
-            //        {
-            //            if (locationsAllShapes[i, currColumnIndex] == tempRandCnt + 1)
-            //            {
-            //                breakLoop = true;
-            //                break;
-            //            }
-            //        }
-            //    }
-            //}
-
-            //if (!breakLoop && counter[tempRandCnt] < 3)
-            //{
-            //    locationsAllShapes[currRowIndex, currColumnIndex] = tempRandCnt + 1;
-
-            //    array1[tempI] = Shapes[shapesIndexes[tempRandCnt]];
-            //    counter[tempRandCnt]++;
-            //    tempI++;
-            //}
-
-        }
-        foreach (var item in result)
-        {
-            Debug.Log(item.name);
         }
         return result;
     }
+    int loopCount = 0;
     int makeRandomlyNumWithoutEquals(int[] targetNum, int min, int max)
     {
         int num;
         do
         {
             num = UnityEngine.Random.Range(min, max);
+            loopCount++;
+            if(loopCount > 3000)
+            {
+                Debug.Log("Stop it");
+
+                break;
+            }
         }
         while (targetNum.Contains(num));
 

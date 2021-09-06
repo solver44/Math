@@ -171,6 +171,7 @@ public class ClickButton2 : MonoBehaviour
                         cnt++;
                         colorVals.Add(i, temp.color);
                     }
+
                 }
                 else
                 {
@@ -189,7 +190,12 @@ public class ClickButton2 : MonoBehaviour
         Sprite tempSpr = allValues.Where(c => c.Value < 3).First().Key;
         child.overrideSprite = tempSpr;
         if (Questions[currentIndex].transform.childCount > 1)
-            child.color = colorVals[columnIndex];
+        {
+            //if (currentIndex >= Questions.Length - (Questions.Length / 3) / 2)
+            //    child.color = colorVals[makeRandomlyNumWithoutEquals(new int[] {allValues.Where(c => c.Value < 3).First().Value, allValues.Where(c => c.Value < 3).Last().Value }, 0, colorVals.Count)];
+            //else
+                child.color = colorVals[columnIndex];
+        }
         else
             child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[indexes[0]]), Array.FindIndex(Colors, c => c == colorVals[indexes[1]]) }, 0, Colors.Length)];
         //if (Questions[currentIndex].transform.childCount < 2)
