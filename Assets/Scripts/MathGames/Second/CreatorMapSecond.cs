@@ -148,11 +148,13 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
                         currentTempChildren[k] = currentTemp.transform.GetChild(l).transform.GetChild(k).GetComponent<Image>();
                         currentTempChildren[k].overrideSprite = shapes[q];
                         int rnd = 0;
-                        if (vals.Count > 0)
+                        if (vals.Count > 0 && vals.ContainsKey(shapes[q]))
+                        {
                             rnd = makeRandomlyNumWithoutEquals(vals.Where(o => o.Key == shapes[q]).First().Value, 0, randColorIndexes.Length);
+                        }
                         else
                             rnd = UnityEngine.Random.Range(0, randColorIndexes.Length);
-                        q++;
+
                         if (!vals.ContainsKey(shapes[q])) {
                             List<int> shps = new List<int>();
                             shps.Add(rnd);
@@ -165,8 +167,10 @@ public class CreatorMapSecond : MonoBehaviourPunCallbacks, IOnEventCallback
                             vals.Remove(shapes[q]);
                             vals.Add(shapes[q], shps.ToArray());
                         }
+
                         currentTempChildren[k].color = Colors[randColorIndexes[rnd]];
                         currentTempChildren[k].GetComponent<Image>().SetNativeSize();
+                        q++;
                     }
                 }
                 if (randNums.Length < 3)

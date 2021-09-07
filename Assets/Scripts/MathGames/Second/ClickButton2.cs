@@ -146,7 +146,7 @@ public class ClickButton2 : MonoBehaviour
 
         Image temp;
         IDictionary<int, Color> colorVals = new Dictionary<int, Color>();
-        IDictionary<Sprite, int> allValues = new Dictionary<Sprite, int>();
+        IDictionary<Image, int> allValues = new Dictionary<Image, int>();
         int[] indexes = new int[3];
         int columnIndex = 0;
         for (int l = 0; l < Questions[currentIndex].transform.childCount; l++)
@@ -156,22 +156,22 @@ public class ClickButton2 : MonoBehaviour
                 temp = Questions[currentIndex].transform.GetChild(l).transform.GetChild(i).GetComponent<Image>();
                 if (temp.overrideSprite != null)
                 {
-                    if (allValues.ContainsKey(temp.overrideSprite))
+                    if (allValues.ContainsKey(temp))
                     {
-                        int tempCnt = allValues[temp.overrideSprite] + 1;
-                        allValues.Remove(temp.overrideSprite);
-                        allValues.Add(temp.overrideSprite, tempCnt);
+                        int tempCnt = allValues[temp] + 1;
+                        allValues.Remove(temp);
+                        allValues.Add(temp, tempCnt);
                     }
                     else
-                        allValues.Add(temp.overrideSprite, 1);
+                        allValues.Add(temp, 1);
 
-                    if (colorVals.Count < 3)
-                    {
-                        indexes[cnt] = i;
-                        cnt++;
+
+                    indexes[cnt] = i;
+                    cnt++;
+                    
+                    if (!colorVals.ContainsKey(i)) {
                         colorVals.Add(i, temp.color);
                     }
-
                 }
                 else
                 {
@@ -187,14 +187,19 @@ public class ClickButton2 : MonoBehaviour
         int[] randAnsIndexes = getRandomNumber(0, 2, 2, false);
 
         Image child = AnswerBtns[randAnsIndexes[0]].transform.GetChild(0).GetComponent<Image>();
-        Sprite tempSpr = allValues.Where(c => c.Value < 3).First().Key;
+        Sprite tempSpr = allValues.Where(c => c.Value < 3).First().Key.overrideSprite;
         child.overrideSprite = tempSpr;
         if (Questions[currentIndex].transform.childCount > 1)
         {
-            //if (currentIndex >= Questions.Length - (Questions.Length / 3) / 2)
-            //    child.color = colorVals[makeRandomlyNumWithoutEquals(new int[] {allValues.Where(c => c.Value < 3).First().Value, allValues.Where(c => c.Value < 3).Last().Value }, 0, colorVals.Count)];
-            //else
-                child.color = colorVals[columnIndex];
+            foreach (var item in allValues)
+            {
+                if (allValues.Where(f => f.Key.color == item.Key.color).Count() < 3)
+                {
+                    Debug.Log("ss");
+                    break;
+                }
+            }
+            child.color = colorVals[makeRandomlyNumWithoutEquals(new int[] { colorVals.Where(c => c.Key != columnIndex).First().Key, colorVals.Where(c => c.Key != columnIndex).Last().Key }, 0, colorVals.Count())];
         }
         else
             child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[indexes[0]]), Array.FindIndex(Colors, c => c == colorVals[indexes[1]]) }, 0, Colors.Length)];
