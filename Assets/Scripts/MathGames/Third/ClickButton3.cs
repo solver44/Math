@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ClickButton2 : MonoBehaviour
+public class ClickButton3 : MonoBehaviour
 {
     [HideInInspector] public bool StartWithoutPlayer = true;
     [HideInInspector] public GameObject[] Lvls = null;
@@ -15,22 +15,9 @@ public class ClickButton2 : MonoBehaviour
     [HideInInspector] public GameObject[] AnswerBtns = null;
     [HideInInspector] public Sprite[] Shapes = null;
     [HideInInspector] public Color[] Colors;
-    [HideInInspector] public Text StatsHealth;
-    [HideInInspector] public int Health;
+    [HideInInspector] public Text Stats;
 
     [HideInInspector] public bool Finish = false;
-
-
-    private int health { get { return Health; } set
-        {
-            Health = value;
-            changeStats();
-            if (value < 1)
-            {
-                Finish = true;
-                lose();
-            }
-        } }
 
     private void lose()
     {
@@ -54,8 +41,7 @@ public class ClickButton2 : MonoBehaviour
     }
     private void changeStats()
     {
-        StatsHealth.text = health.ToString();
-        StatsHealth.GetComponent<Animator>().SetTrigger("start");
+
     }
     int[] results;
     ScaleEffect effect = new ScaleEffect();
@@ -212,44 +198,48 @@ public class ClickButton2 : MonoBehaviour
 
         Lvls[currentIndex].GetComponent<Image>().color = new Color32(255, 212, 47, 255);
     }
-    public void CheckEqual(Image sprite)
+    public void CheckEqual(bool pressedEqual)
     {
         if (Finish || wait)
             return;
 
-        Image temp;
-        IDictionary<Sprite, int> values = new Dictionary<Sprite, int>();
+        bool isEqual = false;
 
-        for (int l = 0; l < Questions[currentIndex].transform.childCount; l++)
+        Image temp;
+
+        IDictionary<Image, int> firstVals = new Dictionary<Image, int>(); 
+        IDictionary<Image, int> secondVals = new Dictionary<Image, int>();
+        for (int i = 0; i < Questions[currentIndex].transform.childCount; i++)
         {
-            for (int i = 0; i < 3; i++)
+            for (int l = 0; l < Questions[currentIndex].transform.GetChild(i).transform.childCount; l++)
             {
-                temp = Questions[currentIndex].transform.GetChild(l).transform.GetChild(i).GetComponent<Image>();
-                if (temp.overrideSprite != null)
+                temp = Questions[currentIndex].transform.GetChild(i).transform.GetChild(l).GetComponent<Image>();
+                if (i == 0)
                 {
-                    if (values.ContainsKey(temp.overrideSprite))
-                    {
-                        int tempCnt = values[temp.overrideSprite] + 1;
-                        values.Remove(temp.overrideSprite);
-                        values.Add(temp.overrideSprite, tempCnt);
-                    }
+                    if(!firstVals.ContainsKey(temp))
+                        firstVals.Add(temp, 1);
                     else
-                        values.Add(temp.overrideSprite, 1);
+                    {
+                        int cnt = firstVals[temp] + 1;
+                        firstVals.Remove(temp);
+                        firstVals.Add(temp, cnt);
+                    }
+                }
+                else
+                {
+                    if (!secondVals.ContainsKey(temp))
+                        secondVals.Add(temp, 1);
+                    else
+                    {
+                        int cnt = secondVals[temp] + 1;
+                        secondVals.Remove(temp);
+                        secondVals.Add(temp, cnt);
+                    }
                 }
             }
         }
- 
-        if (values.Where(c => c.Value < 3).First().Key == sprite.overrideSprite)
-            results[currentIndex] = 1;
-        else
-            results[currentIndex] = 0;
 
-        setInactivePrevious(results[currentIndex] == 1);
-
-        currentIndex++;
-
-        if (won())
-            return;
+        
 
         CreateNewAns();
 
@@ -266,7 +256,6 @@ public class ClickButton2 : MonoBehaviour
         else
         {
             Lvls[currentIndex].GetComponent<Image>().color = new Color32(225, 15, 10, 255);
-            health--;
         }
 
     }
