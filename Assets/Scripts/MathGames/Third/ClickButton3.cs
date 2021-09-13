@@ -97,8 +97,8 @@ public class ClickButton3 : MonoBehaviour
     int currentIndex = 0;
     private IEnumerator IeStart()
     {
-        yield return new WaitForSeconds(0.2f);
-        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(-37, Questions[currentIndex].transform.localPosition.y), true, 12f));
+        yield return new WaitForSeconds(0.4f);
+        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(Questions[currentIndex].transform.localPosition.x, 0), true, 8f));
     }
     bool won()
     {
@@ -112,13 +112,13 @@ public class ClickButton3 : MonoBehaviour
                     PunView.RPC("CheckWinOrLose", RpcTarget.All, results);
                 }
                 catch {
-                    CreatorMapSecond map = GameObject.Find("Creator").GetComponent<CreatorMapSecond>();
+                    CreatorMapThird map = GameObject.Find("Creator").GetComponent<CreatorMapThird>();
                     map.WinOrLose(true);
                 }
             }
             else
             {
-                CreatorMapSecond map = GameObject.Find("Creator").GetComponent<CreatorMapSecond>();
+                CreatorMapThird map = GameObject.Find("Creator").GetComponent<CreatorMapThird>();
                 map.WinOrLose(true);
             }
             return true;
@@ -127,76 +127,11 @@ public class ClickButton3 : MonoBehaviour
     }
     public void CreateNewAns()
     {
-
         StartCoroutine(IeStart());
 
-        Image temp;
-        IDictionary<Color, int> colorVals = new Dictionary<Color, int>();
-        IDictionary<Sprite, int> allValues = new Dictionary<Sprite, int>();
-        int columnIndex = 0;
-        for (int l = 0; l < Questions[currentIndex].transform.childCount; l++)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                temp = Questions[currentIndex].transform.GetChild(l).transform.GetChild(i).GetComponent<Image>();
-                if (temp.overrideSprite != null)
-                {
-                    if (allValues.ContainsKey(temp.overrideSprite))
-                    {
-                        int tempCnt = allValues[temp.overrideSprite] + 1;
-                        allValues.Remove(temp.overrideSprite);
-                        allValues.Add(temp.overrideSprite, tempCnt);
-                    }
-                    else
-                        allValues.Add(temp.overrideSprite, 1);
-
-                    if (!colorVals.ContainsKey(temp.color)) {
-                        colorVals.Add(temp.color, 1);
-                    }
-                    else
-                    {
-                        int tempCnt = colorVals[temp.color] + 1;
-                        colorVals.Remove(temp.color);
-                        colorVals.Add(temp.color, tempCnt);
-                    }
-                }
-                else
-                {
-                    columnIndex = i;
-                }
-            }
-        }
-
-        int[] randAnsIndexes = getRandomNumber(0, 2, 2, false);
-
-        Image child = AnswerBtns[randAnsIndexes[0]].transform.GetChild(0).GetComponent<Image>();
-        Sprite tempSpr = allValues.Where(c => c.Value < 3).First().Key;
-        child.overrideSprite = tempSpr;
-        if (Questions[currentIndex].transform.childCount > 1)
-        {
-            child.color = colorVals.Where(c => c.Value < colorVals.Values.Max()).First().Key;
-        }
-        else
-            child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals.Where(f => f.Value < 3).First().Key), Array.FindIndex(Colors, c => c == colorVals.Where(f => f.Value < 3).Last().Key) }, 0, Colors.Length)];
-        //if (Questions[currentIndex].transform.childCount < 2)
-        //    child.color = Colors[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Colors, c => c == colorVals[indexes[0]]), Array.FindIndex(Colors, c => c == colorVals[indexes[1]]) }, 0, Colors.Length)];
-        //else
-        //    child.color = Questions[currentIndex].transform.GetChild(Mathf.Abs(columnIndex - 1)).transform.GetChild(3 - (indexes[0] + indexes[1])).GetComponent<Image>().color;
-
-        child.SetNativeSize();
-        int randShapeIndex = makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Shapes, c => c == tempSpr) }, 0, Shapes.Length);
-        child = AnswerBtns[randAnsIndexes[1]].transform.GetChild(0).GetComponent<Image>();
-        child.overrideSprite = Shapes[randShapeIndex];
-        child.color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
-        //if (Questions[currentIndex].transform.childCount < 3)
-        //    child.overrideSprite = Shapes[makeRandomlyNumWithoutEquals(new int[] { Array.FindIndex(Shapes, c => c == values[indexes[0]]), Array.FindIndex(Shapes, c => c == values[indexes[1]]) }, 0, Shapes.Length)];
-        //else
-        //    child.overrideSprite = allValues.Where(c => c.Value == 20).First().Key;
-
-        //child.color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
-        child.SetNativeSize();
-
-        Lvls[currentIndex].GetComponent<Image>().color = new Color32(255, 212, 47, 255);
+        Lvls[currentIndex].transform.GetChild(0).gameObject.SetActive(true);
+        RectTransform num = Lvls[currentIndex].transform.GetChild(1).GetComponent<RectTransform>();
+        num.offsetMin = new Vector2(60, num.offsetMin.y);
     }
     public void CheckEqual(bool pressedEqual)
     {
@@ -205,41 +140,39 @@ public class ClickButton3 : MonoBehaviour
 
         bool isEqual = false;
 
-        Image temp;
+        List<Sprite> firstVals = new List<Sprite>(); 
+        List<Sprite> secondVals = new List<Sprite>();
 
-        IDictionary<Image, int> firstVals = new Dictionary<Image, int>(); 
-        IDictionary<Image, int> secondVals = new Dictionary<Image, int>();
         for (int i = 0; i < Questions[currentIndex].transform.childCount; i++)
         {
             for (int l = 0; l < Questions[currentIndex].transform.GetChild(i).transform.childCount; l++)
             {
-                temp = Questions[currentIndex].transform.GetChild(i).transform.GetChild(l).GetComponent<Image>();
-                if (i == 0)
+                foreach (var temp in Questions[currentIndex].transform.GetChild(i).transform.GetChild(l).GetComponentsInChildren<Image>())
                 {
-                    if(!firstVals.ContainsKey(temp))
-                        firstVals.Add(temp, 1);
-                    else
+                    if (i == 0)
                     {
-                        int cnt = firstVals[temp] + 1;
-                        firstVals.Remove(temp);
-                        firstVals.Add(temp, cnt);
+                        firstVals.Add(temp.overrideSprite);
                     }
-                }
-                else
-                {
-                    if (!secondVals.ContainsKey(temp))
-                        secondVals.Add(temp, 1);
                     else
                     {
-                        int cnt = secondVals[temp] + 1;
-                        secondVals.Remove(temp);
-                        secondVals.Add(temp, cnt);
+                        secondVals.Add(temp.overrideSprite);
                     }
                 }
             }
         }
+        if (firstVals.All(secondVals.Contains))
+        {
+            isEqual = true;
+        }
+        setInactivePrevious(isEqual == pressedEqual);
 
-        
+        currentIndex++;
+
+        if (currentIndex >= Questions.Length)
+        {
+            won();
+            return;
+        }
 
         CreateNewAns();
 
@@ -247,17 +180,18 @@ public class ClickButton3 : MonoBehaviour
     }
     private void setInactivePrevious(bool isAnsTrue)
     {
-        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(1250, Questions[currentIndex].transform.localPosition.y), true, 12f));
+        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(Questions[currentIndex].transform.localPosition.y, -500), true, 8f));
 
         if (isAnsTrue)
         {
-            Lvls[currentIndex].GetComponent<Image>().color = new Color32(15, 225, 10, 255);
+            Lvls[currentIndex].GetComponent<Image>().color = new Color32(15, 225, 10, 200);
         }
         else
         {
-            Lvls[currentIndex].GetComponent<Image>().color = new Color32(225, 15, 10, 255);
+            Lvls[currentIndex].GetComponent<Image>().color = new Color32(225, 15, 10, 200);
         }
-
+        Lvls[currentIndex].transform.GetChild(0).gameObject.SetActive(false);
+        Lvls[currentIndex].transform.GetChild(1).GetComponent<RectTransform>().offsetMin = new Vector2(0, Lvls[currentIndex].transform.GetChild(1).GetComponent<RectTransform>().offsetMin.y);
     }
     private int[] getRandomNumber(int min, int max, int count, bool equalNums)
     {

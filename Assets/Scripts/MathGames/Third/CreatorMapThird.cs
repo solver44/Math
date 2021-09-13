@@ -128,11 +128,20 @@ public class CreatorMapThird : MonoBehaviourPunCallbacks, IOnEventCallback
                 tempChild.transform.GetChild(sh).GetComponent<Image>().color = Colors[randColors[sh]];
 
         }
+
+        for (int l = 0; l < cntShapesCount; l++)
+        {
+            if (l != randCountShapes)
+            {
+                Destroy(questions[i].transform.GetChild(1).transform.GetChild(l).gameObject);
+                Destroy(questions[i].transform.GetChild(0).transform.GetChild(l).gameObject);
+            }
+        }
     }
     private IEnumerator IStart()
     {
         yield return new WaitForSeconds(1);
-        StartCoroutine(effect.MoveAnimTowards(questions[0].transform, new Vector2(0, 0), true, 3f));
+        StartCoroutine(effect.MoveAnimTowards(questions[0].transform, new Vector2(0, 0), true, 8f));
     }
     private void Start()
     {
