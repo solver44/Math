@@ -10,6 +10,7 @@ using System.Linq;
 
 public class CreatorMapThird : MonoBehaviourPunCallbacks, IOnEventCallback
 {
+    public bool StartWithoutPlayer = false;
     [Header("Main")]
     public GameObject[] QuestionTemplate = null;
     public GameObject[] AnswerButtons = null;
@@ -150,6 +151,7 @@ public class CreatorMapThird : MonoBehaviourPunCallbacks, IOnEventCallback
 
         click.Lvls = lvls;
         click.Questions = questions;
+        click.Stats = Player.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
     }
 
     private void setLvlPanels()

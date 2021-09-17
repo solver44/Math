@@ -102,7 +102,7 @@ public class ClickButton : MonoBehaviour
             child = _scrollRectComponent.transform.GetChild(1).GetComponent<RectTransform>();
 
         Vector2 _lerpTo = child.anchoredPosition - (Vector2)_scrollRectComponent.transform.InverseTransformPoint(target.position) - new Vector2(0, 690);
-        bool _lerp = true;
+
         Canvas.ForceUpdateCanvases();
 
         float decelerate = 3f;

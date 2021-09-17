@@ -19,6 +19,8 @@ public class ClickButton3 : MonoBehaviour
 
     [HideInInspector] public bool Finish = false;
 
+    private Animator symbolAnimController => GameObject.FindGameObjectWithTag("Anim").GetComponent<Animator>();
+
     private void lose()
     {
         Debug.Log("Finish");
@@ -41,24 +43,32 @@ public class ClickButton3 : MonoBehaviour
     }
     private void changeStats()
     {
-
+        int i = Int32.Parse(Stats.text) + 1;
+        Stats.text = i.ToString();
     }
     int[] results;
     ScaleEffect effect = new ScaleEffect();
+    void increaseSizeUI()
+    {
+        //StartCoroutine(MoveSmooth(rect, new Vector2(rect.localPosition.x, rect.localPosition.y + interval)));
+        ScrollRect lineScrollRect = LBScrollContent.GetComponent<ScrollRect>();
+        //StartCoroutine(MoveSmooth(scrollRect, new Vector2(scrollRect.preferredHeight)));
+        StartCoroutine(LerpToChild(lineScrollRect, Lvls[currentIndex].GetComponent<RectTransform>(), false));
+    }
     private IEnumerator LerpToChild(ScrollRect _scrollRectComponent, RectTransform target, bool isMain)
     {
         //StartCoroutine(LerpToChild(lineScrollRect, Lines[_currentIndex].GetComponent<RectTransform>(), false));
         RectTransform child;
         if (isMain)
-            child = _scrollRectComponent.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<RectTransform>();
+            child = _scrollRectComponent.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>();
         else
-            child = _scrollRectComponent.transform.GetChild(1).GetComponent<RectTransform>();
+            child = _scrollRectComponent.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>();
 
-        Vector2 _lerpTo = child.anchoredPosition - (Vector2)_scrollRectComponent.transform.InverseTransformPoint(target.position) - new Vector2(0, 690);
-        bool _lerp = true;
+        Vector2 _lerpTo = child.anchoredPosition - (Vector2)_scrollRectComponent.transform.InverseTransformPoint(target.position) - new Vector2(0, 60);
+
         Canvas.ForceUpdateCanvases();
 
-        float decelerate = 3f;
+        float decelerate = 1f;
         for (float i = 0; i < 1; i += Time.deltaTime * decelerate)
         {
             child.anchoredPosition = Vector2.Lerp(child.anchoredPosition, _lerpTo, i);
@@ -88,6 +98,8 @@ public class ClickButton3 : MonoBehaviour
 
     [HideInInspector] public PhotonView PunView = null;
 
+
+    GameObject LBScrollContent;
     private IEnumerator waitSeconds()
     {
         wait = true;
@@ -129,6 +141,8 @@ public class ClickButton3 : MonoBehaviour
     {
         StartCoroutine(IeStart());
 
+        increaseSizeUI();
+
         Lvls[currentIndex].transform.GetChild(0).gameObject.SetActive(true);
         RectTransform num = Lvls[currentIndex].transform.GetChild(1).GetComponent<RectTransform>();
         num.offsetMin = new Vector2(60, num.offsetMin.y);
@@ -140,8 +154,8 @@ public class ClickButton3 : MonoBehaviour
 
         bool isEqual = false;
 
-        List<Sprite> firstVals = new List<Sprite>(); 
-        List<Sprite> secondVals = new List<Sprite>();
+        List<Image> firstVals = new List<Image>(); 
+        List<Image> secondVals = new List<Image>();
 
         for (int i = 0; i < Questions[currentIndex].transform.childCount; i++)
         {
@@ -151,27 +165,48 @@ public class ClickButton3 : MonoBehaviour
                 {
                     if (i == 0)
                     {
-                        firstVals.Add(temp.overrideSprite);
+                        firstVals.Add(temp);
                     }
                     else
                     {
-                        secondVals.Add(temp.overrideSprite);
+                        secondVals.Add(temp);
                     }
                 }
             }
         }
-        if (firstVals.All(secondVals.Contains))
+        if (firstVals.Select(c => c.overrideSprite).All(secondVals.Select(c => c.overrideSprite).Contains) && firstVals.Select(c => c.color).All(secondVals.Select(c => c.color).Contains))
         {
             isEqual = true;
         }
-        setInactivePrevious(isEqual == pressedEqual);
+        if (isEqual == pressedEqual)
+        {
+            changeStats();
 
+            symbolAnimController.SetLayerWeight(3, 0f);
+            symbolAnimController.SetLayerWeight(1, 1f);
+            symbolAnimController.SetTrigger("start");
+        }
+        else
+        {
+            symbolAnimController.SetLayerWeight(1, 0f);
+            symbolAnimController.SetLayerWeight(3, 1f);
+            symbolAnimController.SetTrigger("start");  
+        }
+
+        StartCoroutine(waitAnim(isEqual, pressedEqual));
+    }
+
+    private IEnumerator waitAnim(bool isEqual, bool pressedEqual)
+    {
+        yield return new WaitForSeconds(1f);
+
+        setInactivePrevious(isEqual == pressedEqual);
         currentIndex++;
 
         if (currentIndex >= Questions.Length)
         {
             won();
-            return;
+            yield break;
         }
 
         CreateNewAns();
@@ -193,6 +228,7 @@ public class ClickButton3 : MonoBehaviour
         Lvls[currentIndex].transform.GetChild(0).gameObject.SetActive(false);
         Lvls[currentIndex].transform.GetChild(1).GetComponent<RectTransform>().offsetMin = new Vector2(0, Lvls[currentIndex].transform.GetChild(1).GetComponent<RectTransform>().offsetMin.y);
     }
+
     private int[] getRandomNumber(int min, int max, int count, bool equalNums)
     {
         int rand = UnityEngine.Random.Range(min, max);
@@ -223,5 +259,8 @@ public class ClickButton3 : MonoBehaviour
     private void Start()
     {
         results = new int[Lvls.Length];
+
+        LBScrollContent = GameObject.FindGameObjectWithTag("Levels");
+        symbolAnimController.SetLayerWeight(0, 0f);
     }
 }

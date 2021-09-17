@@ -59,17 +59,22 @@ public class ClickButton2 : MonoBehaviour
     }
     int[] results;
     ScaleEffect effect = new ScaleEffect();
-    private IEnumerator LerpToChild(ScrollRect _scrollRectComponent, RectTransform target, bool isMain)
+
+    ScrollRect LTBScrollContent;
+
+    void increaseSizeUI()
+    {
+        StartCoroutine(LerpToChild(LTBScrollContent, Lvls[currentIndex].GetComponent<RectTransform>()));
+    }
+    private IEnumerator LerpToChild(ScrollRect _scrollRectComponent, RectTransform target)
     {
         //StartCoroutine(LerpToChild(lineScrollRect, Lines[_currentIndex].GetComponent<RectTransform>(), false));
         RectTransform child;
-        if (isMain)
-            child = _scrollRectComponent.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<RectTransform>();
-        else
-            child = _scrollRectComponent.transform.GetChild(1).GetComponent<RectTransform>();
 
-        Vector2 _lerpTo = child.anchoredPosition - (Vector2)_scrollRectComponent.transform.InverseTransformPoint(target.position) - new Vector2(0, 690);
-        bool _lerp = true;
+        child = _scrollRectComponent.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>();
+
+        Vector2 _lerpTo = child.anchoredPosition - (Vector2)_scrollRectComponent.transform.InverseTransformPoint(target.position) - new Vector2(480, 0);
+
         Canvas.ForceUpdateCanvases();
 
         float decelerate = 3f;
@@ -251,6 +256,7 @@ public class ClickButton2 : MonoBehaviour
         if (won())
             return;
 
+        increaseSizeUI();
         CreateNewAns();
 
         StartCoroutine(waitSeconds());
@@ -300,5 +306,7 @@ public class ClickButton2 : MonoBehaviour
     private void Start()
     {
         results = new int[Lvls.Length];
+
+        LTBScrollContent = GameObject.FindGameObjectWithTag("Levels").GetComponent<ScrollRect>();
     }
 }

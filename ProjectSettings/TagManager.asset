@@ -18,6 +18,7 @@ TagManager:
   - trail
   - KeyboardValue
   - BalanceItem
+  - Anim
   layers:
   - Default
   - TransparentFX
