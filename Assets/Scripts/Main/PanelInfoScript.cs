@@ -97,9 +97,9 @@ public class PanelInfoScript : MonoBehaviour
         AgePanelAnim.SetTrigger("exit");
         Elements.SetTrigger("start");
         PanelInfoAnim.SetTrigger("start");
-        SuccesText.SetTrigger("start");
         UserName.text = PlayerPrefs.GetString("nameUser") + " " + PlayerPrefs.GetString("surnameUser");
         yield return new WaitForSeconds(1.5f);
+        SuccesText.SetTrigger("start");
         MenuPanel.SetActive(true);
         MenuPanel.GetComponent<Animator>().SetTrigger("start");
     }

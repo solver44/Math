@@ -50,15 +50,11 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
         click.Elements = Elements;
 
         questions = new GameObject[CountQuestions];
+        _answers = new int[CountQuestions];
     }
     private void setInfos()
     {
-        Player.transform.GetChild(1).GetComponentInChildren<Text>().text = PlayerPrefs.GetString("nameUser") + " " + PlayerPrefs.GetString("surnameUser");
-        Text tempUser = Player.transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).GetComponent<Text>();
-        if(PlayerPrefs.HasKey("CurrentLevel"))
-            tempUser.text = tempUser.text = PlayerPrefs.GetInt("CurrentLevel").ToString();
-        else
-            tempUser.text = tempUser.text = "0";
+        Player.GetComponentInChildren<Text>().text = PlayerPrefs.GetString("nameUser") + " " + PlayerPrefs.GetString("surnameUser");
     }
 
     int cntElementsCount;
@@ -72,7 +68,7 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
             questions[i] = Instantiate(QuestionTemplate[0], Parent.transform);
             questions[i].name = "Q" + (i + 1).ToString();
 
-            makeQuestion(i, UnityEngine.Random.Range(0, 2) == 1);
+            makeQuestion(i);
             
             questions[i].transform.localPosition = new Vector2(0, 500);
         }
@@ -80,10 +76,93 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
     }
 
     GameObject tempChild;
-    private void makeQuestion(int i, bool isElementsEqual)
+
+    int[] randNumsLessThanResult(int target)
     {
-       
+        int num1 = UnityEngine.Random.Range(0, target);
+        int num2 = UnityEngine.Random.Range(0, target);
+        while (num1 + num2 > target)
+        {
+            num1 = UnityEngine.Random.Range(0, target);
+            num2 = UnityEngine.Random.Range(0, target);
+        }
+
+        return new int[] { num1, num2 };
     }
+
+
+    int[] nums;
+    private void makeQuestion(int i)
+    {
+        nums = randNumsLessThanResult(5);
+
+        int randNumPlace = UnityEngine.Random.Range(0, 2);
+
+        List<GameObject[]> allObjs = createObjects();
+
+        for (int k = 0; k < allObjs[0].Length; k++)
+        {
+            allObjs[0][k].transform.parent = questions[i].transform.GetChild(0).GetChild(0).transform;
+            allObjs[0][k].transform.localScale = new Vector3(1, 1, 1);
+        }
+        for (int k = 0; k < allObjs[1].Length; k++)
+        {
+            allObjs[1][k].transform.parent = questions[i].transform.GetChild(0).GetChild(1).transform;
+            allObjs[1][k].transform.localScale = new Vector3(1, 1, 1);
+        }
+        for (int k = 0; k < allObjs[2].Length; k++)
+        {
+            allObjs[2][k].transform.parent = questions[i].transform.GetChild(0).GetChild(2).transform;
+            allObjs[2][k].transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        questions[i].transform.GetChild(1).GetChild(randNumPlace).GetComponentInChildren<Text>().text = nums[randNumPlace].ToString();
+        questions[i].transform.GetChild(1).GetChild(2).GetComponentInChildren<Text>().text = (nums[0] + nums[1]).ToString();
+        _answers[i] = nums[0] + nums[1];
+    }
+    protected int[] _answers;
+
+    List<GameObject[]> createObjects()
+    {
+        List<GameObject[]> result = new List<GameObject[]>();
+
+        int[] rands = getRandomNumber(0, Elements.Length, 2, false);
+
+        int randElem = UnityEngine.Random.Range(0, 2);
+
+        Image temp;
+
+        GameObject[] objects = new GameObject[nums[0]];
+        for (int i = 0; i < nums[0]; i++)
+        {
+            objects[i] = new GameObject("firstElement" + (i + 1));
+            objects[i].AddComponent<RectTransform>();
+            temp = objects[i].AddComponent<Image>();
+            temp.overrideSprite = Elements[rands[randElem]];
+            temp.preserveAspect = true;
+        }
+        result.Add(objects);
+
+        objects = new GameObject[nums[1]];
+        for (int i = 0; i < nums[1]; i++)
+        {
+            objects[i] = new GameObject("secondElement" + (i + 1));
+            objects[i].AddComponent<RectTransform>();
+            temp = objects[i].AddComponent<Image>();
+            temp.overrideSprite = Elements[rands[Mathf.Abs(randElem - 1)]];
+            temp.preserveAspect = true;
+        }
+        result.Add(objects);
+
+        objects = new GameObject[nums[0] + nums[1]];
+        int[] mixedNums = getRandomNumber(0, 2, 2, false);
+        objects = result[mixedNums[0]].Concat(result[mixedNums[1]]).ToArray();
+
+        result.Add(objects);
+
+        return result;
+    }
+
     private IEnumerator IStart()
     {
         yield return new WaitForSeconds(1);
@@ -96,7 +175,7 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
 
         click.Lvls = lvls;
         click.Questions = questions;
-        click.Stats = Player.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
+        //click.Stats = Player.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
     }
 
     private void setLvlPanels()
@@ -111,18 +190,15 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
             if (i == 0)
             {
                 lvls[0].transform.GetChild(0).gameObject.SetActive(true);
-                RectTransform num = lvls[0].transform.GetChild(1).GetComponent<RectTransform>();
-                num.offsetMin = new Vector2(60, num.offsetMin.y);
             }
         }
         setLBContentHeight();
     }
     void setLBContentHeight()
     {
-        //LeftTopBar
         float scrollContentHeightLB = _scrollContent.transform.parent.GetComponent<RectTransform>().rect.height;
         RectTransform rtLB = _scrollContent.GetComponent<RectTransform>();
-        rtLB.offsetMax = new Vector2(rtLB.offsetMax.x, Mathf.Abs(scrollContentHeightLB - (CountQuestions * 60)));
+        rtLB.offsetMax = new Vector2(rtLB.offsetMax.x, Mathf.Abs(scrollContentHeightLB - (CountQuestions * 76)));
     }
 
 

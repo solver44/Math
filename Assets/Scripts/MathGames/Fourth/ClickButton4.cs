@@ -18,7 +18,7 @@ public class ClickButton4 : MonoBehaviour
 
     [HideInInspector] public bool Finish = false;
 
-    private Animator symbolAnimController => GameObject.FindGameObjectWithTag("Anim").GetComponent<Animator>();
+    private Animator symbolAnimController; // => GameObject.FindGameObjectWithTag("Anim").GetComponent<Animator>();
 
     private void lose()
     {
@@ -260,6 +260,6 @@ public class ClickButton4 : MonoBehaviour
         results = new int[Lvls.Length];
 
         LBScrollContent = GameObject.FindGameObjectWithTag("Levels");
-        symbolAnimController.SetLayerWeight(0, 0f);
+        //symbolAnimController.SetLayerWeight(0, 0f);
     }
 }
