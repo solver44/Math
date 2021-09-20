@@ -31,13 +31,13 @@ public class ClickButton3 : MonoBehaviour
                 PunView.RPC("CheckWinOrLose", RpcTarget.All, results);
             }
             catch {
-                CreatorMapSecond map = GameObject.Find("Creator").GetComponent<CreatorMapSecond>();
+                CreatorMapThird map = GameObject.Find("Creator").GetComponent<CreatorMapThird>();
                 map.WinOrLose(false);
             }
         }
         else
         {
-            CreatorMapSecond map = GameObject.Find("Creator").GetComponent<CreatorMapSecond>();
+            CreatorMapThird map = GameObject.Find("Creator").GetComponent<CreatorMapThird>();
             map.WinOrLose(false);
         }
     }

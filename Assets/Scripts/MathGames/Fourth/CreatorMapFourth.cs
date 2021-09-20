@@ -70,7 +70,7 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
 
             makeQuestion(i);
             
-            questions[i].transform.localPosition = new Vector2(0, 500);
+            questions[i].transform.localPosition = new Vector3(0, 500);
         }
         StartCoroutine(IStart());
     }
@@ -79,12 +79,12 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
 
     int[] randNumsLessThanResult(int target)
     {
-        int num1 = UnityEngine.Random.Range(0, target);
-        int num2 = UnityEngine.Random.Range(0, target);
+        int num1 = UnityEngine.Random.Range(1, target);
+        int num2 = UnityEngine.Random.Range(1, target);
         while (num1 + num2 > target)
         {
-            num1 = UnityEngine.Random.Range(0, target);
-            num2 = UnityEngine.Random.Range(0, target);
+            num1 = UnityEngine.Random.Range(1, target);
+            num2 = UnityEngine.Random.Range(1, target);
         }
 
         return new int[] { num1, num2 };
@@ -98,31 +98,40 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
 
         int randNumPlace = UnityEngine.Random.Range(0, 2);
 
-        List<GameObject[]> allObjs = createObjects();
+        List<GameObject[]> allObjs = createObjects(i);
 
-        for (int k = 0; k < allObjs[0].Length; k++)
+        //allObjs[0][k].transform.parent = questions[i].transform.GetChild(0).GetChild(0).transform;
+        //allObjs[0][k].transform.localScale = new Vector3(1, 1, 1);
+        for (int l = 0; l < allObjs.Count; l++)
         {
-            allObjs[0][k].transform.parent = questions[i].transform.GetChild(0).GetChild(0).transform;
-            allObjs[0][k].transform.localScale = new Vector3(1, 1, 1);
-        }
-        for (int k = 0; k < allObjs[1].Length; k++)
-        {
-            allObjs[1][k].transform.parent = questions[i].transform.GetChild(0).GetChild(1).transform;
-            allObjs[1][k].transform.localScale = new Vector3(1, 1, 1);
-        }
-        for (int k = 0; k < allObjs[2].Length; k++)
-        {
-            allObjs[2][k].transform.parent = questions[i].transform.GetChild(0).GetChild(2).transform;
-            allObjs[2][k].transform.localScale = new Vector3(1, 1, 1);
+            for (int k = 0; k < allObjs[l].Length; k++)
+            {
+                allObjs[l][k].transform.parent = questions[i].transform.GetChild(0).GetChild(l).transform;
+                allObjs[l][k].transform.localScale = new Vector3(1, 1, 1);
+            }
         }
 
         questions[i].transform.GetChild(1).GetChild(randNumPlace).GetComponentInChildren<Text>().text = nums[randNumPlace].ToString();
         questions[i].transform.GetChild(1).GetChild(2).GetComponentInChildren<Text>().text = (nums[0] + nums[1]).ToString();
-        _answers[i] = nums[0] + nums[1];
-    }
-    protected int[] _answers;
 
-    List<GameObject[]> createObjects()
+        _answers[i] = nums[Mathf.Abs(randNumPlace - 1)];
+
+        int randAnsBtn = UnityEngine.Random.Range(0, AnswerButtons.Length);
+        int randAnswer = -1;
+        for (int o = 0; o < AnswerButtons.Length; o++)
+        {
+            if (o == randAnsBtn)
+                AnswerButtons[o].GetComponentInChildren<Text>().text = (_answers[i]).ToString();
+            else
+            {
+                randAnswer = makeRandomlyNumWithoutEquals(new int[] { _answers[i], randAnswer }, 1, 5);
+                AnswerButtons[o].GetComponentInChildren<Text>().text = randAnswer.ToString();
+            }
+        }
+    }
+    private int[] _answers;
+
+    List<GameObject[]> createObjects(int currIndex)
     {
         List<GameObject[]> result = new List<GameObject[]>();
 
@@ -156,17 +165,35 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
 
         objects = new GameObject[nums[0] + nums[1]];
         int[] mixedNums = getRandomNumber(0, 2, 2, false);
-        objects = result[mixedNums[0]].Concat(result[mixedNums[1]]).ToArray();
+
+        for (int i = 0; i < nums[1] + nums[0]; i++)
+        {
+            objects[i] = new GameObject("resultElement" + (i + 1));
+            objects[i].AddComponent<RectTransform>();
+            temp = objects[i].AddComponent<Image>();
+
+            if (i < nums[0])
+                temp.overrideSprite = Elements[rands[randElem]];
+            else
+                temp.overrideSprite = Elements[rands[Mathf.Abs(randElem - 1)]];
+
+            temp.preserveAspect = true;
+        }
+
+        //objects = result[mixedNums[0]].Concat(result[mixedNums[1]]).ToArray();
+        //int ind = 1;
+        //Array.ForEach(objects, c => { c.name = "resultElement" + ind; ind++; } );
 
         result.Add(objects);
 
         return result;
     }
-
+    
     private IEnumerator IStart()
     {
         yield return new WaitForSeconds(1);
-        StartCoroutine(effect.MoveAnimTowards(questions[0].transform, new Vector2(0, 0), true, 8f));
+        StartCoroutine(effect.MoveAnimTowards(questions[0].transform, new Vector3(0, 0), true, 8f));
+        //questions[0].transform.localPosition = new Vector3(0, 0);
     }
     private void Start()
     {
@@ -175,6 +202,7 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
 
         click.Lvls = lvls;
         click.Questions = questions;
+        click.Answers = _answers;
         //click.Stats = Player.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
     }
 
@@ -196,9 +224,9 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
     }
     void setLBContentHeight()
     {
-        float scrollContentHeightLB = _scrollContent.transform.parent.GetComponent<RectTransform>().rect.height;
+        float scrollContentHeightLB = _scrollContent.transform.parent.parent.GetComponent<RectTransform>().rect.height;
         RectTransform rtLB = _scrollContent.GetComponent<RectTransform>();
-        rtLB.offsetMax = new Vector2(rtLB.offsetMax.x, Mathf.Abs(scrollContentHeightLB - (CountQuestions * 76)));
+        rtLB.offsetMax = new Vector2(rtLB.offsetMax.x, Mathf.Abs(scrollContentHeightLB + (CountQuestions * 70)));
     }
 
 
@@ -210,10 +238,10 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             num = UnityEngine.Random.Range(min, max);
             loopCount++;
-            if(loopCount > 5000)
+            if(loopCount > 10000)
             {
                 Debug.Log("Stop it");
-
+                loopCount = 0;
                 break;
             }
         }

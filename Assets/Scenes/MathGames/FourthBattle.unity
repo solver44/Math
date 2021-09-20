@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 180548889}
   m_Layer: 5
   m_Name: LeftBar
-  m_TagString: Untagged
+  m_TagString: Levels
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8112501, y: 0}
   m_AnchorMax: {x: 1, y: 0.8151667}
-  m_AnchoredPosition: {x: -1298.8, y: 0}
+  m_AnchoredPosition: {x: -1298.8005, y: 0}
   m_SizeDelta: {x: -1.5649109, y: -51.56903}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &180548887
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Content: {fileID: 537010121}
+  m_Content: {fileID: 2101872428}
   m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 2
@@ -539,15 +539,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f33de2cb1c17f14f8de606d86bc5bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartWithoutPlayer: 0
+  StartWithoutPlayer: 1
   QuestionTemplate:
-  - {fileID: 8260030468575244366, guid: f12f544165d27ad4aa2cb316951d0d32, type: 3}
+  - {fileID: 333872542763517093, guid: 53e498dc022b2ce4784bfec8928ac4e9, type: 3}
   AnswerButtons:
   - {fileID: 1554025448}
   - {fileID: 2033538937}
   - {fileID: 912702642}
   Parent: {fileID: 1897609462}
-  CountQuestions: 1
+  CountQuestions: 10
   click: {fileID: 1065146752}
   Elements:
   - {fileID: 21300000, guid: 78031729e88cb2f4c97dfdfde8044540, type: 3}
@@ -1424,7 +1424,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 912702645}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1065146752}
+        m_MethodName: CheckEqual
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 239487789}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &912702645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1699,9 +1710,13 @@ MonoBehaviour:
   Questions: []
   AnswerBtns: []
   Elements: []
-  Stats: {fileID: 0}
+  Answers: 
   Finish: 0
   PunView: {fileID: 0}
+  icons:
+  - {fileID: 21300000, guid: 5cdb61111f908fa41b5c6daba8f13f30, type: 3}
+  - {fileID: 21300000, guid: f88cbec18d12fd44d91f1ced15808867, type: 3}
+  - {fileID: 21300000, guid: 714f5d8f89c302744b4d1e87cdbd141c, type: 3}
 --- !u!1 &1124137112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2358,7 +2373,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1554025450}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1065146752}
+        m_MethodName: CheckEqual
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1618246269}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1586382264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2725,7 +2751,6 @@ GameObject:
   - component: {fileID: 1897609464}
   - component: {fileID: 1897609463}
   - component: {fileID: 1897609465}
-  - component: {fileID: 1897609466}
   m_Layer: 5
   m_Name: GamePanel
   m_TagString: Untagged
@@ -2749,7 +2774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.14e-13}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 795, y: 407}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1897609463
@@ -2802,18 +2827,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
---- !u!114 &1897609466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897609461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1968043387
 GameObject:
   m_ObjectHideFlags: 0
@@ -3060,7 +3073,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2033538940}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1065146752}
+        m_MethodName: CheckEqual
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 807760229}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2033538940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3215,7 +3239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 83.7}
+  m_AnchoredPosition: {x: 0, y: 267.67548}
   m_SizeDelta: {x: 302, y: 167.37823}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2101872429
