@@ -188,7 +188,7 @@ public class ClickButton4 : MonoBehaviour
     public Sprite[] icons;
     private void setInactivePrevious(bool isAnsTrue)
     {
-        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(0, -500), true, 8f));
+        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(0, -800), true, 8f));
 
         if (isAnsTrue)
         {

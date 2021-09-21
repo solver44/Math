@@ -112,6 +112,7 @@ public class LoopingGameObject : MonoBehaviour
         }
     }
 
+    GameObject lastCraetedElem = null;
     public void CreateOneMore(bool dontCreateMoreOne)
     {
         if ((dontCreateMoreOne && tempPrefabs.Count < 2) || !dontCreateMoreOne)
@@ -122,6 +123,7 @@ public class LoopingGameObject : MonoBehaviour
             tempPrefabs[cnt].name = Name;
             tempPrefabs[cnt].transform.localPosition = Vector3.zero;
             CurrentObj = tempPrefabs[cnt];
+            lastCraetedElem = tempPrefabs[cnt];
         }
         //tempPrefabs[cnt].GetComponent<MoveObject>().Uping += ParentPlace_changingColl;
     }
@@ -131,8 +133,8 @@ public class LoopingGameObject : MonoBehaviour
         if (tempPrefabs.Count < 1)
             return;
 
-        Destroy(CurrentObj);
-        tempPrefabs.Remove(CurrentObj);
+        Destroy(lastCraetedElem);
+        tempPrefabs.Remove(lastCraetedElem);
     }
     void Start()
     {

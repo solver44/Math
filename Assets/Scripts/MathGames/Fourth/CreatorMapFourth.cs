@@ -70,7 +70,7 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
 
             makeQuestion(i);
             
-            questions[i].transform.localPosition = new Vector3(0, 500);
+            questions[i].transform.localPosition = new Vector3(0, 800);
         }
         StartCoroutine(IStart());
     }
@@ -102,14 +102,18 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
 
         //allObjs[0][k].transform.parent = questions[i].transform.GetChild(0).GetChild(0).transform;
         //allObjs[0][k].transform.localScale = new Vector3(1, 1, 1);
+
         for (int l = 0; l < allObjs.Count; l++)
         {
+            if (i >= CountQuestions / 2 && Mathf.Abs(randNumPlace - 1) == l)
+                l++;
             for (int k = 0; k < allObjs[l].Length; k++)
             {
                 allObjs[l][k].transform.parent = questions[i].transform.GetChild(0).GetChild(l).transform;
                 allObjs[l][k].transform.localScale = new Vector3(1, 1, 1);
             }
         }
+
 
         questions[i].transform.GetChild(1).GetChild(randNumPlace).GetComponentInChildren<Text>().text = nums[randNumPlace].ToString();
         questions[i].transform.GetChild(1).GetChild(2).GetComponentInChildren<Text>().text = (nums[0] + nums[1]).ToString();
