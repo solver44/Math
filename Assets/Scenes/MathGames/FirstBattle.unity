@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d19c8f17553174ea21ffd807006201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartWithoutPlayer: 1
+  StartWithoutPlayer: 0
   timer: {fileID: 495938669}
   WaitingPanel: {fileID: 1330002654}
   WinPanel: {fileID: 228461851}
