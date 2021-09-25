@@ -8,7 +8,7 @@ using System;
 using UnityEngine.UI;
 using System.Linq;
 
-public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
+public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     public bool StartWithoutPlayer = false;
     [Header("Main")]
@@ -120,19 +120,16 @@ public class CreatorMapFourth : MonoBehaviourPunCallbacks, IOnEventCallback
 
         _answers[i] = nums[Mathf.Abs(randNumPlace - 1)];
 
-        if (i == 0)
+        int randAnsBtn = UnityEngine.Random.Range(0, AnswerButtons.Length);
+        int randAnswer = -1;
+        for (int o = 0; o < AnswerButtons.Length; o++)
         {
-            int randAnsBtn = UnityEngine.Random.Range(0, AnswerButtons.Length);
-            int randAnswer = -1;
-            for (int o = 0; o < AnswerButtons.Length; o++)
+            if (o == randAnsBtn)
+                AnswerButtons[o].GetComponentInChildren<Text>().text = (_answers[i]).ToString();
+            else
             {
-                if (o == randAnsBtn)
-                    AnswerButtons[o].GetComponentInChildren<Text>().text = (_answers[i]).ToString();
-                else
-                {
-                    randAnswer = makeRandomlyNumWithoutEquals(new int[] { _answers[i], randAnswer }, 1, 5);
-                    AnswerButtons[o].GetComponentInChildren<Text>().text = randAnswer.ToString();
-                }
+                randAnswer = makeRandomlyNumWithoutEquals(new int[] { _answers[i], randAnswer }, 1, 5);
+                AnswerButtons[o].GetComponentInChildren<Text>().text = randAnswer.ToString();
             }
         }
     }

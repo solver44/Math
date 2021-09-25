@@ -52,7 +52,7 @@ public class CreatorMapFifth : MonoBehaviourPunCallbacks, IOnEventCallback
     private void setInfos()
     {
        Player.transform.GetChild(1).GetComponent<Text>().text = PlayerPrefs.GetString("nameUser") + " " + PlayerPrefs.GetString("surnameUser");
-       Player.transform.GetChild(0).GetComponent<Text>().text = PlayerPrefs.GetString("CurrentLevel");
+       Player.transform.GetChild(0).GetComponent<Text>().text = PlayerPrefs.GetInt("CurrentLevel").ToString();
     }
     
     void setQuestions()
@@ -77,10 +77,10 @@ public class CreatorMapFifth : MonoBehaviourPunCallbacks, IOnEventCallback
     int[] randAnswers;
     private void makeQuestion(int i)
     {
-        int randObjs = UnityEngine.Random.Range(0, 6);
+        int randObjs = UnityEngine.Random.Range(1, 6);
         GameObject[] elements = new GameObject[randObjs];
 
-        int[] randElems = getRandomNumber(0, randObjs, randObjs, true);
+        int randElem = UnityEngine.Random.Range(0, Elements.Length);
         for (int l = 0; l < elements.Length; l++)
         {
             elements[l] = new GameObject("element" + (i+1));
@@ -89,21 +89,25 @@ public class CreatorMapFifth : MonoBehaviourPunCallbacks, IOnEventCallback
             elements[l].transform.localScale = new Vector3(1, 1, 1);
             temp = elements[l].AddComponent<Image>();
 
-            temp.overrideSprite = Elements[randElems[l]];
+            temp.overrideSprite = Elements[randElem];
             temp.preserveAspect = true;
         }
 
-        randAnswers = makeRandomlyNumWithoutEquals(new int[] { randObjs }, 0, 6, AnswerButtons.Length);
-
-        int randIndex = UnityEngine.Random.Range(0, AnswerButtons.Length);
-        for (int l = 0; l < AnswerButtons.Length; l++)
+        if (i == 0)
         {
-            if (randIndex != l)
-                AnswerButtons[l].GetComponentInChildren<Text>().text = randAnswers[l].ToString();
-            else
-                AnswerButtons[l].GetComponentInChildren<Text>().text = randObjs.ToString();
-        }
+            randAnswers = makeRandomlyNumWithoutEquals(new int[] { randObjs }, 1, 6, AnswerButtons.Length);
 
+            int randIndex = UnityEngine.Random.Range(0, AnswerButtons.Length);
+            for (int l = 0; l < AnswerButtons.Length; l++)
+            {
+                if (randIndex != l)
+                    AnswerButtons[l].GetComponentInChildren<Text>().text = randAnswers[l].ToString();
+                else
+                {
+                    AnswerButtons[l].GetComponentInChildren<Text>().text = randObjs.ToString();
+                }
+            }
+        }
         _answers[i] = randObjs;
     }
     private int[] _answers;
