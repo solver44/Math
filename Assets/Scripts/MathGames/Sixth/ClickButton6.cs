@@ -13,7 +13,6 @@ public class ClickButton6 : MonoBehaviour
     [HideInInspector] public GameObject[] Lvls = null;
     [HideInInspector] public GameObject[] Questions = null;
     [HideInInspector] public GameObject[] AnswerBtns = null;
-    [HideInInspector] public Sprite[] Elements = null;
     [HideInInspector] public int[] Answers;
 
     [HideInInspector] public bool Finish = false;
@@ -135,25 +134,6 @@ public class ClickButton6 : MonoBehaviour
     }
     public void CreateNewAns()
     {
-        int randAnsBtn = UnityEngine.Random.Range(0, AnswerBtns.Length);
-        int randAnswer = -1;
-        for (int o = 0; o < AnswerBtns.Length; o++)
-        {
-            if (o == randAnsBtn)
-                AnswerBtns[o].GetComponentInChildren<Text>().text = (Answers[currentIndex]).ToString();
-            else
-            {
-                randAnswer = makeRandomlyNumWithoutEquals(new int[] { Answers[currentIndex], randAnswer }, 1, 5);
-                AnswerBtns[o].GetComponentInChildren<Text>().text = randAnswer.ToString();
-            }
-        }
-
-        StartCoroutine(IeStart());
-
-        increaseSizeUI();
-
-        Lvls[currentIndex].transform.GetChild(0).gameObject.SetActive(true);
-        Lvls[currentIndex].transform.GetChild(0).GetComponent<Image>().overrideSprite = icons[2];
     }
     public void CheckEqual(Text value)
     {

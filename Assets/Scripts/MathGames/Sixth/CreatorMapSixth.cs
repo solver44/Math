@@ -17,9 +17,7 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
     private GameObject[] questions = null;
     public Transform Parent = null;
     public int CountQuestions = 10;
-    public ClickButton4 click = null;
-    [Header("Elements")]
-    public Sprite[] Elements = null;
+    public ClickButton6 click = null;
     [Header("LeftBar")]
     public GameObject PlayerLvlTemplate = null;
     public GameObject LeftBar = null;
@@ -38,8 +36,6 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
     public GameObject Enemy = null;
 
     GameObject currentTemp;
-    Image[] currentTempChildren = new Image[3];
-    List<Image[]> columnTempChildren = new List<Image[]>();
     private void Awake()
     {
         Screen.orientation = ScreenOrientation.Landscape;
@@ -47,7 +43,6 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
         setInfos();
 
         click.AnswerBtns = AnswerButtons;
-        click.Elements = Elements;
 
         questions = new GameObject[CountQuestions];
         _answers = new int[CountQuestions];
@@ -70,7 +65,7 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
 
             makeQuestion(i);
             
-            questions[i].transform.localPosition = new Vector3(0, 800);
+            questions[i].transform.localPosition = new Vector3(800, 0);
         }
         StartCoroutine(IStart());
     }
@@ -94,104 +89,28 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
     int[] nums;
     private void makeQuestion(int i)
     {
-        nums = randNumsLessThanResult(5);
+        int randAnswer = UnityEngine.Random.Range(0, 10);
 
-        int randNumPlace = UnityEngine.Random.Range(0, 2);
+        questions[i].transform.GetChild(0).GetChild(randAnswer).gameObject.SetActive(true);
 
-        List<GameObject[]> allObjs = createObjects(i);
+        int[] randAnswers = makeRandomlyNumWithoutEquals(new int[] { randAnswer }, 1, 10, AnswerButtons.Length);
+        int randIndex = UnityEngine.Random.Range(0, AnswerButtons.Length);
 
-        //allObjs[0][k].transform.parent = questions[i].transform.GetChild(0).GetChild(0).transform;
-        //allObjs[0][k].transform.localScale = new Vector3(1, 1, 1);
 
-        for (int l = 0; l < allObjs.Count; l++)
+        _answers[i] = randAnswer + 1;
+
+        if (i == 0)
         {
-            if (i >= CountQuestions / 2 && Mathf.Abs(randNumPlace - 1) == l)
-                l++;
-            for (int k = 0; k < allObjs[l].Length; k++)
+            for (int l = 0; l < AnswerButtons.Length; l++)
             {
-                allObjs[l][k].transform.parent = questions[i].transform.GetChild(0).GetChild(l).transform;
-                allObjs[l][k].transform.localScale = new Vector3(1, 1, 1);
-            }
-        }
-
-
-        questions[i].transform.GetChild(1).GetChild(randNumPlace).GetComponentInChildren<Text>().text = nums[randNumPlace].ToString();
-        questions[i].transform.GetChild(1).GetChild(2).GetComponentInChildren<Text>().text = (nums[0] + nums[1]).ToString();
-
-        _answers[i] = nums[Mathf.Abs(randNumPlace - 1)];
-
-        int randAnsBtn = UnityEngine.Random.Range(0, AnswerButtons.Length);
-        int randAnswer = -1;
-        for (int o = 0; o < AnswerButtons.Length; o++)
-        {
-            if (o == randAnsBtn)
-                AnswerButtons[o].GetComponentInChildren<Text>().text = (_answers[i]).ToString();
-            else
-            {
-                randAnswer = makeRandomlyNumWithoutEquals(new int[] { _answers[i], randAnswer }, 1, 5);
-                AnswerButtons[o].GetComponentInChildren<Text>().text = randAnswer.ToString();
+                if (randIndex != l)
+                    AnswerButtons[l].GetComponentInChildren<Text>().text = randAnswers[l].ToString();
+                else
+                    AnswerButtons[l].GetComponentInChildren<Text>().text = _answers[i].ToString();
             }
         }
     }
     private int[] _answers;
-
-    List<GameObject[]> createObjects(int currIndex)
-    {
-        List<GameObject[]> result = new List<GameObject[]>();
-
-        int[] rands = getRandomNumber(0, Elements.Length, 2, false);
-
-        int randElem = UnityEngine.Random.Range(0, 2);
-
-        Image temp;
-
-        GameObject[] objects = new GameObject[nums[0]];
-        for (int i = 0; i < nums[0]; i++)
-        {
-            objects[i] = new GameObject("firstElement" + (i + 1));
-            objects[i].AddComponent<RectTransform>();
-            temp = objects[i].AddComponent<Image>();
-            temp.overrideSprite = Elements[rands[randElem]];
-            temp.preserveAspect = true;
-        }
-        result.Add(objects);
-
-        objects = new GameObject[nums[1]];
-        for (int i = 0; i < nums[1]; i++)
-        {
-            objects[i] = new GameObject("secondElement" + (i + 1));
-            objects[i].AddComponent<RectTransform>();
-            temp = objects[i].AddComponent<Image>();
-            temp.overrideSprite = Elements[rands[Mathf.Abs(randElem - 1)]];
-            temp.preserveAspect = true;
-        }
-        result.Add(objects);
-
-        objects = new GameObject[nums[0] + nums[1]];
-        int[] mixedNums = getRandomNumber(0, 2, 2, false);
-
-        for (int i = 0; i < nums[1] + nums[0]; i++)
-        {
-            objects[i] = new GameObject("resultElement" + (i + 1));
-            objects[i].AddComponent<RectTransform>();
-            temp = objects[i].AddComponent<Image>();
-
-            if (i < nums[0])
-                temp.overrideSprite = Elements[rands[randElem]];
-            else
-                temp.overrideSprite = Elements[rands[Mathf.Abs(randElem - 1)]];
-
-            temp.preserveAspect = true;
-        }
-
-        //objects = result[mixedNums[0]].Concat(result[mixedNums[1]]).ToArray();
-        //int ind = 1;
-        //Array.ForEach(objects, c => { c.name = "resultElement" + ind; ind++; } );
-
-        result.Add(objects);
-
-        return result;
-    }
     
     private IEnumerator IStart()
     {
@@ -217,11 +136,11 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             lvls[i] = Instantiate(PlayerLvlTemplate, _scrollContent.transform);
             lvls[i].name = "lvlPanel" + (i + 1);
-            lvls[i].transform.SetAsFirstSibling();
-            lvls[i].GetComponentInChildren<Text>().text = (i + 1).ToString();
+            lvls[i].transform.SetAsLastSibling();
+            lvls[i].transform.GetChild(1).GetChild(0).GetComponent<Text>().text = (i + 1).ToString();
             if (i == 0)
             {
-                lvls[0].transform.GetChild(0).gameObject.SetActive(true);
+                lvls[i].transform.GetChild(1).GetChild(0).GetComponent<Text>().enabled = true;
             }
         }
         setLBContentHeight();
@@ -230,26 +149,34 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
     {
         float scrollContentHeightLB = _scrollContent.transform.parent.parent.GetComponent<RectTransform>().rect.height;
         RectTransform rtLB = _scrollContent.GetComponent<RectTransform>();
-        rtLB.offsetMax = new Vector2(rtLB.offsetMax.x, Mathf.Abs(scrollContentHeightLB + (CountQuestions * 70)));
+        rtLB.offsetMax = new Vector2(rtLB.offsetMax.x, Mathf.Abs(scrollContentHeightLB + (CountQuestions * 20)));
     }
 
 
     int loopCount = 0;
-    int makeRandomlyNumWithoutEquals(int[] targetNum, int min, int max)
+    int[] makeRandomlyNumWithoutEquals(int[] targetNum, int min, int max, int count)
     {
-        int num;
-        do
+        int[] num = new int[count];
+
+        int rand;
+        for (int i = 0; i < num.Length; i++)
         {
-            num = UnityEngine.Random.Range(min, max);
-            loopCount++;
-            if(loopCount > 10000)
+            rand = UnityEngine.Random.Range(min, max);
+            while (targetNum.Contains(rand) || num.Contains(rand))
             {
-                Debug.Log("Stop it");
-                loopCount = 0;
-                break;
+                rand = UnityEngine.Random.Range(min, max);
+
+                loopCount++;
+                if (loopCount > 10000)
+                {
+                    Debug.Log("Stop it");
+                    loopCount = 0;
+                    break;
+                }
             }
+            num[i] = (rand);
         }
-        while (targetNum.Contains(num));
+
 
         return num;
     }

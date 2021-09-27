@@ -9,8 +9,10 @@ public class OpacityEffect : MonoBehaviour
 
     public float From = 20f;
     public float To = 80f;
+    public bool IsText = false;
 
     [Space]
+    [Header("Other")]
     public string Value = "null";
     public int Unit;
     [Tooltip("Numbers, Symbols, Alphabetics")]
@@ -21,6 +23,7 @@ public class OpacityEffect : MonoBehaviour
 
     private SpriteRenderer renderer = null;
     private Image imageRender = null;
+    private Text textRenderer = null;
 
     private bool image = false;
 
@@ -41,7 +44,7 @@ public class OpacityEffect : MonoBehaviour
         From /= 100f;
         To /= 100f;
 
-        if (this.TryGetComponent<Image>(out imageRender))
+        if (!IsText && this.TryGetComponent<Image>(out imageRender))
             image = true;
 
         if (!image) {
@@ -50,11 +53,18 @@ public class OpacityEffect : MonoBehaviour
             r = renderer.color.r; g = renderer.color.g; b = renderer.color.b;
             renderer.color = new Color(r, g, b, From);
         }
-        else
+        else if(!IsText)
         {
             currentAlpha = this.GetComponent<Image>().color.a;
             r = imageRender.color.r; g = imageRender.color.g; b = imageRender.color.b;
             imageRender.color = new Color(r, g, b, From);
+        }
+        else if(IsText)
+        {
+            textRenderer = this.GetComponent<Text>();
+            currentAlpha = this.GetComponent<Text>().color.a;
+            r = textRenderer.color.r; g = textRenderer.color.g; b = textRenderer.color.b;
+            textRenderer.color = new Color(r, g, b, From);
         }
         currentAlpha = From;
 
@@ -73,8 +83,10 @@ public class OpacityEffect : MonoBehaviour
         {
             if (!image)
                 currentAlpha = renderer.color.a;
-            else
+            else if (!IsText)
                 currentAlpha = imageRender.color.a;
+            else
+                currentAlpha = textRenderer.color.a;
 
             if (currentAlpha <= From)
                 up = true;
@@ -86,16 +98,20 @@ public class OpacityEffect : MonoBehaviour
                 currentAlpha += .003f;
                 if (!image)
                     renderer.color = new Color(r, g, b, currentAlpha);
-                else
+                else if (!IsText)
                     imageRender.color = new Color(r, g, b, currentAlpha);
+                else
+                    textRenderer.color = new Color(r, g, b, currentAlpha);
             }
             else
             {
                 currentAlpha -= .003f;
                 if (!image)
                     renderer.color = new Color(r, g, b, currentAlpha);
-                else
+                else if (!IsText)
                     imageRender.color = new Color(r, g, b, currentAlpha);
+                else
+                    textRenderer.color = new Color(r, g, b, currentAlpha);
             }
         }
     }
