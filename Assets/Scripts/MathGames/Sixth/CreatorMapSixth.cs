@@ -140,10 +140,10 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
             lvls[i] = Instantiate(PlayerLvlTemplate, _scrollContent.transform);
             lvls[i].name = "lvlPanel" + (i + 1);
             lvls[i].transform.SetAsLastSibling();
-            lvls[i].transform.GetChild(1).GetChild(0).GetComponent<Text>().text = (i + 1).ToString();
+            lvls[i].transform.GetChild(2).GetChild(0).GetComponent<Text>().text = (i + 1).ToString();
             if (i == 0)
             {
-                lvls[i].transform.GetChild(1).GetChild(0).GetComponent<OpacityEffect>().enabled = true;
+                lvls[i].transform.GetChild(2).GetChild(0).GetComponent<OpacityEffect>().enabled = true;
             }
         }
 

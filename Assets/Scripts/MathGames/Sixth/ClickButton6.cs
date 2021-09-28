@@ -17,8 +17,6 @@ public class ClickButton6 : MonoBehaviour
 
     [HideInInspector] public bool Finish = false;
 
-    private Animator symbolAnimController; // => GameObject.FindGameObjectWithTag("Anim").GetComponent<Animator>();
-
     private void lose()
     {
         Debug.Log("Finish");
@@ -107,11 +105,12 @@ public class ClickButton6 : MonoBehaviour
     [HideInInspector] public PhotonView PunView = null;
 
 
+
     GameObject LBScrollContent;
     private IEnumerator waitSeconds()
     {
         wait = true;
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(1f);
         wait = false;
     }
     int currentIndex = 0;
@@ -158,7 +157,7 @@ public class ClickButton6 : MonoBehaviour
                     AnswerBtns[l].GetComponentInChildren<Text>().text = Answers[currentIndex].ToString();
         }
 
-        Lvls[currentIndex].transform.GetChild(1).GetChild(0).GetComponent<OpacityEffect>().enabled = true;
+        Lvls[currentIndex].transform.GetChild(2).GetChild(0).GetComponent<OpacityEffect>().enabled = true;
 
         StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(0, 0), true, 8f));
     }
@@ -189,11 +188,15 @@ public class ClickButton6 : MonoBehaviour
             yield break;
         }
 
+        StartCoroutine(createNew());
+    }
+    private IEnumerator createNew()
+    {
+        StartCoroutine(waitSeconds());
+        yield return new WaitForSeconds(1f);
         increaseSizeUI();
 
         CreateNewAns();
-
-        StartCoroutine(waitSeconds());
     }
     public Sprite[] icons;
     private void setInactivePrevious(bool isAnsTrue)
@@ -202,16 +205,27 @@ public class ClickButton6 : MonoBehaviour
 
         if (isAnsTrue)
         {
-            Lvls[currentIndex].transform.GetChild(1).GetComponent<Image>().overrideSprite = icons[0];
-            Lvls[currentIndex].transform.GetChild(0).GetComponent<Image>().overrideSprite = icons[1];
+            currentLvlIcons[0] = icons[0];
+            currentLvlIcons[1] = icons[1];
         }
         else
         {
-            Lvls[currentIndex].transform.GetChild(1).GetComponent<Image>().overrideSprite = icons[2];
-            Lvls[currentIndex].transform.GetChild(0).GetComponent<Image>().overrideSprite = icons[3];
+            currentLvlIcons[0] = icons[2];
+            currentLvlIcons[1] = icons[3];
         }
 
-        Lvls[currentIndex].transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+        currentImage = Lvls[currentIndex].transform.GetChild(2).GetComponent<Image>();
+        currentLine = Lvls[currentIndex].transform.GetChild(1).GetComponent<Image>();
+
+        Lvls[currentIndex].GetComponent<Animator>().SetTrigger("start");
+    }
+    static Image currentImage = null;
+    static Image currentLine = null;
+    private static Sprite[] currentLvlIcons = new Sprite[2];
+    public void SetLvlIcon()
+    {
+        currentImage.overrideSprite = currentLvlIcons[0];
+        currentLine.overrideSprite = currentLvlIcons[1];
     }
 
     private int[] getRandomNumber(int min, int max, int count, bool equalNums)
