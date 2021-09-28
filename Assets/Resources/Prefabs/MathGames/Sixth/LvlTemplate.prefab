@@ -277,8 +277,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456eefc5024c92f41864bd822ade6618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  From: 50
-  To: 100
+  From: 30
+  To: 80
   IsText: 1
   Value: null
   Unit: 0

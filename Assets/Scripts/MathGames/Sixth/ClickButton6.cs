@@ -47,19 +47,17 @@ public class ClickButton6 : MonoBehaviour
     ScaleEffect effect = new ScaleEffect();
     void increaseSizeUI()
     {
-        //StartCoroutine(MoveSmooth(rect, new Vector2(rect.localPosition.x, rect.localPosition.y + interval)));
         ScrollRect lineScrollRect = LBScrollContent.GetComponent<ScrollRect>();
-        //StartCoroutine(MoveSmooth(scrollRect, new Vector2(scrollRect.preferredHeight)));
         StartCoroutine(LerpToChild(lineScrollRect, Lvls[currentIndex].GetComponent<RectTransform>()));
     }
-    private IEnumerator LerpToChild(ScrollRect _scrollRectComponent, RectTransform target)
+    public IEnumerator LerpToChild(ScrollRect _scrollRectComponent, RectTransform target)
     {
         //StartCoroutine(LerpToChild(lineScrollRect, Lines[_currentIndex].GetComponent<RectTransform>(), false));
         RectTransform child;
 
         child = _scrollRectComponent.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
 
-        Vector2 _lerpTo = child.anchoredPosition - (Vector2)_scrollRectComponent.transform.InverseTransformPoint(target.position) - new Vector2(19, 60);
+        Vector2 _lerpTo = child.anchoredPosition - (Vector2)_scrollRectComponent.transform.InverseTransformPoint(target.position) - new Vector2(120, 0);
 
         Canvas.ForceUpdateCanvases();
 
@@ -76,14 +74,29 @@ public class ClickButton6 : MonoBehaviour
         }
     }
 
-    int makeRandomlyNumWithoutEquals(int[] targetNum, int min, int max)
+    int[] makeRandomlyNumWithoutEquals(int[] targetNum, int min, int max, int count)
     {
-        int num;
-        do
+        int[] num = new int[count];
+
+        int rand;
+        for (int i = 0; i < num.Length; i++)
         {
-            num = UnityEngine.Random.Range(min, max);
+            rand = UnityEngine.Random.Range(min, max);
+            while (targetNum.Contains(rand) || num.Contains(rand))
+            {
+                rand = UnityEngine.Random.Range(min, max);
+
+                loopCount++;
+                if (loopCount > 10000)
+                {
+                    Debug.Log("Stop it");
+                    loopCount = 0;
+                    break;
+                }
+            }
+            num[i] = (rand);
         }
-        while (targetNum.Contains(num));
+
 
         return num;
     }
@@ -134,6 +147,20 @@ public class ClickButton6 : MonoBehaviour
     }
     public void CreateNewAns()
     {
+        int[] randAnswers = makeRandomlyNumWithoutEquals(new int[] { Answers[currentIndex] }, 1, 10, AnswerBtns.Length);
+        int randIndex = UnityEngine.Random.Range(0, AnswerBtns.Length);
+
+        for (int l = 0; l < AnswerBtns.Length; l++)
+            {
+                if (randIndex != l)
+                    AnswerBtns[l].GetComponentInChildren<Text>().text = randAnswers[l].ToString();
+                else
+                    AnswerBtns[l].GetComponentInChildren<Text>().text = Answers[currentIndex].ToString();
+        }
+
+        Lvls[currentIndex].transform.GetChild(1).GetChild(0).GetComponent<OpacityEffect>().enabled = true;
+
+        StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(0, 0), true, 8f));
     }
     public void CheckEqual(Text value)
     {
@@ -148,6 +175,7 @@ public class ClickButton6 : MonoBehaviour
         StartCoroutine(waitAnim(isTrue));
     }
 
+    int loopCount = 0;
     private IEnumerator waitAnim(bool isTrue)
     {
         yield return new WaitForSeconds(0f);
@@ -161,6 +189,8 @@ public class ClickButton6 : MonoBehaviour
             yield break;
         }
 
+        increaseSizeUI();
+
         CreateNewAns();
 
         StartCoroutine(waitSeconds());
@@ -172,12 +202,16 @@ public class ClickButton6 : MonoBehaviour
 
         if (isAnsTrue)
         {
-            Lvls[currentIndex].transform.GetChild(0).GetComponent<Image>().overrideSprite = icons[0];
+            Lvls[currentIndex].transform.GetChild(1).GetComponent<Image>().overrideSprite = icons[0];
+            Lvls[currentIndex].transform.GetChild(0).GetComponent<Image>().overrideSprite = icons[1];
         }
         else
         {
-            Lvls[currentIndex].transform.GetChild(0).GetComponent<Image>().GetComponent<Image>().overrideSprite = icons[1];
+            Lvls[currentIndex].transform.GetChild(1).GetComponent<Image>().overrideSprite = icons[2];
+            Lvls[currentIndex].transform.GetChild(0).GetComponent<Image>().overrideSprite = icons[3];
         }
+
+        Lvls[currentIndex].transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
     }
 
     private int[] getRandomNumber(int min, int max, int count, bool equalNums)

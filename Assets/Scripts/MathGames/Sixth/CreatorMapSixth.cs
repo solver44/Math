@@ -1,4 +1,4 @@
-﻿using Photon.Pun;
+using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
@@ -93,14 +93,14 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
 
         questions[i].transform.GetChild(0).GetChild(randAnswer).gameObject.SetActive(true);
 
-        int[] randAnswers = makeRandomlyNumWithoutEquals(new int[] { randAnswer }, 1, 10, AnswerButtons.Length);
-        int randIndex = UnityEngine.Random.Range(0, AnswerButtons.Length);
 
 
         _answers[i] = randAnswer + 1;
 
         if (i == 0)
         {
+            int[] randAnswers = makeRandomlyNumWithoutEquals(new int[] { randAnswer }, 1, 10, AnswerButtons.Length);
+            int randIndex = UnityEngine.Random.Range(0, AnswerButtons.Length);
             for (int l = 0; l < AnswerButtons.Length; l++)
             {
                 if (randIndex != l)
@@ -114,9 +114,12 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
     
     private IEnumerator IStart()
     {
+        yield return new WaitForSeconds(0.1f);
+        ScrollRect lineScrollRect = LeftBar.GetComponent<ScrollRect>();
+        StartCoroutine(click.LerpToChild(lineScrollRect, lvls[0].GetComponent<RectTransform>()));
+        
         yield return new WaitForSeconds(1);
         StartCoroutine(effect.MoveAnimTowards(questions[0].transform, new Vector3(0, 0), true, 8f));
-        //questions[0].transform.localPosition = new Vector3(0, 0);
     }
     private void Start()
     {
@@ -140,9 +143,14 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
             lvls[i].transform.GetChild(1).GetChild(0).GetComponent<Text>().text = (i + 1).ToString();
             if (i == 0)
             {
-                lvls[i].transform.GetChild(1).GetChild(0).GetComponent<Text>().enabled = true;
+                lvls[i].transform.GetChild(1).GetChild(0).GetComponent<OpacityEffect>().enabled = true;
             }
         }
+
+            GameObject temp = Instantiate(PlayerLvlTemplate, _scrollContent.transform);
+            temp.name = "space";
+            temp.transform.SetAsLastSibling();
+
         setLBContentHeight();
     }
     void setLBContentHeight()

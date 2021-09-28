@@ -47,7 +47,7 @@ public class OpacityEffect : MonoBehaviour
         if (!IsText && this.TryGetComponent<Image>(out imageRender))
             image = true;
 
-        if (!image) {
+        if (!image && !IsText) {
             renderer = this.GetComponent<SpriteRenderer>();
             currentAlpha = this.GetComponent<SpriteRenderer>().color.a;
             r = renderer.color.r; g = renderer.color.g; b = renderer.color.b;
@@ -73,7 +73,14 @@ public class OpacityEffect : MonoBehaviour
     private bool up = false;
     private float timer;
     private bool _stop = false;
-    public bool Stop { set { _stop = value; if (!value) { imageRender = GetComponent<Image>(); r = imageRender.color.r; g = imageRender.color.g; b = imageRender.color.b; } } get { return _stop; } }
+    public bool Stop { set 
+    { _stop = value; 
+    if (!value && !IsText) 
+    { 
+        imageRender = GetComponent<Image>(); r = imageRender.color.r; g = imageRender.color.g; b = imageRender.color.b; }
+    } 
+    get { return _stop; } 
+    }
     private void Update()
     {
         if (Stop)
@@ -81,7 +88,7 @@ public class OpacityEffect : MonoBehaviour
 
         if (Time.unscaledTime > timer + .5f)
         {
-            if (!image)
+            if (!image && !IsText)
                 currentAlpha = renderer.color.a;
             else if (!IsText)
                 currentAlpha = imageRender.color.a;
@@ -95,8 +102,8 @@ public class OpacityEffect : MonoBehaviour
 
             if (up)
             {
-                currentAlpha += .003f;
-                if (!image)
+                currentAlpha += .005f;
+                if (!image && !IsText)
                     renderer.color = new Color(r, g, b, currentAlpha);
                 else if (!IsText)
                     imageRender.color = new Color(r, g, b, currentAlpha);
@@ -105,8 +112,8 @@ public class OpacityEffect : MonoBehaviour
             }
             else
             {
-                currentAlpha -= .003f;
-                if (!image)
+                currentAlpha -= .005f;
+                if (!image && !IsText)
                     renderer.color = new Color(r, g, b, currentAlpha);
                 else if (!IsText)
                     imageRender.color = new Color(r, g, b, currentAlpha);
