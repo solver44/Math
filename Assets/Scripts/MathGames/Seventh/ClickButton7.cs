@@ -13,12 +13,10 @@ public class ClickButton7 : MonoBehaviour
     [HideInInspector] public GameObject[] Lvls = null;
     [HideInInspector] public GameObject[] Questions = null;
     [HideInInspector] public GameObject[] AnswerBtns = null;
-    [HideInInspector] public Sprite[] Elements = null;
+    [HideInInspector] public Text PlayerScore = null;
     [HideInInspector] public int[] Answers;
 
     [HideInInspector] public bool Finish = false;
-
-    private Animator symbolAnimController; // => GameObject.FindGameObjectWithTag("Anim").GetComponent<Animator>();
 
     private void lose(PhotonView punView)
     {
@@ -30,61 +28,51 @@ public class ClickButton7 : MonoBehaviour
                 punView.RPC("CheckWinOrLose", RpcTarget.All, results);
             }
             catch {
-                CreatorMapFourth map = GameObject.Find("Creator").GetComponent<CreatorMapFourth>();
+                CreatorMapSeventh map = GameObject.Find("Creator").GetComponent<CreatorMapSeventh>();
                 map.WinOrLose(false);
             }
         }
         else
         {
-            CreatorMapFourth map = GameObject.Find("Creator").GetComponent<CreatorMapFourth>();
+            CreatorMapSeventh map = GameObject.Find("Creator").GetComponent<CreatorMapSeventh>();
             map.WinOrLose(false);
         }
     }
-    private void changeStats()
+    private void changeStats(bool isTrue)
     {
-
+        int currNum = Int32.Parse(PlayerScore.text);
+        if (isTrue)
+            PlayerScore.text = (currNum + 2).ToString();
+        else if (currNum > 0)
+            PlayerScore.text = (currNum - 1).ToString();
     }
     int[] results;
     ScaleEffect effect = new ScaleEffect();
-    void increaseSizeUI()
+
+    int loopCount = 0;
+    int[] makeRandomlyNumWithoutEquals(int[] targetNum, int min, int max, int count)
     {
-        //StartCoroutine(MoveSmooth(rect, new Vector2(rect.localPosition.x, rect.localPosition.y + interval)));
-        ScrollRect lineScrollRect = LBScrollContent.GetComponent<ScrollRect>();
-        //StartCoroutine(MoveSmooth(scrollRect, new Vector2(scrollRect.preferredHeight)));
-        StartCoroutine(LerpToChild(lineScrollRect, Lvls[currentIndex].GetComponent<RectTransform>()));
-    }
-    private IEnumerator LerpToChild(ScrollRect _scrollRectComponent, RectTransform target)
-    {
-        //StartCoroutine(LerpToChild(lineScrollRect, Lines[_currentIndex].GetComponent<RectTransform>(), false));
-        RectTransform child;
+        int[] num = new int[count];
 
-        child = _scrollRectComponent.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
-
-        Vector2 _lerpTo = child.anchoredPosition - (Vector2)_scrollRectComponent.transform.InverseTransformPoint(target.position) - new Vector2(19, 60);
-
-        Canvas.ForceUpdateCanvases();
-
-        float decelerate = 1f;
-        for (float i = 0; i < 1; i += Time.deltaTime * decelerate)
+        int rand;
+        for (int i = 0; i < num.Length; i++)
         {
-            child.anchoredPosition = Vector2.Lerp(child.anchoredPosition, _lerpTo, i);
-            if (Vector2.Distance(child.anchoredPosition, _lerpTo) < 0.25f)
+            rand = UnityEngine.Random.Range(min, max);
+            while (targetNum.Contains(rand) || num.Contains(rand))
             {
-                child.anchoredPosition = _lerpTo;
-                yield break;
-            }
-            yield return new WaitForEndOfFrame();
-        }
-    }
+                rand = UnityEngine.Random.Range(min, max);
 
-    int makeRandomlyNumWithoutEquals(int[] targetNum, int min, int max)
-    {
-        int num;
-        do
-        {
-            num = UnityEngine.Random.Range(min, max);
+                loopCount++;
+                if (loopCount > 10000)
+                {
+                    Debug.Log("Stop it");
+                    loopCount = 0;
+                    break;
+                }
+            }
+            num[i] = (rand);
         }
-        while (targetNum.Contains(num));
+
 
         return num;
     }
@@ -106,6 +94,7 @@ public class ClickButton7 : MonoBehaviour
     private IEnumerator IeStart()
     {
         yield return new WaitForSeconds(0.4f);
+        StartCoroutine(effect.MoveAnimTowards(Lvls[currentIndex].transform, new Vector2(0, 0), true, 5f));
         StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(0, 0), true, 8f));
     }
     bool won()
@@ -120,40 +109,76 @@ public class ClickButton7 : MonoBehaviour
                     PunView.RPC("CheckWinOrLose", RpcTarget.All, results);
                 }
                 catch {
-                    CreatorMapFourth map = GameObject.Find("Creator").GetComponent<CreatorMapFourth>();
+                    CreatorMapSeventh map = GameObject.Find("Creator").GetComponent<CreatorMapSeventh>();
                     map.WinOrLose(true);
                 }
             }
             else
             {
-                CreatorMapFourth map = GameObject.Find("Creator").GetComponent<CreatorMapFourth>();
+                CreatorMapSeventh map = GameObject.Find("Creator").GetComponent<CreatorMapSeventh>();
                 map.WinOrLose(true);
             }
             return true;
         }
         return false;
     }
+
+    int makeRandomlyNumWithoutEquals(int[] targetNum, int min, int max)
+    {
+        int num;
+        do
+        {
+            num = UnityEngine.Random.Range(min, max);
+        }
+        while (targetNum.Contains(num));
+
+        return num;
+    }
     public void CreateNewAns()
     {
-        int randAnsBtn = UnityEngine.Random.Range(0, AnswerBtns.Length);
-        int randAnswer = -1;
-        for (int o = 0; o < AnswerBtns.Length; o++)
+        int[] randWrongNums = makeRandomlyNumWithoutEquals(new int[] { Answers[currentIndex] }, 1, 10, AnswerBtns.Length);
+        int randIndex = UnityEngine.Random.Range(0, AnswerBtns.Length);
+
+        int randEqualPlace = makeRandomlyNumWithoutEquals(new int[] { randIndex }, 1, AnswerBtns.Length);
+        Color curColor = Questions[currentIndex].transform.GetChild(0).GetComponent<Image>().color;
+
+        for (int l = 0; l < AnswerBtns.Length; l++)
         {
-            if (o == randAnsBtn)
-                AnswerBtns[o].GetComponentInChildren<Text>().text = (Answers[currentIndex]).ToString();
+            if (currentIndex < Questions.Length / 2)
+            {
+                if (randIndex != l)
+                    AnswerBtns[l].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = randWrongNums[l].ToString();
+                else
+                    AnswerBtns[l].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = Answers[currentIndex].ToString();
+            }
             else
             {
-                randAnswer = makeRandomlyNumWithoutEquals(new int[] { Answers[currentIndex], randAnswer }, 1, 5);
-                AnswerBtns[o].GetComponentInChildren<Text>().text = randAnswer.ToString();
+                if (randIndex != l)
+                {
+                    if (randEqualPlace != l)
+                    {
+                        AnswerBtns[l].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = randWrongNums[l].ToString();
+                        AnswerBtns[l].transform.GetChild(0).localRotation = new Quaternion(0, 0, 0, 0);
+                        AnswerBtns[l].transform.GetChild(0).GetChild(0).transform.localRotation = new Quaternion(0, 0, 0, 0);
+                    }
+                    else
+                    {
+                        AnswerBtns[l].transform.GetChild(0).localRotation = new Quaternion(0, 180, 0, 0);
+                        AnswerBtns[l].transform.GetChild(0).GetChild(0).transform.localRotation = new Quaternion(0, 180, 0, 0);
+                        AnswerBtns[l].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = Answers[currentIndex].ToString();
+                    }
+                }
+                else
+                {
+                    AnswerBtns[l].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = Answers[currentIndex].ToString();
+                    AnswerBtns[l].transform.GetChild(0).localRotation = new Quaternion(0, 0, 0, 0);
+                    AnswerBtns[l].transform.GetChild(0).GetChild(0).transform.localRotation = new Quaternion(0, 0, 0, 0);
+                }
             }
+            AnswerBtns[l].transform.GetChild(0).GetComponent<Image>().color = curColor;
         }
 
         StartCoroutine(IeStart());
-
-        increaseSizeUI();
-
-        Lvls[currentIndex].transform.GetChild(0).gameObject.SetActive(true);
-        Lvls[currentIndex].transform.GetChild(0).GetComponent<Image>().overrideSprite = icons[2];
     }
     public void CheckEqual(Text value)
     {
@@ -162,7 +187,7 @@ public class ClickButton7 : MonoBehaviour
 
         bool isTrue = false;
 
-        if (Answers[currentIndex] == Int32.Parse(value.text))
+        if (Answers[currentIndex] == Int32.Parse(value.text) && value.transform.parent.transform.localRotation.y == 1)
             isTrue = true;
 
         StartCoroutine(waitAnim(isTrue));
@@ -185,43 +210,25 @@ public class ClickButton7 : MonoBehaviour
 
         StartCoroutine(waitSeconds());
     }
-    public Sprite[] icons;
+    public Image StatsPanel;
     private void setInactivePrevious(bool isAnsTrue)
     {
+        changeStats(isAnsTrue);
+
         StartCoroutine(effect.MoveAnimTowards(Questions[currentIndex].transform, new Vector2(0, -800), true, 8f));
+        StartCoroutine(effect.MoveAnimTowards(Lvls[currentIndex].transform, new Vector2(0, -200), true, 5f));
 
         if (isAnsTrue)
         {
-            Lvls[currentIndex].transform.GetChild(0).GetComponent<Image>().overrideSprite = icons[0];
+            StatsPanel.color = new Color32(49, 255, 67, 0);
         }
         else
         {
-            Lvls[currentIndex].transform.GetChild(0).GetComponent<Image>().GetComponent<Image>().overrideSprite = icons[1];
+            StatsPanel.color = new Color32(255, 49, 59, 0);
         }
+        StatsPanel.GetComponent<Animator>().SetTrigger("start");
     }
 
-    private int[] getRandomNumber(int min, int max, int count, bool equalNums)
-    {
-        int rand = UnityEngine.Random.Range(min, max);
-        int[] rands = new int[count];
-        for (int i = 0; i < rands.Length; i++)
-        {
-            rands[i] = -1;
-        }
-        for (int i = 0; i < rands.Length; i++)
-        {
-            while (!equalNums && rands.Contains(rand))
-            {
-                rand = UnityEngine.Random.Range(min, max);
-            }
-            if (equalNums)
-                rand = UnityEngine.Random.Range(min, max);
-
-            rands[i] = rand;
-        }
-
-        return rands;
-    }
     void SetPunView()
     {
         if (!StartWithoutPlayer)
@@ -229,10 +236,7 @@ public class ClickButton7 : MonoBehaviour
     }
     private void Start()
     {
-        results = new int[Lvls.Length];
-
-        LBScrollContent = GameObject.FindGameObjectWithTag("Levels");
-
+        results = new int[Lvls.Length];   
         //symbolAnimController.SetLayerWeight(0, 0f);
     }
 }

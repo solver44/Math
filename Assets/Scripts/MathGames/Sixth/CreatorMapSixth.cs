@@ -188,28 +188,6 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
 
         return num;
     }
-    private int[] getRandomNumber(int min, int max, int count, bool equalNums)
-    {
-        int rand = UnityEngine.Random.Range(min, max);
-        int[] rands = new int[count];
-        for (int i = 0; i < rands.Length; i++)
-        {
-            rands[i] = -1;
-        }
-        for (int i = 0; i < rands.Length; i++)
-        {
-            while (!equalNums && rands.Contains(rand))
-            {
-                rand = UnityEngine.Random.Range(min, max);
-            }
-            if(equalNums)
-                rand = UnityEngine.Random.Range(min, max);
-
-            rands[i] = rand;
-        }
-
-        return rands;
-    }
     ScaleEffect effect = new ScaleEffect();
 
     bool isOnEvent = false;
