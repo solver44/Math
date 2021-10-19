@@ -52,6 +52,9 @@ public class Keybord : MonoBehaviour
     Image tempImg = null;
     void SetRayCast(RaycastHit2D hitTouch)
     {
+        if (stop)
+            return;
+
         if (hitTouch && hitTouch.collider.transform.CompareTag("KeyboardValue"))
         {
             if (currentText != null && currentText.TryGetComponent<Image>(out tempImg))
@@ -128,6 +131,8 @@ public class Keybord : MonoBehaviour
 
     private void checkAllWrongAnswers()
     {
+        if (stop)
+            return;
         GameObject parent = currentText.transform.parent.transform.parent.transform.parent.gameObject;
         List<GameObject> parents = new List<GameObject>();
         for (int i = 0; i < parent.transform.childCount; i++)
@@ -166,6 +171,8 @@ public class Keybord : MonoBehaviour
             tempText.color = new Color32(255, 0, 0, 255);
         }
         yield return new WaitForSeconds(2);
+        if (WasUnitComplete.CurrentUnit > 2)
+            yield break;
         if (!temp.TryGetComponent<Text>(out tempText))
         {
             temp.GetComponent<OpacityEffect>().Stop = true;
@@ -296,14 +303,22 @@ public class Keybord : MonoBehaviour
                 break;
         }
     }
+    bool stop = false;
     private void check()
     {
         if (listAnswers.All(listValueAnswers.Contains) && listAnswers.Count == listValueAnswers.Count)
         {
+            stop = true;
             Units[WasUnitComplete.currentUnit - 1].CompleteUnit();
+            StartCoroutine(start());
         }
 
         StartCoroutine(hideKeyboard());
+    }
+    private IEnumerator start()
+    {
+        yield return new WaitForSeconds(3);
+        stop = false;
     }
     private void delete()
     {

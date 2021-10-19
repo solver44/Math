@@ -174,126 +174,6 @@ public class MoveObject : MonoBehaviour
     
 
     private bool scale = false;
-
-#if UNITY_EDITOR
-    void MouseDown()
-    {
-        if (DontMoving)
-            return;
-
-        if (!locked)
-        {
-
-            deltaX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
-            deltaY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y;
-
-            if (isAnimator)
-                anim.SetBool("zoom", true);
-            else if (isScale)
-                StartCoroutine(methodScale(transform, new Vector3(xScale + (xScale * scaleRadius), yScale + (yScale * scaleRadius)), false, 5f));
-
-            if (!dontSortLayer)
-                this.GetComponent<SpriteRenderer>().sortingOrder += 1;
-        }
-    }
-    void MouseDrag()
-    {
-        if (DontMoving || locked)
-            return;
-
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector3(mousePosition.x - deltaX, mousePosition.y - deltaY, 0);
-
-        if (anyLocation)
-        {
-            if (IsLocalPos)
-                firstPosition = transform.localPosition;
-            else
-                firstPosition = transform.position;
-        }
-
-    }
-
-    void MouseUpFunc()
-    {
-        if (DontMoving)
-            return;
-
-        MouseUp?.Invoke(this.transform.gameObject);
-
-        if (!locked && !empty)
-        {
-            if (!dontSortLayer)
-                render.sortingOrder -= 1;
-
-            if (IsLocalPos)
-                location = GetComponent<Transform>().localPosition;
-            else
-                location = GetComponent<Transform>().position;
-
-            if ((collOfPlaceObject != null && collOfPlaceObject.OnCollision && collOfPlaceObject.NameOfObject.Equals(placeObject.transform) && collOfPlaceObject.NameOfTriggeredObject.Equals(this.transform))
-                || (((Mathf.Abs(location.x - placeLocation.x)) <= rangeX &&
-                Mathf.Abs(location.y - placeLocation.y) <= rangeY) && collOfPlaceObject == null))
-            {
-                if (isAnimator)
-                {
-                    anim.SetTrigger("destroy");
-                    //currentCnt++;
-                }
-                else
-                {
-                    StartCoroutine(methodScale(transform, scaleS, false, 1f)); //Уменшить когда отпускат мышку
-
-                    if (placeObject == null || HasPlaceObjectCollider)
-                    {
-                        if (!HasPlaceObjectCollider)
-                            StartCoroutine(moveAnim(placeLocation, IsLocalPos));
-                        else
-                            StartCoroutine(moveAnim(toThisLocation, IsLocalPos));
-                    }
-                    else
-                    {
-                        StartCoroutine(moveAnim2(placeObject.position, false, 1f));
-                        if (destroyEnd)
-                        {
-                            locked = true;
-                            StartCoroutine(methodScale(this.transform, new Vector2(0, 0), true, 20f));
-                        }
-                    }
-                }
-                if (killPlaceObject)
-                    placeObjectAnim.SetTrigger("destroy");
-                StartCoroutine(makeInActive());
-            }
-            else
-            {
-                if (isAnimator)
-                    anim.SetBool("zoom", false);
-                else
-                {
-                    StartCoroutine(methodScale(transform, scaleS, false, 1f));
-                }
-
-                toLocalPos = true;
-
-                if (IsLocalPos && !DontMoveTo1stPosition)
-                    transform.localPosition = Vector2.Lerp(transform.localPosition, firstPosition, 2f);
-                else if (!DontMoveTo1stPosition)
-                    transform.position = Vector2.Lerp(transform.position, firstPosition, 2f);
-
-            }
-        }
-        else if (empty)
-        {
-            StartCoroutine(methodScale(transform, scaleS, false, 10f));
-
-            if (IsLocalPos && !DontMoveTo1stPosition)
-                transform.localPosition = Vector2.Lerp(transform.localPosition, firstPosition, 2f);
-            else if (!DontMoveTo1stPosition)
-                transform.position = Vector2.Lerp(transform.position, firstPosition, 2f);
-        }
-    }
-#else
     void MouseDrag()
     {
         if (DontMoving || locked)
@@ -363,14 +243,15 @@ public class MoveObject : MonoBehaviour
                 render.sortingOrder -= 1;
 
             if (IsLocalPos)
-                location = GetComponent<Transform>().localPosition;
+                location = transform.localPosition;
             else
-                location = GetComponent<Transform>().position;
+                location = transform.position;
 
             if ((collOfPlaceObject != null && collOfPlaceObject.OnCollision && collOfPlaceObject.NameOfObject.Equals(placeObject.transform) && collOfPlaceObject.NameOfTriggeredObject.Equals(this.transform))
                 || (((Mathf.Abs(location.x - placeLocation.x)) <= rangeX &&
                 Mathf.Abs(location.y - placeLocation.y) <= rangeY) && collOfPlaceObject == null))
             {
+                DontMoving = true;
                 if (isAnimator)
                 {
                     anim.SetTrigger("destroy");
@@ -429,7 +310,7 @@ public class MoveObject : MonoBehaviour
                 transform.position = Vector2.Lerp(transform.position, firstPosition, 2f);
         }
     }
-#endif
+
     bool toLocalPos = false;
     bool destroy = false;
     bool empty = false;
@@ -471,7 +352,7 @@ public class MoveObject : MonoBehaviour
 
     static bool readyToMove = true;
 
-#if UNITY_EDITOR
+    static string currentObj = "";
     void Update()
     {
         if (locked)
@@ -484,79 +365,8 @@ public class MoveObject : MonoBehaviour
             else
                 placeLocation = placeObject.transform.position;
         }
-
-        if (drag)
-            MouseDrag();
-        // For Mouse
-        if (Input.GetMouseButtonDown(0) && readyToMove)
-        {
-            hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 10);
-            if (hit && hit.collider.transform == this.transform)
-            {
-                readyToMove = false;
-                MouseDown(); drag = true;
-            }
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 10);
-            if (hit && hit.collider.transform == this.transform)
-            {
-                drag = false;
-                MouseUpFunc();
-                readyToMove = true;
-            }
-        }
     }
-#else
-    static string currentObj = "";
-    void Update()
-        {
-            if (locked)
-                return;
 
-            if (placeObject != null)
-            {
-                if(IsLocalPos)
-                    placeLocation = placeObject.transform.localPosition;
-                else
-                    placeLocation = placeObject.transform.position;
-            }
-
-            //if (Input.touchCount > 0)
-            //{
-            //    // For Touches
-            //    touch = Input.GetTouch(0);
-            //    if (drag){
-            //        MouseDrag();
-            //    }
-            //    hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(touch.position).x, Camera.main.ScreenToWorldPoint(touch.position).y), Vector2.zero, 10);
-
-            //    if (hit && hit.collider.transform == this.transform)
-            //    {
-            //        if (touch.phase == TouchPhase.Began)
-            //        {
-            //            currentObj = this.transform.name;
-            //            readyToMove = false;
-            //            MouseDown();
-            //            drag = true;
-            //        }
-            //        if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-            //        {
-            //            drag = false;
-            //            MouseUpFunc();
-            //            readyToMove = true;
-            //        }
-            //    }
-            //    else if(currentObj == this.transform.name)
-            //    {
-            //        drag = false;
-            //        MouseUpFunc();
-            //        readyToMove = true;
-            //    }
-            //}
-        }
-#endif
 
     //if (!isAnimator && isScale)
     //{

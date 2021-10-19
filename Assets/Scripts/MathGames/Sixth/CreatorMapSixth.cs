@@ -72,15 +72,10 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
 
     GameObject tempChild;
 
-    int[] randNumsLessThanResult(int target)
+    int[] randNumsEqualToTarget(int target)
     {
         int num1 = UnityEngine.Random.Range(1, target);
-        int num2 = UnityEngine.Random.Range(1, target);
-        while (num1 + num2 > target)
-        {
-            num1 = UnityEngine.Random.Range(1, target);
-            num2 = UnityEngine.Random.Range(1, target);
-        }
+        int num2 = target - num1;
 
         return new int[] { num1, num2 };
     }
@@ -89,10 +84,21 @@ public class CreatorMapSixth : MonoBehaviourPunCallbacks, IOnEventCallback
     int[] nums;
     private void makeQuestion(int i)
     {
-        int randAnswer = UnityEngine.Random.Range(0, 10);
+        int randAnswer; 
 
-        questions[i].transform.GetChild(0).GetChild(randAnswer).gameObject.SetActive(true);
-
+        if (i < CountQuestions / 2)
+        {
+            randAnswer = UnityEngine.Random.Range(0, 10);
+            questions[i].transform.GetChild(0).GetChild(randAnswer).gameObject.SetActive(true);
+            Destroy(questions[i].transform.GetChild(1).gameObject);
+        }
+        else
+        {
+            randAnswer = UnityEngine.Random.Range(1, 10);
+            int[] twoNums = randNumsEqualToTarget(randAnswer + 1);
+            questions[i].transform.GetChild(0).GetChild(twoNums[0] - 1).gameObject.SetActive(true);
+            questions[i].transform.GetChild(1).GetChild(twoNums[1] - 1).gameObject.SetActive(true);
+        }
 
 
         _answers[i] = randAnswer + 1;

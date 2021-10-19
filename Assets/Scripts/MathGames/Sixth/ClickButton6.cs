@@ -110,7 +110,7 @@ public class ClickButton6 : MonoBehaviour
     private IEnumerator waitSeconds()
     {
         wait = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.2f);
         wait = false;
     }
     int currentIndex = 0;
