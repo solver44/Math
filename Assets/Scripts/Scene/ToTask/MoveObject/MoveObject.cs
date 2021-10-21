@@ -75,7 +75,7 @@ public class MoveObject : MonoBehaviour
 
     private IEnumerator waitUntilStart()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         if (placeObject != null && !HasPlaceObjectCollider)
         {
             placeObject.TryGetComponent<Animator>(out placeObjectAnim);
@@ -133,7 +133,6 @@ public class MoveObject : MonoBehaviour
 
         if (StartFromThisPos)
         {
-
             if (IsLocalPos)
                 firstPosition = this.transform.localPosition;
             else

@@ -74,7 +74,7 @@ public class DrawLines : MonoBehaviour
     }
     private IEnumerator setPos()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         currentParentIndex = 0;
     }
 
