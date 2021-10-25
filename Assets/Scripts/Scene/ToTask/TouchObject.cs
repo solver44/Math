@@ -6,6 +6,7 @@ public class TouchObject : MonoBehaviour
 {
     [SerializeField] private bool hasSound = false;
     [SerializeField] private bool hasName = false;
+    [SerializeField] private string tagNameOfText = "ObjectsName";
     [SerializeField] private bool scaleWithoutAnim = false;
     [SerializeField] private float scaleR = .1f;
     [SerializeField] private bool hide = false;
@@ -15,7 +16,7 @@ public class TouchObject : MonoBehaviour
     public WasUnitComplete Parent = null;
 
     private Animator animator = null;
-    private AudioSource sound = new AudioSource();
+    private AudioSource sound = null;
     private Text text = null;
 
     Vector3 scaleS;
@@ -32,22 +33,18 @@ public class TouchObject : MonoBehaviour
         xScale = scaleS.x;
         yScale = scaleS.y;
 
-
         this.TryGetComponent<SpriteRenderer>(out renderer);
 
         this.TryGetComponent<AudioSource>(out sound);
         this.TryGetComponent<Animator>(out animator);
 
         if (hasName && text == null)
-            text = GameObject.FindGameObjectWithTag("ObjectsName").gameObject.GetComponent<Text>() as Text;
+            text = GameObject.FindGameObjectWithTag(tagNameOfText).gameObject.GetComponent<Text>() as Text;
 
         if (hide)
             StartCoroutine(SetSpriteNull());
 
     }
-    bool scale = false;
-
-
     private IEnumerator SetSpriteNull()
     {
         yield return new WaitForSeconds(2f);
@@ -57,7 +54,6 @@ public class TouchObject : MonoBehaviour
     SpriteRenderer renderer = null;
     void OnMouseDown()
     {
-
         //if(hitTouch.collider.CompareTag("Difference"))
         //{
         //    obj = hitTouch.collider.transform.gameObject as GameObject;
@@ -66,94 +62,78 @@ public class TouchObject : MonoBehaviour
         //        Parent.GetComponent<WasUnitComplete>().SetCountOfDifference +=  1;
         //    obj.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
         //}
-        if (hasSound && (sound == null || !sound.isPlaying))
-        {     
-            if(sound != null)
-                sound.Play();
+
+
+        if (hasSound && !sound.isPlaying)
+        {
+            sound.Play();
 
             if (!scaleWithoutAnim && animator != null)
                 animator.SetBool("zoom", true);
             else if (scaleWithoutAnim)
-                scale = true;
+            {
+                StartCoroutine(Scale(new Vector3(xScale + (xScale * scaleR), yScale + (yScale * scaleR), 1), 3f));
+                StartCoroutine(hideText());
+            }
         }
         else if (!hasSound)
         {
-            isShowing = true;
             if (!scaleWithoutAnim && animator != null)
                 animator.SetBool("zoom", true);
-            else if(scaleWithoutAnim)
-                scale = true;
+            else if (scaleWithoutAnim)
+            {
+                StartCoroutine(Scale(new Vector3(xScale + (xScale * scaleR), yScale + (yScale * scaleR), 1), 3f));
+                StartCoroutine(hideText());
+            }
         }
-
-        if (Parent != null && !calculated)
+        if (hasName)
+            text.text = this.tag;
+        if (renderer != null)
+            renderer.sortingLayerName = "Selected";
+    }
+    bool wait = false;
+    private IEnumerator hideText()
+    {
+        if (!calculated)
         {
             calculated = true;
             currentCount++;
-            if (currentCount == CountOfObjects)
+            if (currentCount >= CountOfObjects)
             {
                 Parent.CompleteUnit();
             }
         }
-    }
-    bool isShowing = false;
-    bool wait = false;
-    private IEnumerator hideText()
-    {
+        if (dontChangeEnd)
+            yield break;
         yield return new WaitForSeconds(2);
-        isShowing = false;
-        wait = false;
-    }
+        if (sound != null)
+            sound.Stop();
 
-    private void Update()
+        unscale();
+    }
+    private void unscale()
     {
+        StartCoroutine(Scale(scaleS, 3f));
 
-        if (animator != null || scaleWithoutAnim) {
-            if (isShowing || (sound != null && sound.isPlaying))
-            {
-                if(!scaleWithoutAnim && animator != null)
-                        animator.SetBool("zoom", true);
-                else if(scaleWithoutAnim)
-                    scale = true;
-                if(hasName)
-                    text.text = this.name;
+        if (renderer != null)
+            renderer.sortingLayerName = "Top";
 
-                if (renderer != null)
-                    renderer.sortingLayerName = "Selected";
-
-                if (!wait)
-                {
-                    wait = true;
-                    StartCoroutine(hideText());
-                }
-            }
-            else if(!isShowing)
-            {
-                if (sound != null)
-                    sound.Stop();
-
-                isShowing = false;
-                if(!scaleWithoutAnim && animator != null)
-                    if(!dontChangeEnd)
-                        animator.SetBool("zoom", false);
-                else if(scaleWithoutAnim)
-                    if (!dontChangeEnd)
-                        scale = false;
-
-                if (renderer != null)
-                    renderer.sortingLayerName = "Top";
-
-                if (hasName && (text != null && text.text == this.name))
-                    text.text = null;
-            }
-        }
-
-        if(scale && scaleWithoutAnim)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(xScale  + (xScale * scaleR), yScale + (yScale * scaleR)), .05f);
-        }else if(!scale && scaleWithoutAnim)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, scaleS, .05f);
-        }
+        if (hasName && (text != null && text.text == this.tag))
+            text.text = null;
     }
 
+
+    private IEnumerator Scale(Vector3 target, float duration)
+    {
+        float scaleDuration = duration;
+        for (float t = 0; t < 1; t += Time.deltaTime / scaleDuration)
+        {
+            this.transform.localScale = Vector3.Lerp(this.transform.localScale, target, t);
+            if (this.transform.localScale.Equals(target))
+            {
+                yield break;
+            }
+            yield return null;
+        }
+    }
 }

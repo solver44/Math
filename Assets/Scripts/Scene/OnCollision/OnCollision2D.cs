@@ -32,14 +32,14 @@ public class OnCollision2D : MonoBehaviour
     }
 
     private Transform _nameOfObject;
-    private Transform _nameOfTrggeredObject;
+    private Transform _trggeredObject;
     public Transform NameOfObject
     {
         get { return _nameOfObject; }
     }
     public Transform NameOfTriggeredObject
     {
-        get { return _nameOfTrggeredObject; }
+        get { return _trggeredObject; }
     }
 
     //public static void AddTag(string tag)
@@ -74,54 +74,25 @@ public class OnCollision2D : MonoBehaviour
             hasCheckButton = true;
             CheckButton.GetComponent<Button>().onClick.AddListener(delegate () { checkHaveAll(true); });
         }
-
-        MoveObject.MouseUp += MoveObject_MouseUp;
     }
-
-    private void MoveObject_MouseUp(GameObject currObj)
+    private void Start()
     {
-        if (HaveCells && !CellScript.StaticObjects.Contains(currObj.transform))
-            DeleteEntered(currObj.gameObject, true);
+        MoveObject.MouseUp += MoveObject_MouseUp;
+        MoveObject.MouseDown += MoveObject_MouseDown;
     }
 
     public List<Transform> nameOfObjectsInside = new List<Transform>();
     public List<MoveObject> scriptsOfObjectsInside = new List<MoveObject>();
 
-    void OnTriggerEnter2D(Collider2D coll)
-    {
-        if (locked)
-            return;
+    //private void OnTriggerStay2D(Collider2D other)
+    //{
+    //    if (HaveCells || !other.tag.Equals("RayObjects") || scriptsOfObjectsInside.Count < 1)
+    //        return;
 
-        _onCollision = true;
-        _nameOfTrggeredObject = coll.gameObject.transform;
-
-        if (!CheckInside)
-            return;
-
-        if (coll.transform.tag == "RayObjects") {
-            currentGameObj = coll.gameObject;
-
-            OnCollisionRayObject = true;
-
-            nameOfObjectsInside.Add(_nameOfTrggeredObject);
-            scriptsOfObjectsInside.Add(currentGameObj.transform.GetComponent<MoveObject>());
-            scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition = true;
-
-            if(!hasCheckButton && !HaveCells)
-                checkHaveAll(false);
-        }
-    }
-
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (HaveCells || !other.tag.Equals("RayObjects") || scriptsOfObjectsInside.Count < 1)
-            return;
-
-        bool a = scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition;
-        if (!a)
-            scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition = true;
-    }
+    //    bool a = scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition;
+    //    if (!a)
+    //        scriptsOfObjectsInside[scriptsOfObjectsInside.Count - 1].DontMoveTo1stPosition = true;
+    //}
 
     bool locked = false;
     private void checkHaveAll(bool showMessage)
@@ -175,37 +146,89 @@ public class OnCollision2D : MonoBehaviour
         // Because closest=point if point is inside - not clear from docs I feel
         return closest == pos;
     }
-
     GameObject currentGameObj = null;
 
-    void OnTriggerExit2D(Collider2D coll)
+    public void DeleteEntered(GameObject coll, bool onlyThis)
     {
-        _onCollision = false;
+        if (coll.transform.tag != "RayObjects" || !nameOfObjectsInside.Contains(coll.transform))
+            return;
+
+        currentGameObj = coll;
+
+
+        coll.GetComponent<MoveObject>().DontMoveTo1stPosition = false;
+        nameOfObjectsInside.Remove(currentGameObj.transform);
+        scriptsOfObjectsInside.Remove(currentGameObj.transform.GetComponent<MoveObject>());
+
+        if (!onlyThis)
+            OnCollisionRayObject = false;
+
+        if (!hasCheckButton && !HaveCells)
+            checkHaveAll(false);
+    }
+
+    bool dragObj = false;
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (locked)
+            return;
+
+        _onCollision = true;
+        if(currentMove != null)
+            currentMove.isCollision = true;
+        _trggeredObject = coll.gameObject.transform;
 
         if (!CheckInside)
             return;
 
-        if (coll.transform.tag == "RayObjects")
-        {
-            DeleteEntered(coll.gameObject, false);
-        }
-    }
-
-    public void DeleteEntered(GameObject coll, bool onlyThis)
-    {
-        currentGameObj = coll;
-
-        if (!onlyThis)
-        {
-            OnCollisionRayObject = false;
-            collObject = false;
-        }
-
-        coll.transform.GetComponent<MoveObject>().DontMoveTo1stPosition = false;
-        nameOfObjectsInside.Remove(currentGameObj.transform);
-        scriptsOfObjectsInside.Remove(currentGameObj.transform.GetComponent<MoveObject>());
-
         if (!hasCheckButton && !HaveCells)
             checkHaveAll(false);
+        //setCollObj(coll.transform);
+    }
+    private void setCollObj(Transform coll)
+    {
+        if (coll.tag == "RayObjects")
+        {
+            currentGameObj = coll.gameObject;
+
+            OnCollisionRayObject = true;
+
+            nameOfObjectsInside.Add(_trggeredObject);
+            scriptsOfObjectsInside.Add(currentGameObj.transform.GetComponent<MoveObject>());
+            scriptsOfObjectsInside.Last().DontMoveTo1stPosition = true;
+
+            _onCollision = false;
+        }
+    }
+    void OnTriggerExit2D(Collider2D coll)
+    {
+        _onCollision = false;
+        if (currentMove != null)
+            currentMove.isCollision = false;
+        _trggeredObject = null;
+    }
+
+    MoveObject currentMove = null;
+    private void MoveObject_MouseUp(MoveObject currObj)
+    {
+        if (!dragObj)
+            return;
+        dragObj = false;
+        Debug.Log(currentMove.isCollision + "\n" + currObj.isCollision);
+        if (currObj.isCollision)
+            setCollObj(currObj.transform);
+        else
+            DeleteEntered(currObj.gameObject, false);
+
+        if (HaveCells && !CellScript.StaticObjects.Contains(currObj.transform))
+            DeleteEntered(currObj.gameObject, true);
+    }
+    private void MoveObject_MouseDown(MoveObject currObj)
+    {
+        if (dragObj)
+            return;
+
+        dragObj = true;
+        currentMove = currObj;
     }
 }

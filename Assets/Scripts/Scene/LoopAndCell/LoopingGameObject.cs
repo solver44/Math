@@ -26,15 +26,10 @@ public class LoopingGameObject : MonoBehaviour
     public float RangeY = 0f;
 
     private RectTransform[,] cells;
-
     public List<GameObject> tempPrefabs = new List<GameObject>();
-
-    public static GameObject CurrentObj = null;
 
     RectTransform rectT;
 
-
-    Touch touch;
     private void Awake()
     {
         if(Cells)
@@ -90,7 +85,6 @@ public class LoopingGameObject : MonoBehaviour
         if(objPlaces.Count == AnswersPlaces.Count())
             checkIt();
     }
-
     private void checkIt()
     {
         bool getBoolean = objPlaces.All(AnswersPlaces.Contains);
@@ -104,37 +98,39 @@ public class LoopingGameObject : MonoBehaviour
             return;
 
         if (coll)
-            CreateOneMore(false);
+            CreateOneMore();
         else
         {
-            DeleteFirst();
-            CurrentObj = child;
+            RemoveLast();
+            currentObjectToRemove = child.transform.parent.gameObject;
         }
     }
 
-    GameObject lastCraetedElem = null;
-    public void CreateOneMore(bool dontCreateMoreOne)
+    GameObject currentObjectToRemove = null;
+
+    int cnt = 1;
+    public void CreateOneMore()
     {
-        if ((dontCreateMoreOne && tempPrefabs.Count < 2) || !dontCreateMoreOne)
-        {
-            tempPrefabs.Add(Instantiate(Prefab, Vector3.zero, Quaternion.identity));
-            int cnt = tempPrefabs.Count - 1;
-            tempPrefabs[cnt].transform.parent = this.transform;
-            tempPrefabs[cnt].name = Name;
-            tempPrefabs[cnt].transform.localPosition = Vector3.zero;
-            CurrentObj = tempPrefabs[cnt];
-            lastCraetedElem = tempPrefabs[cnt];
-        }
+        tempPrefabs.Add(Instantiate(Prefab, Vector3.zero, Quaternion.identity));
+        tempPrefabs.Last().transform.parent = this.transform;
+
+        tempPrefabs.Last().name = Name + cnt;
+        tempPrefabs.Last().GetComponent<MoveObject>().Tag = Name;
+
+        tempPrefabs.Last().transform.localPosition = Vector3.zero;
+        currentObjectToRemove = tempPrefabs.Last();
+        cnt++;
         //tempPrefabs[cnt].GetComponent<MoveObject>().Uping += ParentPlace_changingColl;
     }
 
-    public void DeleteFirst()
+    public void RemoveLast()
     {
         if (tempPrefabs.Count < 1)
             return;
 
-        Destroy(lastCraetedElem);
-        tempPrefabs.Remove(lastCraetedElem);
+        tempPrefabs.Remove(currentObjectToRemove);
+        Destroy(currentObjectToRemove);
+        currentObjectToRemove = null;
     }
     void Start()
     {
@@ -150,7 +146,8 @@ public class LoopingGameObject : MonoBehaviour
 
             tempPrefabs.Add(Instantiate(Prefab, this.transform.position, Quaternion.identity));
             tempPrefabs[0].transform.parent = this.transform;
-            tempPrefabs[0].name = Name;
+            tempPrefabs[0].name = Name + "0";
+            tempPrefabs[0].GetComponent<MoveObject>().Tag = Name;
             //tempPrefabs[0].GetComponent<MoveObject>().Uping += ParentPlace_changingColl;
         }
         else
@@ -159,7 +156,8 @@ public class LoopingGameObject : MonoBehaviour
             {
                 tempPrefabs.Add(Instantiate(Prefab, this.transform.position, Quaternion.identity));
                 tempPrefabs[i].transform.parent = this.transform;
-                tempPrefabs[i].name = Name;
+                tempPrefabs[i].name = Name + "0";
+                tempPrefabs[i].GetComponent<MoveObject>().Tag = Name;
                 //tempPrefabs[i].GetComponent<MoveObject>().Uping += ParentPlace_changingColl;
             }
         }

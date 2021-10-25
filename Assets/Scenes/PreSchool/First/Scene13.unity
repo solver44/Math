@@ -994,8 +994,16 @@ MonoBehaviour:
   - {fileID: 2122808406}
   Prefab: {fileID: 3433613616258310890, guid: 5ff3a44e213abfe45aa198350d389565, type: 3}
   Name: bl1
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!4 &143426640
 Transform:
   m_ObjectHideFlags: 0
@@ -1898,8 +1906,16 @@ MonoBehaviour:
   - {fileID: 2122808406}
   Prefab: {fileID: 6985467088144131811, guid: d76e905814e6bb747889e7c15bd1cb23, type: 3}
   Name: bl2
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &390720953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,6 +2975,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 6
+  Tag: 
+  isCollision: 0
 --- !u!212 &647567070
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4246,6 +4264,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 6
+  Tag: 
+  isCollision: 0
 --- !u!212 &946287591
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4547,6 +4567,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 6
+  Tag: 
+  isCollision: 0
 --- !u!212 &969854668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4875,6 +4897,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 6
+  Tag: 
+  isCollision: 0
 --- !u!212 &1085067068
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5153,6 +5177,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 6
+  Tag: 
+  isCollision: 0
 --- !u!212 &1154241354
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5669,12 +5695,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckInside: 1
+  HaveCells: 0
   CheckButton: {fileID: 1702783163}
   ErrorPanel: {fileID: 463832661}
   NameOfObjects:
   - bl2
   - bl2
   - bl2
+  nameOfObjectsInside: []
+  scriptsOfObjectsInside: []
 --- !u!1 &1370693016
 GameObject:
   m_ObjectHideFlags: 0
@@ -5875,7 +5904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
+  m_sendNavigationEvents: 0
   m_DragThreshold: 10
 --- !u!4 &1480772299
 Transform:
@@ -6781,6 +6810,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 6
+  Tag: 
+  isCollision: 0
 --- !u!212 &1760476163
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7634,6 +7665,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 80
   To: 100
+  IsText: 0
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1972383077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7971,6 +8007,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 80
   To: 100
+  IsText: 0
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2122808401
 GameObject:
   m_ObjectHideFlags: 0
@@ -8086,8 +8127,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckInside: 1
+  HaveCells: 0
   CheckButton: {fileID: 1702783163}
   ErrorPanel: {fileID: 463832661}
   NameOfObjects:
   - bl1
   - bl1
+  nameOfObjectsInside: []
+  scriptsOfObjectsInside: []

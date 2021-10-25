@@ -46,6 +46,13 @@ public class ScaleEffect : MonoBehaviour
         StartCoroutine(Scale(this.transform, targetScale, 10f));
     }
 
+    /// <summary>
+    /// Vector3.MoveTowards
+    /// </summary>
+    /// <param name="transF"></param>
+    /// <param name="target"></param>
+    /// <param name="duration"></param>
+    /// <returns></returns>
     public IEnumerator Scale(Transform transF, Vector2 target, float duration)
     {
         float scaleDuration = duration;
@@ -64,6 +71,13 @@ public class ScaleEffect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Vector3.Lerp
+    /// </summary>
+    /// <param name="transF"></param>
+    /// <param name="target"></param>
+    /// <param name="duration"></param>
+    /// <returns></returns>
     public IEnumerator Scale2(Transform transF, Vector2 target, float duration)
     {
         float scaleDuration = duration;

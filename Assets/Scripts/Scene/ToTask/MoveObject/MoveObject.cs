@@ -5,8 +5,9 @@ using UnityEngine;
 public class MoveObject : MonoBehaviour
 {
     #region Events
-    public delegate void MouseOrTouchUp(GameObject currObj);
+    public delegate void MouseOrTouchUp(MoveObject currObj);
     public static event MouseOrTouchUp MouseUp;
+    public static event MouseOrTouchUp MouseDown;
     #endregion
 
     public bool DontMoving = false;
@@ -75,7 +76,7 @@ public class MoveObject : MonoBehaviour
 
     private IEnumerator waitUntilStart()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3.5f);
         if (placeObject != null && !HasPlaceObjectCollider)
         {
             placeObject.TryGetComponent<Animator>(out placeObjectAnim);
@@ -113,7 +114,10 @@ public class MoveObject : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(waitUntilStart());
+        if (placeObject != null && !HasPlaceObjectCollider)
+            WasUnitComplete.Finishing += setTransform;
+        else
+            StartCoroutine(waitUntilStart());
 
         if (isAnimator)
             anim = GetComponent<Animator>() as Animator;
@@ -158,6 +162,12 @@ public class MoveObject : MonoBehaviour
 
         StartCoroutine(MoveToStart());
     }
+    private void setTransform(int unit)
+    {
+        if (unit != CurrentUnit)
+            return;
+        StartCoroutine(waitUntilStart());
+    }
     private IEnumerator MoveToStart()
     {
         yield return new WaitForSeconds(TimeToStart);
@@ -192,7 +202,7 @@ public class MoveObject : MonoBehaviour
     }
 
      void OnMouseDown()
-    {
+     {
         if (DontMoving)
             return;
 
@@ -210,6 +220,7 @@ public class MoveObject : MonoBehaviour
             if (!dontSortLayer)
                 this.GetComponent<SpriteRenderer>().sortingOrder += 1;
         }
+        MouseDown?.Invoke(GetComponent<MoveObject>());
     }
     void OnMouseDrag()
     {
@@ -234,8 +245,7 @@ public class MoveObject : MonoBehaviour
         if (DontMoving)
             return;
 
-        MouseUp?.Invoke(this.transform.gameObject);
-
+        MouseUp?.Invoke(GetComponent<MoveObject>());
         if (!locked && !empty)
         {
             if (!dontSortLayer)
@@ -316,7 +326,6 @@ public class MoveObject : MonoBehaviour
 
     [HideInInspector] public bool DontMoveTo1stPosition = false;
     Vector2 location;
-    
 
     public void DontMove(bool _lock)
     {
@@ -487,4 +496,6 @@ public class MoveObject : MonoBehaviour
         }
     }
 
+    public string Tag = "";
+    [HideInInspector] public bool isCollision = false;
 }

@@ -16,7 +16,7 @@ public class CellScript : MonoBehaviour
         MoveObject.MouseUp += MoveObject_MouseUp;
     }
 
-    private void MoveObject_MouseUp(GameObject currObj)
+    private void MoveObject_MouseUp(MoveObject currObj)
     {
         if (!currObj.name.Contains("cube") || !onCollision || tempObj == null)
         {

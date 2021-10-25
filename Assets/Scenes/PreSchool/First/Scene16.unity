@@ -602,6 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckInside: 1
+  HaveCells: 0
   CheckButton: {fileID: 2005803523}
   ErrorPanel: {fileID: 879499597}
   NameOfObjects:
@@ -609,6 +610,8 @@ MonoBehaviour:
   - cb1
   - cr
   - cr
+  nameOfObjectsInside: []
+  scriptsOfObjectsInside: []
 --- !u!61 &139693127
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -761,6 +764,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 50
   To: 100
+  IsText: 0
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &196510162
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,6 +914,7 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 4
+  Tag: 
 --- !u!1 &225002375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,8 +1181,16 @@ MonoBehaviour:
   - {fileID: 1726286586}
   Prefab: {fileID: 1137604127300521957, guid: 4a1fa1bff6529db4e843c1764a4e12a6, type: 3}
   Name: tr
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &274878638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,8 +1466,16 @@ MonoBehaviour:
   - {fileID: 1726286586}
   Prefab: {fileID: 467860409901195250, guid: e1b5c72adf171724b9a29103d86a821f, type: 3}
   Name: cr
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &416456721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,6 +1793,7 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 4
+  Tag: 
 --- !u!1 &444942824
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,8 +2092,16 @@ MonoBehaviour:
   - {fileID: 1726286586}
   Prefab: {fileID: 8129835591380404939, guid: 70773a9c24ee7f34b977b78b0b65a28a, type: 3}
   Name: cb2
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &579897141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,8 +2579,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSound: 0
   hasName: 0
+  tagNameOfText: ObjectsName
   scaleWithoutAnim: 1
-  scaleR: 0.1
+  scaleR: 0.3
+  hide: 0
+  dontChangeEnd: 1
   CountOfObjects: 1
   Parent: {fileID: 636496023}
 --- !u!1 &746112469
@@ -3000,6 +3037,7 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 4
+  Tag: 
 --- !u!1 &920214416
 GameObject:
   m_ObjectHideFlags: 0
@@ -3254,8 +3292,16 @@ MonoBehaviour:
   - {fileID: 1726286586}
   Prefab: {fileID: 8905363634397997779, guid: b9b96e3db095c834395964ac3864733c, type: 3}
   Name: cb1
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &1169192293
 GameObject:
   m_ObjectHideFlags: 0
@@ -3920,6 +3966,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 50
   To: 100
+  IsText: 0
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1496021416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4814,11 +4865,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckInside: 1
+  HaveCells: 0
   CheckButton: {fileID: 2005803523}
   ErrorPanel: {fileID: 879499597}
   NameOfObjects:
   - tr
   - cr
+  nameOfObjectsInside: []
+  scriptsOfObjectsInside: []
 --- !u!50 &1726286587
 Rigidbody2D:
   serializedVersion: 4
@@ -5232,6 +5286,7 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 4
+  Tag: 
 --- !u!1 &1955895822
 GameObject:
   m_ObjectHideFlags: 0
