@@ -5,6 +5,7 @@ using UnityEngine;
 public class EqualShapes : MonoBehaviour
 {
     public GameObject TargetShape = null;
+    public bool OnTop = false;
     [HideInInspector] public string currentNameColor {
         set { _currentNameColor = value; nameOfShape = _currentNameColor;
             if (TargetShape.GetComponent<EqualShapes>().currentNameColor != value)
@@ -28,9 +29,7 @@ public class EqualShapes : MonoBehaviour
             if (TargetShape.name.Contains("color"))
                 nameOfShape = TargetShape.transform.name;
             else
-            {
                 isOther = true;
-            }
         }
     }
 
@@ -63,7 +62,6 @@ public class EqualShapes : MonoBehaviour
         else
         {
             if (currN != name && currN != "" && isOther) {
-
                 if (haveParent && info.Count > 0)
                     info.Count--;
 

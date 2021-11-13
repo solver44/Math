@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SameObjectsFinder : MonoBehaviour
@@ -17,11 +18,8 @@ public class SameObjectsFinder : MonoBehaviour
         {
             names.Add(this.transform.GetChild(i).name);
         }
-        for (int i = 1; i < names.Count; i++)
-        {
-            if (names[0] == names[i])
-                CountOfSameObjects++;
-        }
+        if (names.Select((item, index) => names.IndexOf(item) != index).ToArray().Contains(true))
+            CountOfSameObjects++;
     }
 
     string previousName = null;
@@ -67,7 +65,6 @@ public class SameObjectsFinder : MonoBehaviour
                     }
                 }
                 previousChild.RemoveRange(0, previousChild.Count);
-
             }
             if (!ScaleEffect)
                 currentObj.transform.GetChild(0).gameObject.SetActive(true);

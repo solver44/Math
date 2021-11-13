@@ -92,18 +92,21 @@ public class LoopingGameObject : MonoBehaviour
             Unit.CompleteUnit();
     }
 
+    bool coll = false;
     private void ParentPlace_changingColl(bool coll, GameObject child)
     {
         if (child.transform.parent.name != this.name)
             return;
 
+        Debug.Log("Coll");
         if (coll)
-            CreateOneMore();
-        else
         {
-            RemoveLast();
-            currentObjectToRemove = child.transform.parent.gameObject;
+            CreateOneMore(); return;
         }
+
+        
+        RemoveLast();
+        currentObjectToRemove = child.gameObject;
     }
 
     GameObject currentObjectToRemove = null;

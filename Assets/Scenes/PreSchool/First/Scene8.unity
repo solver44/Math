@@ -679,6 +679,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 1453865328}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: res7
+  isCollision: 0
 --- !u!212 &68006057
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -825,6 +827,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 1942359705}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: res1
+  isCollision: 0
 --- !u!212 &116726972
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1057,6 +1061,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &237344629
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1279,6 +1285,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 702349693}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: res3
+  isCollision: 0
 --- !u!212 &256697813
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1475,6 +1483,8 @@ MonoBehaviour:
   CheckButton: {fileID: 0}
   ErrorPanel: {fileID: 0}
   NameOfObjects: []
+  nameOfObjectsInside: []
+  scriptsOfObjectsInside: []
 --- !u!50 &279759970
 Rigidbody2D:
   serializedVersion: 4
@@ -2214,6 +2224,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 1
+  Tag: 
+  isCollision: 0
 --- !u!212 &579837806
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2519,6 +2531,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 624195695}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: res7
+  isCollision: 0
 --- !u!212 &643630118
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2689,6 +2703,8 @@ MonoBehaviour:
   CheckButton: {fileID: 0}
   ErrorPanel: {fileID: 0}
   NameOfObjects: []
+  nameOfObjectsInside: []
+  scriptsOfObjectsInside: []
 --- !u!61 &659150227
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3047,6 +3063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 20
   To: 80
+  IsText: 0
   Value: null
   Unit: 0
   KeyboardType: Numbers
@@ -3121,6 +3138,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 125252896}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: res5
+  isCollision: 0
 --- !u!212 &788098571
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3295,6 +3314,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 1557671515}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: res3
+  isCollision: 0
 --- !u!212 &821642544
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3726,6 +3747,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 2124879393}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: res1
+  isCollision: 0
 --- !u!212 &946287591
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3992,6 +4015,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 1519760574}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: res5
+  isCollision: 0
 --- !u!212 &968648380
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4255,6 +4280,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &1161828074
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4429,6 +4456,8 @@ MonoBehaviour:
   - res3
   - res5
   - res7
+  nameOfObjectsInside: []
+  scriptsOfObjectsInside: []
 --- !u!50 &1185378344
 Rigidbody2D:
   serializedVersion: 4
@@ -4623,6 +4652,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &1291084021
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4768,6 +4799,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &1311019993
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4903,6 +4936,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &1323955829
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5152,6 +5187,8 @@ MonoBehaviour:
   - res3
   - res5
   - res7
+  nameOfObjectsInside: []
+  scriptsOfObjectsInside: []
 --- !u!50 &1402050270
 Rigidbody2D:
   serializedVersion: 4
@@ -5398,6 +5435,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &1477327091
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6029,6 +6068,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &1550957494
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6469,6 +6510,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 0}
   DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &1627634171
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6736,6 +6779,8 @@ MonoBehaviour:
   EffectToDestroy: {fileID: 693303558}
   DontMoveTo1stPosition: 0
   countOfObjects: 1
+  Tag: 
+  isCollision: 0
 --- !u!212 &1767481360
 SpriteRenderer:
   m_ObjectHideFlags: 0

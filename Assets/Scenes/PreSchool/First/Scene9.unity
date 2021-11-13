@@ -301,8 +301,16 @@ MonoBehaviour:
   - {fileID: 1267459224}
   Prefab: {fileID: 371371540415637627, guid: 13e7c96aa65a146439aec40644d496fb, type: 3}
   Name: pj
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &10446085
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,9 +540,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   More: 1
   Speed: 0
+  KillObjectsAfterExit: 0
   ObjectsToExit: []
   ObjectsToEnter:
   - {fileID: 745594268}
+  WaitAndComplete: 0
   Finish: 0
   RangeX: 25
   RangeY: 0
@@ -614,6 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckInside: 1
+  HaveCells: 0
   CheckButton: {fileID: 548194954}
   ErrorPanel: {fileID: 2038992360}
   NameOfObjects:
@@ -622,6 +633,8 @@ MonoBehaviour:
   - ck
   - ck
   - pj
+  nameOfObjectsInside: []
+  scriptsOfObjectsInside: []
 --- !u!61 &36270446
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -869,7 +882,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67299042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.35, y: -4.38, z: 15}
+  m_LocalPosition: {x: 25.35, y: -4.38, z: 0}
   m_LocalScale: {x: 0.42831248, y: 0.42831248, z: 0.8111089}
   m_Children: []
   m_Father: {fileID: 857059805}
@@ -918,6 +931,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 32.15, y: -1.535}
   toThisScale: {x: 0.41, y: 0.41}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -932,8 +948,10 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &67299046
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -972,7 +990,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -813230613
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 78a7e5847c8b5a64b95d342cdad218e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1285,6 +1303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckInside: 1
+  HaveCells: 0
   CheckButton: {fileID: 1068973992}
   ErrorPanel: {fileID: 2038992360}
   NameOfObjects:
@@ -1293,6 +1312,8 @@ MonoBehaviour:
   - cf
   - cf
   - cf
+  nameOfObjectsInside: []
+  scriptsOfObjectsInside: []
 --- !u!1 &226406195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,8 +1363,16 @@ MonoBehaviour:
   - {fileID: 178033694}
   Prefab: {fileID: 389364125050001783, guid: 69921479c3fa7fb4db6334767ad3f317, type: 3}
   Name: ce2
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &236405898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,7 +1401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236405898}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.710001, y: -4.39, z: 15}
+  m_LocalPosition: {x: 21.710001, y: -4.39, z: 0}
   m_LocalScale: {x: 0.42831248, y: 0.42831248, z: 0.8111089}
   m_Children: []
   m_Father: {fileID: 857059805}
@@ -1395,6 +1424,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 33.69, y: -1.1}
   toThisScale: {x: 0.41, y: 0.41}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -1409,8 +1441,10 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &236405901
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1881,8 +1915,16 @@ MonoBehaviour:
   - {fileID: 178033694}
   Prefab: {fileID: 7052404112801129810, guid: 81adb6e1fbeda294289d219ae3b7f0db, type: 3}
   Name: ce
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &380704074
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,6 +2901,7 @@ MonoBehaviour:
   IsZoomScale: 0
   IsWhite: 0
   ScaleRadius: 0.15
+  PaintTwoSameObjectToSameColor: 0
   MoveUp: 1
 --- !u!4 &683371342
 Transform:
@@ -3191,7 +3234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799134562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.710001, y: -4.39, z: 15}
+  m_LocalPosition: {x: 21.710001, y: -4.39, z: 0}
   m_LocalScale: {x: 0.42831248, y: 0.42831248, z: 0.8111089}
   m_Children: []
   m_Father: {fileID: 857059805}
@@ -3253,6 +3296,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 28.91, y: -1.1}
   toThisScale: {x: 0.41, y: 0.41}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -3267,8 +3313,10 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &799134567
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3445,8 +3493,16 @@ MonoBehaviour:
   - {fileID: 1267459224}
   Prefab: {fileID: 3955323230485726293, guid: a3cc298b64067af4e93b319f957cf16f, type: 3}
   Name: ce2
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &815676925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4128,7 +4184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989523581}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.710001, y: -4.39, z: 15}
+  m_LocalPosition: {x: 21.710001, y: -4.39, z: 0}
   m_LocalScale: {x: 0.42831248, y: 0.42831248, z: 0.8111089}
   m_Children: []
   m_Father: {fileID: 857059805}
@@ -4190,6 +4246,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 24.09, y: -1.1}
   toThisScale: {x: 0.41, y: 0.41}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -4204,8 +4263,10 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &989523586
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4754,8 +4815,16 @@ MonoBehaviour:
   - {fileID: 1267459224}
   Prefab: {fileID: 8172005504479750175, guid: bff0eaa5a98e2e54b990aa0f9118c413, type: 3}
   Name: ck
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &1267459221
 GameObject:
   m_ObjectHideFlags: 0
@@ -4830,6 +4899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckInside: 1
+  HaveCells: 0
   CheckButton: {fileID: 548194954}
   ErrorPanel: {fileID: 2038992360}
   NameOfObjects:
@@ -4838,6 +4908,8 @@ MonoBehaviour:
   - ck
   - ck
   - pj
+  nameOfObjectsInside: []
+  scriptsOfObjectsInside: []
 --- !u!61 &1267459225
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4950,8 +5022,16 @@ MonoBehaviour:
   - {fileID: 178033694}
   Prefab: {fileID: 5769121252469555006, guid: 1fc10daf3bc458b46b97f44197837f2c, type: 3}
   Name: cf
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &1275975968
 GameObject:
   m_ObjectHideFlags: 0
@@ -5571,8 +5651,16 @@ MonoBehaviour:
   - {fileID: 1267459224}
   Prefab: {fileID: 2232811296567239987, guid: 908bf1aa2e8b52e49a9217872b8706b0, type: 3}
   Name: ck
+  Cells: 0
+  Columns: 0
+  Rows: 0
+  Cell: {fileID: 0}
+  Unit: {fileID: 0}
+  dontCreateThesePlaces: []
+  AnswersPlaces: []
   RangeX: 0
   RangeY: 0
+  tempPrefabs: []
 --- !u!1 &1370693016
 GameObject:
   m_ObjectHideFlags: 0
@@ -5825,7 +5913,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446766008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.990002, y: -4.38, z: 15}
+  m_LocalPosition: {x: 28.990002, y: -4.38, z: 0}
   m_LocalScale: {x: 0.42831248, y: 0.42831248, z: 0.8111089}
   m_Children: []
   m_Father: {fileID: 857059805}
@@ -5868,7 +5956,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.6763864, y: 3.322816}
+  m_Size: {x: 3.3794265, y: 3.1175344}
   m_EdgeRadius: 0
 --- !u!114 &1446766012
 MonoBehaviour:
@@ -5887,6 +5975,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 30.664, y: -1.25}
   toThisScale: {x: 0.41, y: 0.41}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -5901,8 +5992,10 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &1446766013
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5941,7 +6034,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -813230613
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e073dd41464ee7d41bc316f09e4c0a29, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6444,7 +6537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605993555}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.990002, y: -4.38, z: 15}
+  m_LocalPosition: {x: 28.990002, y: -4.38, z: -1}
   m_LocalScale: {x: 0.42831248, y: 0.42831248, z: 0.8111089}
   m_Children: []
   m_Father: {fileID: 857059805}
@@ -6506,6 +6599,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 25.74, y: -1.25}
   toThisScale: {x: 0.41, y: 0.41}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -6520,8 +6616,10 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &1605993560
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6560,7 +6658,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -813230613
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: e073dd41464ee7d41bc316f09e4c0a29, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6674,7 +6772,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652272584}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.35, y: -4.38, z: 15}
+  m_LocalPosition: {x: 25.35, y: -4.38, z: 0}
   m_LocalScale: {x: 0.42831248, y: 0.42831248, z: 0.8111089}
   m_Children: []
   m_Father: {fileID: 857059805}
@@ -6736,6 +6834,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 22.5, y: -1.48}
   toThisScale: {x: 0.41, y: 0.41}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -6750,8 +6851,10 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &1652272589
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7223,7 +7326,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724247190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.35, y: -4.38, z: 15}
+  m_LocalPosition: {x: 25.35, y: -4.38, z: 0}
   m_LocalScale: {x: 0.42831248, y: 0.42831248, z: 0.8111089}
   m_Children: []
   m_Father: {fileID: 857059805}
@@ -7285,6 +7388,9 @@ MonoBehaviour:
   HasPlaceObjectCollider: 0
   toThisLocation: {x: 27.35, y: -1.535}
   toThisScale: {x: 0.41, y: 0.41}
+  StartFromThisPos: 0
+  CurrentUnit: 0
+  TimeToStart: 2
   killPlaceObject: 0
   anyLocation: 0
   rangeX: 1
@@ -7299,8 +7405,10 @@ MonoBehaviour:
   EffectLight: {fileID: 0}
   DestroyEffect: 0
   EffectToDestroy: {fileID: 0}
-  DontMoveFirstPosition: 0
+  DontMoveTo1stPosition: 0
   countOfObjects: 8
+  Tag: 
+  isCollision: 0
 --- !u!212 &1724247195
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7339,7 +7447,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -813230613
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 78a7e5847c8b5a64b95d342cdad218e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8627,3 +8735,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: 50
   To: 100
+  IsText: 0
+  Value: null
+  Unit: 0
+  KeyboardType: Numbers
+  ColorValue: {r: 1, g: 1, b: 1, a: 1}

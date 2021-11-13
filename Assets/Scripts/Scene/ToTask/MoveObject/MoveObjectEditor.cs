@@ -26,6 +26,10 @@ public class MoveObjectEditor : Editor
         {
             moveScript.toThisScale = moveScript.transform.localScale;
         }
+        if (GUILayout.Button("Set Current Name To Tag"))
+        {
+            moveScript.Tag = moveScript.transform.name;
+        }
 
         EditorGUILayout.Space(20);
     }

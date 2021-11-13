@@ -23,7 +23,8 @@ public class LocalizedText : MonoBehaviour
             else
                 mesh = GetComponent<TextMesh>();
         }
-        locManager.ValueChanged += updateText;
+        if(locManager != null)
+            locManager.ValueChanged += updateText;
     }
 
     private void Start()
@@ -33,6 +34,8 @@ public class LocalizedText : MonoBehaviour
 
     public void updateText()
     {
+        if (locManager == null)
+            return;
         if (gameObject == null) return;
 
         if (locManager == null)

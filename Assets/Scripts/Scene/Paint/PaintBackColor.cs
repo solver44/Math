@@ -9,32 +9,115 @@ public class PaintBackColor : MonoBehaviour
     public bool DontCheck = false;
     public bool IsZoomScale = false;
     public bool IsWhite = false;
+    public bool SortLayer = false;
     public float ScaleRadius = 0.1f;
+    [Space(20)]
+    public bool PaintTwoSameObjectToSameColor = false;
 
     [Header("Other")]
     public bool MoveUp = false;
     private Vector2 firstPos = Vector2.zero;
 
-    private Color currentColor;
+    private Color currentColor = Color.white;
     private string currentShapesName;
 
     private Touch touch;
     private SpriteRenderer objectSprite = null;
     private Image objectImage = null;
 
-
     private void Start()
     {
         prevBtn = null;
         currentColor = Color.white;
+        if (PaintTwoSameObjectToSameColor)
+        {
+            IsWhite = false;
+            DontCheck = false;
+            CheckEqualShapes = false;
+        }
+    }
+
+    EqualShapes checkingEquals = null;
+    Dictionary<Transform, Color> temps = new Dictionary<Transform, Color>();
+    List<string> completed = new List<string>();
+    private void PaintTwoSame(RaycastHit2D hitTouch)
+    {
+        bool sum = false;    
+        if (hitTouch.collider.TryGetComponent<SpriteRenderer>(out objectSprite))
+        {
+            if(temps.ContainsKey(objectSprite.transform)
+               && temps[objectSprite.transform] == currentColor
+               && !completed.Contains(objectSprite.name))
+            {
+                sum = true;
+                objectSprite.color = currentColor;
+                completed.Add(objectSprite.name);
+            }
+            else if (temps.ContainsKey(objectSprite.transform)
+                    && temps.ContainsValue(currentColor)
+                    && !completed.Contains(objectSprite.name))
+            {
+                sum = false;
+                objectSprite.color = currentColor;
+                temps[objectSprite.transform] = currentColor;
+            }
+            else if(!temps.ContainsKey(objectSprite.transform)
+                    && !temps.ContainsValue(currentColor))
+            {
+                sum = true;
+                objectSprite.color = currentColor;
+                temps.Add(objectSprite.transform, currentColor);
+            }
+            else
+                sum = false;
+        }
+        else if (hitTouch.collider.TryGetComponent<Image>(out objectImage))
+        {
+            if (temps.ContainsKey(objectImage.transform)
+               && temps[objectImage.transform] == currentColor
+               && !completed.Contains(objectImage.name))
+            {
+                sum = true;
+                objectImage.color = currentColor;
+                completed.Add(objectImage.name);
+            }
+            else if(temps.ContainsKey(objectImage.transform)
+                    && !completed.Contains(objectImage.name))
+            {
+                sum = false;
+                objectImage.color = currentColor;
+                temps[objectImage.transform] = currentColor;
+            }
+            else if (!temps.ContainsKey(objectImage.transform)
+                    && !temps.ContainsValue(currentColor))
+            {
+                sum = true;
+                objectImage.color = currentColor;
+                temps.Add(objectImage.transform, currentColor);
+            }
+            else
+                sum = false;
+        }
+
+        if(hitTouch.collider.TryGetComponent<EqualShapes>(out checkingEquals))
+            checkingEquals.CheckIt(currentShapesName, sum, DontCheck);
     }
     void SetRayCast(RaycastHit2D hitTouch)
     {
+        if (currentColor == Color.white)
+            return;
+
         if (hitTouch && hitTouch.collider.transform.CompareTag("painting object"))
         {
+            if (PaintTwoSameObjectToSameColor)
+            {
+                PaintTwoSame(hitTouch);
+                return;
+            }
+
             if (CheckEqualShapes)
             {
-                EqualShapes checkingEquals = hitTouch.collider.transform.GetComponent<EqualShapes>();
+                checkingEquals = hitTouch.collider.GetComponent<EqualShapes>();
                 bool sum = false;
                 if (hitTouch.collider.gameObject.TryGetComponent<SpriteRenderer>(out objectSprite))
                 {
@@ -45,6 +128,8 @@ public class PaintBackColor : MonoBehaviour
                     objectImage = hitTouch.collider.gameObject.GetComponent<Image>();
                     if ((!IsWhite && !objectImage.color.Equals(currentColor)) || (IsWhite && objectImage.color.Equals(Color.white)))
                         sum = true;
+                    if (SortLayer)
+                        objectSprite.sortingLayerID += 2;
                 }
 
                 if (checkingEquals.CheckIt(currentShapesName, sum, false))
@@ -56,16 +141,18 @@ public class PaintBackColor : MonoBehaviour
                 }
             }else
             {
-                EqualShapes checkingEquals = hitTouch.collider.transform.GetComponent<EqualShapes>();
+                hitTouch.collider.TryGetComponent<EqualShapes>(out checkingEquals);
                 bool sum = false;
-                if (hitTouch.collider.gameObject.TryGetComponent<SpriteRenderer>(out objectSprite))
+                if (hitTouch.collider.TryGetComponent<SpriteRenderer>(out objectSprite))
                 {
                     if ((!IsWhite && !objectSprite.color.Equals(currentColor)) || (IsWhite && objectSprite.color.Equals(Color.white)))
                         sum = true;
+                    if (SortLayer)
+                        objectSprite.sortingOrder += 2;
                 }
                 else
                 {
-                    objectImage = hitTouch.collider.gameObject.GetComponent<Image>();
+                    objectImage = hitTouch.collider.GetComponent<Image>();
                     if ((!IsWhite && !objectImage.color.Equals(currentColor)) || (IsWhite && objectImage.color.Equals(Color.white)))
                         sum = true;
                 }
@@ -105,8 +192,8 @@ public class PaintBackColor : MonoBehaviour
         else
             firstPos = prevBtn.transform.localPosition;
 
-        Color32 color = pressedBtn.GetComponent<Image>().color;
-        RectTransform scale = pressedBtn.GetComponent<RectTransform>();
+        color = pressedBtn.GetComponent<Image>().color;
+        scale = pressedBtn.GetComponent<RectTransform>();
 
         if(!MoveUp)
             StartCoroutine(SmoothScaling(scale, IsZoomScale, false));
@@ -118,6 +205,8 @@ public class PaintBackColor : MonoBehaviour
         currentShapesName = pressedBtn.GetComponentInParent<Toggle>().name;
         currentColor = color;
     }
+    RectTransform scale;
+    Color32 color;
 
 
     bool sleep = false;

@@ -76,9 +76,10 @@ public class MoveObject : MonoBehaviour
 
     private IEnumerator waitUntilStart()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(3f);
         if (placeObject != null && !HasPlaceObjectCollider)
         {
+            empty = false;
             placeObject.TryGetComponent<Animator>(out placeObjectAnim);
             if (IsLocalPos)
             {
@@ -93,10 +94,12 @@ public class MoveObject : MonoBehaviour
         }
         else if (toThisLocation != Vector2.zero && !HasPlaceObjectCollider)
         {
+            empty = false;
             placeLocation = toThisLocation;
         }
         else if (HasPlaceObjectCollider)
         {
+            empty = false;
             placeLocation = Vector2.zero;
             collOfPlaceObject = placeObject.GetComponent<OnCollision2D>();
         }
@@ -114,10 +117,11 @@ public class MoveObject : MonoBehaviour
     }
     private void Start()
     {
+        empty = true;
+
         if (placeObject != null && !HasPlaceObjectCollider)
             WasUnitComplete.Finishing += setTransform;
-        else
-            StartCoroutine(waitUntilStart());
+        StartCoroutine(waitUntilStart());
 
         if (isAnimator)
             anim = GetComponent<Animator>() as Animator;
@@ -126,11 +130,6 @@ public class MoveObject : MonoBehaviour
         yScale = scaleS.y;
 
         if (toThisScale == new Vector2(0, 0))
-        {
-            toThisScale = Vector2.zero;
-        }
-
-        if (toThisScale == Vector2.zero)
             toThisScale = this.transform.localScale;
 
         firstScale = this.transform.localScale;
@@ -183,29 +182,13 @@ public class MoveObject : MonoBehaviour
     
 
     private bool scale = false;
-    void MouseDrag()
-    {
-        if (DontMoving || locked)
-            return;
-
-        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y));
-        transform.position = mousePosition;
-
-        if (anyLocation)
-        {
-            if (IsLocalPos)
-                firstPosition = transform.localPosition;
-            else
-                firstPosition = transform.position;
-        }
-
-    }
 
      void OnMouseDown()
      {
         if (DontMoving)
             return;
 
+        MouseDown?.Invoke(GetComponent<MoveObject>());
         if (!locked)
         {
 
@@ -220,7 +203,6 @@ public class MoveObject : MonoBehaviour
             if (!dontSortLayer)
                 this.GetComponent<SpriteRenderer>().sortingOrder += 1;
         }
-        MouseDown?.Invoke(GetComponent<MoveObject>());
     }
     void OnMouseDrag()
     {
@@ -245,7 +227,7 @@ public class MoveObject : MonoBehaviour
         if (DontMoving)
             return;
 
-        MouseUp?.Invoke(GetComponent<MoveObject>());
+        MouseUp?.Invoke(this);
         if (!locked && !empty)
         {
             if (!dontSortLayer)
@@ -256,9 +238,10 @@ public class MoveObject : MonoBehaviour
             else
                 location = transform.position;
 
-            if ((collOfPlaceObject != null && collOfPlaceObject.OnCollision && collOfPlaceObject.NameOfObject.Equals(placeObject.transform) && collOfPlaceObject.NameOfTriggeredObject.Equals(this.transform))
-                || (((Mathf.Abs(location.x - placeLocation.x)) <= rangeX &&
-                Mathf.Abs(location.y - placeLocation.y) <= rangeY) && collOfPlaceObject == null))
+            if ((collOfPlaceObject != null && collOfPlaceObject.OnCollision && collOfPlaceObject.NameOfObject.Equals(placeObject.transform) && collOfPlaceObject.NameOfTriggeredObject.Equals(this.transform)) 
+                || 
+                (    Mathf.Abs(location.x - placeLocation.x) <= rangeX &&
+                     Mathf.Abs(location.y - placeLocation.y) <= rangeY ))
             {
                 DontMoving = true;
                 if (isAnimator)
@@ -269,7 +252,6 @@ public class MoveObject : MonoBehaviour
                 else
                 {
                     StartCoroutine(methodScale(transform, scaleS, false, 1f)); //Уменшить когда отпускат мышку
-
                     if (placeObject == null || HasPlaceObjectCollider)
                     {
                         if (!HasPlaceObjectCollider)
@@ -296,9 +278,7 @@ public class MoveObject : MonoBehaviour
                 if (isAnimator)
                     anim.SetBool("zoom", false);
                 else
-                {
                     StartCoroutine(methodScale(transform, scaleS, false, 1f));
-                }
 
                 toLocalPos = true;
 

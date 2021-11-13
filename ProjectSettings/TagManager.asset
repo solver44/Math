@@ -19,6 +19,7 @@ TagManager:
   - KeyboardValue
   - BalanceItem
   - Anim
+  - painting object
   layers:
   - Default
   - TransparentFX
